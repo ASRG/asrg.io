@@ -2,16 +2,18 @@
 <html>
  <head>
   <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-131464826-2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131464826-2"></script>
+  <script>
+   window.dataLayer = window.dataLayer || []
+   function gtag() {
+    dataLayer.push(arguments)
+   }
+   gtag("js", new Date())
 
-  gtag('config', 'UA-131464826-2');
-</script>
+   gtag("config", "UA-131464826-2")
+  </script>
 
-    <title>ASRG</title>
+  <title>ASRG</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <link rel="stylesheet" href="assets/css/main.css" />
@@ -22,6 +24,11 @@
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <noscript><link rel="stylesheet" href="assets/css/noscript.css"/></noscript>
+  <link
+   rel="stylesheet"
+   type="text/css"
+   href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css"
+  />
  </head>
 
  <body class="landing is-preload">
@@ -253,5 +260,30 @@
   <script src="assets/js/breakpoints.min.js"></script>
   <script src="assets/js/util.js"></script>
   <script src="assets/js/main.js"></script>
+
+  <!-- Cookie Notice -->
+  <script
+   src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"
+   data-cfasync="false"
+  ></script>
+  <script>
+   console.log("Run cookie notice.")
+   window.cookieconsent.initialise({
+    palette: {
+     popup: {
+      background: "#000"
+     },
+     button: {
+      background: "transparent",
+      text: "#f1d600",
+      border: "#f1d600"
+     }
+    },
+    position: "bottom-right",
+    content: {
+     href: "https://asrg.io/privacy.html"
+    }
+   })
+  </script>
  </body>
 </html>
