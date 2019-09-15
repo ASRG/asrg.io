@@ -11,6 +11,40 @@
    gtag("js", new Date())
 
    gtag("config", "UA-131464826-2")
+
+   // Set the member join link based on the location.
+   function loadLocaleLinks() {
+    const locale = window.navigator.language
+    let link
+    switch (locale) {
+     case "en-US":
+      link = "https://www.meetup.com/Automotive-Security-Research-Group-Detroit/"
+      break
+     case "de-DE":
+     case "de-AT":
+     case "de-CH":
+     case "de-LI":
+      link = "https://www.meetup.com/Automotive-Security-Research-Group-Stuttgart/"
+      break
+     case "yi":
+      link = "https://www.meetup.com/Automotive-Security-Research-Group-Tel-Aviv-ASRG-TLV/"
+      break
+     case "ro-mo":
+     case "ro":
+      link = "https://www.meetup.com/Automotive-Security-Research-Group-Cluj-ASRG-C/"
+      break
+     default:
+      link = "https://www.meetup.com/find/?query=automotive%20security%20research%20group"
+    }
+
+    // add more links if needed
+    const ids = ["join-btn", "register-btn"]
+    for (let i = 0; i < ids.length; i++) {
+     let e = document.getElementById(ids[i])
+     e.setAttribute("href", link)
+    }
+   }
+   window.onload = loadLocaleLinks
   </script>
 
   <title>ASRG</title>
@@ -61,7 +95,14 @@
      <h2>ASRG</h2>
      <p>Automotive Security Research Group<br /></p>
      <ul class="actions special">
-      <li><a href="https://www.meetup.com/Automotive-Security-Research-Group-Stuttgart/" class="button primary">Join the Community</a></li>
+      <li>
+       <a
+        id="join-btn"
+        href="https://www.meetup.com/Automotive-Security-Research-Group-Stuttgart/"
+        class="button primary"
+        >Join the Community</a
+       >
+      </li>
      </ul>
     </div>
     <a href="#one" class="more scrolly">Learn More</a>
@@ -211,7 +252,7 @@
       </p>
      </header>
      <ul class="actions stacked">
-      <li><a href="https://asrg.io" class="button fit primary">Register</a></li>
+      <li><a id="register-btn" href="https://asrg.io" class="button fit primary">Register</a></li>
       <li><a href="https://docs.asrg.io" class="button fit">Read the docs</a></li>
      </ul>
     </div>
