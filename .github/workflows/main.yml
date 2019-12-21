@@ -1,5 +1,3 @@
-name: Publish ASRG
-
 on: push
 name: Publish Website
 
@@ -15,6 +13,7 @@ jobs:
         FTP_SERVER: asrg.io
         FTP_USERNAME: johhel17
         FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        REMOTE_DIR: /home/johhel17/asrg.io
         METHOD: sftp
         PORT: 22
         ARGS: --delete
