@@ -1,0 +1,21 @@
+name: Publish ASRG
+
+on: push
+name: Publish Website
+
+jobs:
+  FTP-Deploy-Action:
+    name: FTP-Deploy-Action
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: FTP-Deploy-Action
+      uses: SamKirkland/FTP-Deploy-Action@2.0.0
+      env:
+        FTP_SERVER: asrg.io
+        FTP_USERNAME: johhel17
+        FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        METHOD: sftp
+        PORT: 22
+        ARGS: --delete
+        # --delete arg will delete files on the server if you've deleted them in git
