@@ -14,6 +14,7 @@ jobs:
         FTP_USERNAME: johhel17
         FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         REMOTE_DIR: /home/johhel17/asrg.io
+        LOCAL_DIR: website
         METHOD: sftp
         PORT: 22
         ARGS: --delete
