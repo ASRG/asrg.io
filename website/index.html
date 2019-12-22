@@ -96,10 +96,10 @@
                   <li><a href="https://asrg.io/about.html">About Us</a></li>
                   <li><a href="https://asrg.gitbook.io/asrg-wiki/">Docs</a></li>
                   <li>
-                      <a href="https://asrg.io/security.html"
-                        >Report a vulnerability</a
-                      >
-                    </li>
+                    <a href="https://asrg.io/security.html"
+                      >Report a vulnerability</a
+                    >
+                  </li>
                   <li><a href="https://asrg.io/blog.html">Blog</a></li>
                   <li>
                     <a href="https://app.gitbook.com/@asrg/s/asrg-wiki/members"
@@ -479,10 +479,27 @@
                         .then(json => {
                           members += json.members;
 
-                          document.getElementById("loading").remove();
-                          document.getElementById(
-                            "memberCount"
-                          ).innerHTML = members;
+                          fetch(
+                            "https://cors-anywhere.herokuapp.com/https://api.meetup.com/Automotive-Security-Research-Group-Cairo-ASRG-CAI?&sign=true&photo-host=public",
+                            {
+                              method: "GET",
+                              headers: {
+                                Accept: "application/json",
+                                "Content-Type": "application/json"
+                              }
+                            }
+                          )
+                            .then(res => {
+                              return res.json();
+                            })
+                            .then(json => {
+                              members += json.members;
+
+                              document.getElementById("loading").remove();
+                              document.getElementById(
+                                "memberCount"
+                              ).innerHTML = members;
+                            });
                         });
                     });
                 });
