@@ -114,14 +114,16 @@
       <!-- Banner -->
       <section id="banner">
         <div class="inner">
-          <span><
-            <h2><img 
-            src="./images/ASRG_Logo_white.png"
-            alt="Networking"
-            width="300"
-            height="107"
-          /></span
-        ></h2>
+          <span>
+            <h2>
+              <img
+                src="./images/ASRG_Logo_white.png"
+                alt="Networking"
+                width="300"
+                height="107"
+              />
+            </h2>
+          </span>
           <p>Automotive Security Research Group<br /></p>
           <ul class="actions special">
             <li>
@@ -440,111 +442,38 @@
     </script>
 
     <script async>
-      let members = 0;
+      getMembers();
 
-      fetch(
-        "https://cors-anywhere.herokuapp.com/https://api.meetup.com/Automotive-Security-Research-Group-Stuttgart?&sign=true&photo-host=public",
-        {
-          method: "GET",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json"
-          }
-        }
-      )
-        .then(res => {
-          return res.json();
-        })
-        .then(json => {
-          members += json.members;
+      async function getMembers() {
+        let urls = [
+          "https://cors-anywhere.herokuapp.com/https://api.meetup.com/Automotive-Security-Research-Group-Stuttgart?&sign=true&photo-host=public",
+          "https://cors-anywhere.herokuapp.com/https://api.meetup.com/Automotive-Security-Research-Group-Detroit?&sign=true&photo-host=public",
+          "https://cors-anywhere.herokuapp.com/https://api.meetup.com/Automotive-Security-Research-Group-Tel-Aviv-ASRG-TLV?&sign=true&photo-host=public",
+          "https://cors-anywhere.herokuapp.com/https://api.meetup.com/Automotive-Security-Research-Group-Cluj-ASRG-C?&sign=true&photo-host=public",
+          "https://cors-anywhere.herokuapp.com/https://api.meetup.com/Automotive-Security-Research-Group-Singapore-ASRG-SIN?&sign=true&photo-host=public",
+          "https://cors-anywhere.herokuapp.com/https://api.meetup.com/Automotive-Security-Research-Group-Cairo-ASRG-CAI?&sign=true&photo-host=public"
+        ];
+        let members = 0;
 
-          fetch(
-            "https://cors-anywhere.herokuapp.com/https://api.meetup.com/Automotive-Security-Research-Group-Detroit?&sign=true&photo-host=public",
-            {
+        for (let i = 0; i < urls.length; i++) {
+          try {
+            const res = await fetch(urls[i], {
               method: "GET",
               headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json"
               }
-            }
-          )
-            .then(res => {
-              return res.json();
-            })
-            .then(json => {
-              members += json.members;
-              fetch(
-                "https://cors-anywhere.herokuapp.com/https://api.meetup.com/Automotive-Security-Research-Group-Tel-Aviv-ASRG-TLV?&sign=true&photo-host=public",
-                {
-                  method: "GET",
-                  headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json"
-                  }
-                }
-              )
-                .then(res => {
-                  return res.json();
-                })
-                .then(json => {
-                  members += json.members;
-                  fetch(
-                    "https://cors-anywhere.herokuapp.com/https://api.meetup.com/Automotive-Security-Research-Group-Cluj-ASRG-C?&sign=true&photo-host=public",
-                    {
-                      method: "GET",
-                      headers: {
-                        Accept: "application/json",
-                        "Content-Type": "application/json"
-                      }
-                    }
-                  )
-                    .then(res => {
-                      return res.json();
-                    })
-                    .then(json => {
-                      members += json.members;
-                      fetch(
-                        "https://cors-anywhere.herokuapp.com/https://api.meetup.com/Automotive-Security-Research-Group-Singapore-ASRG-SIN?&sign=true&photo-host=public",
-                        {
-                          method: "GET",
-                          headers: {
-                            Accept: "application/json",
-                            "Content-Type": "application/json"
-                          }
-                        }
-                      )
-                        .then(res => {
-                          return res.json();
-                        })
-                        .then(json => {
-                          members += json.members;
-
-                          fetch(
-                            "https://cors-anywhere.herokuapp.com/https://api.meetup.com/Automotive-Security-Research-Group-Cairo-ASRG-CAI?&sign=true&photo-host=public",
-                            {
-                              method: "GET",
-                              headers: {
-                                Accept: "application/json",
-                                "Content-Type": "application/json"
-                              }
-                            }
-                          )
-                            .then(res => {
-                              return res.json();
-                            })
-                            .then(json => {
-                              members += json.members;
-
-                              document.getElementById("loading").remove();
-                              document.getElementById(
-                                "memberCount"
-                              ).innerHTML = members;
-                            });
-                        });
-                    });
-                });
             });
-        });
+            const json = await res.json();
+            members += json.members;
+          } catch (error) {
+            console.log(error);
+            return;
+          }
+        }
+        document.getElementById("loading").remove();
+        document.getElementById("memberCount").innerHTML = members;
+      }
     </script>
   </body>
 </html>
