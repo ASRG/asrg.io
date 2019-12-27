@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/mikeyhuntington
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://asrg.io
+  * I am mikeyhuntington (https://keybase.io/mikeyhuntington) on keybase.
+  * I have a public key ASCwXgpX4_y_sT413yyHshgecZXY36mrtIixAKBZaa3SOgo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120b05e0a57e3fcbfb13e35df2c87b2181e7195d8dfa9abb488b100a05969add23a0a",
+      "host": "keybase.io",
+      "kid": "0120b05e0a57e3fcbfb13e35df2c87b2181e7195d8dfa9abb488b100a05969add23a0a",
+      "uid": "8d28476bbfc86b9252c5f5020849cb19",
+      "username": "mikeyhuntington"
+    },
+    "merkle_root": {
+      "ctime": 1577466657,
+      "hash": "6e0820d827026f388101aad6059fefc1487c8abdd3e8fd263777e8ea2a509ba153656c6ce8ee94f49561131c0e578e6484d4716289a95fe30fa4db788ff42d7b",
+      "hash_meta": "98198e19213302ebc401044667a5a3b2c54cf72fdf6f363a4078d2aebb6bf21a",
+      "seqno": 13977642
+    },
+    "service": {
+      "entropy": "2mGFMaGz/pLBkNLxfY0MP+Pe",
+      "hostname": "asrg.io",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "5.1.1"
+  },
+  "ctime": 1577466665,
+  "expire_in": 504576000,
+  "prev": "a3518c1b8a3cc1b42b2aa988291d0fb46dbfc019d7d0d5af03679664d917def8",
+  "seqno": 11,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgsF4KV+P8v7E+Nd8sh7IYHnGV2N+pq7SIsQCgWWmt0joKp3BheWxvYWTESpcCC8Qgo1GMG4o8wbQrKqmIKR0PtG2/wBnX0NWvA2eWZNkX3vjEIALJJfVGSkvp/k+mYEEnfBRvQ/lQJ0XgPA+yul1rhd7nAgHCo3NpZ8RAnPRDBPkoYvX1vVHEFa2h1OJzobzOhLf0nv8tN1CDVkhY7f1SHMealzFB2j61+LtB1FoOfA9y366242eyU96iAKhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIOPhAmzzj5opHgmbGAJ++XfpP8nqGnn9gMksfhUxxXKCo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/mikeyhuntington
+
+==================================================================
