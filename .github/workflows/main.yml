@@ -9,6 +9,7 @@ jobs:
     - uses: actions/checkout@master
     - name: FTP-Deploy-Action
       uses: SamKirkland/FTP-Deploy-Action@2.0.0
+      
       env:
         FTP_SERVER: asrg.io
         FTP_USERNAME: johhel17
@@ -17,5 +18,6 @@ jobs:
         LOCAL_DIR: website
         METHOD: sftp
         PORT: 22
-        ARGS: --delete
+      with:
+        git-ftp-args: --delete --branch master
         # --delete arg will delete files on the server if you've deleted them in git
