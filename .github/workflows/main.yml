@@ -17,5 +17,5 @@ jobs:
         LOCAL_DIR: website
         METHOD: sftp
         PORT: 22
-        ARGS: --delete
+        ARGS: --delete --branch master
         # --delete arg will delete files on the server if you've deleted them in git
