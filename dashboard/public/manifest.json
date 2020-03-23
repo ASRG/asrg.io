@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "ASRG Dashboard",
+  "name": "Check the status of the ASRG",
   "icons": [
     {
       "src": "favicon.ico",
