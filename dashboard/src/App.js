@@ -25,12 +25,9 @@ const Nav = () => {
   return (
     <nav className="bg-darkBlue2 w-full py-4 flex items-center md:justify-between justify-center flex-wrap shadow">
       <div className="flex w-full justify-center items-center flex-shrink-0 text-gray-600 ml-4 m3-6">
-        <img
-          // src="https://asrg.io/images/ASRG_Logo_white.png"
-          src={Logo}
-          className="logo mr-3"
-          alt="ASRG Logo"
-        />
+        <a href="https://asrg.io/">
+          <img src={Logo} className="logo mr-3" alt="ASRG Logo" />
+        </a>
       </div>
     </nav>
   );
