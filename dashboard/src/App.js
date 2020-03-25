@@ -4,6 +4,7 @@ import "./main.css";
 import CountUp from "react-countup";
 import Logo from "./logo.png";
 import { Map, Marker, Popup, TileLayer } from "react-leaflet";
+import data from "./data/data.json";
 
 function App() {
   return (
@@ -34,30 +35,29 @@ const Nav = () => {
 };
 
 const MapContainer = () => {
-  const position = [51.505, -0.09]; // start position
-  // the markers will be loaded dynamically once we have set up the JSON
-  const markers = [
-    {
-      position: [51.505, -0.09],
-      text: (
-        <div>
-          <div className="font-bold text-sm text-blueGray">ASRG London</div>
-          <br />
-          Created: ........
-          <br />
-          Members: 1000
-          <br />
-          Past Events: 1000
-          <br />
-          Upcoming Events: 1000
-          <br />
-          Last Event Date: .........
-          <br />
+  const position = [48.773739, 9.173927]; // start position in Stuttgart
+
+  let markers = data.map(d => ({
+    position: d.location,
+    markup: (
+      <div>
+        <div className="font-bold text-sm text-blueGray">{d.name}</div>
+        Created: {d.created}
+        <br />
+        Members: {d.members}
+        <br />
+        Past Events: {d.past}
+        <br />
+        Upcoming Events: {d.upcoming}
+        <br />
+        Last Event: {d.lastEvent}
+        <br />
+        <div className={`${d.active ? "text-green-800" : "text-gray-800"}`}>
           Active
         </div>
-      )
-    }
-  ];
+      </div>
+    )
+  }));
 
   return (
     <div className="w-full px-6 py-3 flex justify-center">
@@ -73,7 +73,7 @@ const MapContainer = () => {
           />
           {markers.map((m, i) => (
             <Marker key={"marker-" + i} position={m.position}>
-              <Popup>{m.text}</Popup>
+              <Popup>{m.markup}</Popup>
             </Marker>
           ))}
         </Map>
