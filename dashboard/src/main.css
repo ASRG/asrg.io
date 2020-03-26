@@ -336,12 +336,20 @@ img {
   height: auto;
 }
 
+.bg-blue-500{
+  background-color: #4299e1;
+}
+
 .bg-darkBlue1{
   background-color: #0e2439;
 }
 
 .bg-darkBlue2{
   background-color: #1f364d;
+}
+
+.hover\:bg-blue-700:hover{
+  background-color: #2b6cb0;
 }
 
 .border-darkBlue2{
@@ -408,6 +416,10 @@ img {
   font-weight: 700;
 }
 
+.leading-normal{
+  line-height: 1.5;
+}
+
 .m-6{
   margin: 1.5rem;
 }
@@ -466,6 +478,11 @@ img {
   padding-bottom: 1rem;
 }
 
+.px-4{
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
 .py-6{
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
@@ -476,8 +493,16 @@ img {
   padding-right: 1.5rem;
 }
 
+.pt-2{
+  padding-top: 0.5rem;
+}
+
 .shadow{
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.text-white{
+  color: #fff;
 }
 
 .text-gray-200{

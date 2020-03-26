@@ -1,19 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.scss";
 import "./main.css";
 import CountUp from "react-countup";
 import Logo from "./logo.png";
 import { Map, Marker, Popup, TileLayer } from "react-leaflet";
 import data from "./data/data.json";
+import dayjs from "dayjs";
 
 function App() {
+  let total = 0;
+  let locations = data.length;
+  let meetings = 0;
+  data.map(d => {
+    total += d.members;
+    meetings += d.past;
+  });
+
   return (
     <div className="flex w-full flex-col">
       <Nav />
       <div className="flex w-full flex-col justify-between lg:flex-row px-3 py-6">
-        <Widget total={2472} title="Members" />
-        <Widget total={7} title="Locations" />
-        <Widget total={46} title="Meetings" />
+        <Widget total={total} title="Members" />
+        <Widget total={locations} title="Locations" />
+        <Widget total={meetings} title="Meetings" />
         <Widget total={2.5} title="Years Old" />
       </div>
       <MapContainer />
@@ -35,25 +44,35 @@ const Nav = () => {
 };
 
 const MapContainer = () => {
-  const position = [48.773739, 9.173927]; // start position in Stuttgart
-
+  const position = [48.79, 9.19]; // start position in Stuttgart
   let markers = data.map(d => ({
     position: d.location,
     markup: (
       <div>
-        <div className="font-bold text-sm text-blueGray">{d.name}</div>
-        Created: {d.created}
-        <br />
-        Members: {d.members}
-        <br />
-        Past Events: {d.past}
-        <br />
-        Upcoming Events: {d.upcoming}
-        <br />
-        Last Event: {d.lastEvent}
-        <br />
-        <div className={`${d.active ? "text-green-800" : "text-gray-800"}`}>
-          Active
+        <div className="font-bold text-base text-blueGray">{d.name}</div>
+        <div className="flex flex-col pt-2 leading-normal text-sm	">
+          Created: {dayjs.unix(d.created / 1000).format("MMMM D YYYY")}
+          <br />
+          Members: {d.members}
+          <br />
+          Past Events: {d.past}
+          <br />
+          Upcoming Events: {d.upcoming}
+          <br />
+          Last Event: {d.lastEvent}
+          <br />
+          <div className={`${d.active ? "text-green-800" : "text-gray-800"}`}>
+            Active
+          </div>
+          <div className="pt-2 flex w-full justify-center text-white">
+            <a
+              href={d.link}
+              className="uppercase bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              style={{ color: "white!important" }}
+            >
+              join
+            </a>
+          </div>
         </div>
       </div>
     )
@@ -66,7 +85,7 @@ const MapContainer = () => {
           ASRG Locations
         </div>
 
-        <Map center={position} zoom={13}>
+        <Map center={position} zoom={5}>
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
