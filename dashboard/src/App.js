@@ -11,7 +11,7 @@ function App() {
   let total = 0;
   let locations = data.length;
   let meetings = 0;
-  data.map(d => {
+  data.forEach(d => {
     total += d.members;
     meetings += d.past;
   });
