@@ -1,0 +1,3 @@
+[submodule "member-portal/django-dashboard-coreui"]
+	path = member-portal/django-dashboard-coreui
+	url = https://github.com/app-generator/django-dashboard-coreui.git
