@@ -27,4 +27,20 @@ Then visit:
 
 http://localhost:5005/
 
-To modify the application, check out CoreUI's docs (https://coreui.io/docs/getting-started/introduction/). Mostly, it is tearing out the boiler plate stuff and inserting static ASRG relevant information. 
+Once here, you need to register an account, then sign in. You did it!
+
+To modify the application, check out CoreUI's docs (https://coreui.io/docs/getting-started/introduction/). Mostly, it is tearing out the boiler plate stuff and inserting static ASRG relevant information.
+
+Great - that's the basic, standard user login.
+
+To access the admin login, you simply append /admin:
+
+http://localhost:5005/admin
+
+To create admin credentials, you need to tell the Django app that you want to do that. From the Docker instance CLI, run:
+
+python manage.py createsuperuser
+
+The credentials created in that command will allow you to login as an Admin. The admin is used to manage users and groups.
+
+Great! That's a basic understanding of how to run the app using docker, creating an account, and logging in. Now, we need to modify this app to be useful for the ASRG. The requirements we're seeking to implement will be stored here (must be accessed with your ASRG gmail account): https://docs.google.com/document/d/1E8QGmwVophOwyvmki49caPZ7-veaOHi1-js46AcDwTQ/edit?usp=sharing
