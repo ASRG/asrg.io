@@ -1,2 +1,8 @@
 # IntelliJ
 .idea
+.sqlite3
+.pyc
+.vscode
+.swp
+.env
+/__pycache__
