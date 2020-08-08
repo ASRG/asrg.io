@@ -20,3 +20,8 @@ class ChapterInLine(admin.StackedInline):
 # Extend UserAdmin to add inlines
 class UserAdmin(AuthUserAdmin):
     inlines = [ChapterInLine]
+
+
+# Unregister the previous User admin
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)

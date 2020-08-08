@@ -6,49 +6,41 @@ Copyright (c) 2019 - present AppSeed.us
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.base import ModelBase
+from django.conf import settings
 
 
-class Chapter(models.Model):
-    # TODO: Should we store the CHAPTERS in settings? I think this will be used in multiple components so it might be a better idea? (discuss with the team)
-    CHAPTERS = (
-        ("ASRG-S", "ASRG-S"),
-        ("ASRG-D", "ASRG-D"),
-        ("ASRG-TLV", "ASRG-TLV"),
-        ("ASRG-C", "ASRG-C"),
-        ("ASRG-SIN", "ASRG-SIN"),
-        ("ASRG-MUC", "ASRG-MUC"),
-        ("ASRG-CAI", "ASRG-CAI"),
-        ("ASRG-SHA", "ASRG-SHA"),
-        ("ASRG-BER", "ASRG-BER"),
-        ("ASRG-PIT", "ASRG-PIT"),
-        ("ASRG-SFO", "ASRG-SFO"),
-        ("ASRG-FRA", "ASRG-FRA"),
-        ("ASRG-JPN", "ASRG-JPN"),
-        ("ASRG-OXF", "ASRG-OXF"),
-        ("ASRG-SYD", "ASRG-SYD"),
-        ("ASRG-IASI", "ASRG-IASI"),
-        ("ASRG-DNCR", "ASRG-DNCR"),
-        ("ASRG-DAY", "ASRG-DAY"),
-        ("ASRG-REC", "ASRG-REC"),
-        ("ASRG-BLR", "ASRG-BLR"),
-        ("ASRG-LAX", "ASRG-LAX"),
-        ("ASRG-BUC", "ASRG-BUC"),
-        ("ASRG-QRO", "ASRG-QRO"),
-        ("ASRG-CGN", "ASRG-CGN"),
-        ("ASRG-TOR", "ASRG-TOR"),
-        ("ASRG-WIN", "ASRG-WIN"),
-        ("ASRG-KER", "ASRG-KER"),
-        ("ASRG-VIE", "ASRG-VIE"),
-        ("ASRG-HYD", "ASRG-HYD"),
-    )
+class ChapterMetaClass(ModelBase):
+    def __new__(cls, name, bases, attrs):
+        klas = super(ChapterMetaClass, cls).__new__(cls, name, bases, attrs)
+        # Add permissions dynamically for all chapters present in Settings -- need to run makemigrations->migrate for every change to chapters
+        for chapter in settings.CHAPTERS:
+            location = chapter[0].split('-', 1)[1]
+            klas._meta.permissions.append((f'ASRG_{location}', f'ASRG_{location}'))
+            klas._meta.permissions.append((f'ASRG_local_lead_{location}', f'ASRG_local_lead_{location}',))
 
+        return klas
+
+
+class Chapter(models.Model, metaclass=ChapterMetaClass):
     # TODO: should we allow users with no chapters?
-    chapter = models.CharField(max_length=24, null=False, blank=False, choices=CHAPTERS, default=CHAPTERS[0])
+    chapter = models.CharField(
+        max_length=24, null=False, blank=False, choices=settings.CHAPTERS, default=settings.CHAPTERS[0]
+    )
     user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.chapter
 
     class Meta:
-        verbose_name = 'Chapter'
-        verbose_name_plural = 'Chapters'
+        # TODO: Talk with the team to see if we want to have this perms elsewhere? probablly not best to be under Chapters as they are not directly related
+        permissions = [
+            ("ASRG_member", "ASRG_member"),
+            ("ASRG_global_lead", "ASRG_global_lead",),
+            # TODO: This should be correlated with is_staff (I think)
+            ("ASRG_global_admin", "ASRG_global_admin",),
+            ("ASRG_sponsor_L1", "ASRG_sponsor_L1"),
+            ("ASRG_sponsor_L2", "ASRG_sponsor_L2"),
+            ("ASRG_sponsor_L3", "ASRG_sponsor_L3"),
+            ("ASRG_asip_contributor", "ASRG_asip_contributor"),
+        ]
