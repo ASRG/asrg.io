@@ -1,0 +1,156 @@
+[
+  {
+    "location": [48.79, 9.19],
+    "name": "Automotive Security Research Group-Stuttgart (ASRG-S)",
+    "created": 1500383930000,
+    "city": "Stuttgart",
+    "members": 936,
+    "past": 32,
+    "upcoming": 1,
+    "active": true,
+    "link": "https://www.meetup.com/de-DE/Automotive-Security-Research-Group-Stuttgart/"
+  },
+  {
+    "location": [42.46, -83.35],
+    "name": "Automotive Security Research Group Detroit (ASRG-D)",
+    "created": "1525283243000",
+    "city": "Farmington",
+    "members": 364,
+    "past": 17,
+    "upcoming": 1,
+    "active": true,
+    "link": "https://www.meetup.com/de-DE/Automotive-Security-Research-Group-Detroit/"
+  },
+  {
+    "location": [32.07, 34.77],
+    "name": "Automotive Security Research Group Tel Aviv (ASRG-TLV)",
+    "created": 1551381443000,
+    "city": "Tel Aviv-Yafo",
+    "members": 616,
+    "past": 3,
+    "upcoming": 1,
+    "active": true,
+    "link": "https://www.meetup.com/de-DE/Automotive-Security-Research-Group-Tel-Aviv-ASRG-TLV/"
+  },
+  {
+    "location": [1.3, 103.85],
+    "name": "Automotive Security Research Group Singapore (ASRG-SIN)",
+    "created": "1565616339000",
+    "city": "Singapore",
+    "members": 87,
+    "past": 1,
+    "upcoming": 1,
+    "active": true,
+    "link": "https://www.meetup.com/de-DE/Automotive-Security-Research-Group-Singapore-ASRG-SIN/"
+  },
+  {
+    "location": [46.78, 23.59],
+    "name": "Automotive Security Research Group Cluj (ASRG-C)",
+    "created": 1554858481000,
+    "city": "Cluj-Napoca",
+    "members": 156,
+    "past": 4,
+    "upcoming": 1,
+    "active": true,
+    "link": "https://www.meetup.com/de-DE/Automotive-Security-Research-Group-Cluj-ASRG-C/"
+  },
+  {
+    "location": [48.14, 11.58],
+    "name": "Automotive Security Research Group-München (ASRG-MUC)",
+    "created": 1572887129000,
+    "city": "München",
+    "members": 319,
+    "past": 4,
+    "upcoming": 1,
+    "active": true,
+    "link": "https://www.meetup.com/de-DE/Automotive-Security-Research-Group-Munchen-ASRG-MUC/"
+  },
+  {
+    "location": [30.06, 31.25],
+    "name": "Automotive Security Research Group Cairo ASRG-CAI",
+    "created": 1573410178000,
+    "city": "Cairo",
+    "members": 324,
+    "past": 2,
+    "upcoming": 1,
+    "active": true,
+    "link": "https://www.meetup.com/de-DE/Automotive-Security-Research-Group-Cairo-ASRG-CAI/"
+  },
+  {
+    "location": [52.52, 13.38],
+    "name": "Automotive Security Research Group Berlin (ASRG-BER)",
+    "created": 1578342470000,
+    "city": "Berlin",
+    "members": 59,
+    "past": 0,
+    "upcoming": 0,
+    "active": true,
+    "link": "https://www.meetup.com/de-DE/Automotive-Security-Research-Group-Berlin-ASRG-BER/"
+  },
+  {
+    "location": [40.47, -79.95],
+    "name": "Automotive Security Research Group Pittsburgh (ASRG-PIT)",
+    "created": 1580044684000,
+    "city": "Pittsburgh",
+    "members": 31,
+    "past": 1,
+    "upcoming": 1,
+    "active": true,
+    "link": "https://www.meetup.com/de-DE/Automotive-Security-Research-Group-Pittsburgh-ASRG-PIT/"
+  },
+  {
+    "location": [49.87, 8.64],
+    "name": "Automotive Security Research Group Rhein Main (ASRG-FRA)",
+    "created": 1581279674000,
+    "city": "Darmstadt",
+    "members": 40,
+    "past": 0,
+    "upcoming": 1,
+    "active": true,
+    "link": "https://www.meetup.com/de-DE/Automotive-Security-Research-Group-FRA/"
+  },
+  {
+    "location": [35.67, 139.77],
+    "name": "Automotive Security Research Group Tokyo (ASRG-JPN)",
+    "created": 1581783669000,
+    "city": "Tokyo",
+    "members": 8,
+    "past": 0,
+    "upcoming": 1,
+    "active": true,
+    "link": "https://www.meetup.com/de-DE/Automotive-Security-Research-Group-Tokyo-ASRG-JPN/"
+  },
+  {
+    "location": [51.76, -1.26],
+    "name": "Automotive Security Research Group Oxford ASRG-OXF",
+    "created": 1582218651000,
+    "city": "Oxford",
+    "members": 18,
+    "past": 0,
+    "upcoming": 1,
+    "active": true,
+    "link": "https://www.meetup.com/de-DE/Automotive-Security-Research-Group-Oxford-ASRG-OXF/"
+  },
+  {
+    "location": [-33.87, 151.21],
+    "name": "Automotive Security Research Group Sydney ASRG-SYD",
+    "created": 1583919893000,
+    "city": "Sydney",
+    "members": 28,
+    "past": 0,
+    "upcoming": 1,
+    "active": true,
+    "link": "https://www.meetup.com/de-DE/Automotive-Security-Research-Group-Sydney/"
+  },
+  {
+    "location": [31.23, 121.47],
+    "name": "",
+    "created": 1578152331000,
+    "city": "Shanghai",
+    "members": 6,
+    "past": 0,
+    "upcoming": 1,
+    "active": true,
+    "link": "https://www.meetup.com/de-DE/Automotive-Security-Research-Group-ASRG-SHA/"
+  }
+]
