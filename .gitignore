@@ -7,4 +7,4 @@
 .swp
 .env
 __pycache__/
-django-dashboard-coreui/staticfiles
+django-dashboard-coreui/staticfiles/
