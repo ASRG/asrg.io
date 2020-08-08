@@ -6,3 +6,4 @@
 .swp
 .env
 /__pycache__
+/staticfiles
