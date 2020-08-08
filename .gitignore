@@ -1,9 +1,10 @@
 # IntelliJ
 .idea
-.sqlite3
-.pyc
+*.sqlite3
+*.pyc
+*.db
 .vscode
 .swp
 .env
-/__pycache__
+__pycache__/
 django-dashboard-coreui/staticfiles
