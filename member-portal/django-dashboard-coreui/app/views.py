@@ -10,9 +10,18 @@ from django.template import loader
 from django.http import HttpResponse
 from django import template
 
+from .models import UserProfile
+from .forms import UserProfileForm
+
 @login_required(login_url="/login/")
 def index(request):
-    return render(request, "index.html")
+    context = {}
+    try:
+        profile = request.user.profile
+    except UserProfile.DoesNotExist:
+        return profile_create_view(request)
+    context['profile'] = profile
+    return render(request, "index.html", context)
 
 @login_required(login_url="/login/")
 def pages(request):
@@ -34,3 +43,54 @@ def pages(request):
     
         html_template = loader.get_template( 'error-500.html' )
         return HttpResponse(html_template.render(context, request))
+
+
+@login_required(login_url="/login/")
+def profile_create_view(request):
+    context = {}
+    try:
+        profile = request.user.profile
+    except UserProfile.DoesNotExist:
+        profile = UserProfile(user=request.user)
+
+    if request.POST:
+        form = UserProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.user = request.user
+            profile.save()
+            return redirect('profile')
+        else:
+            context['profile_form'] = form
+    else:
+        form = UserProfileForm(
+            initial = {
+                'first_name': profile.first_name,
+                'last_name': profile.last_name,
+                'dob': profile.dob,
+                'gender': profile.gender,
+                'occupational_status': profile.occupational_status,
+                'field_of_study': profile.field_of_study,
+                'chapter': profile.chapter,
+                'country': profile.country,
+                'bio': profile.bio,
+                'status': profile.status,
+                'skills': profile.skills,
+                'profile_picture': profile.profile_picture
+            }
+        )
+        
+        context['profile_form'] = form
+
+    return render (request, 'accounts/create-profile.html', context)
+
+@login_required(login_url="/login/")
+def profile_view(request):
+    context = {}
+    try:
+        profile = request.user.profile
+    except UserProfile.DoesNotExist:
+        return profile_create_view(request)
+    context['profile'] = profile
+    context['user'] = request.user
+    return render (request, 'accounts/profile.html', context)

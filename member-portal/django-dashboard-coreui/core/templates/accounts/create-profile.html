@@ -1,0 +1,40 @@
+{% extends "layouts/base-fullscreen.html" %}
+
+{% load static %}
+
+{% block title %} Register {% endblock %}
+{% block stylesheets %}
+<link rel="stylesheet" href="{% static 'assets/css/profile.css' %}">
+
+{% endblock stylesheets %}
+
+{% block content %}
+
+    
+
+            <form method="post" >
+                {% csrf_token %}
+                
+                {% for field in profile_form %}
+                  <p>
+                      {{field.label_tag}}
+                      {{field}}
+
+                      {% if field.help_text %}
+                          <small style="color:grey">{{field.help_text}}</small>
+                      {% endif %}
+                      
+                      {% for error in field.errors %}
+                          <p style="color:red">{{error}}</p>
+                      {% endfor %}
+                  </p>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary">Update Profile</button>
+          </form>  
+            
+          <div class="card-footer p-4 text-center">
+              Have an account? <a href={% url 'login' %} >Login</a>
+          </div>
+
+
+{% endblock content %}

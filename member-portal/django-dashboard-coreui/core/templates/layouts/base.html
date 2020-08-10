@@ -49,7 +49,7 @@
 
     <div class="c-wrapper">
 
-      {% include 'includes/navigation.html' %}
+      {% include 'includes/navigation.html' with profile=request.user.profile %} 
 
       <div class="c-body">
         <main class="c-main">
