@@ -23,22 +23,24 @@ class ChapterMetaClass(ModelBase):
 
 
 class Chapter(models.Model, metaclass=ChapterMetaClass):
-    # TODO: should we allow users with no chapters?
-    chapter = models.CharField(
+    location = models.CharField(
         max_length=24, null=False, blank=False, choices=settings.CHAPTERS, default=settings.CHAPTERS[0]
     )
-    user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    city = models.CharField(max_length=56, null=False, blank=True)
+    country = models.CharField(max_length=56, null=False, blank=True)
+    lead = models.CharField(max_length=56, null=False, blank=True)
+    foundation = models.DateTimeField(null=True)
+    user = models.ManyToManyField(User, blank=True)
 
     def __str__(self):
-        return self.chapter
+        return self.location
 
     class Meta:
         # TODO: Talk with the team to see if we want to have this perms elsewhere? probablly not best to be under Chapters as they are not directly related
         permissions = [
             ("ASRG_member", "ASRG_member"),
             ("ASRG_global_lead", "ASRG_global_lead",),
-            # TODO: This should be correlated with is_staff (I think)
-            ("ASRG_global_admin", "ASRG_global_admin",),
+            ("ASRG_global_admin", "ASRG_global_admin",),  # TODO: This should be correlated with is_staff (I think)
             ("ASRG_sponsor_L1", "ASRG_sponsor_L1"),
             ("ASRG_sponsor_L2", "ASRG_sponsor_L2"),
             ("ASRG_sponsor_L3", "ASRG_sponsor_L3"),
