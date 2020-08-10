@@ -164,21 +164,21 @@ def add_existing_data(apps, schema_editor):
                 city='Bucharest',
                 country='Romania',
                 lead='Anas Ahammed K A',
-                foundation=datetime(2020, 7, 21, pytz.UTC),
+                foundation=datetime(2020, 7, 21, 0, 0, 0, 0, pytz.UTC),
             ),
             chapter(
                 location='ASRG-VIE',
                 city='Vienna',
                 country='Austria',
                 lead='Martin Schmiedecker',
-                foundation=datetime(2020, 7, 27, pytz.UTC),
+                foundation=datetime(2020, 7, 27, 0, 0, 0, 0, pytz.UTC),
             ),
             chapter(
                 location='ASRG-HYD',
                 city='Hyderabad',
                 country='India',
                 lead='Shravan Paidipala',
-                foundation=datetime(2020, 7, 27, pytz.UTC),
+                foundation=datetime(2020, 7, 27, 0, 0, 0, 0, pytz.UTC),
             ),
         ]
     )
