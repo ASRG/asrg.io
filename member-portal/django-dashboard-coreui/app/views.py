@@ -9,6 +9,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.template import loader
 from django.http import HttpResponse
 from django import template
+from datetime import datetime
 
 from .models import UserProfile
 from .forms import UserProfileForm
@@ -54,10 +55,16 @@ def profile_create_view(request):
         profile = UserProfile(user=request.user)
 
     if request.POST:
-        form = UserProfileForm(request.POST, instance=profile)
+        form = UserProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             profile = form.save(commit=False)
             profile.user = request.user
+            if request.FILES:
+                profile.profile_picture = request.FILES['profile_picture']
+            else:
+                profile.profile_picture = profile.profile_picture
+            # profile.date_joined = datetime.now()
+            # profile.last_login = datetime.now()
             profile.save()
             return redirect('profile')
         else:

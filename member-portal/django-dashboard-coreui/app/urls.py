@@ -12,6 +12,6 @@ urlpatterns = [
     re_path(r'^.*\.html', views.pages, name='pages'),
     # The home page
     path('', views.index, name='home'),
-    path('crateprofile/', views.profile_create_view, name='profile_create'),
+    path('createprofile/', views.profile_create_view, name='profile_create'),
     path('profile/', views.profile_view, name='profile'),
 ]
