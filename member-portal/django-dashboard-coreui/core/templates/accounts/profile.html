@@ -1,138 +1,153 @@
-{% extends "layouts/base.html" %}
+{% extends "layouts/base.html" %} {% load static %} {% block title %} {{
+profile.first_name }} - Profile {% endblock %} {% block stylesheets %}
+<link rel="stylesheet" href="{% static 'assets/css/profile.css' %}" />
 
-{% load static %}
+{% endblock stylesheets %} {% block content %}
 
-{% block title %} {{ profile.first_name }} - Profile {% endblock %} 
-
-{% block stylesheets %}
-<link rel="stylesheet" href="{% static 'assets/css/profile.css' %}">
-
-{% endblock stylesheets %}
-
-{% block content %}
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+  integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="
+  crossorigin="anonymous"
+/>
 <div class="container">
-    <div class="team-single">
-        <div class="row">
-            <div class="col-lg-4 col-md-5 xs-margin-30px-bottom">
-                <div class="team-single-img">
-                    <img src="{{ profile.profile_picture.url }}" alt="{{ profile.first_name}} {{ profile.last_name }}" style="width: 500px;">
-                </div>
-                <div class="bg-light-gray padding-30px-all md-padding-25px-all sm-padding-20px-all text-center">
-                    <h4 class="margin-10px-bottom font-size24 md-font-size22 sm-font-size20 font-weight-600 font-black">
-                        {{ profile.first_name}} {{ profile.last_name }}</h4>
-                    <p class="sm-width-95 sm-margin-auto font-black">{{ profile.status }}</p>
-                    <div class="margin-20px-top team-single-icons">
-                        <ul class="no-margin">
-                            <li><a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="javascript:void(0)"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="javascript:void(0)"><i class="fab fa-google-plus-g"></i></a></li>
-                            <li><a href="javascript:void(0)"><i class="fab fa-instagram"></i></a></li>
-                        </ul>
-                        <p><a href="{% url 'profile_create' %}">Update Profile</a></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-8 col-md-7">
-                <div class="team-single-text padding-50px-left sm-no-padding-left">
-                    <h4 class="font-size38 sm-font-size32 xs-font-size30">{{ profile.first_name}} {{ profile.last_name }}</h4>
-                    <p class="no-margin-bottom">{{ profile.bio }}</p>
-                    <div class="contact-info-section margin-40px-tb">
-                        <ul class="list-style9 no-margin">
-                            <li>
-
-                                <div class="row">
-                                    <div class="col-md-5 col-5">
-                                        <!-- <i class="fas fa-graduation-cap text-orange"></i> -->
-                                        <strong class="margin-10px-left">Field of Study:</strong>
-                                    </div>
-                                    <div class="col-md-7 col-7">
-                                        <p>{{ profile.field_of_study }}</p>
-                                    </div>
-                                </div>
-
-                            </li>
-                            <li>
-
-                                <div class="row">
-                                    <div class="col-md-5 col-5">
-                                        <!-- <i class="far fa-gem text-yellow"></i> -->
-                                        <strong class="margin-10px-left">Occupational Status:</strong>
-                                    </div>
-                                    <div class="col-md-7 col-7">
-                                        <p>{{ profile.occupational_status }}</p>
-                                    </div>
-                                </div>
-
-                            </li>
-                            <li>
-
-                                <div class="row">
-                                    <div class="col-md-5 col-5">
-                                        <!-- <i class="far fa-file text-lightred"></i> -->
-                                        <strong class="margin-10px-left">Chapter:</strong>
-                                    </div>
-                                    <div class="col-md-7 col-7">
-                                        <p>{{ profile.chapter }}</p>
-                                    </div>
-                                </div>
-
-                            </li>
-                            <li>
-
-                                <div class="row">
-                                    <div class="col-md-5 col-5">
-                                        <!-- <i class="fas fa-map-marker-alt text-green"></i> -->
-                                        <strong class="margin-10px-left">Location:</strong>
-                                    </div>
-                                    <div class="col-md-7 col-7">
-                                        <p>{{ profile.country }}</p>
-                                    </div>
-                                </div>
-
-                            </li>
-                            <li>
-
-                                <div class="row">
-                                    <div class="col-md-5 col-5">
-                                        <!-- <i class="fas fa-mobile-alt text-purple"></i> -->
-                                        <strong class="margin-10px-left xs-margin-four-left">Date of Birth:</strong>
-                                    </div>
-                                    <div class="col-md-7 col-7">
-                                        <p>{{ profile.dob }}</p>
-                                    </div>
-                                </div>
-
-                            </li>
-                            <li>
-                                <div class="row">
-                                    <div class="col-md-5 col-5">
-                                        <!-- <i class="fas fa-envelope text-pink"></i> -->
-                                        <strong class="margin-10px-left xs-margin-four-left">Email:</strong>
-                                    </div>
-                                    <div class="col-md-7 col-7">
-                                        <p><a href="javascript:void(0)">{{ user.email }}</a></p>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-
-                </div>
-            </div>
-
-            <div class="col-md-12">
-
-            </div>
+  <div class="team-single">
+    <div class="row">
+      <div class="col-lg-4 col-md-5 xs-margin-30px-bottom">
+        <div class="team-single-img">
+          <img
+            src="{{ profile.profile_picture.url }}"
+            alt="{{ profile.first_name}} {{ profile.last_name }}"
+            style="width: 500px;"
+          />
         </div>
+        <div
+          class="bg-light-gray padding-30px-all md-padding-25px-all sm-padding-20px-all text-center"
+        >
+          <h4
+            class="margin-10px-bottom font-size24 md-font-size22 sm-font-size20 font-weight-600 font-black"
+          >
+            {{ profile.first_name}} {{ profile.last_name }}
+          </h4>
+          <p class="sm-width-95 sm-margin-auto font-black">
+            {{ profile.status }}
+          </p>
+          <div class="margin-20px-top team-single-icons">
+            <ul class="no-margin" style="padding-left: 0;">
+              <li>
+                <a href="javascript:void(0)"
+                  ><i class="fab fa-facebook-f"></i
+                ></a>
+              </li>
+              <li>
+                <a href="javascript:void(0)"><i class="fab fa-twitter"></i></a>
+              </li>
+              <li>
+                <a href="javascript:void(0)"
+                  ><i class="fab fa-google-plus-g"></i
+                ></a>
+              </li>
+              <li>
+                <a href="javascript:void(0)"
+                  ><i class="fab fa-instagram"></i
+                ></a>
+              </li>
+            </ul>
+            <p><a href="{% url 'profile_create' %}">Update Profile</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-8 col-md-7">
+        <div class="team-single-text padding-50px-left sm-no-padding-left">
+          <h4 class="font-size38 sm-font-size32 xs-font-size30">
+            {{ profile.first_name}} {{ profile.last_name }}
+          </h4>
+          <p class="no-margin-bottom">{{ profile.bio }}</p>
+          <div class="contact-info-section margin-40px-tb">
+            <ul class="list-style9 no-margin">
+              <li>
+                <div class="row">
+                  <div class="col-md-5 col-5">
+                    <!-- <i class="fas fa-graduation-cap text-orange"></i> -->
+                    <strong class="margin-10px-left">Field of Study:</strong>
+                  </div>
+                  <div class="col-md-7 col-7">
+                    <p>{{ profile.field_of_study }}</p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="row">
+                  <div class="col-md-5 col-5">
+                    <!-- <i class="far fa-gem text-yellow"></i> -->
+                    <strong class="margin-10px-left"
+                      >Occupational Status:</strong
+                    >
+                  </div>
+                  <div class="col-md-7 col-7">
+                    <p>{{ profile.occupational_status }}</p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="row">
+                  <div class="col-md-5 col-5">
+                    <!-- <i class="far fa-file text-lightred"></i> -->
+                    <strong class="margin-10px-left">Chapter:</strong>
+                  </div>
+                  <div class="col-md-7 col-7">
+                    <p>{{ profile.chapter }}</p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="row">
+                  <div class="col-md-5 col-5">
+                    <!-- <i class="fas fa-map-marker-alt text-green"></i> -->
+                    <strong class="margin-10px-left">Location:</strong>
+                  </div>
+                  <div class="col-md-7 col-7">
+                    <p>{{ profile.country }}</p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="row">
+                  <div class="col-md-5 col-5">
+                    <!-- <i class="fas fa-mobile-alt text-purple"></i> -->
+                    <strong class="margin-10px-left xs-margin-four-left"
+                      >Date of Birth:</strong
+                    >
+                  </div>
+                  <div class="col-md-7 col-7">
+                    <p>{{ profile.dob }}</p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="row">
+                  <div class="col-md-5 col-5">
+                    <!-- <i class="fas fa-envelope text-pink"></i> -->
+                    <strong class="margin-10px-left xs-margin-four-left"
+                      >Email:</strong
+                    >
+                  </div>
+                  <div class="col-md-7 col-7">
+                    <p><a href="javascript:void(0)">{{ user.email }}</a></p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12"></div>
     </div>
+  </div>
 </div>
 
-{% endblock content %}
-
-{% block javascripts %}
+{% endblock content %} {% block javascripts %}
 <!-- Specific Page JS goes HERE  -->
 {% endblock javascripts %}

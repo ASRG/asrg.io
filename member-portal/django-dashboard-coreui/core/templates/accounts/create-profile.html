@@ -10,15 +10,16 @@
 
 {% block content %}
 
-    
+<h1 class="form-title">Complete Your Profile!</h1>
 
             <form method="post" enctype="multipart/form-data" >
                 {% csrf_token %}
                 
                 {% for field in profile_form %}
-                  <p>
-                      {{field.label_tag}}
-                      {{field}}
+                  <div class="form-group">
+
+                            {{field.label_tag}}
+                            {{field}}
 
                       {% if field.help_text %}
                           <small style="color:grey">{{field.help_text}}</small>
@@ -27,7 +28,7 @@
                       {% for error in field.errors %}
                           <p style="color:red">{{error}}</p>
                       {% endfor %}
-                  </p>
+                  </div>
                 {% endfor %}
                 <button type="submit" class="btn btn-primary">Update Profile</button>
           </form>  
