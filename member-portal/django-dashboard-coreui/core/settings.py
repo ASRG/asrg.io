@@ -31,7 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app'  # Enable the inner app 
+    'app',  # Enable the inner app 
 ]
 
 MIDDLEWARE = [
@@ -126,3 +126,42 @@ STATICFILES_DIRS = (
 )
 #############################################################
 #############################################################
+
+
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'app/media') 
+MEDIA_URL = '/app/media/'
+
+#TODO: Why not use a chapters model?
+
+CHAPTERS = (
+    ("ASRG-S", "ASRG-S"),
+    ("ASRG-D", "ASRG-D"),
+    ("ASRG-TLV", "ASRG-TLV"),
+    ("ASRG-C", "ASRG-C"),
+    ("ASRG-SIN", "ASRG-SIN"),
+    ("ASRG-MUC", "ASRG-MUC"),
+    ("ASRG-CAI", "ASRG-CAI"),
+    ("ASRG-SHA", "ASRG-SHA"),
+    ("ASRG-BER", "ASRG-BER"),
+    ("ASRG-PIT", "ASRG-PIT"),
+    ("ASRG-SFO", "ASRG-SFO"),
+    ("ASRG-FRA", "ASRG-FRA"),
+    ("ASRG-JPN", "ASRG-JPN"),
+    ("ASRG-OXF", "ASRG-OXF"),
+    ("ASRG-SYD", "ASRG-SYD"),
+    ("ASRG-IASI", "ASRG-IASI"),
+    ("ASRG-DNCR", "ASRG-DNCR"),
+    ("ASRG-DAY", "ASRG-DAY"),
+    ("ASRG-REC", "ASRG-REC"),
+    ("ASRG-BLR", "ASRG-BLR"),
+    ("ASRG-LAX", "ASRG-LAX"),
+    ("ASRG-BUC", "ASRG-BUC"),
+    ("ASRG-QRO", "ASRG-QRO"),
+    ("ASRG-CGN", "ASRG-CGN"),
+    ("ASRG-TOR", "ASRG-TOR"),
+    ("ASRG-WIN", "ASRG-WIN"),
+    ("ASRG-KER", "ASRG-KER"),
+    ("ASRG-VIE", "ASRG-VIE"),
+    ("ASRG-HYD", "ASRG-HYD"),
+)
+
