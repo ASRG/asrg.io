@@ -73,8 +73,11 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    'default': config('DATABASE_URL', default='sqlite:///' + BASE_DIR.child('db.sqlite3'), cast=dj_database_url.parse)
+    'default': config(
+        'DATABASE_URL', default='sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3'), cast=dj_database_url.parse
+    )
 }
+print(DATABASES)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

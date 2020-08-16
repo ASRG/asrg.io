@@ -10,3 +10,4 @@ python-decouple
 gunicorn
 whitenoise
 Pillow==7.2.0
+mysqlclient==1.4.6

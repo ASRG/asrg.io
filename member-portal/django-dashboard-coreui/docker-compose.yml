@@ -9,6 +9,8 @@ services:
     networks:
       - db_network
       - web_network
+    depends_on:
+      - mysql
   nginx:
     restart: always
     image: "nginx:latest"
@@ -21,12 +23,15 @@ services:
     depends_on: 
       - appseed-app
   mysql:
-    image: "mysql:latest"
+    image: mysql:5.7
     ports:
-      - 3306:3306
+      - "3306:3306"
     environment:
       MYSQL_INNODB_BUFFER_POOL_SIZE: 512M
       MYSQL_DATABASE: asrg
+      MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+      #MYSQL_USER:'' 
+      #MYSQL_PASSWORD:''
     volumes:
       - db_data:/var/lib/mysql
 networks:
