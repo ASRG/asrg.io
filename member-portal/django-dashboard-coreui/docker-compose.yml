@@ -20,8 +20,19 @@ services:
       - web_network
     depends_on: 
       - appseed-app
+  mysql:
+    image: "mysql:latest"
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_INNODB_BUFFER_POOL_SIZE: 512M
+      MYSQL_DATABASE: asrg
+    volumes:
+      - db_data:/var/lib/mysql
 networks:
   db_network:
     driver: bridge
   web_network:
     driver: bridge
+volumes:
+  db_data: {}
