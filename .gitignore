@@ -1,2 +1,10 @@
 # IntelliJ
 .idea
+*.sqlite3
+*.pyc
+*.db
+.vscode
+.swp
+.env
+__pycache__/
+staticfiles/
