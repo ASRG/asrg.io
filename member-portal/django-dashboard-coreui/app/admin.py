@@ -6,4 +6,16 @@ Copyright (c) 2019 - present AppSeed.us
 
 from django.contrib import admin
 
-# Register your models here.
+from .models import UserProfile
+
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ('first_name', 'last_name', 'country', 'chapter', 'field_of_study', 'date_joined', 'last_login')
+    search_fields = ('chapter', 'country', 'first_name', 'last_name')
+    readonly_fields = ('date_joined', 'last_login')
+
+    filter_horizontal =()
+    list_filter = ('chapter',)
+    fieldsets = ()
+
+
+admin.site.register(UserProfile,UserProfileAdmin)
