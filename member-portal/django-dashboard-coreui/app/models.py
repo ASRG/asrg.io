@@ -5,10 +5,11 @@ Copyright (c) 2019 - present AppSeed.us
 """
 
 from django.db import models
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 
 from core.settings import CHAPTERS as CHAPTER_CHOICES
 from .countries import COUNTRIES as COUNTRY_CHOICES
+from authentication.models import User, Chapter
 
 OCCUPATIONAL_STATUS_CHOICES = (
     ('student', 'Student'),
@@ -28,7 +29,8 @@ class UserProfile(models.Model):
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=False)
     occupational_status = models.CharField(max_length=25, choices=OCCUPATIONAL_STATUS_CHOICES, blank=True)
     field_of_study = models.CharField(max_length=100,)
-    chapter = models.CharField(max_length=12, choices=CHAPTER_CHOICES)
+    # chapter = models.CharField(max_length=12, choices=CHAPTER_CHOICES)
+    # chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE, related_name='profile')
     country = models.CharField(max_length=150, choices=COUNTRY_CHOICES)
     bio = models.TextField()
     status = models.CharField(max_length=256)

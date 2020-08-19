@@ -1,5 +1,5 @@
-{% extends "layouts/base.html" %} {% load static %} {% block title %} {{
-profile.first_name }} - Profile {% endblock %} {% block stylesheets %}
+{% extends "layouts/base.html" %} {% load static %} {% block title %} 
+{{ profile.first_name }} - Profile {% endblock %} {% block stylesheets %}
 <link rel="stylesheet" href="{% static 'assets/css/profile.css' %}" />
 
 {% endblock stylesheets %} {% block content %}
@@ -27,7 +27,7 @@ profile.first_name }} - Profile {% endblock %} {% block stylesheets %}
           <h4
             class="margin-10px-bottom font-size24 md-font-size22 sm-font-size20 font-weight-600 font-black"
           >
-            {{ profile.first_name}} {{ profile.last_name }}
+          {{ profile.first_name}} {{ profile.last_name }}
           </h4>
           <p class="sm-width-95 sm-margin-auto font-black">
             {{ profile.status }}
@@ -94,10 +94,12 @@ profile.first_name }} - Profile {% endblock %} {% block stylesheets %}
                 <div class="row">
                   <div class="col-md-5 col-5">
                     <!-- <i class="far fa-file text-lightred"></i> -->
-                    <strong class="margin-10px-left">Chapter:</strong>
+                    <strong class="margin-10px-left">Chapter(s):</strong>
                   </div>
                   <div class="col-md-7 col-7">
-                    <p>{{ profile.chapter }}</p>
+                    {% for chapter in request.user.chapter.all %}
+                    <p>{{ chapter }}</p><br>
+                    {% endfor %}
                   </div>
                 </div>
               </li>
