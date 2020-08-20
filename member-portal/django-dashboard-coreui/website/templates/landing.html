@@ -1,0 +1,488 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-131464826-2"
+    ></script>
+    
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NK7WG72');</script>
+<!-- End Google Tag Manager -->
+
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "UA-131464826-2");
+
+      // Set the member join link based on the location.
+      function loadLocaleLinks() {
+        const locale = window.navigator.language;
+        let link;
+        switch (locale) {
+          case "en-US":
+            link = "https://docs.asrg.io/locations";
+            break;
+          case "de-DE":
+          case "de-AT":
+          case "de-CH":
+          case "de-LI":
+            link =
+              "https://www.meetup.com/Automotive-Security-Research-Group-Stuttgart/";
+            break;
+          case "yi":
+            link =
+              "https://www.meetup.com/Automotive-Security-Research-Group-Tel-Aviv-ASRG-TLV/";
+            break;
+          case "ro-mo":
+          case "ro":
+            link =
+              "https://www.meetup.com/Automotive-Security-Research-Group-Cluj-ASRG-C/";
+            break;
+          default:
+            link = "https://docs.asrg.io/locations";
+        }
+
+        // add more links if needed
+        const ids = ["join-btn", "register-btn"];
+        for (let i = 0; i < ids.length; i++) {
+          let e = document.getElementById(ids[i]);
+          e.setAttribute("href", link);
+        }
+      }
+      window.onload = loadLocaleLinks;
+    </script>
+
+    <title>ASRG</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon" />
+    <link rel="shortcut icon" href="{% static 'icon.ico' %}" type="image/x-icon" />
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static '/apple-touch-icon.png' %}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <noscript><link rel="stylesheet" href="{% static 'assets/css/noscript.css' %}"/></noscript>
+    <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css"
+    />
+  </head>
+
+  <body class="landing is-preload">
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NK7WG72"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+    
+    
+    <!-- Page Wrapper -->
+    <div id="page-wrapper">
+      <!-- Header -->
+      <header id="header" class="alt">
+        <h1><a href="landing.html">ASRG</a></h1>
+        <nav id="nav">
+          <ul>
+            <li class="special">
+              <a href="#menu" class="menuToggle"><span>Menu</span></a>
+              <div id="menu">
+                <ul>
+                  <li><a href="https://asrg.io">Home</a></li>
+                  <li><a href="https://asrg.io/about.html">About Us</a></li>
+                  <li><a href="https://asrg.io/world/webinars.html">WORLD</a></li>
+                  <li><a href="https://asrg.gitbook.io/asrg-wiki/">Docs</a></li>
+                  <li><a href="https://asrg.io/security.html">Report a vulnerability</a></li>
+                  <li><a href="https://asrg.io/blog.html">Blog</a></li>
+                  <li><a href="https://app.gitbook.com/@asrg/s/asrg-wiki/members">Become a member</a></li>
+                  <li><a href="/login">Login</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <!-- Banner -->
+      <section id="banner">
+        <div class="inner">
+          <span>
+            <h2>
+              <img
+                src="{% static './images/ASRG_Logo_white.png' %}"
+                alt="Networking"
+                width="300"
+                height="107"
+              />
+            </h2>
+          </span>
+          <p>Automotive Security Research Group<br /></p>
+          <ul class="actions special">
+            <li>
+              <a
+                id="join-btn"
+                href="https://docs.asrg.io/locations"
+                class="button primary"
+                >Join the Community</a
+              >
+            </li>
+          </ul>
+        </div>
+        <a href="#one" class="more scrolly">Learn More</a>
+      </section>
+
+      <!-- One -->
+      <section id="one" class="wrapper style2 special">
+        <div class="inner">
+          <header class="major">
+            <h2>
+              Automotive Security Research Group
+            </h2>
+            <p>
+              The Automotive Security Research Group (ASRG) is a non-profit
+              initiative to promote the development of security solutions for
+              automotive products.
+            </p>
+            <p>
+              ​The goals of ASRG are not to produce any products or services,
+              however to support and assist with the development of security
+              solutions in the automotive industry. This will be achieved by
+              focusing 3 main topics, knowledge, networking and collaboration.
+            </p>
+          </header>
+          <ul class="icons">
+            <li>
+              <a href="#two"
+                ><span class="label"
+                  ><img
+                    class="asrg-icons asrg-knowledge"
+                    src="{% static './images/Icons/knowledge.png' %}"
+                    alt="Knowledge"
+                  />Knowledge</span
+                ></a
+              >
+            </li>
+            <li>
+              <a href="#three"
+                ><span class="label"
+                  ><img
+                    class="asrg-icons networking"
+                    src="{% static './images/Icons/networking.png' %}"
+                    alt="Networking"
+                  />Networking</span
+                ></a
+              >
+            </li>
+            <li>
+              <a href="#four"
+                ><span class="label"
+                  ><img
+                    class="asrg-icons asrg-collaboration"
+                    src="{% static './images/Icons/collaboration.png' %}"
+                    alt="Collaboration"
+                  />Collaboration</span
+                ></a
+              >
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <style>
+        .asrg-icons {
+          width: 65px;
+          margin: 0px 50px;
+        }
+
+        .icons a {
+          border: none;
+        }
+
+        .icons .label {
+          display: flex;
+          flex-direction: column;
+        }
+
+        @media only screen and (max-width: 450px) {
+          ul.icons li {
+            padding-right: 0;
+            margin-bottom: 2em;
+          }
+
+          ul.icons li:last-child {
+            padding-right: 0;
+            margin-bottom: 0 !important;
+          }
+        }
+      </style>
+
+      <section id="meta">
+        <div class="counter-wrapper">
+          <div class="counter">
+            <div class="count" id="loading"></div>
+            <span class="count" id="memberCount"></span>
+            <span class="desc">Members</span>
+          </div>
+
+          <div class="counter">
+            <span class="count">7</span>
+            <span class="desc">Locations</span>
+          </div>
+
+          <div class="counter">
+            <span class="count">46</span>
+            <span class="desc">Meetings</span>
+          </div>
+
+          <div class="counter">
+            <span class="count">2.5</span>
+            <span class="desc">Years Old</span>
+          </div>
+        </div>
+      </section>
+
+      <!--
+
+      <section class="wrapper alt aln-center style2">
+        <section class="spotlight">
+          <div style="margin:auto; padding-bottom: 3rem;" class="content">
+            <h2>
+              News
+            </h2>
+            <p>What is going on in the Automotive Security industry</p>
+            <a
+              class="twitter-timeline"
+              data-height="800"
+              data-theme="dark"
+              href="https://twitter.com/AutoSecResGroup?ref_src=twsrc%5Etfw"
+              >Tweets by AutoSecResGroup</a
+            >
+            <script
+              async
+              src="https://platform.twitter.com/widgets.js"
+              charset="utf-8"
+            ></script>
+          </div>
+        </section>
+      </section>
+
+      -->
+
+      <!-- Two -->
+      <section id="two" class="wrapper alt style2">
+        <section class="spotlight">
+          <div class="image"><img src="{% static 'images/pic01.jpg' %}" alt="" /></div>
+          <div class="content">
+            <h2>
+              Knowledge
+            </h2>
+            <p>
+              Finding and knowing where to look for information is the first
+              step to understanding problems and proposing informed solutions.
+              By collecting information, and sources of information in a single
+              location, researchers and engineers can be more effective to find
+              the relevant data and information faster. Taking information and
+              transforming it into understanding, is where education plays an
+              important role. Education is the way we create value in ourselves
+              as competencies. It allows a better understanding of the concepts,
+              strategies, and systems which allows for better implementations of
+              solutions.
+            </p>
+          </div>
+        </section>
+        <section id="three" class="spotlight">
+          <div class="image"><img src="{% static 'images/pic02.gif' %}" alt="" /></div>
+          <div class="content">
+            <h2>
+              Networking
+            </h2>
+            <p>
+              Having a good network of colleagues in the area of security is
+              very important. Since the area is very wide and has a large range
+              of competencies, it’s not possible to know everything about
+              everything. By knowing where to look or who to call to gain the
+              needed information or competencies fast, allows for better
+              reactions to events, implementation strategies and safer
+              environments for everyone.
+            </p>
+          </div>
+        </section>
+        <section id="four" class="spotlight">
+          <div class="image"><img src="{% static 'images/pic03.gif' %}" alt="" /></div>
+          <div class="content">
+            <h2>
+              Collaboration
+            </h2>
+            <p>
+              Allowing for an environment where you can work together to
+              research new and exciting fields of interest and create meaningful
+              reults with are able to be shared with the industry through white
+              papers, presentations and workshops. ASRG promotes collarboration
+              and project teams by enabling research to be successful by
+              offering resources, knowledge and mentorship.
+            </p>
+          </div>
+        </section>
+      </section>
+
+      <!-- CTA -->
+      <section id="cta" class="wrapper style4">
+        <div class="inner">
+          <header>
+            <h2>Membership</h2>
+            <p>
+              Become a member today! Or read the
+              <a href="https://docs.asrg.io">docs</a> to get more information.
+            </p>
+          </header>
+          <ul class="actions stacked">
+            <li>
+              <a
+                id="register-btn"
+                href="https://asrg.io"
+                class="button fit primary"
+                >Register</a
+              >
+            </li>
+            <li>
+              <a href="https://docs.asrg.io" class="button fit"
+                >Read the docs</a
+              >
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer id="footer">
+        <ul class="icons">
+          <li>
+            <a
+              href="https://join.slack.com/t/asrg/shared_invite/enQtNjMyMzAyMDM4MjI1LTM2Njc3MWRkNWI1NjkwYmQ4NDRkZjYwYmE2MzcyMWY3Y2IwZjc1YTAzYjQxM2M0NzdhOGEzNjNmYjNkM2EzZWM"
+              class="icon brands fa-slack"
+            >
+              <span class="label"></span
+            ></a>
+          </li>
+          <li>
+            <a
+              href="https://twitter.com/AutoSecResGroup"
+              class="icon brands fa-twitter"
+              ><span class="label"></span
+            ></a>
+          </li>
+          <li>
+            <a
+              href="https://facebook.com/ASRG-Automotive-Security-Research-Group-1454803571254832/"
+              class="icon brands fa-facebook-f"
+              ><span class="label"></span
+            ></a>
+          </li>
+          <li>
+            <a
+              href="https://www.linkedin.com/company/automotive-security-research-group/"
+              class="icon brands fa-linkedin"
+              ><span class="label"></span
+            ></a>
+          </li>
+          <li>
+            <a href="mailto:hello@asrg.io" class="icon solid fa-envelope"
+              ><span class="label"></span
+            ></a>
+          </li>
+        </ul>
+        <ul class="copyright">
+          <li>&copy; 2020 ASRG.io</li>
+          <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+          <li><a href="privacy.html">Data Privacy</a></li>
+          <li><a href="https://asrg.io/imprint">Imprint</a></li>
+        </ul>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.scrollex.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.scrolly.min.js' %}"></script>
+    <script src="{% static 'assets/js/browser.min.js' %}"></script>
+    <script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+    <script src="{% static 'assets/js/util.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+
+    <!-- Cookie Notice -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"
+      data-cfasync="false"
+    ></script>
+    <script>
+      window.cookieconsent.initialise({
+        palette: {
+          popup: {
+            background: "#000"
+          },
+          button: {
+            background: "transparent",
+            text: "#f1d600",
+            border: "#f1d600"
+          }
+        },
+        position: "bottom-right",
+        content: {
+          href: "https://asrg.io/privacy.html"
+        }
+      });
+    </script>
+
+    <script async>
+      getMembers();
+
+      async function getMembers() {
+        let urls = [
+          "https://cors-anywhere.herokuapp.com/https://api.meetup.com/Automotive-Security-Research-Group-Stuttgart?&sign=true&photo-host=public",
+          "https://cors-anywhere.herokuapp.com/https://api.meetup.com/Automotive-Security-Research-Group-Detroit?&sign=true&photo-host=public",
+          "https://cors-anywhere.herokuapp.com/https://api.meetup.com/Automotive-Security-Research-Group-Tel-Aviv-ASRG-TLV?&sign=true&photo-host=public",
+          "https://cors-anywhere.herokuapp.com/https://api.meetup.com/Automotive-Security-Research-Group-Cluj-ASRG-C?&sign=true&photo-host=public",
+          "https://cors-anywhere.herokuapp.com/https://api.meetup.com/Automotive-Security-Research-Group-Singapore-ASRG-SIN?&sign=true&photo-host=public",
+          "https://cors-anywhere.herokuapp.com/https://api.meetup.com/Automotive-Security-Research-Group-Cairo-ASRG-CAI?&sign=true&photo-host=public"
+        ];
+        let members = 0;
+
+        for (let i = 0; i < urls.length; i++) {
+          try {
+            const res = await fetch(urls[i], {
+              method: "GET",
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json"
+              }
+            });
+            const json = await res.json();
+            members += json.members;
+          } catch (error) {
+            return;
+          }
+        }
+        document.getElementById("loading").remove();
+        document.getElementById("memberCount").innerHTML = members;
+      }
+    </script>
+  </body>
+</html>
