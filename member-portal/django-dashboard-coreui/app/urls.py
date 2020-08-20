@@ -11,7 +11,7 @@ urlpatterns = [
     # Matches any html file 
     re_path(r'^.*\.html', views.pages, name='pages'),
     # The home page
-    path('', views.index, name='home'),
+    #path('', views.index, name='home'),
     path('createprofile/', views.profile_create_view, name='profile_create'),
     path('profile/', views.profile_view, name='profile'),
 ]
