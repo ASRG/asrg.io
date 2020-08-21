@@ -55,10 +55,11 @@ def profile_create_view(request):
         profile = UserProfile(user=request.user)
 
     if request.POST:
-        form = UserProfileForm(request.POST, request.FILES, instance=profile)
+        form = UserProfileForm(request.POST, request.FILES, instance=profile) 
         if form.is_valid():
             profile = form.save(commit=False)
             profile.user = request.user
+            # profile.chapter = request.user.chapter.all
             if request.FILES:
                 profile.profile_picture = request.FILES['profile_picture']
             else:
@@ -78,7 +79,7 @@ def profile_create_view(request):
                 'gender': profile.gender,
                 'occupational_status': profile.occupational_status,
                 'field_of_study': profile.field_of_study,
-                'chapter': profile.chapter,
+                # 'chapter': profile.chapter.all,
                 'country': profile.country,
                 'bio': profile.bio,
                 'status': profile.status,
@@ -94,6 +95,7 @@ def profile_create_view(request):
 @login_required(login_url="/login/")
 def profile_view(request):
     context = {}
+    print(request.user.chapter)
     try:
         profile = request.user.profile
     except UserProfile.DoesNotExist:
