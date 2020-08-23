@@ -4,6 +4,7 @@ ENV FLASK_APP run.py
 
 COPY manage.py gunicorn-cfg.py requirements.txt .env ./
 COPY app app
+COPY website website
 COPY authentication authentication
 COPY core core
 

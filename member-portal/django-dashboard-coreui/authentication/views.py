@@ -27,7 +27,7 @@ def login_view(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect("/")
+                return redirect("/index.html")
             else:    
                 msg = 'Invalid credentials'    
         else:
@@ -43,6 +43,9 @@ def register_user(request):
     if request.method == "POST":
         form = SignUpForm(request.POST)
         if form.is_valid():
+            form.save(commit=False)
+            chapter = form.cleaned_data.get("chapter")
+            request.user.chapter = chapter
             form.save()
             username = form.cleaned_data.get("username")
             raw_password = form.cleaned_data.get("password1")

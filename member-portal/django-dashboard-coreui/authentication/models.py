@@ -5,9 +5,12 @@ Copyright (c) 2019 - present AppSeed.us
 """
 
 from django.db import models
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from django.db.models.base import ModelBase
 from django.conf import settings
+from django.contrib.auth.models import AbstractUser
+import datetime
+from django.utils import timezone
 
 
 class ChapterMetaClass(ModelBase):
@@ -28,11 +31,18 @@ class Chapter(models.Model, metaclass=ChapterMetaClass):
     city = models.CharField(max_length=56, null=False, blank=True)
     country = models.CharField(max_length=56, null=False, blank=True)
     lead = models.CharField(max_length=56, null=False, blank=True)
-    foundation = models.DateTimeField(null=True)
-    user = models.ManyToManyField(User, blank=True)
+    foundation = models.DateTimeField(blank=True,default=timezone.now())
+    # user = models.ManyToManyField(User, blank=True)
 
     def __str__(self):
         return self.location
 
     class Meta:
         permissions = []
+
+
+class User(AbstractUser):
+    chapter = models.ManyToManyField(Chapter,related_name='user',blank=False)
+
+    def __str__(self):
+        return self.username

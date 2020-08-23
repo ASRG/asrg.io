@@ -84,6 +84,7 @@ The application can be easily executed in a docker container. The steps:
 ```bash
 $ git clone https://github.com/app-generator/django-dashboard-coreui.git
 $ cd django-dashboard-coreui
+$ touch .env
 ```
 
 > Start the app in Docker
