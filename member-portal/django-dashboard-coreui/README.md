@@ -78,7 +78,7 @@ The app is provided with a basic configuration to be executed in:
 * [Waitress](https://docs.pylonsproject.org/projects/waitress/en/stable/)
 
 
-Docker execution
+### Docker execution
 ---
 
 The application can be easily executed in a docker container. The steps:
@@ -87,7 +87,7 @@ The application can be easily executed in a docker container. The steps:
 
 ```bash
 $ git clone https://github.com/ASRG/asrg.io.git
-$ cd django-dashboard-coreui
+$ cd member-portal/django-dashboard-coreui
 $ touch .env
 ```
 
