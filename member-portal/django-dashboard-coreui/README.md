@@ -40,8 +40,8 @@ PRO versions include **Premium UI Kits**, Lifetime updates and **24/7 LIVE Suppo
 
 ```bash
 $ # 1. Get the code
-$ git clone https://github.com/app-generator/django-dashboard-coreui.git
-$ cd django-dashboard-coreui
+$ git clone https://github.com/ASRG/asrg.io.git
+$ cd member-portal/django-dashboard-coreui/
 
 $ # [Unix] 2. Virtualenv modules installation
 $ virtualenv env
@@ -86,7 +86,7 @@ The application can be easily executed in a docker container. The steps:
 > Get the code
 
 ```bash
-$ git clone https://github.com/app-generator/django-dashboard-coreui.git
+$ git clone https://github.com/ASRG/asrg.io.git
 $ cd django-dashboard-coreui
 $ touch .env
 ```
