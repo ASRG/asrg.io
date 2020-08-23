@@ -33,7 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app',  # Enable the inner app
     'authentication',
-    'website'
+    'website',
 ]
 
 MIDDLEWARE = [
@@ -75,7 +75,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': config(
-        'DATABASE_URL', default='sqlite://' + os.path.join(BASE_DIR, 'db.sqlite3'), cast=dj_database_url.parse
+        'DATABASE_URL', default='sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3'), cast=dj_database_url.parse
     )
 }
 
@@ -116,10 +116,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 # Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'website/templates/static'),
-    os.path.join(BASE_DIR, 'core/static')
-)
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'website/templates/static'), os.path.join(BASE_DIR, 'core/static'))
 #############################################################
 #############################################################
 

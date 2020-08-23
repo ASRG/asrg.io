@@ -1,6 +1,7 @@
 # IntelliJ
 .idea
 *.sqlite3
+db.sqlite3
 *.pyc
 *.db
 .vscode
