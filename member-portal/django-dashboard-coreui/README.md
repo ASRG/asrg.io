@@ -55,6 +55,9 @@ $ # Install modules
 $ # SQLIte version
 $ pip3 install -r requirements.txt
 $
+$ # To use PostgreSQL add the following line to your .env file:
+$ DATABASE_URL=postgres://changeme:changeme_pass@postgres:5432/asrg
+$
 $ # Create tables
 $ python manage.py makemigrations
 $ python manage.py migrate
