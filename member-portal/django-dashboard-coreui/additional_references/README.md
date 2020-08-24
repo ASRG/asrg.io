@@ -39,42 +39,46 @@ PRO versions include **Premium UI Kits**, Lifetime updates and **24/7 LIVE Suppo
 ## How to use it
 
 ```bash
-$ # Get the code
-$ git clone https://github.com/app-generator/django-dashboard-coreui.git
-$ cd django-dashboard-coreui
-$
-$ # Virtualenv modules installation (Unix based systems)
+$ # 1. Get the code
+$ git clone https://github.com/ASRG/asrg.io.git
+$ cd member-portal/django-dashboard-coreui/
+
+$ # [Unix] 2. Virtualenv modules installation
 $ virtualenv env
 $ source env/bin/activate
-$
-$ # Virtualenv modules installation (Windows based systems)
-$ # virtualenv env
+
+$ # [Windows] 2. Virtualenv installation (Windows): python -m pip install --user virtualenv
+$ # python -m virtualenv env
 $ # .\env\Scripts\activate
-$ 
-$ # Install modules
-$ # SQLIte version
+
+$ # 3. Install modules - SQLite Storage
 $ pip3 install -r requirements.txt
-$
-$ # Create tables
+
+$ # 4. Create tables
 $ python manage.py makemigrations
 $ python manage.py migrate
-$
-$ # Start the application (development mode)
-$ python manage.py runserver # default port 8000
-$
-$ # Start the app - custom port
+
+$ # 5. Start the application (development mode) default port 8000
+$ python manage.py runserver
+
+$ # 6. Start the app - custom port
 $ # python manage.py runserver 0.0.0.0:<your_port>
-$
-$ # Access the web app in browser: http://127.0.0.1:8000/
+
+$ # 7. Access the web app in browser:
+$ http://127.0.0.1:8000/
 ```
 
-<br />
+<br/>
 
 ## Deployment
+The app is provided with a basic configuration to be executed in:
+* [Heroku](https://heroku.com/)
+* [Docker](https://www.docker.com/)
+* [Gunicorn](https://gunicorn.org/)
+* [Waitress](https://docs.pylonsproject.org/projects/waitress/en/stable/)
 
-The app is provided with a basic configuration to be executed in [Heroku](https://heroku.com/), [Docker](https://www.docker.com/), [Gunicorn](https://gunicorn.org/), and [Waitress](https://docs.pylonsproject.org/projects/waitress/en/stable/).
 
-### [Docker](https://www.docker.com/) execution
+### Docker execution
 ---
 
 The application can be easily executed in a docker container. The steps:
@@ -82,63 +86,84 @@ The application can be easily executed in a docker container. The steps:
 > Get the code
 
 ```bash
-$ git clone https://github.com/app-generator/django-dashboard-coreui.git
-$ cd django-dashboard-coreui
+$ git clone https://github.com/ASRG/asrg.io.git
+$ cd member-portal/django-dashboard-coreui
 $ touch .env
 ```
 
-> Start the app in Docker
+> Pull image and start the app in docker-compose
 
 ```bash
+# [Unix]
 $ sudo docker-compose pull && sudo docker-compose build && sudo docker-compose up -d
+
+# [Windows]
+docker-compose pull && docker-compose build && docker-compose up -d
 ```
 
-Visit `http://localhost:5005` in your browser. The app should be up & running.
+Visit [http://localhost:5005](http://localhost:5005) in your browser. The app should be up & running.
+* For [login](http://localhost:5005/login/)
 
-<br />
+> Stop and remove the app with docker-compose
 
-### [Gunicorn](https://gunicorn.org/)
+```bash
+# [Unix]
+$ sudo docker-compose stop && sudo docker-compose rm -f 
+
+# [Windows]
+docker-compose stop && docker-compose rm -f
+```
+
+> Build (update) the app with docker-compose
+
+```bash
+# [Unix]
+$ sudo docker-compose stop && sudo docker-compose build && sudo docker-compose up -d
+
+# [Windows]
+docker-compose stop && docker-compose build && docker-compose up -d
+```
+
+<br/>
+
+### Gunicorn
 ---
 
-Gunicorn 'Green Unicorn' is a Python WSGI HTTP Server for UNIX.
+[Gunicorn](https://gunicorn.org/) 'Green Unicorn' is a Python WSGI HTTP Server for UNIX.
 
 > Install using pip
-
 ```bash
 $ pip install gunicorn
 ```
-> Start the app using gunicorn binary
 
+> Start the app using gunicorn binary
 ```bash
 $ gunicorn --bind=0.0.0.0:8001 core.wsgi:application
 Serving on http://localhost:8001
 ```
 
-Visit `http://localhost:8001` in your browser. The app should be up & running.
+Visit [http://localhost:8001](http://localhost:8001) in your browser. The app should be up & running.
 
+<br/>
 
-<br />
-
-### [Waitress](https://docs.pylonsproject.org/projects/waitress/en/stable/)
+### Waitress
 ---
-
-Waitress (Gunicorn equivalent for Windows) is meant to be a production-quality pure-Python WSGI server with very acceptable performance. It has no dependencies except ones that live in the Python standard library.
+[Waitress](https://docs.pylonsproject.org/projects/waitress/en/stable/) (Gunicorn equivalent for Windows) is meant to be a production-quality pure-Python WSGI server with very acceptable performance. It has no dependencies except ones that live in the Python standard library.
 
 > Install using pip
-
 ```bash
 $ pip install waitress
 ```
-> Start the app using [waitress-serve](https://docs.pylonsproject.org/projects/waitress/en/stable/runner.html)
 
+> Start the app using [waitress-serve](https://docs.pylonsproject.org/projects/waitress/en/stable/runner.html)
 ```bash
 $ waitress-serve --port=8001 core.wsgi:application
 Serving on http://localhost:8001
 ```
 
-Visit `http://localhost:8001` in your browser. The app should be up & running.
+Visit [http://localhost:8001](http://localhost:8001) in your browser. The app should be up & running.
 
-<br />
+<br/>
 
 ## Credits & Links
 
@@ -162,4 +187,5 @@ A dashboard is a set of pages that are easy to read and offer information to the
 <br />
 
 ---
+
 **[Django Dashboard CoreUI](https://appseed.us/admin-dashboards/django-dashboard-coreui)** - Provided by **AppSeed** [Web App Generator](https://appseed.us/app-generator).
