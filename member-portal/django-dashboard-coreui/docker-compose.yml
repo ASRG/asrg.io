@@ -1,6 +1,7 @@
 version: '3'
 services:
-  appseed-app:
+  asrg-app:
+    container_name: asrg-app
     restart: always
     env_file: .env
     build: .
@@ -12,8 +13,9 @@ services:
     depends_on:
       - postgres
   nginx:
+    container_name: asrg-nginx
     restart: always
-    image: "nginx:latest"
+    image: "nginx:1.17.2"
     ports:
       - "85:85"
     volumes:
@@ -21,6 +23,7 @@ services:
     networks:
       - web_network
     depends_on: 
+<<<<<<< HEAD
       - appseed-app
   postgres:
     restart: always
@@ -35,6 +38,9 @@ services:
       - db_data:/var/lib/postgresql/data/
     networks:
       - db_network
+=======
+      - asrg-app
+>>>>>>> develop
 networks:
   db_network:
     driver: bridge
