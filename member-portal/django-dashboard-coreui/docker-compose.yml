@@ -23,8 +23,7 @@ services:
     networks:
       - web_network
     depends_on: 
-<<<<<<< HEAD
-      - appseed-app
+      - asrg-app
   postgres:
     restart: always
     image: postgres:12.4
@@ -38,9 +37,6 @@ services:
       - db_data:/var/lib/postgresql/data/
     networks:
       - db_network
-=======
-      - asrg-app
->>>>>>> develop
 networks:
   db_network:
     driver: bridge
