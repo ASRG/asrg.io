@@ -53,8 +53,16 @@ $ # .\env\Scripts\activate
 
 $ # 3. Install modules - SQLite Storage
 $ pip3 install -r requirements.txt
+<<<<<<< HEAD:member-portal/django-dashboard-coreui/README.md
+$
+$ # To use PostgreSQL add the following line to your .env file:
+$ DATABASE_URL=postgres://changeme:changeme_pass@postgres:5432/asrg
+$
+$ # Create tables
+=======
 
 $ # 4. Create tables
+>>>>>>> develop:member-portal/django-dashboard-coreui/additional_references/README.md
 $ python manage.py makemigrations
 $ python manage.py migrate
 
