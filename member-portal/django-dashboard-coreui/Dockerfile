@@ -1,18 +1,23 @@
 FROM python:3.6
 
+
 ENV FLASK_APP run.py
 
-COPY manage.py gunicorn-cfg.py requirements.txt .env ./
-COPY app app
-COPY website website
-COPY authentication authentication
-COPY core core
+
+RUN mkdir -p /opt/code
+COPY manage.py gunicorn-cfg.py requirements.txt .env /opt/code/
+COPY app /opt/code/app/
+COPY website /opt/code/website/
+COPY authentication /opt/code/authentication/
+COPY core /opt/code/core/
+WORKDIR /opt/code
+RUN ls
 
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
-RUN python manage.py makemigrations
-RUN python manage.py migrate
-RUN python manage.py collectstatic
+CMD ["python", "manage.py", "makemigrations --no-imput"]
+CMD ["python", "manage.py", "migrate --no-input"]
+CMD ["python", "manage.py", "collectstatic --no-input"]
 
 EXPOSE 5005
 CMD ["gunicorn", "--config", "gunicorn-cfg.py", "core.wsgi"]
