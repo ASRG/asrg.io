@@ -17,6 +17,7 @@ services:
   asrg-app:
     container_name: asrg-app
     restart: always
+    command: /opt/code/docker-entrypoint.sh
     environment:
       - WAIT_HOSTS= asrg-db:5432
     build: .
