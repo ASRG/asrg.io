@@ -33,7 +33,7 @@ class Chapter(models.Model, metaclass=ChapterMetaClass):
     country = models.CharField(max_length=56, null=False, blank=True)
     lead = models.CharField(max_length=56, null=False, blank=True)
     foundation = models.DateTimeField(blank=True, default=timezone.now)
-    # user = models.ManyToManyField(User, blank=True)
+    user = models.ManyToManyField('User', related_name="chapters", blank=True)
 
     def __str__(self):
         return self.location
@@ -43,7 +43,7 @@ class Chapter(models.Model, metaclass=ChapterMetaClass):
 
 
 class User(AbstractUser):
-    chapter = models.ManyToManyField(Chapter, related_name='user', blank=False)
+    chapter = models.ManyToManyField('Chapter', blank=False, related_name='users')
 
     def __str__(self):
         return self.username

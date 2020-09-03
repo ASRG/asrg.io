@@ -9,10 +9,12 @@ from django.shortcuts import render
 # Create your views here.
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from django.forms.utils import ErrorList
 from django.http import HttpResponse
+
 from .forms import LoginForm, SignUpForm
+from .models import User, Chapter
 
 def login_view(request):
     form = LoginForm(request.POST or None)
@@ -43,13 +45,15 @@ def register_user(request):
     if request.method == "POST":
         form = SignUpForm(request.POST)
         if form.is_valid():
-            form.save(commit=False)
-            chapter = form.cleaned_data.get("chapter")
-            request.user.chapter = chapter
             form.save()
+            # chapter = form.cleaned_data.get("chapter")
+            # request.user.chapter.set(chapter)
+            # form.save()
             username = form.cleaned_data.get("username")
             raw_password = form.cleaned_data.get("password1")
             user = authenticate(username=username, password=raw_password)
+            # user.chapter.add(chapter)
+            # chapter.user.add(user)
 
             msg     = 'User created.'
             success = True
@@ -62,3 +66,9 @@ def register_user(request):
         form = SignUpForm()
 
     return render(request, "accounts/register.html", {"form": form, "msg" : msg, "success" : success })
+
+
+
+    # def set_chapter(request, form):
+    #     request.user.chapter.add(Chapter.objects.get(location = form.cleaned_data.get['chapter'])
+    #     form.save()

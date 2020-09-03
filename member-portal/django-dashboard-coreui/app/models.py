@@ -18,24 +18,24 @@ OCCUPATIONAL_STATUS_CHOICES = (
     ('professional', 'Professional'),
 )
 
-GENDER_CHOICES = (("M", "Male"), ("F", "Female"), ("P", "Prefer Not to Say"))
+GENDER_CHOICES = (("Male", "Male"), ("Female", "Female"), ("Prefer Not To Say", "Prefer Not to Say"))
 
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     first_name = models.CharField(max_length=25, blank=False)
     last_name = models.CharField(max_length=25, blank=False)
-    dob = models.DateField(verbose_name='Date of Birth', blank=False)
-    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=False)
-    occupational_status = models.CharField(max_length=25, choices=OCCUPATIONAL_STATUS_CHOICES, blank=True)
-    field_of_study = models.CharField(max_length=100,)
+    dob = models.DateField(verbose_name='Date of Birth', blank=True, null=True)
+    gender = models.CharField(max_length=17, choices=GENDER_CHOICES, blank=False)
+    occupational_status = models.CharField(max_length=25, choices=OCCUPATIONAL_STATUS_CHOICES, blank=False)
+    field_of_study = models.CharField(max_length=100,blank=True, null=True)
     # chapter = models.CharField(max_length=12, choices=CHAPTER_CHOICES)
     # chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE, related_name='profile')
     country = models.CharField(max_length=150, choices=COUNTRY_CHOICES)
-    bio = models.TextField()
-    status = models.CharField(max_length=256)
-    skills = models.CharField(max_length=350)
-    profile_picture = models.ImageField(upload_to='profile pictures')
+    bio = models.TextField(default=' ',blank=True, null=True)
+    status = models.CharField(max_length=256, default=' ',blank=True, null=True)
+    skills = models.CharField(max_length=350, default=' ',blank=True, null=True)
+    profile_picture = models.ImageField(upload_to='profile pictures', default='def.jpg')
 
     date_joined = models.DateTimeField(auto_now_add=True)
     last_login = models.DateTimeField(auto_now=True)
