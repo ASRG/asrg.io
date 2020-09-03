@@ -16,6 +16,7 @@ from django.http import HttpResponse
 from .forms import LoginForm, SignUpForm
 from .models import User, Chapter
 
+
 def login_view(request):
     form = LoginForm(request.POST or None)
 
@@ -30,45 +31,40 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 return redirect("/index.html")
-            else:    
-                msg = 'Invalid credentials'    
+            else:
+                msg = 'Invalid credentials'
         else:
-            msg = 'Error validating the form'    
+            msg = 'Error validating the form'
 
-    return render(request, "accounts/login.html", {"form": form, "msg" : msg})
+    return render(request, "accounts/login.html", {"form": form, "msg": msg})
+
 
 def register_user(request):
 
-    msg     = None
+    msg = None
     success = False
 
     if request.method == "POST":
         form = SignUpForm(request.POST)
         if form.is_valid():
-            form.save()
-            # chapter = form.cleaned_data.get("chapter")
-            # request.user.chapter.set(chapter)
-            # form.save()
+            form.save(commit=False)
+            chapter = form.cleaned_data.get("chapter")
+            user_obj = form.save()
+            user_obj.chapter.add(chapter)
             username = form.cleaned_data.get("username")
             raw_password = form.cleaned_data.get("password1")
             user = authenticate(username=username, password=raw_password)
             # user.chapter.add(chapter)
             # chapter.user.add(user)
 
-            msg     = 'User created.'
+            msg = 'User created.'
             success = True
-            
-            #return redirect("/login/")
+
+            # return redirect("/login/")
 
         else:
-            msg = 'Form is not valid'    
+            msg = 'Form is not valid'
     else:
         form = SignUpForm()
 
-    return render(request, "accounts/register.html", {"form": form, "msg" : msg, "success" : success })
-
-
-
-    # def set_chapter(request, form):
-    #     request.user.chapter.add(Chapter.objects.get(location = form.cleaned_data.get['chapter'])
-    #     form.save()
+    return render(request, "accounts/register.html", {"form": form, "msg": msg, "success": success})
