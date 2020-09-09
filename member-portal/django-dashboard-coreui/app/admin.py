@@ -9,8 +9,8 @@ from django.contrib import admin
 from .models import UserProfile
 
 class UserProfileAdmin(admin.ModelAdmin):
-    list_display = ('first_name', 'last_name', 'country', 'field_of_study', 'date_joined', 'last_login')
-    search_fields = ('country', 'first_name', 'last_name')
+    list_display = ()
+    search_fields = ()
     readonly_fields = ('date_joined', 'last_login')
 
     filter_horizontal =()

@@ -43,6 +43,7 @@ def register_user(request):
 
     msg = None
     success = False
+    errors = None
 
     if request.method == "POST":
         form = SignUpForm(request.POST)
@@ -63,8 +64,9 @@ def register_user(request):
             # return redirect("/login/")
 
         else:
-            msg = 'Form is not valid'
+            errors = form.errors
+            
     else:
         form = SignUpForm()
 
-    return render(request, "accounts/register.html", {"form": form, "msg": msg, "success": success})
+    return render(request, "accounts/register.html", {"form": form, "msg": msg, "success": success, 'errors':errors})
