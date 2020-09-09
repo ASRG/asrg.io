@@ -15,6 +15,17 @@ class UserProfileForm(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        fields = ('first_name', 'last_name', 'dob', 'gender', 'occupational_status', 'field_of_study', 'country', 'bio', 'status',
-                    'skills', 'profile_picture')
+        fields = (
+            # 'first_name', 
+            # 'last_name', 
+            'dob', 
+            # 'gender', 
+            # 'occupational_status', 
+            'field_of_study', 
+            # 'country', 
+            'bio', 
+            'status', 
+            'skills', 
+            'profile_picture'
+            )
 

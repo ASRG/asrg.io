@@ -11,7 +11,7 @@ from django.http import HttpResponse
 from django import template
 from datetime import datetime
 
-from .models import UserProfile
+from .models import UserProfile 
 from .forms import UserProfileForm
 
 @login_required(login_url="/login/")
@@ -73,14 +73,14 @@ def profile_create_view(request):
     else:
         form = UserProfileForm(
             initial = {
-                'first_name': profile.first_name,
-                'last_name': profile.last_name,
+                # 'first_name': profile.first_name,
+                # 'last_name': profile.last_name,
                 'dob': profile.dob,
-                'gender': profile.gender,
-                'occupational_status': profile.occupational_status,
+                # 'gender': profile.gender,
+                # 'occupational_status': profile.occupational_status,
                 'field_of_study': profile.field_of_study,
                 # 'chapter': profile.chapter.all,
-                'country': profile.country,
+                # 'country': profile.country,
                 'bio': profile.bio,
                 'status': profile.status,
                 'skills': profile.skills,
@@ -95,11 +95,11 @@ def profile_create_view(request):
 @login_required(login_url="/login/")
 def profile_view(request):
     context = {}
-    print(request.user.chapter)
+    # print(request.user.chapter)
     try:
         profile = request.user.profile
     except UserProfile.DoesNotExist:
-        return profile_create_view(request)
+        profile = UserProfile(user=request.user)
     context['profile'] = profile
     context['user'] = request.user
     return render (request, 'accounts/profile.html', context)
