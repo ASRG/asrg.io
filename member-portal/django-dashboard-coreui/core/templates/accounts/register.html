@@ -40,6 +40,10 @@
                 <p class="text-muted">
                   {% if msg %}
                     {{ msg | safe }}
+                  {% elif errors %}
+                    {% for error in errors %}
+                      {{ error | safe }}
+                    {% endfor %}
                   {% else %}
                   <span><i>Add your credentials</i><br/>OR use an <a href={% url 'login' %}>ASRG account</a>.
                   </span>
@@ -85,10 +89,57 @@
               <div class="input-group mb-3">
                 <div class="input-group-prepend"><span class="input-group-text">
                     <svg class="c-icon">
-                      <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-soccer"></use>
+                      <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-football"></use>
                     </svg>
                   </span></div>
                 {{ form.chapter }}
+              </div>
+              <div class="reg-additional-info mb-2"><span>We just need a litte more info about you...</span></div>
+
+              
+              <div class="input-group mb-3"> <!-- ADDITIONAL BEGINNIG-->
+                <div class="input-group-prepend"><span class="input-group-text">
+                    <svg class="c-icon">
+                      <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-face"></use>
+                    </svg>
+                  </span></div>
+                {{ form.first_name }}
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend"><span class="input-group-text">
+                    <svg class="c-icon">
+                      <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-face"></use>
+                    </svg>
+                  </span></div>
+                {{ form.last_name }}
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend"><span class="input-group-text">
+                    <svg class="c-icon">
+                      <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-wc"></use>
+                    </svg>
+                  </span></div>
+                {{ form.gender }}
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend"><span class="input-group-text">
+                    <svg class="c-icon">
+                      <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-layers"></use>
+                    </svg>
+                  </span></div>
+                {{ form.occupational_status }}
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend"><span class="input-group-text">
+                    <svg class="c-icon">
+                      <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-globe-alt"></use>
+                    </svg>
+                  </span></div>
+                {{ form.country }}
               </div>
 
               <br />

@@ -17,7 +17,7 @@
         <div class="team-single-img">
           <img
             src="{{ profile.profile_picture.url }}"
-            alt="{{ profile.first_name}} {{ profile.last_name }}"
+            alt="{{ user.first_name}} {{ profile.last_name }}"
             style="width: 500px;"
           />
         </div>
@@ -27,7 +27,7 @@
           <h4
             class="margin-10px-bottom font-size24 md-font-size22 sm-font-size20 font-weight-600 font-black"
           >
-          {{ profile.first_name}} {{ profile.last_name }}
+          {{ user.first_name}} {{ user.last_name }}
           </h4>
           <p class="sm-width-95 sm-margin-auto font-black">
             {{ profile.status }}
@@ -53,7 +53,7 @@
                 ></a>
               </li>
             </ul>
-            <p><a href="{% url 'profile_create' %}">Update Profile</a></p>
+            <p><a href="{% url 'profile_create' %}">Add optinal Info</a></p>
             <p><a href="{% url 'password_change' %}">Change password</a></p>
           </div>
         </div>
@@ -62,7 +62,7 @@
       <div class="col-lg-8 col-md-7">
         <div class="team-single-text padding-50px-left sm-no-padding-left">
           <h4 class="font-size38 sm-font-size32 xs-font-size30">
-            {{ profile.first_name}} {{ profile.last_name }}
+            {{ user.first_name}} {{ user.last_name }}
           </h4>
           <p class="no-margin-bottom">{{ profile.bio }}</p>
           <div class="contact-info-section margin-40px-tb">
@@ -87,7 +87,7 @@
                     >
                   </div>
                   <div class="col-md-7 col-7">
-                    <p>{{ profile.occupational_status }}</p>
+                    <p>{{ user.occupational_status }}</p>
                   </div>
                 </div>
               </li>
@@ -111,7 +111,7 @@
                     <strong class="margin-10px-left">Location:</strong>
                   </div>
                   <div class="col-md-7 col-7">
-                    <p>{{ profile.country }}</p>
+                    <p>{{ user.country }}</p>
                   </div>
                 </div>
               </li>

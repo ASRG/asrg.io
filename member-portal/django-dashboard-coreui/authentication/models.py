@@ -10,8 +10,20 @@ from django.db import models
 from django.db.models.base import ModelBase
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
-import datetime
 from django.utils import timezone
+
+from authentication.countries import COUNTRIES as COUNTRY_CHOICES
+
+OCCUPATIONAL_STATUS_CHOICES = (
+    ('', 'Occupational Status'),
+    ('student', 'Student'),
+    ('undergraduate student', 'Undergraduate Student'),
+    ('graduate student', 'Graduate Student'),
+    ('professional', 'Professional'),
+)
+
+
+GENDER_CHOICES = (('', 'Gender'), ("Male", "Male"), ("Female", "Female"), ("Prefer Not To Say", "Prefer Not to Say"))
 
 
 class ChapterMetaClass(ModelBase):
@@ -45,7 +57,14 @@ class Chapter(models.Model, metaclass=ChapterMetaClass):
 
 
 class User(AbstractUser):
-    chapter = models.ManyToManyField('Chapter', blank=False, related_name='user')
+    chapter = models.ManyToManyField('Chapter', blank=False, related_name='users')
+    # first_name = models.CharField(max_length=25, blank=False)
+    # last_name = models.CharField(max_length=25, blank=False)
+    gender = models.CharField(max_length=17, choices=GENDER_CHOICES, blank=False, default=GENDER_CHOICES[0])
+    occupational_status = models.CharField(
+        max_length=25, choices=OCCUPATIONAL_STATUS_CHOICES, blank=False, default=OCCUPATIONAL_STATUS_CHOICES[0]
+    )
+    country = models.CharField(max_length=150, choices=COUNTRY_CHOICES, default=COUNTRY_CHOICES[0])
 
     def __str__(self):
         return self.username

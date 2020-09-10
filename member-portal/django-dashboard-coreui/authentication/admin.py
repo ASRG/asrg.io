@@ -22,6 +22,8 @@ class ChapterInLine(admin.StackedInline):
 
 @admin.register(User)
 class UserAdmin(AuthUserAdmin):
+    list_display = ('first_name', 'last_name', 'country', 'date_joined', 'last_login')
+    search_fields = ('country', 'first_name', 'last_name')
     inlines = [ChapterInLine]
     readonly_fields = ('date_joined', 'last_login')
 
