@@ -6,10 +6,9 @@ Copyright (c) 2019 - present AppSeed.us
 
 from django.shortcuts import render
 
-# Create your views here.
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-# from django.contrib.auth.models import User
+from django.contrib.auth.models import Permission
 from django.forms.utils import ErrorList
 from django.http import HttpResponse
 
@@ -51,11 +50,12 @@ def register_user(request):
             chapter = form.cleaned_data.get("chapter")
             user_obj = form.save()
             user_obj.chapter.add(chapter)
+            # Add the permissions for the respective chapter as well
+            perm = Permission.objects.get(codename=chapter)
+            user_obj.user_permissions.add(perm)
             username = form.cleaned_data.get("username")
             raw_password = form.cleaned_data.get("password1")
             user = authenticate(username=username, password=raw_password)
-            # user.chapter.add(chapter)
-            # chapter.user.add(user)
 
             msg = 'User created.'
             success = True
