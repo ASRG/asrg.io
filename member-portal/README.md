@@ -37,9 +37,13 @@ To access the admin login, you simply append /admin:
 
 http://localhost:5005/admin
 
-To create admin credentials, you need to tell the Django app that you want to do that. From the Docker instance CLI, run:
+To create admin credentials you need to  follow these steps:
 
+```bash
+python manage.py makemigrations
+python manage.py migrate
 python manage.py createsuperuser
+```
 
 The credentials created in that command will allow you to login as an Admin. The admin is used to manage users and groups.
 
