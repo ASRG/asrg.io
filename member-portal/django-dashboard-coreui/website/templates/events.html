@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+
+<div>
+    {for event in events %}
+        <div>
+            <h3>{{ event.name }}</h3>
+            
+
+        </div>
+</div>
+
+{% endblock content %}
+
+
