@@ -9,5 +9,5 @@ def events(request):
     #return render(request, "events.html")
 
 def event_details(request, event_id):
-    return HttpResponse ('<p>Event Detail View = {event_id}</p>')
+    return HttpResponse (f'<p>Event Detail View = {event_id}</p>')
     #return render(request, "events.html")
