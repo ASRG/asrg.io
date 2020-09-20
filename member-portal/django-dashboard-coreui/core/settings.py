@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'app',  # Enable the inner app
     'authentication',
     'website',
+    'events',
 ]
 
 MIDDLEWARE = [
