@@ -1,3 +1,8 @@
 from django.db import models
 
-# Create your models here.
+
+class Events(models.Model):
+    title = models.CharField(max_length=80)
+    presenter = models.CharField(max_length=120)
+    present_date = models.DateTimeField()
+    description = models.textField(black=True)
