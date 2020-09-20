@@ -28,41 +28,7 @@
 
     gtag("config", "UA-131464826-2");
 
-    // Set the member join link based on the location.
-    function loadLocaleLinks() {
-      const locale = window.navigator.language;
-      let link;
-      switch (locale) {
-        case "en-US":
-          link = "https://docs.asrg.io/locations";
-          break;
-        case "de-DE":
-        case "de-AT":
-        case "de-CH":
-        case "de-LI":
-          link =
-            "https://www.meetup.com/Automotive-Security-Research-Group-Stuttgart/";
-          break;
-        case "yi":
-          link =
-            "https://www.meetup.com/Automotive-Security-Research-Group-Tel-Aviv-ASRG-TLV/";
-          break;
-        case "ro-mo":
-        case "ro":
-          link =
-            "https://www.meetup.com/Automotive-Security-Research-Group-Cluj-ASRG-C/";
-          break;
-        default:
-          link = "https://docs.asrg.io/locations";
-      }
 
-      // add more links if needed
-      const ids = ["join-btn", "register-btn"];
-      for (let i = 0; i < ids.length; i++) {
-        let e = document.getElementById(ids[i]);
-        e.setAttribute("href", link);
-      }
-    }
     window.onload = loadLocaleLinks;
   </script>
 
@@ -103,7 +69,7 @@
 
 <body class="landing is-preload">
 
-  
+
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NK7WG72"
             height="0"
@@ -125,13 +91,13 @@
                class="menuToggle"><span>Menu</span></a>
             <div id="menu">
               <ul>
-                <li><a href="https://asrg.io">Home</a></li>
-                <li><a href="https://asrg.io/about.html">About Us</a></li>
-                <li><a href="https://asrg.io/world/webinars.html">WORLD</a></li>
+                <li><a href="{% url 'landing' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About Us</a></li>
+                <li><a href="{% url 'events' %}">Events</a></li>
                 <li><a href="https://asrg.gitbook.io/asrg-wiki/">Docs</a></li>
-                <li><a href="https://asrg.io/security.html">Report a vulnerability</a></li>
-                <li><a href="https://asrg.io/blog.html">Blog</a></li>
-                <li><a href="https://app.gitbook.com/@asrg/s/asrg-wiki/members">Become a member</a></li>
+                <li><a href="{% url 'security' %}">Report a vulnerability</a></li>
+                <li><a href="{% url 'blog' %}">Blog</a></li>
+                <li><a href="{% url 'register' %}">Become a Member</a></li>
                 <li><a href="/login">Login</a></li>
               </ul>
             </div>
@@ -155,7 +121,7 @@
         <ul class="actions special">
           <li>
             <a id="join-btn"
-               href="https://docs.asrg.io/locations"
+               href="{% url 'register' %}"
                class="button primary">Join the Community</a>
           </li>
         </ul>
@@ -165,8 +131,8 @@
     </section>
 
 
-  {% block content %}
-  {% endblock content %}
+    {% block content %}
+    {% endblock content %}
 
 
     <!-- Footer -->
