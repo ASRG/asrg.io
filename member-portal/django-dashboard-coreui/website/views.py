@@ -5,9 +5,9 @@ def landing(request):
     return render(request, "landing.html")
 
 def events(request):
-    return HttpResponse {'Events View'}
+    return HttpResponse ('<p>Events View</p>')
     #return render(request, "events.html")
 
 def event_details(request, event_id):
-    return HttpResponse {'Event Detail View = {event_id}'}
+    return HttpResponse ('<p>Event Detail View = {event_id}</p>')
     #return render(request, "events.html")
