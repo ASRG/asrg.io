@@ -11,6 +11,7 @@ COPY app /opt/code/app/
 COPY website /opt/code/website/
 COPY authentication /opt/code/authentication/
 COPY core /opt/code/core/
+COPY events /opt/code/events/
 WORKDIR /opt/code
 
 RUN pip install --upgrade pip && pip install -r requirements.txt
