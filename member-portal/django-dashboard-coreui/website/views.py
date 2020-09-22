@@ -26,6 +26,23 @@ def security(request):
     return render(request, "security.html")
 
 
+def projects(request):
+    projects = Projects.objects.all()
+    return render(request, "projects.html", {
+        'projects': projects,
+    })
+
+
+def projects_details(request, project_id):
+    try:
+        project = Projects.objects.get(id=project_id)
+    except project.DoesNotExist:
+        raise Http404('Project does not exist')
+    return render(request, "project_detail.html", {
+        'project': project,
+    })
+
+
 def register(request):
     response = redirect('/register/')
     return response

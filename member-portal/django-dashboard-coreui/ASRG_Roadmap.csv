@@ -1,0 +1,164 @@
+ASRG;Event;Presenter;Organization;Type;Status;Start
+ASRG-S;Meeting 01: Foundations;John Heldreth;ASRG;Meeting;Completed;10.08.17
+ASRG-S;Meeting 02;Daniel Schmidt;Telemotive AG;Meeting;Completed;07.09.17
+ASRG-S;Meeting 03;;;Meeting;Completed;17.10.17
+ASRG-S;Meeting 04: Network Security for service oriented EE architectures;Dr. Christian Meineck;Dr. Ing. h.c. F. Porsche AG;Meeting;Completed;07.11.17
+ASRG-S;Meeting 05;;;Meeting;Completed;05.12.17
+ASRG-S;Meeting 06: Smart Blockchains meet connected supply chains;Dr. Elke Schweizer;BoschSecure;Meeting;Completed;16.01.18
+ASRG-S;Meeting 07: Security Analysis;Andreas Graf;;Meeting;Completed;20.02.18
+ASRG-S;Meeting 08: MACsec - Hardening the Automotive Ethernet Security;Fábio Leite;Intrepid Control Systems GmbH;Meeting;Completed;19.03.18
+ASRG-S;Meeting 09: Auto-ISAC;John Heldreth;;Meeting;Completed;17.04.18
+ASRG-S;Meeting 11: Automotive Cybersecurity;Dr. Christof Ebert;Vector Consulting;Meeting;Completed;12.06.18
+ASRG-S;Meeting 12: Autonomous Security;Tal Ben David;Karamba Security;Meeting;Completed;03.07.18
+ASRG-S;Meeting 13: Tools Overview DefCon / BlackHat Las Vegas;;;Meeting;Completed;28.08.18
+ASRG-S;Meeting 14: BlackHat 2018 and DefCon 26 Overview;;;Meeting;Completed;18.09.18
+ASRG-S;Meeting 15;;;Meeting;Completed;16.10.18
+ASRG-D;Foundation;Sean McKeever;FCA;Meeting;Completed;30.10.18
+ASRG-S;Meeting 16: Threat Intelligence in Automotive and IoT;Thomas Wagner;Robert Bosch GmbH;Meeting;Completed;20.11.18
+ASRG-D;;;;Meeting;Completed;27.11.18
+ASRG-S;Meeting 17: Risk Management;;Itemis AG;Meeting;Completed;04.12.18
+ASRG-S;Meeting 18: Privacy in Automotive;Michael Schommer;No Spy e.V.;Meeting;Completed;22.01.19
+ASRG-D;;;;Meeting;Completed;22.01.19
+ASRG-S;Meeting 19: Security with Bosch at Bosch;Jürgen Klarmann;Robert Bosch GmbH;Meeting;Completed;12.02.19
+ASRG-D;CanCat, CanAble and More!;Aaron / Tim;Grimm;Meeting;Completed;27.02.19
+ASRG-S;Meeting 20: Ethics in Highly Automated Driving;Dr. Julia Mönig / Susanne Kuhnert;Hochschule der Medien Stuttgart;Meeting;Completed;12.03.19
+ASRG-D;DIY Electric Cars;Mutley;;Meeting;Completed;14.03.19
+ASRG-S;Meeting 21: Impact of the upcoming ISO 21434 regarding Security and Safety;Stefan Rave;Invensity GmbH;Meeting;Completed;30.04.19
+ASRG-D;CANBus Reverse Engineering with Socket CAN;;;Meeting;Completed;30.04.19
+ASRG-D;New Tools and Risk Assessment;;;Meeting;Completed;28.05.19
+ASRG-S;"Meeting 22: Reverse Engineering and
+Weaponizing OBD Dongles";Nils Weiss / Enrico Pozzobon;Ostbayerische Technische Hochschule;Meeting;Completed;11.06.19
+ASRG-D;Threat Modeling;;;Meeting;Completed;25.06.19
+ASRG-TLV;Meeting 1: Automotive Multi Surface Attacks;Jonathan Bokovza,Assaf Klinger;Samsung Next;Meeting;Completed;11.07.19
+ASRG-S;Meeting 23: Doing OTA the Secure Way;Georg Mueller / Larissa Popova ;Airbiquity;Meeting;Completed;16.07.19
+ASRG-D;Reverse Engineering and SOC;;;Meeting;Completed;31.07.19
+ASRG-S;Meeting 24: Highlights of Blackhat 2019 / Defcon 27;John Heldreth;Porsche Engineering GmbH;Meeting;Completed;20.08.19
+ASRG-D;DEFCON, PD0 and QuadCAN;;;Meeting;Completed;21.08.19
+ASRG-S;Meeting 25: Risks in Social Engineering;Christina Lekati;Cyber Risk GmbH;Meeting;Completed;24.09.19
+ASRG-D;WiFi Cracking and Telemetry;;;Meeting;Completed;30.09.19
+ASRG-S;Meeting 26: Automotive Security Operations Center;Christian Olt;T-Systems AG;Meeting;Completed;15.10.19
+ASRG-S;Handelsblatt Automotive Summit;;;Conference;Cancelled;24.10.19
+ASRG-S;Embedded Linux Conference;;;Conference;Cancelled;28.10.19
+ASRG-D;RoboCar Rumble!;;;Meeting;Completed;28.10.19
+ASRG-TLV;Fuel Choices and Smart Mobility;;;Conference;Open;28.10.19
+ASRG-D;IQPC- Automotive Cybersecurity Silicon Valley;;;Conference;Cancelled;28.10.19
+ASRG-D;North American International Cyber Summit;;;Conference;Cancelled;28.10.19
+ASRG-TKO;CODE BLUE Japan;;;Conference;Cancelled;29.10.19
+ASRG-D;Autonomous Vehicle Cybersecurity + Hackers Conference and Expo ;;;Conference;Cancelled;07.11.19
+ASRG-S;Meeting 27: Meeting AutoISAC is coming to Europe;Robert Kaster;Robert Bosch LLC;Meeting;Completed;18.11.19
+ASRG-D;Automobility LA;;;Conference;Cancelled;18.11.19
+ASRG-S;"17th escar Europe
+- Roll Ups";;;Conference;Completed;19.11.19
+ASRG-S;SPS IPC Drives;;;Conference;Cancelled;26.11.19
+ASRG-S;Meeting 28: Artificial Intelligence and Cyber Security;Alessandro Fontana;Bosch Engineering GmbH;Meeting;Completed;10.12.19
+ASRG-MUC;Meeting 01: Security for Automotive Applications - Types of Attacks;"Marcus Janke; Dr. Peter Laackmann";Infineon Technologies AG;Meeting;Completed;11.12.19
+ASRG-S;"36C3 - Chaos Computer Club
+- ASRG Marketing Material
+";;;Conference;Completed;27.12.19
+ASRG-D;CES;;;Conference;Completed;07.01.20
+ASRG-S;Meeting 29: Application Aware Intrusion Detection;Hendrik Eikerling;Fraunhofer IEM;Meeting;Completed;21.01.20
+ASRG-MUC;Meeting 02: When Security Meets Safety in the Autonomous Vehicle;Suchit Mishra;Autonomous Intelligent Driving GmbH;Meeting;Completed;29.01.20
+ASRG-D;15. SAE Best Practices and Government Regulation;Bob Gruszczynski;Walsh College;Meeting;Completed;30.01.20
+ASRG-TLV;Meeting 3: Attacks on Automotive Cloud & Fleets Infrastructure;Rotem Bar, Yonatan Appel;Microsoft ;Meeting;Cancelled;04.02.20
+ASRG-S;Meeting 30: Safety Goals in Vehicle Security Analysis;Dr. David Förster;Robert Bosch GmbH;Meeting;Completed;18.02.20
+ASRG-S;Bosch Connected World;;;Conference;Cancelled;19.02.20
+ASRG-CAI;1st Meeting - Introduction about ASRG & cybersecurity threats in 2020;Mohamed Madbouly, Adel Abdel Moneim;Swift Act (Greek Campus);Meeting;Completed;22.02.20
+ASRG-D;RSA;;;Conference;Cancelled;24.02.20
+ASRG-S;Embedded World;;;Conference;Cancelled;25.02.20
+ASRG-MUC;Meeting 03: Exploring Cyber Attacks in Automotive Ethernet Networks;Matan Atad;Argus;Meeting;Completed;26.02.20
+ASRG-D;16. Graph-based Intrusion Detection System for CAN;Graduate Student (name tbd);UofM Dearborn;Meeting;Completed;27.02.20
+ASRG-D;"NDIA CySummit
+- Jennifer Tisdale, good supporter of ASRG";;BB will try to represent ASRG here.;Conference;In Plan;10.03.20
+ASRG-CAI;2nd Meeting;;??;Meeting;Cancelled;14.03.20
+ASRG-S;Meeting 31: Security for Automotive Applications - An Introduction to Attacks;Marcus Janke and Dr. Peter Laackmann;Infineon Technologies AG;Meeting;Cancelled;17.03.20
+ASRG-MUC;Meeting 04: Impact of Cybersecurity on Project Management;Manuel Sandler;Cyres Consulting;Meeting;Cancelled;25.03.20
+ASRG-MUC;Meeting 05: Drivers & Enablers of Insider Threat Activity;Christina Lekati;Cyber Risk GmbH;Meeting;Cancelled;29.03.20
+ASRG-WORLD;Webinar 1: Vehicle Cybersecurity Trends - Technical DeepDive of Recent Incidents;Allan Konar;Upstream Security;Webinar;Completed;02.04.20
+ASRG-CAI;3rd Meeting;;ITI;Meeting;Cancelled;18.04.20
+ASRG-S;Hannover Messe;;;Conference;Cancelled;20.04.20
+ASRG-S;Meeting 32: Lessons Learned for Automotive Navigation after the Tesla GPS Hack;Yoav Zangvil (CTO);Regulus Cyber;Meeting;Cancelled;21.04.20
+ASRG-WORLD;Webinar 2: Lessons Learned from IT & ICS/SCADA Cyber–Security Applied to Automotive;Gilad Bandel (VP Products);Arilou Automotive Cyber-Security;Webinar;Completed;23.04.20
+ASRG-WORLD;1. Secure Coding Tournament;;Secure Code Warrior;Tournament;Completed;24.04.20
+ASRG-WORLD;Webinar 3: UNECE CyberSecurity Regulation for Automotive;Dragos Dabija;Accenture Plc;Webinar;Completed;30.04.20
+ASRG-WORLD;Webinar 4: Lessons Learned for Automotive Navigation after the Tesla GPS Hack;"Roi Mit (CMO); Dror Katalan (Chief Engineer)";Regulus Cyber;Webinar;Completed;06.05.20
+ASRG-WORLD;Webinar 5: From an IVI in a box to a CAR in a box (Car Hacking Village UK/EU);Ian Tabor;MASS;Webinar;Completed;14.05.20
+ASRG-S;BSides Stuttgart;;;Conference;Cancelled;18.05.20
+ASRG-TLV;Ecomotion Week (Virtual Event);;;Conference;Open;18.05.20
+ASRG-WORLD;Webinar 6: Cyber Threat Intelligence – Top Gun Style;Markus Auer;ThreatQuotient;Webinar;Completed;20.05.20
+ASRG-WORLD;Webinar 7: Dynamic Trust Models for Mobility during Lifecycle;Mirko Ross;Asvin;Webinar;Completed;28.05.20
+ASRG-CAI;4th Meeting;;ITI;Meeting;Cancelled;30.05.20
+ASRG-WORLD;Webinar 8: Telematic Control Unit (in)security;Jofre Palau;Vodafone Automotive;Webinar;Completed;04.06.20
+ASRG-WORLD;Webinar 9: ISO21434 by Example ;Bastian Kruck;Itemis;Webinar;Completed;11.06.20
+ASRG-S;Meeting xx: Intelligence Model for Automotive Vulnerability Detection;Slava Bronfman (CEO);Cybellum;Meeting;Cancelled;16.06.20
+ASRG-WORLD;Webinar 10: Attacking cars from the cloud, the API way of stealing cars;Vangelis Stykas;Pen Test Partners;Webinar;Completed;18.06.20
+ASRG-WORLD;Webinar 11: Protecting Automotive Intellectual Property from Insider Threats;Cristina Lekati;Cyber Risk GmbH;Webinar;Completed;25.06.20
+ASRG-CAI;5th Meeting;;ITI;Meeting;Cancelled;27.06.20
+ASRG-S;Security of Things World;;;Conference;Cancelled;29.06.20
+ASRG-WORLD;Webinar 12: CANbus vs. Ethernet IDS/IPS;Gilad Bandel (VP Products);Arilou Automotive Cyber-Security;Webinar;Completed;02.07.20
+ASRG-WORLD;"Webinar 13: How Hacker-Powered Security can take
+your Organization to the next Level";Jon Bottarini;HackerOne;Webinar;Completed;09.07.20
+ASRG-WORLD;"Webinar 14: Taking the Wheel with Automotive Bluetooth
+";M.Kamel Ghali;;Webinar;Completed;15.07.20
+ASRG-WORLD;Webinar 15: CAN Bus: Attacks And Mitigations;Ken Tindell;Canis Labs;Webinar;Completed;16.07.20
+ASRG-WORLD;Webinar 16: Relay Attack applied to NFC Virtual Car Keys;Enrico Pozzobon;OTH;Webinar;Completed;23.07.20
+ASRG-CAI;6th Meeting ;;ITI;Meeting;Cancelled;25.07.20
+ASRG-WORLD;Webinar 17: CAN Bus Reverse-Engineering with a RaspberryPi /SocketCAN – A Practical example;David Evans;Applus IDIADA (UK);Webinar;Completed;30.07.20
+ASRG-WORLD;Webinar 18: Auto-ISAC;Faye Francy;Auto-ISAC;Webinar;Completed;06.08.20
+ASRG-WORLD;Webinar 19: From Attackers to Defenders, Challenges in Securing Embedded Systems OS;Ali Abbasi;Ruhr University Bochum;Webinar;Completed;13.08.20
+ASRG-S;Meeting xx: Cyber Security and Autonomous Driving;Miriam Gruber;BMW AG;Meeting;Cancelled;18.08.20
+ASRG-WORLD;Webinar 20: Houston, We CAV a Problem;Vic Harkness;F-Secure;Webinar;Completed;20.08.20
+ASRG-WORLD;2. Secure Coding Tournament;;Secure Code Warrior;Tournament;Completed;28.08.20
+ASRG-CAI;7th Meeting;;ITI;Workshop;Cancelled;29.08.20
+ASRG-WORLD;Webinar 21: Threat Modeling in 2020;Adam Shostack;Shostack & Associates;Webinar;Completed;03.09.20
+ASRG-WORLD;Webinar 22: Vehicle System Forensics – ‘Frankie’, A Case Study;Noel Lowdon;Harper Shaw Investigation Consultants Ltd.;Webinar;Confirmed;17.09.20
+ASRG-WORLD;Webinar 23: AI based security & safety  anomaly detection;Moustafa El Bahaey;AT Instruments;Webinar;Confirmed;24.09.20
+ASRG-CAI;8th Meeting;;;Webinar;Cancelled;27.09.20
+ASRG-WORLD;Webinar 24: What is required to work in Automotive CyberSecurity Jobs ?;AJ Khan & CyberTalents;CyberTalents;Webinar;Confirmed;27.09.20
+ASRG-WORLD;Webinar 25: ?;Victor Otero;BMW AG;Webinar;In Plan;01.10.20
+ASRG-WORLD;Webinar 26: An Overview of Privacy-Preserving Credential Management for V2X Communication;Kevin Henry;Escrypt;Webinar;Confirmed;08.10.20
+ASRG-S;Meeting 33: xxx;;;Meeting;Confirmed;14.10.20
+ASRG-WORLD;Webinar 27: LibreCAN: Automated CAN Message Translator;Mert D. Pese;University of Michigan;Webinar;Confirmed;15.10.20
+ASRG-WORLD;Webinar 28: apmaIAC: Securing the COMPLETE Mobility Ecosystem;Colin and AJ Khan;APMA;Webinar;Confirmed;22.10.20
+ASRG-CAI;Automotive CTF;;CyberTalents;CTF;Confirmed;17.10.20
+ASRG-WORLD;Webinar 29: Putting the Brakes on Cyberattacks Targeting Connected Cars;Ken Munro;Pen Test Partners;Webinar;In Plan;29.10.20
+ASRG-D;Converge Detroit;;;Conference;In Plan;05.11.20
+ASRG-WORLD;Webinar 30: ? ;;Moabi;Webinar;Confirmed;05.11.20
+ASRG-WORLD;Webinar 31: ?;Anna Stylianou;SBD Automotive;Webinar;In Plan;12.11.20
+ASRG-S;Meeting 38: xxx;;;Meeting;Open;17.11.20
+ASRG-WORLD;Webinar 32: ?;Justin Black;Riscure;Webinar;In Plan;19.11.20
+ASRG-WORLD;Webinar 33: TBD;;Argus;Webinar;Confirmed;26.11.20
+ASRG-CAI;10th Meeting ;;ITI;Meeting;In Plan;28.11.20
+ASRG-WORLD;Webinar 34:;Thomas Liedtke;Kugler Maag Cie GmbH;Webinar;In Plan;03.12.20
+ASRG-S;Meeting 39: xxx;;;Meeting;Open;08.12.20
+ASRG-WORLD;Webinar 35:;;;Webinar;Open;10.12.20
+ASRG-WORLD;Webinar 36:;;;Webinar;Open;17.12.20
+ASRG-CAI;11th Meeting  ;;ITI;Workshop;In Plan;26.12.20
+ASRG-D;Grrcon;;;Conference;Open;TBD
+ASRG-D;B-Sides Detroit 2020;;;Conference;Open;TBD
+"ASRG-D
+";17. TBD;Allan Konar/Dan Sahar;Upstream;Meeting;Cancelled;TBD
+ASRG-D;18. TBD;Brandon Barry/Aaron Newman;Block Harbor Cybersecurity/Keysight Technologies;Meeting;Cancelled;TBD
+ASRG-FRA;Meeting 01: Towards Digital Sovereignty By Open Source (Hardware);Dr. Steffen Reith;Hochschule RheinMain;Meeting;Cancelled;tbd
+ASRG-FRA;Meeting 02: The Evolution from a Fixed to a Flexible Hardware Security Module Architecture in Microcontrollers;Georg Schmalz;Cypress;Meeting;Cancelled;tbd
+ASRG-TLV;CyberWeek;;;Conference;Cancelled;
+ASRG-D;Defcon 2020;;;Conference;Cancelled;
+ASRG-D;Blackhat 2020 ;;;Conference;Cancelled;
+ASRG-D;Cyber Auto Challenge;;;Conference;Cancelled;
+ASRG-D;Glitching;Thomas Roth;Level Down;Meeting;Open;
+ASRG-TLV;"Meeting 2: Machine Learning Based Vulnerabilities & ECU Attacks
+";Shir Mousseri, Slava Bronfman;AWS (Amazon);Meeting;Completed;
+ASRG-TLV;Meeting 4: ;TBD;Google;Meeting;In Plan;
+ASRG-TLV;CTF (Bsides-TLV June/2020);TBD;Cyberweek TLV (Bsides TLV 2020);CTF;In Plan;
+ASRG-S;Meeting 10: Canceled;;;Meeting;Open;
+ASRG-S;Meeting XX: Wie das Internet of Things und unsichere APIs die neue Cyber-Front bilden (30min);Eberhard Scheuble;;Meeting;Open;
+ASRG-S;Meeting XX: Demo from Dirk???;Dirk Targoni;;Meeting;Open;
+ASRG-S;Meeting XX: Hardware Hacking with IBM's Red Team;Adam Laurie;IBM;Meeting;Open;
+ASRG-S;HitB;;;Conference;Cancelled;
+ASRG-S;HitB;;;Conference;Cancelled;
+ASRG-S;Glitching;Thomas Roth;Level Down;Meeting;Open;
+ASRG-S;TU Automotive;;;Conference;Cancelled;
+ASRG-S;Hardwear.io Security Conference Netherlands 2020;;;Conference;Open;01.10.20
+ASRG-S;18th escar Europe;;;Conference;Open;11.11.20
+ASRG-S;Troopers;;;Conference;Cancelled;
+ASRG-S;Workshop Risk Assessment of Real-Life Automotive Software. Work-on with real example;tbd;Cybellum;Workshop;Open;
+ASRG-WORLD;Automotive Network Mapping Scanner;Nils;OTH;Webinar;Open;
