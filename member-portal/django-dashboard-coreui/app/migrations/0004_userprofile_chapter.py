@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('authentication', '0002_auto_20200823_1514'),
+        ('authentication', '0003_auto_20200910_1601'),
         ('app', '0003_remove_userprofile_chapter'),
     ]
 
