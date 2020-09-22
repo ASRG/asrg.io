@@ -11,3 +11,4 @@ gunicorn
 whitenoise
 Pillow==7.2.0
 psycopg2==2.8.5
+django-filter==2.3.0
