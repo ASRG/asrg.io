@@ -12,3 +12,4 @@ staticfiles/
 db_data/*
 !db_data/.gitkeep
 *.help
+!.pre-commit-config.yaml
