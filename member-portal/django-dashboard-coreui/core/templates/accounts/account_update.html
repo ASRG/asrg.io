@@ -38,17 +38,16 @@
 
                 <h5>Register</h5>
                 <p class="text-muted">
-                  {% if not form.errors %}
-                    <span><i>Add your credentials</i><br/>OR use an <a href={% url 'login' %}>ASRG account</a>.
-                    </span>
+                  {% if msg %}
+                    {{ msg | safe }}
+                  {% elif errors %}
+                    {% for error in errors %}
+                      <span style="color: red;">{{ error | safe }}<br></span>
+                    {% endfor %}
+                  {% else %}
+                  <span><i>Add your credentials</i><br/>OR use an <a href={% url 'login' %}>ASRG account</a>.
+                  </span>
                   {% endif %}
-                  {% for field in form %}
-                    {% if field.errors %}
-                      {% for error in field.errors %}
-                        <span style="color: red;">{{ error | safe }}<br></span>
-                      {% endfor %}
-                    {% endif %}
-                  {% endfor %}
 
                 </p>
               </div>
@@ -146,7 +145,7 @@
               <br />
 
               <div class="text-center">
-                  <button type="submit" name="register" class="btn btn-primary px-4">Register</button>
+                  <button type="submit" name="register" class="btn btn-primary px-4">Update Profile</button>
               </div>
 
             </div>

@@ -11,3 +11,4 @@ __pycache__/
 staticfiles/
 db_data/*
 !db_data/.gitkeep
+*.help

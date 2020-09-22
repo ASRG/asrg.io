@@ -13,6 +13,7 @@ from django.forms.utils import ErrorList
 from django.http import HttpResponse
 
 from .forms import LoginForm, SignUpForm
+import authentication.forms as f
 from .models import User, Chapter
 
 
@@ -57,6 +58,10 @@ def register_user(request):
             username = form.cleaned_data.get("username")
             raw_password = form.cleaned_data.get("password1")
             user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('profile')
+            # user.chapter.add(chapter)
+            # chapter.user.add(user)
 
             msg = 'User created.'
             success = True
@@ -64,9 +69,31 @@ def register_user(request):
             # return redirect("/login/")
 
         else:
-            errors = form.errors
-            
+            # errors = form.errors
+            msg = "form not valid"
+
     else:
         form = SignUpForm()
 
-    return render(request, "accounts/register.html", {"form": form, "msg": msg, "success": success, 'errors':errors})
+    return render(request, "accounts/register.html", {"form": form, "msg": msg, "success": success})
+
+
+def account_view(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
+
+    context = {}
+
+    if request.POST:
+        form = f.UserUpdateForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+    else:
+        form = f.UserUpdateForm(
+            initial={
+                'email': request.user.email,
+                'username': request.user.username,
+            }
+        )
+    context['account_form'] = form
+    return render(request, 'accounts/account_update.html', context)
