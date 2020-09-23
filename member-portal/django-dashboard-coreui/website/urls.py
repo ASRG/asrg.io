@@ -11,8 +11,8 @@ urlpatterns = [
     path('privacy/', views.privacy, name='privacy'),
     path('security/', views.security, name='security'),
     path('register/', views.register, name='register'),
-    path('events/', views.events, name='events'),
-    path('events/<int:event_id>/', views.event_details, name='event_details')
+    # path('events/', views.events, name='events'),
+    # path('events/<int:event_id>/', views.event_details, name='event_details')
 
 ]
 

@@ -26,15 +26,19 @@ class EventAdmin(admin.ModelAdmin):
                 'presenter_first_name',
                 'presenter_last_name',
                 'presenter_picture',
+                'presenter_profile_url',
                 'presenter_company_name',
                 'presenter_company_logo',
                 'presenter_bio',
+                'presenter_designation',
+                'presenter_company_website',
             ),
         }),
 
         ('Event Details', {
             'fields': (
                 'event_address',
+                'event_description',
                 'link',
                 'start_date',
                 'start_time',
@@ -50,6 +54,10 @@ class EventAdmin(admin.ModelAdmin):
             )
         })
     )
+
+    def save_model(self, request, obj, form, change):
+        obj.added_by = request.user
+        return super().save_model(request, obj, form, change)
 
 
 admin.site.register(Event, EventAdmin)

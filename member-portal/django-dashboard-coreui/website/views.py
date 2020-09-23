@@ -3,7 +3,7 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import redirect
 
 
-from .models import Events
+# from .models import Events
 
 
 def landing(request):
@@ -31,18 +31,18 @@ def register(request):
     return response
 
 
-def events(request):
-    events = Events.objects.all()
-    return render(request, "events.html", {
-        'events': events,
-    })
+# def events(request):
+#     events = Events.objects.all()
+#     return render(request, "events.html", {
+#         'events': events,
+#     })
 
 
-def event_details(request, event_id):
-    try:
-        event = Events.objects.get(id=event_id)
-    except event.DoesNotExist:
-        raise Http404('Event does not exist')
-    return render(request, "event_detail.html", {
-        'event': event,
-    })
+# def event_details(request, event_id):
+#     try:
+#         event = Events.objects.get(id=event_id)
+#     except event.DoesNotExist:
+#         raise Http404('Event does not exist')
+#     return render(request, "event_detail.html", {
+#         'event': event,
+#     })
