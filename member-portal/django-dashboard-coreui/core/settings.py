@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     "app",  # Enable the inner app
     "authentication",
     "website",
-    "mapwidgets",
+    "leaflet",
 ]
 
 MIDDLEWARE = [
@@ -166,3 +166,10 @@ CHAPTERS = (
     ("ASRG-VIE", "ASRG-Vienna"),
     ("ASRG-HYD", "ASRG-Hyderabad"),
 )
+LEAFLET_CONFIG = {
+    "DEFAULT_CENTER": (6.0, 45.0),
+    "DEFAULT_ZOOM": 3,
+    "MIN_ZOOM": 3,
+    "MAX_ZOOM": 18,
+    "DEFAULT_PRECISION": 6,
+}
