@@ -14,6 +14,7 @@ urlpatterns = [
     # path('events/<int:event_id>/', views.event_details, name='event_details'),
     path('jobs/', views.job_posting, name='job_posting'),
     path('jobs/<int:job_id>/', views.job_details, name='job_details'),
+    path('contributors/', views.contributors, name='contributors')
 ]
 
 
