@@ -5,7 +5,7 @@ ENV FLASK_APP run.py
 
 
 RUN mkdir -p /opt/code
-COPY manage.py gunicorn-cfg.py requirements.txt .env docker-entrypoint.sh /opt/code/
+COPY manage.py gunicorn-cfg.py requirements.txt .env* docker-entrypoint.sh /opt/code/
 RUN  chmod 777 /opt/code/docker-entrypoint.sh
 COPY app /opt/code/app/
 COPY website /opt/code/website/
