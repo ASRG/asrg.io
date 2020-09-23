@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Events, JobPosting
+from .models import JobPosting
 
 
 # @admin.register(Events)
