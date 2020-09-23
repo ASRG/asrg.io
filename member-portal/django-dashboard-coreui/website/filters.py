@@ -1,4 +1,5 @@
 import django_filters
+from django import forms
 
 from website.models import JobPosting
 
@@ -18,8 +19,12 @@ class JobPostingFilters(django_filters.FilterSet):
         self.filters['location'].field.choices = location_choices
         self.filters['job_category'].field.choices = job_category_choices
 
-    location = django_filters.MultipleChoiceFilter(choices=location_choices)
-    job_category = django_filters.MultipleChoiceFilter(choices=location_choices)
+    location = django_filters.MultipleChoiceFilter(
+        choices=location_choices, widget=forms.Select(attrs={'class': 'form-control'})
+    )
+    job_category = django_filters.MultipleChoiceFilter(
+        choices=location_choices, widget=forms.Select(attrs={'class': 'form-control'})
+    )
     date_posted = django_filters.DateRangeFilter(field_name='date_posted')
 
     class Meta:
