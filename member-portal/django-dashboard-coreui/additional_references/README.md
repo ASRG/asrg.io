@@ -129,7 +129,7 @@ $ sudo docker-compose stop && sudo docker-compose rm -f
 docker-compose stop && docker-compose rm -f
 ```
 
-> Build (update) the app with docker-compose
+> Build (update) the whole app (db, ui, etc.) with docker-compose
 
 ```bash
 # [Unix] To get rid of the containers that were renamed
@@ -137,6 +137,21 @@ $ sudo docker-compose stop && sudo docker-compose build && sudo docker-compose u
 
 # [Windows] To get rid of the containers that were renamed
 docker-compose stop && docker-compose build && docker-compose up -d --remove-orphans
+```
+
+> Build (update) specific container (db, ui, etc.) with docker-compose
+
+In order to not rebuild the whole application after an update. You can run the next commands to update containers based on the specific service:
+
+```bash
+# [Unix] Stop and re build only the dashboard-ui for updates: asrg-app
+$ sudo docker-compose stop asrg-app && sudo docker-compose rm -f asrg-app &&\
+sudo docker-compose pull asrg-app && sudo docker-compose build asrg-app &&\
+sudo docker-compose up -d --remove-orphans asrg-app
+
+# [Windows] Stop and re build only the dashboard-ui for updates: asrg-app
+docker-compose stop asrg-app && docker-compose rm -f asrg-app && docker-compose pull asrg-app &&\
+docker-compose build asrg-app && docker-compose up -d --remove-orphans asrg-app
 ```
 
 <br/>
