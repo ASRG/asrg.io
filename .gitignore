@@ -9,4 +9,7 @@ db.sqlite3
 .env
 __pycache__/
 staticfiles/
+db_data/*
+!db_data/.gitkeep
 *.help
+!.pre-commit-config.yaml

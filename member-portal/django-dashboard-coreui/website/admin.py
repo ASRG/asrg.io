@@ -1,14 +1,19 @@
 from django.contrib import admin
 
-from .models import Events
-from .models import Projects
+from .models import JobPosting,Contributor
 
 
-@admin.register(Events)
-class EventsAdmin(admin.ModelAdmin):
-    list_display = ['event_status', 'present_date', 'title', 'presenter']
+
+# @admin.register(Events)
+# class EventsAdmin(admin.ModelAdmin):
+#     pass
 
 
-@admin.register(Projects)
-class ProjectsAdmin(admin.ModelAdmin):
-    list_display = ['project_status', 'project_name', 'project_lead']
+@admin.register(JobPosting)
+class JobPostingAdmin(admin.ModelAdmin):
+    list_display = ['title', 'job_category', 'location', 'date_posted']
+    list_display_links = ('title',)
+    search_fields = ['title', 'job_category', 'location']
+    list_filter = ('location', 'job_category')
+
+admin.site.register(Contributor)

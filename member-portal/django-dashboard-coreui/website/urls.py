@@ -3,8 +3,12 @@ from website import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
+<<<<<<< HEAD
 
     # The Public Facing Website
+=======
+    # The landing page
+>>>>>>> 22238dbe0b9611bb2dcb7369df3fb5de65329562
     path('', views.landing, name='landing'),
     path('about/', views.about, name='about'),
     path('blog/', views.blog, name='blog'),
@@ -14,9 +18,11 @@ urlpatterns = [
     path('projects/<int:project_id>/',
          views.project_details, name='project_details'),
     path('register/', views.register, name='register'),
-    path('events/', views.events, name='events'),
-    path('events/<int:event_id>/', views.event_details, name='event_details')
-
+    # path('events/', views.events, name='events'),
+    # path('events/<int:event_id>/', views.event_details, name='event_details'),
+    path('jobs/', views.job_posting, name='job_posting'),
+    path('jobs/<int:job_id>/', views.job_details, name='job_details'),
+    path('contributors/', views.contributors, name='contributors')
 ]
 
 
