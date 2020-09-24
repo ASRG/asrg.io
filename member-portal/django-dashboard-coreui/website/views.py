@@ -3,13 +3,8 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, get_object_or_404
 
 
-<<<<<<< HEAD
-from .models import Events
-from .models import Projects
-=======
 from .models import JobPosting,Contributor
 from website.filters import JobPostingFilters
->>>>>>> 22238dbe0b9611bb2dcb7369df3fb5de65329562
 
 
 def landing(request):
@@ -30,23 +25,6 @@ def privacy(request):
 
 def security(request):
     return render(request, "security.html")
-
-
-def projects(request):
-    projects = Projects.objects.all()
-    return render(request, "projects.html", {
-        'projects': projects,
-    })
-
-
-def project_details(request, project_id):
-    try:
-        project = Projects.objects.get(id=project_id)
-    except project.DoesNotExist:
-        raise Http404('Project does not exist')
-    return render(request, "project_detail.html", {
-        'project': project,
-    })
 
 
 def register(request):

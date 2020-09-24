@@ -3,78 +3,42 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async
-          src="https://www.googletagmanager.com/gtag/js?id=UA-131464826-2"></script>
-
-  <!-- Google Tag Manager -->
-  <script>(function (w, d, s, l, i) {
-      w[l] = w[l] || []; w[l].push({
-        'gtm.start':
-          new Date().getTime(), event: 'gtm.js'
-      }); var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-NK7WG72');</script>
-  <!-- End Google Tag Manager -->
-
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
-
-    gtag("config", "UA-131464826-2");
-  </script>
-
-  <title>ASRG | Automotive Security Research Group</title>
-  <meta charset="utf-8" />
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1, user-scalable=no" />
+<title>ASRG | Automotive Security Research Group</title>
+<meta charset="utf-8" />
+<meta name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no" />
+<link rel="stylesheet"
+      href="{% static 'assets/css/main.css' %}" />
+<link rel="icon"
+      href="{% static 'favicon.ico' %}"
+      type="image/x-icon" />
+<link rel="shortcut icon"
+      href="{% static 'icon.ico' %}"
+      type="image/x-icon" />
+<link rel="apple-touch-icon"
+      sizes="180x180"
+      href="{% static '/apple-touch-icon.png' %}" />
+<link rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="{% static 'favicon-32x32.png' %}" />
+<link rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="{% static 'favicon-16x16.png' %}" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet" />
+<noscript>
   <link rel="stylesheet"
-        href="{% static 'assets/css/main.css' %}" />
-  <link rel="icon"
-        href="{% static 'favicon.ico' %}"
-        type="image/x-icon" />
-  <link rel="shortcut icon"
-        href="{% static 'icon.ico' %}"
-        type="image/x-icon" />
-  <link rel="apple-touch-icon"
-        sizes="180x180"
-        href="{% static '/apple-touch-icon.png' %}" />
-  <link rel="icon"
-        type="image/png"
-        sizes="32x32"
-        href="{% static 'favicon-32x32.png' %}" />
-  <link rel="icon"
-        type="image/png"
-        sizes="16x16"
-        href="{% static 'favicon-16x16.png' %}" />
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-        rel="stylesheet" />
-  <noscript>
-    <link rel="stylesheet"
-          href="{% static 'assets/css/noscript.css' %}" /></noscript>
-  <link rel="stylesheet"
-        href="{% static 'assets/css/custom.css' %}" />
-  <link rel="stylesheet"
-        type="text/css"
-        href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+        href="{% static 'assets/css/noscript.css' %}" /></noscript>
+<link rel="stylesheet"
+      href="{% static 'assets/css/custom.css' %}" />
+<link rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
 </head>
 
 <body class="landing is-preload">
-
-
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NK7WG72"
-            height="0"
-            width="0"
-            style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-
-
   <!-- Page Wrapper -->
   <div id="page-wrapper">
     <!-- Header -->
@@ -102,8 +66,6 @@
         </ul>
       </nav>
     </header>
-
-
 
     {% block content %}
     {% endblock content %}
