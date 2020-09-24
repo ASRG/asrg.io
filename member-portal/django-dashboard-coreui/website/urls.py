@@ -3,12 +3,7 @@ from website import views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
-<<<<<<< HEAD
-
     # The Public Facing Website
-=======
-    # The landing page
->>>>>>> 22238dbe0b9611bb2dcb7369df3fb5de65329562
     path('', views.landing, name='landing'),
     path('about/', views.about, name='about'),
     path('blog/', views.blog, name='blog'),
