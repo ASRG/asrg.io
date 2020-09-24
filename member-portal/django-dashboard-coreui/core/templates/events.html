@@ -32,7 +32,7 @@ td
         <div class="inner">
             <h2>Next LiveStream</h2>
 
-            <h4>When: <b>{{ next_event.start_date }} | {{ next_event.start_time }} </b></h4>
+            <h4>When: <b>{{ next_event.start_date }} | {{ next_event.start_time }} {{ next_event.timezone }} </b></h4>
             <h4>Where: <b>
                 
                 {% if next_event.link %}
@@ -89,7 +89,7 @@ td
                                 </a>
                             </td>
                             <td  style="width: 10%;" class="text-center">
-                                {{ event.location }}
+                                {{ event.location }} 
                             </td>
                             <td  style="width: 10%;">
                                 <div class="small text-muted">{{ event.start_date }}</div>

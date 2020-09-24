@@ -39,6 +39,7 @@ class EventAdmin(admin.ModelAdmin):
             'fields': (
                 'event_address',
                 'event_description',
+                'timezone',
                 'link',
                 'start_date',
                 'start_time',
