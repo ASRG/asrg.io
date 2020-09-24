@@ -20,7 +20,7 @@
         <div class="inner">
             <!-- <h2>Next LiveStream</h2> -->
 
-            <h4>When: <b>{{ event.start_date }} | {{ event.start_time }} </b></h4>
+            <h4>When: <b>{{ event.start_date }} | {{ event.start_time }} {{ event.timezone }} </b></h4>
             <h4>Where: <b>
                 
                 {% if event.link %}

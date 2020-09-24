@@ -2,6 +2,7 @@ from django.db import models
 
 from core.settings import CHAPTERS
 from authentication.models import Chapter, User
+from .timezones import TIMEZONES as TIMEZONE_CHOICES
 
 EVENT_TYPE_CHOICES = (
     ('Webinar', 'Webinar'),
@@ -44,6 +45,7 @@ class Event(models.Model):
     event_description = models.TextField(blank=False)
     event_address = models.TextField(blank=True)
     link = models.URLField(blank=True)
+    timezone = models.CharField(max_length=30, blank=False, choices=TIMEZONE_CHOICES)
     start_date = models.DateField(blank=False)
     start_time = models.TimeField(blank=False)
     end_date = models.DateField(blank=False)
