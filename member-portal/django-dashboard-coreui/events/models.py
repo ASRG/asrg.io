@@ -1,4 +1,6 @@
 from django.db import models
+from imagekit.models import ImageSpecField, ProcessedImageField
+from imagekit.processors import ResizeToFill
 
 from core.settings import CHAPTERS
 from authentication.models import Chapter, User
@@ -36,10 +38,12 @@ class Event(models.Model):
     presenter_first_name = models.CharField(max_length=50, blank=False, verbose_name='First Name')
     presenter_last_name = models.CharField(max_length=50, blank=False, verbose_name='Last Name')
     presenter_designation = models.CharField(max_length=80, blank=False, verbose_name='Designation')
-    presenter_picture = models.ImageField(upload_to='events/presenters', blank=False)
+    pres_img = ProcessedImageField(upload_to='events/presenters', blank=False, verbose_name='Presenter Picture') #processedimagefield
+    presenter_picture = ImageSpecField(source='pres_img',  processors=[ResizeToFill(300, 300)]) #sized image
     presenter_profile_url = models.URLField(blank=False, verbose_name='Public Profile URL')
     presenter_company_name = models.CharField(max_length=100, blank=False, verbose_name='Company Name')
-    presenter_company_logo = models.ImageField(upload_to='events/company logos', blank=False, verbose_name='Company Logo')
+    pres_com_log = ProcessedImageField(upload_to='events/company_logos', blank=False, verbose_name='Company Logo') #prcessedimagefield
+    presenter_company_logo = ImageSpecField(source='pres_com_log',  processors=[ResizeToFill(200, 200)]) #sized image
     presenter_company_website = models.URLField(blank=True, verbose_name='Company Website')
     presenter_bio = models.TextField(blank=False, verbose_name='Bio')
     event_description = models.TextField(blank=False)
