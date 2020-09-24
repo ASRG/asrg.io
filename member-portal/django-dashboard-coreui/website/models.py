@@ -22,16 +22,17 @@ class Events(models.Model):
 
 class Projects(models.Model):
     PROJECT_STATUS = [('1', 'Searching for Team Members'), ('2', 'In Progress'),
-                    ('3', 'Completed')]
+                      ('3', 'Completed')]
 
     project_status = models.CharField(
         max_length=1, choices=PROJECT_STATUS, blank=False)
     join_project_link = models.URLField(max_length=400)
-    project_name = models.CharField(max_length=80)
+    project_name = models.CharField(max_length=120)
+    project_short_name = models.CharField(max_length=10)
     project_lead = models.CharField(max_length=200)
     project_image = models.ImageField(
         upload_to=None, height_field=None, width_field=None, max_length=100,)
     project_description = models.TextField(blank=True)
-    
+
     def __str__(self):
         return self.project_name

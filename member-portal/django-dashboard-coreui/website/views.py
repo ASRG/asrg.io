@@ -4,6 +4,7 @@ from django.shortcuts import redirect
 
 
 from .models import Events
+from .models import Projects
 
 
 def landing(request):
@@ -33,7 +34,7 @@ def projects(request):
     })
 
 
-def projects_details(request, project_id):
+def project_details(request, project_id):
     try:
         project = Projects.objects.get(id=project_id)
     except project.DoesNotExist:

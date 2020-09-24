@@ -4,11 +4,11 @@ from .models import Events
 from .models import Projects
 
 
-@admin.register(Event)
+@admin.register(Events)
 class EventsAdmin(admin.ModelAdmin):
     list_display = ['event_status', 'present_date', 'title', 'presenter']
 
 
-@admin.register(Project)
+@admin.register(Projects)
 class ProjectsAdmin(admin.ModelAdmin):
     list_display = ['project_status', 'project_name', 'project_lead']
