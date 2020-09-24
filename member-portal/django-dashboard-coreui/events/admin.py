@@ -6,6 +6,7 @@ class EventAdmin(admin.ModelAdmin):
     list_display = ('title', 'event_type', 'location', 'host', 'status',)
     search_fields = ('title', 'host', 'presenter_first_name', 'presenter_last_name', 'presenter_company_name',)
     readonly_fields = ('added_by', 'added_on',)
+    exclude = ('presenter_picture', 'presenter_company_logo')
 
     filter_horizontal = ()
     list_filter = ('status', 'mode','event_type')
@@ -25,10 +26,10 @@ class EventAdmin(admin.ModelAdmin):
             'fields': (
                 'presenter_first_name',
                 'presenter_last_name',
-                'presenter_picture',
+                'pres_img',
                 'presenter_profile_url',
                 'presenter_company_name',
-                'presenter_company_logo',
+                'pres_com_log',
                 'presenter_bio',
                 'presenter_designation',
                 'presenter_company_website',
@@ -39,8 +40,8 @@ class EventAdmin(admin.ModelAdmin):
             'fields': (
                 'event_address',
                 'event_description',
-                'timezone',
                 'link',
+                'timezone',
                 'start_date',
                 'start_time',
                 'end_date',
