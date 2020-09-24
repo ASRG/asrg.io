@@ -61,7 +61,7 @@ $ # 5. Start the application (development mode) default port 8000
 $ python manage.py runserver
 
 $ # 6. To use PostgreSQL add the following line to your .env file:
-$ DATABASE_URL=postgres://changeme:changeme_pass@postgres:5432/asrg
+$ DATABASE_URL=postgres://changeme:changeme_pass@asrg-postgres:5432/asrg
 
 $ # 7. (OPTIONAL) Start the app - custom port
 $ # python manage.py runserver 0.0.0.0:<your_port>
@@ -102,7 +102,7 @@ Hidden file used by the Dockerfile and the docker-compose, in order to enable en
 DEBUG=True
 SECRET_KEY=SECRET_KEY_CHANGE
 SERVER=django-dashboard-coreui.appseed.us
-DATABASE_URL=postgres://changeme:changeme_pass@postgres:5432/asrg
+DATABASE_URL=postgres://changeme:changeme_pass@asrg-postgres:5432/asrg
 ```
 <br/>
 
