@@ -45,7 +45,7 @@ class Event(models.Model):
     event_description = models.TextField(blank=False)
     event_address = models.TextField(blank=True)
     link = models.URLField(blank=True)
-    timezone = models.CharField(max_length=30, blank=False, choices=TIMEZONE_CHOICES)
+    timezone = models.CharField(max_length=100, blank=False, choices=TIMEZONE_CHOICES)
     start_date = models.DateField(blank=False)
     start_time = models.TimeField(blank=False)
     end_date = models.DateField(blank=False)
