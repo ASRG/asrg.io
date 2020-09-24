@@ -28,19 +28,18 @@
     <section class="wrapper style5">
         <div class="inner">
             <div>
-                <table class="table table-responsive-sm table-hover table-outline mb-0">
-                    <div class="container">
-                        <div class="row text-center">
-                            {% if contributor_list %}
-                            {% for contri in contributor_list %}
-                            <div class="col-xl-3 col-sm-6 mb-5">
-                                <div class="bg-white rounded shadow-sm py-5 px-4"><img
-                                        src="https://d19m59y37dris4.cloudfront.net/university/1-1-1/img/teacher-4.jpg"
-                                        alt="" width="100"
-                                        class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
+
+                <div class="container">
+                    <div class="row text-center">
+                        {% if contributor_list %}
+                        {% for contri in contributor_list %}
+                        <div class="col-xl-3 col-sm-6 mb-5">
+                            <div class="shadow card">
+                                <div class="bg-white rounded h-200 py-5 px-4"><img
+                                        src="{{ contri.image_thumbnail.url }}" alt="" width="100"
+                                        class="img-fluid rounded-circle mb-3 shadow-sm">
                                     <h5 class="mb-0">{{ contri.name }}</h5><span
-                                        class="small text-uppercase text-muted">CEO -
-                                        Founder</span>
+                                        class="small text-uppercase text-muted">{{ contri.position}}</span>
                                     <ul class="social mb-0 list-inline mt-3">
                                         <li class="list-inline-item"><a href="{{ contri.github }}"
                                                 class="social-link"><i class="fa fa-github"></i></a></li>
@@ -51,11 +50,12 @@
                                     </ul>
                                 </div>
                             </div>
-                            {% endfor %}
-                            {% endif %}
                         </div>
+                        {% endfor %}
+                        {% endif %}
                     </div>
-                </table>
+                </div>
+
             </div>
         </div>
     </section>
