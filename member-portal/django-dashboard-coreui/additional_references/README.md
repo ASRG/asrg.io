@@ -53,26 +53,20 @@ $ # .\env\Scripts\activate
 
 $ # 3. Install modules - SQLite Storage
 $ pip3 install -r requirements.txt
-<<<<<<< HEAD:member-portal/django-dashboard-coreui/README.md
-$
-$ # To use PostgreSQL add the following line to your .env file:
-$ DATABASE_URL=postgres://changeme:changeme_pass@postgres:5432/asrg
-$
-$ # Create tables
-=======
 
 $ # 4. Create tables
->>>>>>> develop:member-portal/django-dashboard-coreui/additional_references/README.md
-$ python manage.py makemigrations
-$ python manage.py migrate
+$ python manage.py makemigrations && python manage.py migrate
 
 $ # 5. Start the application (development mode) default port 8000
 $ python manage.py runserver
 
-$ # 6. Start the app - custom port
+$ # 6. To use PostgreSQL add the following line to your .env file:
+$ DATABASE_URL=postgres://changeme:changeme_pass@asrg-postgres:5432/asrg
+
+$ # 7. (OPTIONAL) Start the app - custom port
 $ # python manage.py runserver 0.0.0.0:<your_port>
 
-$ # 7. Access the web app in browser:
+$ # 8. Access the web app in browser:
 $ http://127.0.0.1:8000/
 ```
 
@@ -99,14 +93,27 @@ $ cd member-portal/django-dashboard-coreui
 $ touch .env
 ```
 
+### The .env file
+Hidden file used by the Dockerfile and the docker-compose, in order to enable environment variables while running/building with docker commands.
+* Make sure this file is `.gitignored` but present in path: `~\asrg.io\member-portal\django-dashboard-coreui\.env`
+* Otherwise, your docker-compose build will fail 
+
+```
+DEBUG=True
+SECRET_KEY=SECRET_KEY_CHANGE
+SERVER=django-dashboard-coreui.appseed.us
+DATABASE_URL=postgres://changeme:changeme_pass@asrg-postgres:5432/asrg
+```
+<br/>
+
 > Pull image and start the app in docker-compose
 
 ```bash
-# [Unix]
-$ sudo docker-compose pull && sudo docker-compose build && sudo docker-compose up -d
+# [Unix] To get rid of the containers that were renamed
+$ sudo docker-compose pull && sudo docker-compose build && sudo docker-compose up -d --remove-orphans
 
-# [Windows]
-docker-compose pull && docker-compose build && docker-compose up -d
+# [Windows] To get rid of the containers that were renamed
+docker-compose pull && docker-compose build && docker-compose up -d --remove-orphans
 ```
 
 Visit [http://localhost:5005](http://localhost:5005) in your browser. The app should be up & running.
@@ -122,14 +129,29 @@ $ sudo docker-compose stop && sudo docker-compose rm -f
 docker-compose stop && docker-compose rm -f
 ```
 
-> Build (update) the app with docker-compose
+> Build (update) the whole app (db, ui, etc.) with docker-compose
 
 ```bash
-# [Unix]
-$ sudo docker-compose stop && sudo docker-compose build && sudo docker-compose up -d
+# [Unix] To get rid of the containers that were renamed
+$ sudo docker-compose stop && sudo docker-compose build && sudo docker-compose up -d --remove-orphans
 
-# [Windows]
-docker-compose stop && docker-compose build && docker-compose up -d
+# [Windows] To get rid of the containers that were renamed
+docker-compose stop && docker-compose build && docker-compose up -d --remove-orphans
+```
+
+> Build (update) specific container (db, ui, etc.) with docker-compose
+
+In order to not rebuild the whole application after an update. You can run the next commands to update containers based on the specific service:
+
+```bash
+# [Unix] Stop and re build only the dashboard-ui for updates: asrg-app
+$ sudo docker-compose stop asrg-app && sudo docker-compose rm -f asrg-app &&\
+sudo docker-compose pull asrg-app && sudo docker-compose build asrg-app &&\
+sudo docker-compose up -d --remove-orphans asrg-app
+
+# [Windows] Stop and re build only the dashboard-ui for updates: asrg-app
+docker-compose stop asrg-app && docker-compose rm -f asrg-app && docker-compose pull asrg-app &&\
+docker-compose build asrg-app && docker-compose up -d --remove-orphans asrg-app
 ```
 
 <br/>
@@ -170,6 +192,12 @@ Serving on http://localhost:8001
 ```
 
 Visit [http://localhost:8001](http://localhost:8001) in your browser. The app should be up & running.
+
+<br/>
+
+## Troubleshooting
+### django.db.utils.OperationalError: could not translate host name "postgres" to address: Unknown host
+**Solution:** Please fill @DBTeam.
 
 <br/>
 
