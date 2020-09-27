@@ -76,10 +76,22 @@
 <script>
         
     function map_init(map, options) {
+        let marker;
         {% for chapter in chapters %}
-        {% if chapter.latitude != 0 and chapter.longitude != 0 %}
-        L.marker([{{ chapter.latitude }}, {{ chapter.longitude }}]).addTo(map);
-        {% endif %}
+            console.log({{ chapter.get_coordinates.0 }}, {{ chapter.get_coordinates.1 }});
+            marker = L.marker([{{ chapter.get_coordinates.0 }}, {{ chapter.get_coordinates.1 }}]);
+            marker.bindPopup(
+                `Location: {{ chapter.location }}\r\n
+                 City: {{ chapter.city }}, Country: {{ chapter.country }} \r\n
+                 Lead: {{ chapter.lead }} \r\n`
+            );
+            marker.on('mouseover', function (e) {
+                this.openPopup();
+            });
+            marker.on('mouseout', function (e) {
+                this.closePopup();
+            });
+            marker.addTo(map);
         {% endfor %}
 
     }
