@@ -10,8 +10,9 @@ services:
       - POSTGRES_USER=changeme
       - POSTGRES_DB=asrg
       - POSTGRES_PASSWORD=changeme_pass
+      - PGDATA=/var/lib/postgresql/data/asrg/
     volumes:
-      - ./db_data:/var/lib/postgresql/data/
+      - /db_data/:/var/lib/postgresql/data/
     networks:
       - db_network
   asrg-app:

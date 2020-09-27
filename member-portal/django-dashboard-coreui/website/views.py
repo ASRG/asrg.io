@@ -3,7 +3,7 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, get_object_or_404
 
 
-from .models import Events, JobPosting
+from .models import JobPosting,Contributor
 from website.filters import JobPostingFilters
 
 
@@ -32,30 +32,6 @@ def register(request):
     return response
 
 
-def events(request):
-    events = Events.objects.all()
-    return render(
-        request,
-        "events.html",
-        {
-            'events': events,
-        },
-    )
-
-
-def event_details(request, event_id):
-    try:
-        event = Events.objects.get(id=event_id)
-    except event.DoesNotExist:
-        raise Http404('Event does not exist')
-    return render(
-        request,
-        "event_detail.html",
-        {
-            'event': event,
-        },
-    )
-
 
 def job_posting(request):
     queryset = JobPosting.objects.all().order_by('-date_posted')
@@ -78,3 +54,10 @@ def job_details(request, job_id):
             'job': job,
         },
     )
+
+def contributors(request):
+    contributors= Contributor.objects.all()
+    context = {
+        'contributor_list': contributors
+    }
+    return render(request,'contributors.html',context)

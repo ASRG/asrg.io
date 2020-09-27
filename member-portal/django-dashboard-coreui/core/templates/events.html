@@ -1,0 +1,162 @@
+{% extends "base_events.html" %}
+{% load staticfiles %}
+
+{% block content %}
+<style>
+    table
+{
+    table-layout: fixed;
+}
+
+td
+{
+    /* border: 1px solid green; */
+    overflow: hidden;
+}
+</style>
+
+<article id="main">
+    <header>
+        <h2>ASRG | EVENTS</h2>
+        {% if next_event %}
+        <h3>{{ next_event.title|capfirst }}</h3>
+        <li style="list-style: none;">
+            {% if next_event.link %}
+            <a id="join-btn"
+               href="{{ next_event.link }}"
+               class="button primary">Join the LiveStream</a>
+        {% endif %}
+        </li>
+    </header>
+    <section class="wrapper style5">
+        <div class="inner">
+            <h2>Next LiveStream</h2>
+
+            <h4>When: <b>{{ next_event.start_date }} | {{ next_event.start_time }} {{ next_event.timezone }} </b></h4>
+            <h4>Where: <b>
+                
+                {% if next_event.link %}
+                    <a href="{{ next_event.link }}">LiveStream</a>
+                {% elif next_event.event_address %}
+                    {{ next_event.event_address }}
+                {% endif %}</b></h4>
+
+            <h4>Who: <b>
+                {{ next_event.presenter_first_name|capfirst }} {{ next_event.presenter_last_name|capfirst }}, 
+                {{ next_event.presenter_designation|capfirst }} at 
+                {% if next_event.presenter_company_website %} 
+                    <a href="{{ event.presenter_company_website }}">{{ next_event.presenter_company_name|capfirst }}</a></b>
+                {% else %}
+                    {{ next_event.presenter_company_name|capfirst }}
+                {% endif %}
+            </h4>
+            {% endif %}
+            <hr>
+
+
+            <div>
+                <h3 style="text-align: center;">Upcomig Events</h3>
+                <table class="table table-responsive-sm table-hover table-outline mb-0">
+                    <thead class="thead-light">
+                        <tr>
+                            <th  style="width: 10%;"class="text-center">Image</th>
+                            <th style="width: 50%;">Event</th>
+                            <th style="width: 20%;">Presenter</th>
+                            <th  style="width: 10%;" class="text-center">Location</th>
+                            <th style="width: 10%;">Date</th>
+                        </tr>
+                    </thead>
+                    {% for event in upcoming_events %}
+                    <tbody>
+                        <tr>
+                            <td  style="width: 10%;" class="text-center">
+                                <div>
+                                    Image
+                                </div>
+                            </td>
+                            <td  style="width: 50%;" class="text-center">
+                                <div>
+                                    <h3><a href="{% url 'event_details' event.pk %}"> {{ event.title|capfirst }}</a></h3>
+                                </div>
+                            </td>
+                            <td  style="width: 20%;">
+                                <a href="{{ event.presenter_profile_url }}" target="_blank">
+                                    <div>{{ event.presenter_first_name }} {{ event.presenter_last_name }}</div>
+                                </a>
+
+                                <a href="{{ event.presenter_company_website }}" target="_blank">
+                                    <div class="small text-muted"><span>{{ event.presenter_company_name }}</span></div>
+                                </a>
+                            </td>
+                            <td  style="width: 10%;" class="text-center">
+                                {{ event.location }} 
+                            </td>
+                            <td  style="width: 10%;">
+                                <div class="small text-muted">{{ event.start_date }}</div>
+
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+
+            {% if passed_events %}<br>
+                <h3 style="text-align: center;">Past Events</h3>
+                <div>
+                    <table class="table table-responsive-sm table-hover table-outline mb-0">
+                        <thead class="thead-light">
+                            <tr>
+                                <th  style="width: 10%;"class="text-center">Image</th>
+                                <th style="width: 50%;">Event</th>
+                                <th style="width: 20%;">Presenter</th>
+                                <th  style="width: 10%;" class="text-center">Location</th>
+                                <th style="width: 10%;">Date</th>
+                            </tr>
+                        </thead>
+                        {% for event in passed_events %}
+                        <tbody>
+                            <tr>
+                                <td  style="width: 10%;" class="text-center">
+                                    <div>
+                                        Image
+                                    </div>
+                                </td>
+                                <td  style="width: 50%;" class="text-center">
+                                    <div>
+                                        <h3>{{ event.title|capfirst }}</h3>
+                                    </div>
+                                </td>
+                                <td  style="width: 20%;">
+                                    <div>{{ event.presenter_first_name }} {{ event.presenter_last_name }}</div>
+                                    <div class="small text-muted"><span>{{ event.presenter_company_name }}</span></div>
+                                </td>
+                                <td  style="width: 10%;" class="text-center">
+                                    {{ event.location }}
+                                </td>
+                                <td  style="width: 10%;">
+                                    <div class="small text-muted">{{ event.start_date }}</div>
+
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+            {% endif %}
+
+        </div>
+
+    </section>
+</article>
+
+
+
+
+
+
+
+
+{% endblock content %}
