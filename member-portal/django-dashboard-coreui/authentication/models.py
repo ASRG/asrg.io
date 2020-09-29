@@ -20,7 +20,9 @@ OCCUPATIONAL_STATUS_CHOICES = (
     ("student", "Student"),
     ("undergraduate student", "Undergraduate Student"),
     ("graduate student", "Graduate Student"),
-    ("professional", "Professional"),
+    ("engineer", "Engineer"),
+    ("manager", "Manager"),
+    ("executive", "Executive Management"),
 )
 
 
@@ -60,7 +62,8 @@ class Chapter(models.Model):
 
 
 class User(AbstractUser):
-    chapter = models.ManyToManyField("Chapter", blank=False, related_name="users")
+    chapter = models.ManyToManyField(
+        "Chapter", blank=False, related_name="users")
     # first_name = models.CharField(max_length=25, blank=False)
     # last_name = models.CharField(max_length=25, blank=False)
     gender = models.CharField(
