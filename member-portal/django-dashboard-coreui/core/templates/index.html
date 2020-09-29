@@ -1,6 +1,5 @@
 {% extends "layouts/base.html" %}
 {% load leaflet_tags %}
-{% load chapter_tags %}
 
 {% block title %} Dashboard {% endblock %} 
 
@@ -78,20 +77,21 @@
     function map_init(map, options) {
         let marker;
         {% for chapter in chapters %}
-            console.log({{ chapter.get_coordinates.0 }}, {{ chapter.get_coordinates.1 }});
-            marker = L.marker([{{ chapter.get_coordinates.0 }}, {{ chapter.get_coordinates.1 }}]);
-            marker.bindPopup(
-                `Location: {{ chapter.location }}\r\n
-                 City: {{ chapter.city }}, Country: {{ chapter.country }} \r\n
-                 Lead: {{ chapter.lead }} \r\n`
-            );
-            marker.on('mouseover', function (e) {
-                this.openPopup();
-            });
-            marker.on('mouseout', function (e) {
-                this.closePopup();
-            });
-            marker.addTo(map);
+            {% if chapter.get_coordinates.0 != 0 and chapter.get_coordinates.1 != 0 %}
+                marker = L.marker([{{ chapter.get_coordinates.0 }}, {{ chapter.get_coordinates.1 }}]);
+                marker.bindPopup(
+                    `Location: {{ chapter.location }}\r\n
+                     City: {{ chapter.city }}, Country: {{ chapter.country }} \r\n
+                     Lead: {{ chapter.lead }} \r\n`
+                );
+                marker.on('mouseover', function (e) {
+                    this.openPopup();
+                });
+                marker.on('mouseout', function (e) {
+                    this.closePopup();
+                });
+                marker.addTo(map);
+            {% endif %}
         {% endfor %}
 
     }
