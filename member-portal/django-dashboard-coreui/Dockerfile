@@ -3,6 +3,7 @@ FROM python:3.6
 
 ENV FLASK_APP run.py
 
+RUN apt-get update && apt-get install -y libgdal-dev g++ --no-install-recommends && apt-get clean -y
 
 RUN mkdir -p /opt/code
 COPY manage.py gunicorn-cfg.py requirements.txt .env* docker-entrypoint.sh /opt/code/

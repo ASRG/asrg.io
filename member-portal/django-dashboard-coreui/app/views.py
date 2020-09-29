@@ -11,18 +11,16 @@ from django.http import HttpResponse
 from django import template
 from datetime import datetime
 
-from .models import UserProfile 
+from .models import UserProfile
+from authentication.models import Chapter
 from .forms import UserProfileForm
+
 
 @login_required(login_url="/login/")
 def index(request):
-    context = {}
-    try:
-        profile = request.user.profile
-    except UserProfile.DoesNotExist:
-        return profile_create_view(request)
-    context['profile'] = profile
+    context = {"chapters": Chapter.objects.all()}
     return render(request, "index.html", context)
+
 
 @login_required(login_url="/login/")
 def pages(request):
@@ -30,19 +28,19 @@ def pages(request):
     # All resource paths end in .html.
     # Pick out the html file name from the url. And load that template.
     try:
-        
-        load_template = request.path.split('/')[-1]
-        html_template = loader.get_template( load_template )
+
+        load_template = request.path.split("/")[-1]
+        html_template = loader.get_template(load_template)
         return HttpResponse(html_template.render(context, request))
-        
+
     except template.TemplateDoesNotExist:
 
-        html_template = loader.get_template( 'error-404.html' )
+        html_template = loader.get_template("error-404.html")
         return HttpResponse(html_template.render(context, request))
 
     except:
-    
-        html_template = loader.get_template( 'error-500.html' )
+
+        html_template = loader.get_template("error-500.html")
         return HttpResponse(html_template.render(context, request))
 
 
@@ -55,42 +53,43 @@ def profile_create_view(request):
         profile = UserProfile(user=request.user)
 
     if request.POST:
-        form = UserProfileForm(request.POST, request.FILES, instance=profile) 
+        form = UserProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             profile = form.save(commit=False)
             profile.user = request.user
             # profile.chapter = request.user.chapter.all
             if request.FILES:
-                profile.profile_picture = request.FILES['profile_picture']
+                profile.profile_picture = request.FILES["profile_picture"]
             else:
                 profile.profile_picture = profile.profile_picture
             # profile.date_joined = datetime.now()
             # profile.last_login = datetime.now()
             profile.save()
-            return redirect('profile')
+            return redirect("profile")
         else:
-            context['profile_form'] = form
+            context["profile_form"] = form
     else:
         form = UserProfileForm(
-            initial = {
+            initial={
                 # 'first_name': profile.first_name,
                 # 'last_name': profile.last_name,
-                'dob': profile.dob,
+                "dob": profile.dob,
                 # 'gender': profile.gender,
                 # 'occupational_status': profile.occupational_status,
-                'field_of_study': profile.field_of_study,
+                "field_of_study": profile.field_of_study,
                 # 'chapter': profile.chapter.all,
                 # 'country': profile.country,
-                'bio': profile.bio,
-                'status': profile.status,
-                'skills': profile.skills,
-                'profile_picture': profile.profile_picture
+                "bio": profile.bio,
+                "status": profile.status,
+                "skills": profile.skills,
+                "profile_picture": profile.profile_picture,
             }
         )
-        
-        context['profile_form'] = form
 
-    return render (request, 'accounts/create-profile.html', context)
+        context["profile_form"] = form
+
+    return render(request, "accounts/create-profile.html", context)
+
 
 @login_required(login_url="/login/")
 def profile_view(request):
@@ -100,6 +99,6 @@ def profile_view(request):
         profile = request.user.profile
     except UserProfile.DoesNotExist:
         profile = UserProfile(user=request.user)
-    context['profile'] = profile
-    context['user'] = request.user
-    return render (request, 'accounts/profile.html', context)
+    context["profile"] = profile
+    context["user"] = request.user
+    return render(request, "accounts/profile.html", context)

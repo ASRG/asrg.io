@@ -11,5 +11,8 @@ gunicorn
 whitenoise
 Pillow==7.2.0
 psycopg2==2.8.5
-django-filter==2.3.0
+django-filter==2.2.0
+six==1.15.0
+django-leaflet==0.27.1
+geopy==2.0.0
 django-imagekit==4.0.2
