@@ -22,7 +22,8 @@ class ChapterInLine(admin.StackedInline):
 
 @admin.register(User)
 class UserAdmin(AuthUserAdmin):
-    list_display = ('first_name', 'last_name', 'country', 'date_joined', 'last_login')
+    list_display = ('first_name', 'last_name', 'country',
+                    'date_joined', 'last_login')
     search_fields = ('country', 'first_name', 'last_name')
     inlines = [ChapterInLine]
     readonly_fields = ('date_joined', 'last_login')
@@ -42,7 +43,7 @@ class UserAdmin(AuthUserAdmin):
 @admin.register(Chapter)
 class ChapterAdmin(admin.ModelAdmin):
     list_display = ['location', 'city', 'country', 'lead', 'foundation', 'age']
-    list_filter = ('location', 'city', 'country')
+    list_filter = ('city', 'country')
     readonly_fields = ['age']
 
     def age(self, obj):
