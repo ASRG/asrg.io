@@ -14,11 +14,12 @@ from datetime import datetime
 from .models import UserProfile
 from authentication.models import Chapter
 from .forms import UserProfileForm
+from website.models import Announcement
 
 
 @login_required(login_url="/login/")
 def index(request):
-    context = {"chapters": Chapter.objects.all()}
+    context = {"chapters": Chapter.objects.all(), "announcements": Announcement.objects.all()}
     return render(request, "index.html", context)
 
 

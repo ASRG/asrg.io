@@ -3,7 +3,7 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, get_object_or_404
 
 
-from .models import JobPosting,Contributor
+from .models import JobPosting,Contributor,Announcement
 from website.filters import JobPostingFilters
 
 
@@ -61,3 +61,4 @@ def contributors(request):
         'contributor_list': contributors
     }
     return render(request,'contributors.html',context)
+
