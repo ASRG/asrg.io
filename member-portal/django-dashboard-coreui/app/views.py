@@ -52,6 +52,7 @@ def profile_create_view(request):
         profile = request.user.profile
     except UserProfile.DoesNotExist:
         profile = UserProfile(user=request.user)
+    context['profile'] = profile
 
     if request.POST:
         form = UserProfileForm(request.POST, request.FILES, instance=profile)
@@ -65,7 +66,9 @@ def profile_create_view(request):
                 profile.profile_picture = profile.profile_picture
             # profile.date_joined = datetime.now()
             # profile.last_login = datetime.now()
-            profile.save()
+            if profile.dob and profile.field_of_study and profile.bio and profile.status and profile.skills:
+                profile.is_complete = True
+            profile.save() 
             return redirect("profile")
         else:
             context["profile_form"] = form
@@ -83,6 +86,9 @@ def profile_create_view(request):
                 "bio": profile.bio,
                 "status": profile.status,
                 "skills": profile.skills,
+                "fb_link": profile.fb_link,
+                "tw_link": profile.tw_link,
+                "ig_link": profile.ig_link,                
                 "profile_picture": profile.profile_picture,
             }
         )

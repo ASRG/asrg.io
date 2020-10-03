@@ -3,7 +3,7 @@
 License: MIT
 Copyright (c) 2019 - present AppSeed.us
 """
-
+ 
 from django.db import models
 # from django.contrib.auth.models import User
 
@@ -20,10 +20,14 @@ class UserProfile(models.Model):
     bio = models.TextField(default=' ',blank=True, null=True)
     status = models.CharField(max_length=256, default=' ',blank=True, null=True)
     skills = models.CharField(max_length=350, default=' ',blank=True, null=True)
-    profile_picture = models.ImageField(upload_to='profile pictures', default='def.jpg')
+    profile_picture = models.ImageField(upload_to='profile pictures')
+    fb_link = models.URLField(blank=True, verbose_name="Facebook Proifle Link")
+    tw_link = models.URLField(blank=True, verbose_name="Twitter Proifle Link")
+    ig_link = models.URLField(blank=True, verbose_name="Instagram Proifle Link")
 
     date_joined = models.DateTimeField(auto_now_add=True)
     last_login = models.DateTimeField(auto_now=True)
+    is_complete = models.BooleanField(default=False)
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name
