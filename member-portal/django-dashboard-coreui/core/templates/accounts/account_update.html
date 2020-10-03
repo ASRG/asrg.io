@@ -36,7 +36,7 @@
                   </div>
                 </section>
 
-                <h5>Register</h5>
+                <h5>Update Profile</h5>
                 <p class="text-muted">
                   {% if msg %}
                     {{ msg | safe }}
@@ -45,8 +45,8 @@
                       <span style="color: red;">{{ error | safe }}<br></span>
                     {% endfor %}
                   {% else %}
-                  <span><i>Add your credentials</i><br/>OR use an <a href={% url 'login' %}>ASRG account</a>.
-                  </span>
+                  <!-- <span><i>Add your credentials</i><br/>OR use an <a href={% url 'login' %}>ASRG account</a>.
+                  </span> -->
                   {% endif %}
 
                 </p>
@@ -59,7 +59,7 @@
                     <svg class="c-icon">
                       <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-user"></use>
                     </svg></span></div>
-                {{ form.username }}
+                {{ account_form.username }}
               </div>
               
               <div class="input-group mb-3">
@@ -67,34 +67,34 @@
                     <svg class="c-icon">
                       <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
                     </svg></span></div>
-                {{ form.email }}
+                {{ account_form.email }}
               </div>
               
-              <div class="input-group mb-3">
+              <!-- <div class="input-group mb-3">
                 <div class="input-group-prepend"><span class="input-group-text">
                     <svg class="c-icon">
                       <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
                     </svg></span></div>
-                {{ form.password1 }}
-              </div>
+                {{ account_form.password1 }}
+              </div> -->
 
-              <div class="input-group mb-3">
+              <!-- <div class="input-group mb-3">
                 <div class="input-group-prepend"><span class="input-group-text">
                     <svg class="c-icon">
                       <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
                     </svg></span></div>
-                {{ form.password2 }}
-              </div>
+                {{ account_form.password2 }}
+              </div> -->
 
-              <div class="input-group mb-3">
+              <!-- <div class="input-group mb-3">
                 <div class="input-group-prepend"><span class="input-group-text">
                     <svg class="c-icon">
                       <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-football"></use>
                     </svg>
                   </span></div>
-                {{ form.chapter }}
-              </div>
-              <div class="reg-additional-info mb-2"><span>We just need a litte more info about you...</span></div>
+                {{ account_form.chapter }}
+              </div> -->
+              <!-- <div class="reg-additional-info mb-2"><span>We just need a litte more info about you...</span></div> -->
 
               
               <div class="input-group mb-3"> <!-- ADDITIONAL BEGINNIG-->
@@ -103,7 +103,7 @@
                       <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-face"></use>
                     </svg>
                   </span></div>
-                {{ form.first_name }}
+                {{ account_form.first_name }}
               </div>
 
               <div class="input-group mb-3">
@@ -112,7 +112,7 @@
                       <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-face"></use>
                     </svg>
                   </span></div>
-                {{ form.last_name }}
+                {{ account_form.last_name }}
               </div>
 
               <div class="input-group mb-3">
@@ -121,8 +121,19 @@
                       <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-wc"></use>
                     </svg>
                   </span></div>
-                {{ form.gender }}
+                {{ account_form.gender }}
               </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend"><span class="input-group-text">
+                    <svg class="c-icon">
+                      <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-football"></use>
+                    </svg>
+                  </span></div>
+                {{ account_form.chapter }}
+              </div>
+
+
 
               <div class="input-group mb-3">
                 <div class="input-group-prepend"><span class="input-group-text">
@@ -130,7 +141,7 @@
                       <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-layers"></use>
                     </svg>
                   </span></div>
-                {{ form.occupational_status }}
+                {{ account_form.occupational_status }}
               </div>
 
               <div class="input-group mb-3">
@@ -139,13 +150,13 @@
                       <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-globe-alt"></use>
                     </svg>
                   </span></div>
-                {{ form.country }}
+                {{ account_form.country }}
               </div>
 
               <br />
 
               <div class="text-center">
-                  <button type="submit" name="register" class="btn btn-primary px-4">Update Profile</button>
+                  <button type="submit" class="btn btn-primary px-4">Update Profile</button>
               </div>
 
             </div>
@@ -153,7 +164,7 @@
           </form>  
             
           <div class="card-footer p-4 text-center">
-              Have an account? <a href={% url 'login' %} >Login</a>
+              <!-- Have an account? <a href={% url 'login' %} >Login</a> -->
           </div>
 
         </div>
