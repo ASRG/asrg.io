@@ -86,6 +86,9 @@ def profile_create_view(request):
                 "bio": profile.bio,
                 "status": profile.status,
                 "skills": profile.skills,
+                "fb_link": profile.fb_link,
+                "tw_link": profile.tw_link,
+                "ig_link": profile.ig_link,                
                 "profile_picture": profile.profile_picture,
             }
         )

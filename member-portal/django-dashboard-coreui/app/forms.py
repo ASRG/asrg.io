@@ -26,6 +26,9 @@ class UserProfileForm(forms.ModelForm):
             'bio', 
             'status', 
             'skills', 
+            'fb_link',
+            'tw_link',            
+            'ig_link',
             'profile_picture'
             )
 
