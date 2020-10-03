@@ -1,0 +1,25 @@
+# Source files
+# ============
+
+*.py     text diff=python
+*.py3    text diff=python
+
+# Binary files
+# ============
+*.db     binary
+*.p      binary
+*.pkl    binary
+*.pickle binary
+*.pyc    binary
+*.pyd    binary
+*.pyo    binary
+
+# These files are text and should be normalized (Convert crlf => lf)
+*.gitattributes text
+.gitignore      text
+*.md            text
+
+# Scripts
+*.bash     text eol=lf
+*.fish     text eol=lf
+*.sh       text eol=lf

@@ -11,6 +11,7 @@ from django.db.models.base import ModelBase
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
+from geopy.geocoders import Nominatim
 
 from authentication.countries import COUNTRIES as COUNTRY_CHOICES
 
@@ -37,6 +38,19 @@ class Chapter(models.Model):
     country = models.CharField(max_length=56, null=False, blank=True)
     lead = models.CharField(max_length=56, null=False, blank=True)
     foundation = models.DateTimeField(blank=True, default=timezone.now)
+    latitude = models.DecimalField(max_digits=9, decimal_places=6, default=0)
+    longitude = models.DecimalField(max_digits=9, decimal_places=6, default=0)
+
+    def get_coordinates(self):
+        if (self.latitude == 0 or self.longitude == 0) and self.city:
+            geolocator = Nominatim(user_agent="asrg-app", scheme="http")
+            location = geolocator.geocode(self.city)
+            if location:
+                self.latitude = location.latitude
+                self.longitude = location.longitude
+                self.save()
+
+        return (self.latitude, self.longitude)
 
     def __str__(self):
         return self.location

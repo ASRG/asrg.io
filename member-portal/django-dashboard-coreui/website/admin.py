@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import JobPosting,Contributor
+from .models import JobPosting,Contributor,Announcement 
 
 
 
@@ -17,3 +17,8 @@ class JobPostingAdmin(admin.ModelAdmin):
     list_filter = ('location', 'job_category')
 
 admin.site.register(Contributor)
+
+admin.site.register(Announcement)
+class AnnouncementAdmin(admin.ModelAdmin):
+	list_display = ['title', 'date_posted']
+	list_filter = ['date_posted']
