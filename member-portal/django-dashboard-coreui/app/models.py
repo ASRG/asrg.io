@@ -3,7 +3,7 @@
 License: MIT
 Copyright (c) 2019 - present AppSeed.us
 """
-
+ 
 from django.db import models
 # from django.contrib.auth.models import User
 
@@ -24,6 +24,7 @@ class UserProfile(models.Model):
 
     date_joined = models.DateTimeField(auto_now_add=True)
     last_login = models.DateTimeField(auto_now=True)
+    is_complete = models.BooleanField(default=False)
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name

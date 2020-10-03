@@ -53,9 +53,13 @@
                 ></a>
               </li>
             </ul>
-            <p><a href="{% url 'profile_create' %}">Add/edit optinal Info</a></p>
+            {% if profile.is_complete %}
+              <p><a href="{% url 'profile_create' %}">Update your Profile</a></p>
+            {% else %}
+              <p><a href="{% url 'profile_create' %}">Complete your Profile</a></p>
+            {% endif %}
             <p><a href="{% url 'password_change' %}">Change password</a></p>
-            <p><a href="{% url 'edit_profile' %}">Update Profile</a></p>
+            <p><a href="{% url 'edit_profile' %}">Update Personal Info</a></p>
           </div>
         </div>
       </div>
