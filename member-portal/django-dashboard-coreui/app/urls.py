@@ -8,6 +8,7 @@ from django.urls import path, re_path
 from django.contrib.auth import views as auth_views
 
 from app import views
+from authentication.views import account_view
 
 urlpatterns = [
     # Matches any html file 
@@ -16,6 +17,7 @@ urlpatterns = [
     path('', views.index, name='home'),
     path('createprofile/', views.profile_create_view, name='profile_create'),
     path('profile/', views.profile_view, name='profile'),
+    path('edit-profile/', account_view, name='edit_profile'),
 
     path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(template_name='passwordreset/password_change_done.html'), 
         name='password_change_done'),

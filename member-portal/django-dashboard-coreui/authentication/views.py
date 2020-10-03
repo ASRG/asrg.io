@@ -87,12 +87,26 @@ def account_view(request):
     if request.POST:
         form = f.UserUpdateForm(request.POST, instance=request.user)
         if form.is_valid():
-            form.save()
+            form.save(commit=False)
+            chapter = form.cleaned_data.get("chapter")
+            user_obj = form.save()
+            for ch in chapter:
+                user_obj.chapter.add(ch)
+            # Add the permissions for the respective chapter as well
+            # perm = Permission.objects.get(codename=chapter)
+            # user_obj.user_permissions.add(perm)
+            return redirect('profile')
     else:
         form = f.UserUpdateForm(
             initial={
-                'email': request.user.email,
                 'username': request.user.username,
+                'email': request.user.email,
+                'first_name': request.user.first_name,
+                'last_name': request.user.last_name,
+                'gender': request.user.gender,
+                'chapter': request.user.chapter.all(),
+                'occupational_status': request.user.occupational_status,
+                'country': request.user.country,
             }
         )
     context['account_form'] = form
