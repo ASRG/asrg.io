@@ -13,7 +13,6 @@ from authentication.views import account_edit_view
 urlpatterns = [
     # Matches any html file
     re_path("index.html", views.index, name="index"),
-    re_path(r"^.*\.html", views.pages, name="pages"),
     # The home page
     path("", views.index, name="home"),
     path("createprofile/", views.profile_create_view, name="profile_create"),
@@ -21,23 +20,17 @@ urlpatterns = [
     path('edit-profile/', account_edit_view, name='edit_profile'),
     path(
         "password_change/done/",
-        auth_views.PasswordChangeDoneView.as_view(
-            template_name="passwordreset/password_change_done.html"
-        ),
+        auth_views.PasswordChangeDoneView.as_view(template_name="passwordreset/password_change_done.html"),
         name="password_change_done",
     ),
     path(
         "password_change/",
-        auth_views.PasswordChangeView.as_view(
-            template_name="passwordreset/password_change.html"
-        ),
+        auth_views.PasswordChangeView.as_view(template_name="passwordreset/password_change.html"),
         name="password_change",
     ),
     path(
         "password_reset/done/",
-        auth_views.PasswordResetCompleteView.as_view(
-            template_name="passwordreset/password_reset_done.html"
-        ),
+        auth_views.PasswordResetCompleteView.as_view(template_name="passwordreset/password_reset_done.html"),
         name="password_reset_done",
     ),
     path(
@@ -47,16 +40,12 @@ urlpatterns = [
     ),
     path(
         "password_reset/",
-        auth_views.PasswordResetView.as_view(
-            template_name="passwordreset/password_reset_form.html"
-        ),
+        auth_views.PasswordResetView.as_view(template_name="passwordreset/password_reset_form.html"),
         name="password_reset",
     ),
     path(
         "reset/done/",
-        auth_views.PasswordResetCompleteView.as_view(
-            template_name="passwordreset/password_reset_complete.html"
-        ),
+        auth_views.PasswordResetCompleteView.as_view(template_name="passwordreset/password_reset_complete.html"),
         name="password_reset_complete",
     ),
 ]

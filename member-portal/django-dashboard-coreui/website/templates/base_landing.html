@@ -201,39 +201,6 @@
     });
   </script>
 
-  <script async>
-    getMembers();
-
-    async function getMembers() {
-      let urls = [
-        "https://cors-anywhere.herokuapp.com/https://api.meetup.com/Automotive-Security-Research-Group-Stuttgart?&sign=true&photo-host=public",
-        "https://cors-anywhere.herokuapp.com/https://api.meetup.com/Automotive-Security-Research-Group-Detroit?&sign=true&photo-host=public",
-        "https://cors-anywhere.herokuapp.com/https://api.meetup.com/Automotive-Security-Research-Group-Tel-Aviv-ASRG-TLV?&sign=true&photo-host=public",
-        "https://cors-anywhere.herokuapp.com/https://api.meetup.com/Automotive-Security-Research-Group-Cluj-ASRG-C?&sign=true&photo-host=public",
-        "https://cors-anywhere.herokuapp.com/https://api.meetup.com/Automotive-Security-Research-Group-Singapore-ASRG-SIN?&sign=true&photo-host=public",
-        "https://cors-anywhere.herokuapp.com/https://api.meetup.com/Automotive-Security-Research-Group-Cairo-ASRG-CAI?&sign=true&photo-host=public"
-      ];
-      let members = 0;
-
-      for (let i = 0; i < urls.length; i++) {
-        try {
-          const res = await fetch(urls[i], {
-            method: "GET",
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json"
-            }
-          });
-          const json = await res.json();
-          members += json.members;
-        } catch (error) {
-          return;
-        }
-      }
-      document.getElementById("loading").remove();
-      document.getElementById("memberCount").innerHTML = members;
-    }
-  </script>
 </body>
 
 </html>
