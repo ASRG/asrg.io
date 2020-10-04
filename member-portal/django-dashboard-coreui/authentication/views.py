@@ -4,8 +4,7 @@ License: MIT
 Copyright (c) 2019 - present AppSeed.us
 """
 
-from django.shortcuts import render
-
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import Permission
@@ -66,7 +65,7 @@ def register_user(request):
             msg = 'User created.'
             success = True
 
-            # return redirect("/login/")
+            return redirect("/login/")
 
         else:
             # errors = form.errors
@@ -78,10 +77,8 @@ def register_user(request):
     return render(request, "accounts/register.html", {"form": form, "msg": msg, "success": success})
 
 
+@login_required(login_url="/login/")
 def account_edit_view(request):
-    if not request.user.is_authenticated:
-        return redirect('login')
-
     context = {}
 
     if request.POST:
@@ -93,8 +90,8 @@ def account_edit_view(request):
             for ch in chapter:
                 user_obj.chapter.add(ch)
             # Add the permissions for the respective chapter as well
-            # perm = Permission.objects.get(codename=chapter)
-            # user_obj.user_permissions.add(perm)
+            perm = Permission.objects.get(codename=chapter)
+            user_obj.user_permissions.add(perm)
             return redirect('profile')
     else:
         form = f.UserUpdateForm(
