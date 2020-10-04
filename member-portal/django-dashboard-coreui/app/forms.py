@@ -29,6 +29,6 @@ class UserProfileForm(forms.ModelForm):
             'fb_link',
             'tw_link',            
             'ig_link',
-            'profile_picture'
+            'pp_src'
             )
 

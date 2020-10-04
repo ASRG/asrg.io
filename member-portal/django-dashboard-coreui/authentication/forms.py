@@ -82,13 +82,13 @@ class SignUpForm(UserCreationForm):
                 "class": "form-control"
             }
         ))
-    gender = forms.ChoiceField(label='Gender', choices=GENDER_CHOICES, #empty_label="Gender",
-        widget=forms.Select(
-            attrs={
-                "placeholder" : "Gender",                
-                "class": "form-control"
-            }
-        ))
+    # gender = forms.ChoiceField(label='Gender', choices=GENDER_CHOICES, #empty_label="Gender",
+    #     widget=forms.Select(
+    #         attrs={
+    #             "placeholder" : "Gender",                
+    #             "class": "form-control"
+    #         }
+    #     ))
     occupational_status = forms.ChoiceField(label='Occupational Status', choices=OCCUPATIONAL_STATUS_CHOICES, #empty_label="Occupational Status",
         widget=forms.Select(
             attrs={
@@ -114,7 +114,7 @@ class SignUpForm(UserCreationForm):
             'chapter', 
             'first_name', 
             'last_name', 
-            'gender', 
+            # 'gender', 
             'occupational_status', 
             'country' 
             )
@@ -209,13 +209,13 @@ class UserUpdateForm(forms.ModelForm):
             "class": "form-control"
         }
     ))
-    gender = forms.ChoiceField(label='Gender', choices=GENDER_CHOICES, #empty_label="Gender",
-    widget=forms.Select(
-        attrs={
-            # "placeholder" : "Gender",                
-            "class": "form-control"
-        }
-    ))
+    # gender = forms.ChoiceField(label='Gender', choices=GENDER_CHOICES, #empty_label="Gender",
+    # widget=forms.Select(
+    #     attrs={
+    #         # "placeholder" : "Gender",                
+    #         "class": "form-control"
+    #     }
+    # ))
 
     chapter = forms.ModelMultipleChoiceField(queryset=Chapter.objects.all(),
     widget=forms.SelectMultiple(
@@ -251,7 +251,7 @@ class UserUpdateForm(forms.ModelForm):
             # 'chapter', 
             'first_name', 
             'last_name', 
-            'gender', 
+            # 'gender', 
             'occupational_status', 
             'country',
             )

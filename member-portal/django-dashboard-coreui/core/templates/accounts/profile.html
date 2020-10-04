@@ -1,6 +1,13 @@
-{% extends "layouts/base.html" %} {% load static %} {% block title %} {{
-profile.first_name }} - Profile {% endblock %} {% block stylesheets %}
-<link rel="stylesheet" href="{% static 'assets/css/profile.css' %}" />
+{% extends "layouts/base.html" %} 
+
+{% load static %} 
+
+{% block title %} 
+  {{ user.first_name }} - Profile 
+{% endblock %} 
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="{% static 'assets/css/profile.css' %}" />
 
 {% endblock stylesheets %} {% block content %}
 
@@ -39,21 +46,21 @@ profile.first_name }} - Profile {% endblock %} {% block stylesheets %}
 
           <div class="margin-20px-top team-single-icons">
             <ul class="no-margin" style="padding-left: 0">
-              {% if profile.fb_link%}
+              {% if profile.fb_link %}
               <li>
-                <a href="{{" profile.fb_link}} target="_blank"
+                <a href="{{ profile.fb_link}}" target="_blank"
                   ><i class="fab fa-facebook-f"></i
                 ></a>
               </li>
               {% endif %} {% if profile.tw_link%}
               <li>
-                <a href="{{" profile.tw_link}} target="_blank"
+                <a href="{{ profile.tw_link}}" target="_blank"
                   ><i class="fab fa-twitter"></i
                 ></a>
               </li>
               {% endif %} {% if profile.ig_link%}
               <li>
-                <a href="{{" profile.ig_link}} target="_blank"
+                <a href="{{ profile.ig_link}}" target="_blank"
                   ><i class="fab fa-instagram"></i
                 ></a>
               </li>

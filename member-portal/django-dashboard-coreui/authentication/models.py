@@ -25,7 +25,6 @@ OCCUPATIONAL_STATUS_CHOICES = (
     ("executive", "Executive Management"),
 )
 
-
 GENDER_CHOICES = (
     ("", "Gender"),
     ("Male", "Male"),
@@ -51,12 +50,11 @@ class Chapter(models.Model):
                 self.latitude = location.latitude
                 self.longitude = location.longitude
                 self.save()
-
         return (self.latitude, self.longitude)
-
+    
     def __str__(self):
         return self.location
-
+    
     class Meta:
         permissions = []
 
@@ -64,11 +62,7 @@ class Chapter(models.Model):
 class User(AbstractUser):
     chapter = models.ManyToManyField(
         "Chapter", blank=False, related_name="users")
-    # first_name = models.CharField(max_length=25, blank=False)
-    # last_name = models.CharField(max_length=25, blank=False)
-    gender = models.CharField(
-        max_length=25, choices=GENDER_CHOICES, blank=False, default=GENDER_CHOICES[0]
-    )
+    # gender = models.CharField(max_length=25, choices=GENDER_CHOICES, blank=False, default=GENDER_CHOICES[0])
     occupational_status = models.CharField(
         max_length=50,
         choices=OCCUPATIONAL_STATUS_CHOICES,

@@ -78,7 +78,7 @@ def register_user(request):
     return render(request, "accounts/register.html", {"form": form, "msg": msg, "success": success})
 
 
-def account_view(request):
+def account_edit_view(request):
     if not request.user.is_authenticated:
         return redirect('login')
 
@@ -103,7 +103,7 @@ def account_view(request):
                 'email': request.user.email,
                 'first_name': request.user.first_name,
                 'last_name': request.user.last_name,
-                'gender': request.user.gender,
+                # 'gender': request.user.gender,
                 'chapter': request.user.chapter.all(),
                 'occupational_status': request.user.occupational_status,
                 'country': request.user.country,

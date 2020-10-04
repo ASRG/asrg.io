@@ -39,14 +39,13 @@
             <h5>Member Registration</h5>
             <p class="text-muted">
               {% if not form.errors %}
-              <span><i>Become a member of ASRG. Please fill out the below information.</i><br />OR sign in with your
-                existing <a href={% url 'login' %}>ASRG account</a>.
+              <span><i>Become a member of ASRG. Please fill out the below information.</i>
               </span>
               {% endif %}
               {% for field in form %}
               {% if field.errors %}
               {% for error in field.errors %}
-              <span style="color: red;">{{ error | safe }}<br></span>
+              <span style="color: red;">{{ field }} {{ error | safe }}<br></span>
               {% endfor %}
               {% endif %}
               {% endfor %}
@@ -96,7 +95,7 @@
               </span></div>
             {{ form.chapter }}
           </div>
-          <div class="reg-additional-info mb-2"><span> </span></div>
+          <!-- <div class="reg-additional-info mb-2"><span> </span></div> -->
 
 
           <div class="input-group mb-3">
@@ -116,15 +115,6 @@
                 </svg>
               </span></div>
             {{ form.last_name }}
-          </div>
-
-          <div class="input-group mb-3">
-            <div class="input-group-prepend"><span class="input-group-text">
-                <svg class="c-icon">
-                  <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-wc"></use>
-                </svg>
-              </span></div>
-            {{ form.gender }}
           </div>
 
           <div class="input-group mb-3">
