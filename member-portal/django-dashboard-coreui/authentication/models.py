@@ -17,12 +17,12 @@ from authentication.countries import COUNTRIES as COUNTRY_CHOICES
 
 OCCUPATIONAL_STATUS_CHOICES = (
     ("", "Occupational Status"),
-    ("student", "Student"),
-    ("undergraduate student", "Undergraduate Student"),
-    ("graduate student", "Graduate Student"),
-    ("engineer", "Engineer"),
-    ("manager", "Manager"),
-    ("executive", "Executive Management"),
+    ("Student", "Student"),
+    ("Undergraduate Student", "Undergraduate Student"),
+    ("Graduate Student", "Graduate Student"),
+    ("Engineer", "Engineer"),
+    ("Manager", "Manager"),
+    ("Executive", "Executive Management"),
 )
 
 GENDER_CHOICES = (

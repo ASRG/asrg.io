@@ -85,7 +85,11 @@
                     <strong class="margin-10px-left">Field of Study:</strong>
                   </div>
                   <div class="col-md-7 col-7">
-                    <p>{{ profile.field_of_study }}</p>
+                    {% if profile.field_of_study %}
+                      <p>{{ profile.field_of_study }}</p>
+                    {% else %}
+                      <p>Not Specified<span style="font-size: x-small;"><a href="{% url 'profile_create' %}"> complete profile</a></span></p>
+                    {% endif %}
                   </div>
                 </div>
               </li>
@@ -135,7 +139,11 @@
                     >
                   </div>
                   <div class="col-md-7 col-7">
-                    <p>{{ profile.dob }}</p>
+                    {% if profile.dob %}
+                      <p>{{ profile.dob }}</p>
+                    {% else %}
+                      <p>Not Specified<span style="font-size: x-small;"><a href="{% url 'profile_create' %}"> complete profile</a></span></p>
+                    {% endif %}
                   </div>
                 </div>
               </li>

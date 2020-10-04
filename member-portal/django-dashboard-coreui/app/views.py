@@ -61,7 +61,7 @@ def profile_create_view(request):
             profile.user = request.user
             # profile.chapter = request.user.chapter.all
             if request.FILES:
-                profile.profile_picture = request.FILES["profile_picture"]
+                profile.profile_picture = request.FILES.get("profile_picture")
             else:
                 profile.profile_picture = profile.profile_picture
             # profile.date_joined = datetime.now()
