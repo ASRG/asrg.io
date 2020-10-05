@@ -30,7 +30,7 @@ td
         </li>
         <!-- NEXT UPCOMING EVENT IN HEADER END -->
     </header>
-    <section class="wrapper style5">
+    <section class="wrapper style5" style="padding-top: 70px;">
         <div class="inner">
             <h2>Next Event</h2>
 
@@ -53,75 +53,89 @@ td
                     {{ next_event.presenter_company_name|capfirst }}
                 {% endif %}
             </h4>
-            {% endif %}
             <hr>
+            {% endif %}
+            
             <!-- NEXT UPCOMING EVENT END -->
+        </div>
 
+    </section>
 
-            <!-- Upcoming events Table -->
-            <div>
-                <h3 style="text-align: center;">Upcoming Events</h3>
-                <table class="table table-responsive-sm table-hover table-outline mb-0">
-                    <thead class="thead-light">
-                        <tr>
-                            <th  style="width: 10%;"class="text-center">Image</th>
-                            <th style="width: 50%;">Event</th>
-                            <th style="width: 20%;">Presenter</th>
-                            <th  style="width: 10%;" class="text-center">Location</th>
-                            <th style="width: 10%;">Date</th>
-                        </tr>
-                    </thead>
-                    {% for event in upcoming_events %}
-                    <tbody>
-                        <tr>
-                            <td  style="width: 10%;" class="text-center">
-                                <div>
-                                    <img src="{{ event.presenter_picture_thumbnail.url }}" alt="image not loaded">
-                                </div>
-                            </td>
-                            <td  style="width: 50%;" class="text-center">
-                                <div>
-                                    <h3><a href="{% url 'event_details' event.pk %}"> {{ event.title|capfirst }}</a></h3>
-                                </div>
-                            </td>
-                            <td  style="width: 20%;">
-                                <a href="{{ event.presenter_profile_url }}" target="_blank">
-                                    <div>{{ event.presenter_first_name }} {{ event.presenter_last_name }}</div>
-                                </a>
+    {% if upcoming_events %}
+        <section class="wrapper style5">
+            <div class="inner">
+                
+                    <!-- Upcoming events Table -->
+                    <div>
+                        <h3 style="text-align: center;">Upcoming Events</h3>
+                        <table class="table table-responsive-sm table-hover table-outline mb-0 events-table">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th  style="width: 10%;"class="text-center">Image</th>
+                                    <th style="width: 50%;">Event</th>
+                                    <th style="width: 15%;">Presenter</th>
+                                    <th  style="width: 10%;" class="text-center">Location</th>
+                                    <th style="width: 15%;">Date</th>
+                                </tr>
+                            </thead>
+                            {% for event in upcoming_events %}
+                            <tbody>
+                                <tr>
+                                    <td  style="width: 10%;" class="text-center">
+                                        <div>
+                                            <img src="{{ event.presenter_picture_thumbnail.url }}" alt="image not loaded">
+                                        </div>
+                                    </td>
+                                    <td  style="width: 50%;" class="text-center">
+                                        <div>
+                                            <h3><a href="{% url 'event_details' event.pk %}"> {{ event.title|capfirst }}</a></h3>
+                                        </div>
+                                    </td>
+                                    <td  style="width: 20%;">
+                                        <a href="{{ event.presenter_profile_url }}" target="_blank">
+                                            <div>{{ event.presenter_first_name }} {{ event.presenter_last_name }}</div>
+                                        </a>
 
-                                <a href="{{ event.presenter_company_website }}" target="_blank">
-                                    <div class="small text-muted"><span>{{ event.presenter_company_name }}</span></div>
-                                </a>
-                            </td>
-                            <td  style="width: 10%;" class="text-center">
-                                {{ event.location }} 
-                            </td>
-                            <td  style="width: 10%;">
-                                <div class="small text-muted">{{ event.start_date }}</div>
+                                        <a href="{{ event.presenter_company_website }}" target="_blank">
+                                            <div class="small text-muted"><span>{{ event.presenter_company_name }}</span></div>
+                                        </a>
+                                    </td>
+                                    <td  style="width: 10%;" class="text-center">
+                                        {{ event.location }} 
+                                    </td>
+                                    <td  style="width: 10%;">
+                                        <div class="small text-muted">{{ event.start_date }}</div>
 
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
 
+                    </div>
+                    <!-- Upcoming events Table END -->
             </div>
-            <!-- Upcoming events Table END -->
+        </section>
+    {% else %}
+        <h3 style="text-align: center;">Stay Tuned!. More Events are coming...</h3>
+    {% endif %}
 
+    <section class="wrapper style5">
+        <div class="inner">
             <!-- Past Events -->
             {% if passed_events %}<br>
                 <h3 style="text-align: center;">Past Events</h3>
             <!-- Past Events Table -->
 
                 <div>
-                    <table class="table table-responsive-sm table-hover table-outline mb-0">
+                    <table class="table table-responsive-sm table-hover table-outline mb-0 events-table">
                         <thead class="thead-light">
                             <tr>
                                 <th  style="width: 10%;"class="text-center">Image</th>
                                 <th style="width: 50%;">Event</th>
-                                <th style="width: 20%;">Presenter</th>
+                                <th style="width: 15%;">Presenter</th>
                                 <th  style="width: 10%;" class="text-center">Location</th>
-                                <th style="width: 10%;">Date</th>
+                                <th style="width: 15%;">Date</th>
                             </tr>
                         </thead>
                         {% for event in passed_events %}
@@ -134,7 +148,7 @@ td
                                 </td>
                                 <td  style="width: 50%;" class="text-center">
                                     <div>
-                                        <h3>{{ event.title|capfirst }}</h3>
+                                        <h3><a href="{% url 'event_details' event.pk %}"> {{ event.title|capfirst }}</a></h3>
                                     </div>
                                 </td>
                                 <td  style="width: 20%;">
@@ -161,6 +175,12 @@ td
         </div>
 
     </section>
+
+
+
+
+
+
 </article>
 
 

@@ -1356,6 +1356,9 @@
 
 		&.style5 {
 			@include wrapper(accent7);
+			padding-top: 0px;
+			padding-bottom: 5px;
+		
 		}
 
 		@include breakpoint('<=medium') {
@@ -1929,5 +1932,11 @@
 			#footer {
 				background-color: darken(_palette(bg), 8);
 			}
+		}
+	}
+
+	.events-table{
+		td{
+			vertical-align: middle;
 		}
 	}
