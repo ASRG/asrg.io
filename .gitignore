@@ -34,3 +34,4 @@ staticfiles/
 *.pyc
 *.help
 !.pre-commit-config.yaml
+db_backup/
