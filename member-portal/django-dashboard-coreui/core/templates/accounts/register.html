@@ -45,7 +45,7 @@
               {% for field in form %}
               {% if field.errors %}
               {% for error in field.errors %}
-              <span style="color: red;">{{ field }} {{ error | safe }}<br></span>
+              <span style="color: red;">{{ error | safe }}<br></span>
               {% endfor %}
               {% endif %}
               {% endfor %}

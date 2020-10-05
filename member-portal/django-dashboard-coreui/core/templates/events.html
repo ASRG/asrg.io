@@ -18,6 +18,7 @@ td
 <article id="main">
     <header>
         <h2>ASRG | EVENTS</h2>
+        <!-- NEXT UPCOMING EVENT IN HEADER -->
         {% if next_event %}
         <h3>{{ next_event.title|capfirst }}</h3>
         <li style="list-style: none;">
@@ -25,13 +26,15 @@ td
             <a id="join-btn"
                href="{{ next_event.link }}"
                class="button primary">Join the LiveStream</a>
-        {% endif %}
+            {% endif %}
         </li>
+        <!-- NEXT UPCOMING EVENT IN HEADER END -->
     </header>
     <section class="wrapper style5">
         <div class="inner">
-            <h2>Next LiveStream</h2>
+            <h2>Next Event</h2>
 
+            <h4>What: <b>{{ next_event.event_type }} </b></h4>
             <h4>When: <b>{{ next_event.start_date }} | {{ next_event.start_time }} {{ next_event.timezone }} </b></h4>
             <h4>Where: <b>
                 
@@ -52,8 +55,10 @@ td
             </h4>
             {% endif %}
             <hr>
+            <!-- NEXT UPCOMING EVENT END -->
 
 
+            <!-- Upcoming events Table -->
             <div>
                 <h3 style="text-align: center;">Upcoming Events</h3>
                 <table class="table table-responsive-sm table-hover table-outline mb-0">
@@ -71,7 +76,7 @@ td
                         <tr>
                             <td  style="width: 10%;" class="text-center">
                                 <div>
-                                    Image
+                                    <img src="{{ event.presenter_picture_thumbnail.url }}" alt="image not loaded">
                                 </div>
                             </td>
                             <td  style="width: 50%;" class="text-center">
@@ -101,9 +106,13 @@ td
                 </table>
 
             </div>
+            <!-- Upcoming events Table END -->
 
+            <!-- Past Events -->
             {% if passed_events %}<br>
                 <h3 style="text-align: center;">Past Events</h3>
+            <!-- Past Events Table -->
+
                 <div>
                     <table class="table table-responsive-sm table-hover table-outline mb-0">
                         <thead class="thead-light">
@@ -120,7 +129,7 @@ td
                             <tr>
                                 <td  style="width: 10%;" class="text-center">
                                     <div>
-                                        Image
+                                        <img src="{{ event.presenter_picture_thumbnail.url }}" alt="image not loaded">
                                     </div>
                                 </td>
                                 <td  style="width: 50%;" class="text-center">
@@ -146,6 +155,8 @@ td
 
                 </div>
             {% endif %}
+            <!-- Past Events Table END -->
+
 
         </div>
 

@@ -47,6 +47,8 @@ class Event(models.Model):
                                    verbose_name='Presenter Picture')  # processedimagefield
     presenter_picture = ImageSpecField(source='pres_img',  processors=[
                                        ResizeToFill(300, 300)])  # sized image
+    presenter_picture_thumbnail = ImageSpecField(source='pres_img',  processors=[
+                                       ResizeToFill(100, 100)])  # thumbnail image
     presenter_profile_url = models.URLField(
         blank=False, verbose_name='Public Profile URL')
     presenter_company_name = models.CharField(
