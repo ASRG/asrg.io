@@ -1395,7 +1395,7 @@
 		@include vendor('transform', 'translateX(20em)');
 		@include vendor('transition', 'transform #{_duration(menu)} ease');
 		-webkit-overflow-scrolling: touch;
-		background: _palette(accent1, bg);
+		// background: _palette(accent1, bg);
 		color: _palette(accent1, fg-bold);
 		height: 100%;
 		max-width: 80%;
