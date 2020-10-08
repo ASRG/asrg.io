@@ -55,9 +55,9 @@ def profile_create_view(request):
     context['profile'] = profile
 
     if request.POST:
-        form = UserProfileForm(request.POST, request.FILES, instance=profile)
-        if form.is_valid():
-            profile = form.save(commit=False)
+        prof_form = UserProfileForm(request.POST, request.FILES, instance=profile)
+        if prof_form.is_valid():
+            profile = prof_form.save(commit=False)
             profile.user = request.user
             # profile.chapter = request.user.chapter.all
             if request.FILES:
@@ -71,9 +71,9 @@ def profile_create_view(request):
             profile.save() 
             return redirect("profile")
         else:
-            context["profile_form"] = form
+            context["profile_form"] = prof_form
     else:
-        form = UserProfileForm(
+        prof_form = UserProfileForm(
             initial={
                 # 'first_name': profile.first_name,
                 # 'last_name': profile.last_name,
@@ -89,11 +89,12 @@ def profile_create_view(request):
                 "fb_link": profile.fb_link,
                 "tw_link": profile.tw_link,
                 "ig_link": profile.ig_link,                
-                "profile_picture": profile.profile_picture,
+                # "profile_picture": profile.profile_picture,
+                'pp_src': profile.pp_src,
             }
         )
 
-        context["profile_form"] = form
+        context["profile_form"] = prof_form
 
     return render(request, "accounts/create-profile.html", context)
 

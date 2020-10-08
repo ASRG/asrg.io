@@ -161,11 +161,14 @@ class SignUpForm(UserCreationForm):
     #     self.clean_email()
     #     self.clean_password2()
 
+
+    
+
 class UserUpdateForm(forms.ModelForm):
     username = forms.CharField(
     widget=forms.TextInput(
         attrs={
-            # "placeholder" : "Username",                
+            "placeholder" : "Username",                
             "class": "form-control"
         }
     ))
@@ -173,7 +176,7 @@ class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField(
     widget=forms.EmailInput(
         attrs={
-            # "placeholder" : "Email",                
+            "placeholder" : "Email",                
             "class": "form-control"
         }
     ))
@@ -197,30 +200,30 @@ class UserUpdateForm(forms.ModelForm):
     first_name = forms.CharField(
     widget=forms.TextInput(
         attrs={
-            # "placeholder" : "First Name",                
+            "placeholder" : "First Name",                
             "class": "form-control"
         }
     ))
-
+ 
     last_name = forms.CharField(
     widget=forms.TextInput(
         attrs={
-            # "placeholder" : "Last Name",                
+            "placeholder" : "Last Name",                
             "class": "form-control"
         }
     ))
-    # gender = forms.ChoiceField(label='Gender', choices=GENDER_CHOICES, #empty_label="Gender",
-    # widget=forms.Select(
-    #     attrs={
-    #         # "placeholder" : "Gender",                
-    #         "class": "form-control"
-    #     }
-    # ))
+    gender = forms.ChoiceField(label='Gender', choices=GENDER_CHOICES, required=False,
+    widget=forms.Select(
+        attrs={
+            # "placeholder" : "Gender",                
+            "class": "form-control"
+        }
+    ))
 
     chapter = forms.ModelMultipleChoiceField(queryset=Chapter.objects.all(),
     widget=forms.SelectMultiple(
         attrs={
-            # "placeholder" : "Chapter",                
+            "placeholder" : "Chapter",                
             "class": "form-control"
         }
     ))
@@ -228,7 +231,7 @@ class UserUpdateForm(forms.ModelForm):
     occupational_status = forms.ChoiceField(label='Occupational Status', choices=OCCUPATIONAL_STATUS_CHOICES, #empty_label="Occupational Status",
     widget=forms.Select(
         attrs={
-            # "placeholder" : "Occupational Status",                
+            "placeholder" : "Occupational Status",                
             "class": "form-control"
         }
     ))
@@ -236,7 +239,7 @@ class UserUpdateForm(forms.ModelForm):
     country = forms.ChoiceField(label='Country', choices=COUNTRY_CHOICES, #empty_label="Country",
     widget=forms.Select(
         attrs={
-            # "placeholder" : "Country",                
+            "placeholder" : "Country",                
             "class": "form-control"
         }
     ))
@@ -251,7 +254,7 @@ class UserUpdateForm(forms.ModelForm):
             # 'chapter', 
             'first_name', 
             'last_name', 
-            # 'gender', 
+            'gender', 
             'occupational_status', 
             'country',
             )

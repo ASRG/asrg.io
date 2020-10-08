@@ -15,7 +15,7 @@ urlpatterns = [
     re_path("index.html", views.index, name="index"),
     # The home page
     path("", views.index, name="home"),
-    path("createprofile/", views.profile_create_view, name="profile_create"),
+    # path("createprofile/", views.profile_create_view, name="profile_create"),
     path("profile/", views.profile_view, name="profile"),
     path('edit-profile/', account_edit_view, name='edit_profile'),
     path(
