@@ -29,26 +29,26 @@ class UserProfile(models.Model):
         max_length=25, choices=GENDER_CHOICES, blank=False, default=GENDER_CHOICES[0]
     )
     field_of_study = models.CharField(max_length=100, blank=True, null=True)
-    bio = models.TextField(default=' ', blank=True, null=True)
+    bio = models.TextField(default='', blank=True, null=True)
     status = models.CharField(
-        max_length=256, default=' ', blank=True, null=True)
+        max_length=256, default='', blank=True, null=True)
     skills = models.CharField(
-        max_length=350, default=' ', blank=True, null=True)
-    pp_src = ProcessedImageField(upload_to='users/profile_pictures',
+        max_length=350, default='', blank=True, null=True)
+    pp_src = models.ImageField(upload_to='users/profile_pictures',
                                  blank=True, verbose_name='Profile Picture')  # processedimagefield
     profile_picture = ImageSpecField(source='pp_src',  processors=[
                                      ResizeToFill(350, 350)])  # sized image
-    fb_link = models.URLField(blank=True, verbose_name="Facebook Proifle Link")
-    tw_link = models.URLField(blank=True, verbose_name="Twitter Proifle Link")
-    ig_link = models.URLField(
-        blank=True, verbose_name="Instagram Proifle Link")
+    # profile_picture = models.ImageField(upload_to='users/profile_pictures', blank=True)
+    fb_link = models.URLField(blank=True, verbose_name="Facebook Proifle Link", null=True)
+    tw_link = models.URLField(blank=True, verbose_name="Twitter Proifle Link", null=True)
+    ig_link = models.URLField(blank=True, verbose_name="Instagram Proifle Link", null=True)
 
     date_joined = models.DateTimeField(auto_now_add=True)
     last_login = models.DateTimeField(auto_now=True)
     is_complete = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.first_name + ' ' + self.last_name
+        return self.user.username
 
     class Meta:
         permissions = [
