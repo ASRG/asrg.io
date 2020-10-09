@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load staticfiles %}{% block content %}
+<style>
+    .social-link {
+        width: 30px;
+        height: 30px;
+        border: 1px solid #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #666;
+        border-radius: 50%;
+        transition: all 0.3s;
+        font-size: 0.9rem;
+    }
+
+    .social-link:hover,
+    .social-link:focus {
+        background: #ddd;
+        text-decoration: none;
+        color: #555;
+    }
+</style>
+<article id="main">
+    <header>
+        <h2>ASRG | Contributors</h2>
+    </header>
+    <section class="wrapper style5">
+        <div class="container">
+            <div class="row text-center">
+                {% if contributor_list %}
+                {% for contri in contributor_list %}
+                <div class="col-xl-3 col-sm-6 mb-5">
+                    <div class="bg-white shadow h-100 rounded py-5 px-4"><img src="{{ contri.image_thumbnail.url }}" alt=""
+                            width="100" class="img-fluid rounded-circle mb-3 shadow-sm">
+                        <h5 class="mb-0" style="letter-spacing: normal;">{{ contri.name }}</h5><span
+                            class="small text-uppercase text-muted">{{ contri.position}}</span>
+                        <ul class="social mb-0 list-inline mt-3">
+                            <li class="list-inline-item"><a href="{{ contri.github }}" class="social-link"><i
+                                        class="fa fa-github"></i></a></li>
+                            </li>
+                            <li class="list-inline-item"><a href="{{ contri.linkedin }}" class="social-link"><i
+                                        class="fa fa-linkedin"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </section>
+</article>{% endblock content %}

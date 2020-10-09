@@ -1,0 +1,81 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Job postings {% endblock %} 
+
+{% block content %}
+<div class="card-header"><i class="fa fa-align-justify"></i> Job postings</div>
+<div class="card-body">
+  <form method="get">
+      {{ job_postings.form.as_p }}
+      <input type="submit" />
+  </form>
+  <table class="table table-responsive-sm table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Job Category</th>
+        <th>Location</th>
+        <th>date_posted</th>
+        <th> Link </th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for job in job_postings.qs %}
+      <tr>
+        <td><a href="{% url 'job_details' job.id %}">{{ job.title }}</a></td>
+        <td>{{ job.job_category }}</td>
+        <td>{{ job.location }}</td>
+        <td>{{ job.date_posted }}</td>
+        <td><a href="{{ job.job_link }}"> Go To Job </a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <ul class="pagination">
+    {% comment %}
+    <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">4</a></li>
+    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    {% endcomment %}
+  </ul>
+</div>
+
+{% endblock content %}
+
+{% block javascripts %}
+<!-- Specific Page JS goes HERE  -->
+{% endblock javascripts %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,17 +1,39 @@
 version: '3'
 services:
-  appseed-app:
+  asrg-db:
+    container_name: asrg-postgres
+    restart: unless-stopped
+    image: postgres:12.4
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=changeme
+      - POSTGRES_DB=asrg
+      - POSTGRES_PASSWORD=changeme_pass
+      - PGDATA=/var/lib/postgresql/data/asrg/
+    volumes:
+      - db_data:/var/lib/postgresql/data/
+      - ./db_backup/:/docker-entrypoint-initdb.d
+    networks:
+      - db_network
+  asrg-app:
+    container_name: asrg-app
     restart: always
-    env_file: .env
+    command: /opt/code/docker-entrypoint.sh
+    environment:
+      - WAIT_HOSTS= asrg-db:5432
     build: .
     ports:
       - "5005:5005"
     networks:
-      - db_network
       - web_network
+      - db_network
+    depends_on:
+      - asrg-db
   nginx:
+    container_name: asrg-nginx
     restart: always
-    image: "nginx:latest"
+    image: "nginx:1.17.2"
     ports:
       - "85:85"
     volumes:
@@ -19,9 +41,11 @@ services:
     networks:
       - web_network
     depends_on: 
-      - appseed-app
+      - asrg-app
 networks:
   db_network:
     driver: bridge
   web_network:
     driver: bridge
+volumes:
+  db_data: {}

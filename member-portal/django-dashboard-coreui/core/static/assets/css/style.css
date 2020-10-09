@@ -1161,36 +1161,36 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #321fdb;
-  border-color: #321fdb;
+  background-color: #000000;
+  border-color: #000000;
 }
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #2a1ab9;
-  border-color: #2819ae;
+  background-color: #4f5d73;
+  border-color: #4f5d73;
 }
 
 .btn-primary:focus, .btn-primary.focus {
-  box-shadow: 0 0 0 0.2rem rgba(81, 65, 224, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(73, 72, 71, 0.5);
 }
 
 .btn-primary.disabled, .btn-primary:disabled {
   color: #fff;
-  background-color: #321fdb;
-  border-color: #321fdb;
+  background-color: #C5C3D4;
+  border-color: #C5C3D4;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
 .show > .btn-primary.dropdown-toggle {
   color: #fff;
-  background-color: #2819ae;
-  border-color: #2517a3;
+  background-color: #000000;
+  border-color: #000000;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
 .show > .btn-primary.dropdown-toggle:focus {
-  box-shadow: 0 0 0 0.2rem rgba(81, 65, 224, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(73, 72, 71, 0.5);
 }
 
 .btn-secondary {
@@ -16176,5 +16176,89 @@ a.text-dark:hover, a.text-dark:focus {
   .table .thead-dark th {
     color: inherit;
   }
+}
+
+
+.reg-additional-info{
+  font-weight: 500; 
+  text-align: center; 
+  font-size: 1.5em; 
+  color: #787878
+}
+
+.alert-box {
+  background-color: #fffbcc;
+  color: #777;
+  font-size: 14px;
+  line-height: 23px;
+  padding: 13px 16px;
+  text-align:center;
+  font-family:Arial, Helvetica, sans-serif;
+}
+.alert-box .badge {
+  background-color: #f58f2a;
+  border-radius: 3px;
+  color: #fff;
+  margin-left: 4px;
+  margin-right: 4px;
+  padding: 3px 5px 3px 4px;
+  font-weight:bold;
+  text-transform: uppercase;
+}
+
+
+
+
+.map-container-5{
+overflow:hidden;
+padding-bottom:56.25%;
+position:relative;
+height:0;
+}
+
+
+
+
+
+
+
+
+$accent: #EF629F;
+$secondary: #EECDA3;
+$dark: #222;
+$medium-dark: lighten($dark, 25%);
+
+
+@mixin section-padding {
+  padding: 10vh 0;
+  @media (min-width: 768px) { // I'd prefer this to be the $md Bootstrap grid variable
+    padding: 20vh 0;
+  }
+}
+
+body {
+  padding-top: 3rem;
+}
+
+.hero {
+  padding: 20vh 0;
+  background: linear-gradient(to right, $secondary, $accent);
+}
+
+.features {
+  @include section-padding;
+  background: $dark;
+  color: white;
+}
+
+.pricing {
+  @include section-padding;
+  text-align: center;
+}
+
+.featured-price {
+  transform: scale(1.1);
+  z-index: 10;
+  background: $dark;
 }
 /*# sourceMappingURL=style.css.map */
