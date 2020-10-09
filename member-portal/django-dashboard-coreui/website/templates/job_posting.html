@@ -16,6 +16,7 @@
         <th>Job Category</th>
         <th>Location</th>
         <th>date_posted</th>
+        <th> Link </th>
       </tr>
     </thead>
     <tbody>
@@ -25,6 +26,7 @@
         <td>{{ job.job_category }}</td>
         <td>{{ job.location }}</td>
         <td>{{ job.date_posted }}</td>
+        <td><a href="{{ job.job_link }}"> Go To Job </a></td>
       </tr>
       {% endfor %}
     </tbody>
