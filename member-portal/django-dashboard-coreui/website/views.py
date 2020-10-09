@@ -69,3 +69,7 @@ def contributors(request):
     contributors = Contributor.objects.all()
     context = {'contributor_list': contributors}
     return render(request, 'contributors.html', context)
+
+def dashboard(request):
+    response = redirect('index.html')
+    return response
