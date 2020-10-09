@@ -1,8 +1,9 @@
 {% extends "layouts/base.html" %}
 
-{% block title %} Dashboard {% endblock %} 
+{% block title %} Events {% endblock %} 
 
 {% block content %}
+
 
 
   <br>
@@ -26,7 +27,7 @@
                 
                     <!-- Upcoming events Table -->
                     <div>
-                        <h3 style="text-align: center;">Upcoming Events</h3>
+                        <h3 style="text-align: center;font-weight: bold; margin-bottom: 26px;">Upcoming Events</h3>
                         <table class="table table-responsive-sm table-hover table-outline mb-0 events-table">
                             <thead class="thead-light">
                                 <tr>
@@ -40,18 +41,18 @@
                             {% for event in upcoming_events %}
                             <tbody>
                                 <tr>
-                                    <td  style="width: 10%;" class="text-center">
+                                    <td  style="width: 10%; vertical-align: middle;" class="text-center">
                                         <div>
                                             <img src="{{ event.presenter_picture_thumbnail.url }}" alt="image not loaded">
                                         </div>
                                     </td>
-                                    <td  style="width: 50%;" class="text-center">
+                                    <td  style="width: 50%; vertical-align: middle;" class="text-center">
                                         <div>
-                                            <h3><a href="{% url 'event_details' event.pk %}"> {{ event.title|capfirst }}</a></h3>
+                                            <h3 style="font-size: 18px;"><a href="{% url 'event_details' event.pk %}" style="color: #5f5f5f;"> {{ event.title|capfirst }}</a></h3>
                                         </div>
                                     </td>
-                                    <td  style="width: 20%;">
-                                        <a href="{{ event.presenter_profile_url }}" target="_blank">
+                                    <td  style="width: 20%; vertical-align: middle;">
+                                        <a href="{{ event.presenter_profile_url }}" target="_blank" style="color: #5f5f5f;">
                                             <div>{{ event.presenter_first_name }} {{ event.presenter_last_name }}</div>
                                         </a>
 
@@ -59,10 +60,10 @@
                                             <div class="small text-muted"><span>{{ event.presenter_company_name }}</span></div>
                                         </a>
                                     </td>
-                                    <td  style="width: 10%;" class="text-center">
+                                    <td  style="width: 10%; vertical-align: middle;" class="text-center">
                                         {{ event.location }} 
                                     </td>
-                                    <td  style="width: 10%;">
+                                    <td  style="width: 10%; vertical-align: middle;">
                                         <div class="small text-muted">{{ event.start_date }}</div>
 
                                     </td>
@@ -78,7 +79,7 @@
 
 
     {% else %}
-        <h3 style="text-align: center;">Stay Tuned!. More Events are coming...</h3>
+        <h3 style="text-align: center;font-weight: bold; margin-bottom: 26px;">Stay Tuned!. More Events are coming...</h3>
     {% endif %}
 
 
@@ -86,7 +87,7 @@
         <div class="inner">
             <!-- Past Events -->
             {% if passed_events %}<br>
-                <h3 style="text-align: center;">Past Events</h3>
+                <h3 style="text-align: center;font-weight: bold; margin-bottom: 26px;">Past Events</h3>
             <!-- Past Events Table -->
 
                 <div>
@@ -103,18 +104,18 @@
                         {% for event in passed_events %}
                         <tbody>
                             <tr>
-                                <td  style="width: 10%;" class="text-center">
+                                <td  style="width: 10%; vertical-align: middle;" class="text-center">
                                     <div>
                                         <img src="{{ event.presenter_picture_thumbnail.url }}" alt="image not loaded">
                                     </div>
                                 </td>
-                                <td  style="width: 50%;" class="text-center">
+                                <td  style="width: 50%; vertical-align: middle;" class="text-center">
                                     <div>
-                                        <h3><a href="{% url 'event_details' event.pk %}"> {{ event.title|capfirst }}</a></h3>
+                                        <h3 style="font-size: 18px;"><a href="{% url 'event_details' event.pk %}" style="color: #5f5f5f;"> {{ event.title|capfirst }}</a></h3>
                                     </div>
                                 </td>
-                                <td  style="width: 20%;">
-                                    <a href="{{ event.presenter_profile_url }}" target="_blank">
+                                <td  style="width: 20%; vertical-align: middle;">
+                                    <a href="{{ event.presenter_profile_url }}" target="_blank" style="color: #5f5f5f;">
                                         <div>{{ event.presenter_first_name }} {{ event.presenter_last_name }}</div>
                                     </a>
 
@@ -122,10 +123,10 @@
                                         <div class="small text-muted"><span>{{ event.presenter_company_name }}</span></div>
                                     </a>
                                 </td>
-                                <td  style="width: 10%;" class="text-center">
-                                    {{ event.location }}
+                                <td  style="width: 10%; vertical-align: middle;" class="text-center">
+                                    {{ event.location }} 
                                 </td>
-                                <td  style="width: 10%;">
+                                <td  style="width: 10%; vertical-align: middle;">
                                     <div class="small text-muted">{{ event.start_date }}</div>
 
                                 </td>
