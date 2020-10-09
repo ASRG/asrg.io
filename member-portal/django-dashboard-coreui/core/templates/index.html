@@ -5,18 +5,21 @@
 
 {% block content %}
 
-
-  <br>
+  <section>
+  <body>
   
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<body> 
- 
 
-<div class="container">
+
+
+<section class="features" id="example">
+  <div class="container">
+    <h1 class="mb-5 display-4">Announcement</h1>
+   <div class="container">
 <div class="alert-box">
     <span class="badge">Announcement</span> <br>
            {% for announcement in announcements %}
@@ -25,14 +28,17 @@
         {% endfor %}
   </div>  
 </div>
-    <br>
-    <br>
-<div class="container">
-  
+  </div>
+</section>
+
+<section class="pricing" id="example1">
+  <div class="container">
+    <h1 class="mb-5 display-4">Links</h1>
+    <div class="container">
   <div class="card-columns">
     <div class="card bg-light">
       <div class="card-body text-center">
-        <img src="/static/assets/img/knowledge.svg" alt="Knowledge" width="50" height="100">
+        <img src="/static/assets/img/knowledge.png" alt="Knowledge" width="80" height="80">
         <p class="card-text">Knowledge</p>
         <img src="/static/assets/img/meetup.svg" alt="Meetups" width="25" height="50"> <a href="https://www.meetup.com/de-DE/Automotive-Security-Research-Group-Detroit/" target="_blank">  Monthly Meetups</a><br>
         <img src="/static/assets/img/drive.svg" alt="Security" width="25" height="50"> <a href="https://docs.asrg.io/knowledge/security-library/" target="_blank">  Security Library</a><br>
@@ -42,7 +48,7 @@
     </div>
     <div class="card bg-light">
       <div class="card-body text-center">
-        <img src="/static/assets/img/networking.svg" alt="Networking" width="50" height="100">
+        <img src="/static/assets/img/networking.png" alt="Networking" width="90" height="100">
         <p class="card-text">Networking</p>
         <img src="/static/assets/img/linkedin.svg" alt="Linkedin" width="25" height="50"> <a href="https://www.linkedin.com/company/automotive-security-research-group/" target="_blank">  Linkedin</a><br>
         <img src="/static/assets/img/slack.svg" alt="Slack" width="25" height="50"> <a href="https://join.slack.com/t/asrg/shared_invite/enQtNjMyMzAyMDM4MjI1LTM2Njc3MWRkNWI1NjkwYmQ4NDRkZjYwYmE2MzcyMWY3Y2IwZjc1YTAzYjQxM2M0NzdhOGEzNjNmYjNkM2EzZWM/" target="_blank">  Slack</a><br>
@@ -51,7 +57,7 @@
     </div>
     <div class="card bg-light">
       <div class="card-body text-center">
-        <img src="/static/assets/img/collaboration.svg" alt="Collaboration" width="50" height="100">
+        <img src="/static/assets/img/collaboration.png" alt="Collaboration" width="100" height="70">
         <p class="card-text">Collaboration</p>
         <img src="/static/assets/img/project.svg" alt="Projects" width="25" height="50"> <a href="https://docs.asrg.io/collaboration/projects/" target="_blank">  Projects</a><br>
         <img src="/static/assets/img/github.svg" alt="Github" width="25" height="50"> <a href="https://github.com/ASRG/" target="_blank"> GitHub</a>
@@ -59,14 +65,33 @@
     </div>
     </div>
   </div>
+</section>
 
-  <div>
+
+
+  <section class="pricing" id="example2">
+  <div class="container">
+    <h1 class="mb-5 display-4">Chapters Map</h1>
+    <div class="container">
+    <!--Card-->
+    <div class="card card-cascade narrower">
+
+      <!--Card image-->
+      <div class="view view-cascade gradient-card-header blue-gradient">
+        
+      </div>
+      <!--/Card image-->
+
+      <!--Card content-->
+      <div class="card-body card-body-cascade text-center">
+
+        <!--Google map-->
+        <div class="z-depth-1-half map-container-5" style="height: 300px">
     {% leaflet_map "locations_map" callback="window.map_init"%}
   </div>
 </div>
 
 </body>
-
 
 {% endblock content %}
 
@@ -110,6 +135,17 @@
 </script>
 
 {% endblock javascripts %}
+  
+      </div>
+      <!--/.Card content-->
 
+    </div>
+    <!--/.Card-->
+  </div>
 
+</section>
+</div>
+</section>
+</body>
 
+</section>
