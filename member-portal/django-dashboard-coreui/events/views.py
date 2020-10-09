@@ -16,11 +16,20 @@ def events_view(request):
         pass
     passed_events = Event.objects.filter(start_date__lt=now).order_by('-start_date')
     context['passed_events'] = passed_events
-    return render(request, "events.html",context)
+    if request.user.is_authenticated:
+        return render(request, "events_authenticated_users.html",context)
+    else:
+        return render(request, "events.html",context)
+
 
 
 def event_detail_view(request, event_id):
     event = get_object_or_404(Event, id=event_id)
-    return render(request, "event_detail.html", {
+    if request.user.is_authenticated:
+        return render (request, "event_detail_authenticated_users.html", {
+        'event': event,
+    })
+    else:
+        return render (request, "event_detail.html", {
         'event': event,
     })
