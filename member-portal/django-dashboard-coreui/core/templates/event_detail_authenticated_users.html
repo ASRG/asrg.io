@@ -1,0 +1,98 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+{% block content %}
+
+
+  <br>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<body> 
+ 
+    <article id="main">
+        <header>
+            <h2>{{ event.location|capfirst }}</h2>
+            <p>LiveStream</p>
+            <h3>{{ event.title|capfirst }}</h3>
+            <li style="list-style: none;">
+                {% if event.link %}
+                <a id="join-btn"
+                   href="{{ event.link }}"
+                   class="button primary">Join the LiveStream</a>
+                {% endif %}
+            </li>
+        </header>
+        <section class="wrapper style5">
+            <div class="inner">
+                <!-- <h2>Next LiveStream</h2> -->
+    
+                <h4>When: <b>{{ event.start_date }} | {{ event.start_time }} {{ event.timezone }} </b></h4>
+                <h4>Where: <b>
+                    
+                    {% if event.link %}
+                        <a href="{{ event.link }}">LiveStream</a>
+                    {% elif event.event_address %}
+                        {{ event.event_address }}
+                    {% endif %}</b></h4>
+    
+                <h4>Who: <b>
+                    {% if event.presenter_profile_url %}
+                        <a href="{{ event.presenter_profile_url }}" target="_blank">
+                            {{ event.presenter_first_name|capfirst }} {{ event.presenter_last_name|capfirst }},
+                        </a>
+                    {% else %}
+                        {{ event.presenter_first_name|capfirst }} {{ event.presenter_last_name|capfirst }},
+                    {% endif %}
+
+                    {{ event.presenter_designation|capfirst }} at 
+                    {% if event.presenter_company_website %} 
+                        <a href="{{ event.presenter_company_website }}">{{ event.presenter_company_name|capfirst }}</a></b>
+                    {% else %}
+                        {{ event.presenter_company_name|capfirst }}
+                    {% endif %}
+                </h4>
+    
+                <p>
+                <!-- <h4>Presentation:</h4> -->
+                <h3>{{ event.title }}</h3>
+                {{ event.event_description }}
+                </p>
+                {% if event.presenter_bio %}
+                <h4>About the Presenter:</h4>
+                <!-- <div>
+                    <img src={{ event.presenter_picture.url }}>
+                </div>
+                <br> -->
+                {{ event.presenter_bio }}
+                {% endif %}
+                <br><br>
+                <a href="{{ event.presenter_profile_url }}" target="_blank">Visit Speaker Profile</a>
+                </p>
+                <!-- <iframe class="webinar"
+                        width="560"
+                        height="315"
+                        src="https://www.youtube.com/embed/yywQQXHpHFE"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe> -->
+            </div>
+        </section>
+    </article>
+
+
+
+</body>
+
+
+{% endblock content %}
+
+{% block javascripts %}
+{% endblock javascripts %}
+
+
+

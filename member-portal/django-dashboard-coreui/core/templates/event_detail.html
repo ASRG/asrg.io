@@ -30,7 +30,14 @@
                 {% endif %}</b></h4>
 
             <h4>Who: <b>
-                {{ event.presenter_first_name|capfirst }} {{ event.presenter_last_name|capfirst }}, 
+                {% if event.presenter_profile_url %}
+                    <a href="{{ event.presenter_profile_url }}" target="_blank">
+                        {{ event.presenter_first_name|capfirst }} {{ event.presenter_last_name|capfirst }},
+                    </a>
+                {% else %}
+                    {{ event.presenter_first_name|capfirst }} {{ event.presenter_last_name|capfirst }},
+                {% endif %}
+
                 {{ event.presenter_designation|capfirst }} at 
                 {% if event.presenter_company_website %} 
                     <a href="{{ event.presenter_company_website }}">{{ event.presenter_company_name|capfirst }}</a></b>
