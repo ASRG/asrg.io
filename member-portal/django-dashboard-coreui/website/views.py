@@ -6,6 +6,7 @@ from django.shortcuts import redirect, get_object_or_404
 
 from .models import JobPosting, Contributor, Announcement
 from authentication.models import Chapter, User
+from events.models import Event
 from website.filters import JobPostingFilters
 
 
@@ -14,7 +15,7 @@ def landing(request):
         "members": User.objects.exclude(chapter=None).count(),
         "locations": Chapter.objects.all().count(),
         "age": 2.5,
-        "meetings": 0,
+        "meetings": Event.objects.all().count(),
     }
     return render(request, "landing.html", context=context)
 

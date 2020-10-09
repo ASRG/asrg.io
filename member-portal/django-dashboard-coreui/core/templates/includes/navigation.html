@@ -91,13 +91,13 @@
         <div class="dropdown-header bg-light py-2">
           <strong>Account</strong>
         </div>
-        <a class="dropdown-item" href="#">
+        <!-- <a class="dropdown-item" href="#">
           <svg class="c-icon mr-2">
             <use
               xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-bell"
             ></use>
           </svg>
-          Updates</a>
+          Updates</a> -->
           <!-- <a class="dropdown-item" href="#"> -->
           <!-- <div class="dropdown-header bg-light py-2"><strong>Settings</strong></div> -->
 
@@ -121,16 +121,6 @@
             </svg>
             Lock Account
           </a> -->
-
-            {% if user.profile.is_complete %}
-              <a class="dropdown-item" href="{% url 'profile_create' %}" >
-                Update your Profile
-              </a>
-            {% else %}
-              <a class="dropdown-item" href="{% url 'profile_create' %}" >
-                Complete your Profile
-              </a>
-            {% endif %}
 
             <a class="dropdown-item" href="{% url 'password_change' %}">
               Change password
