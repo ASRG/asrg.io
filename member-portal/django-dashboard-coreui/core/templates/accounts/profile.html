@@ -89,7 +89,7 @@
                     {% if profile.field_of_study %}
                       <p>{{ profile.field_of_study }}</p>
                     {% else %}
-                      <p>Not Specified<span style="font-size: x-small;"><a href="{% url 'profile_create' %}"> complete profile</a></span></p>
+                      <p>Not Specified<span style="font-size: x-small;"><a href="{% url 'edit_profile' %}"> complete profile</a></span></p>
                     {% endif %}
                   </div>
                 </div>
@@ -143,7 +143,7 @@
                     {% if profile.dob %}
                       <p>{{ profile.dob }}</p>
                     {% else %}
-                      <p>Not Specified<span style="font-size: x-small;"><a href="{% url 'profile_create' %}"> complete profile</a></span></p>
+                      <p>Not Specified<span style="font-size: x-small;"><a href="{% url 'edit_profile' %}"> complete profile</a></span></p>
                     {% endif %}
                   </div>
                 </div>
@@ -157,7 +157,7 @@
                     >
                   </div>
                   <div class="col-md-7 col-7">
-                    <p><a href="javascript:void(0)">{{ user.email }}</a></p>
+                    <p><a href="mailto:{{ user.email }}">{{ user.email }}</a></p>
                   </div>
                 </div>
               </li>
