@@ -18,7 +18,8 @@ urlpatterns = [
     #path('announcement/', views.announcement, name='announcement'),
     #path('announcement/<int:announcement_id>/', views.announcement_details, name='announcement_details'),
     path('dashboard/', views.dashboard, name='dashboard'),
-]
+    path('threatq/', views.threatq, name='threatq')
 
+]
 
 urlpatterns += staticfiles_urlpatterns()

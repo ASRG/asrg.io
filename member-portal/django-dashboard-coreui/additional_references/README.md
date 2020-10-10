@@ -1,3 +1,4 @@
+
 # [Django Dashboard CoreUI](https://appseed.us/admin-dashboards/django-dashboard-coreui)
 
 > **Open-Source Admin Dashboard** coded in **Flask Framework** by **AppSeed** [Web App Generator](https://appseed.us/app-generator) - features:
@@ -39,35 +40,35 @@ PRO versions include **Premium UI Kits**, Lifetime updates and **24/7 LIVE Suppo
 ## How to use it
 
 ```bash
-$ # 1. Get the code
+# 1. Get the code
 $ git clone https://github.com/ASRG/asrg.io.git
 $ cd member-portal/django-dashboard-coreui/
 
-$ # [Unix] 2. Virtualenv modules installation
+# [Unix] 2. Virtualenv modules installation
 $ virtualenv env
 $ source env/bin/activate
 
-$ # [Windows] 2. Virtualenv installation (Windows): python -m pip install --user virtualenv
-$ # python -m virtualenv env
-$ # .\env\Scripts\activate
+# [Windows] 2. Virtualenv installation (Windows): python -m pip install --user virtualenv
+python -m virtualenv env
+.\env\Scripts\activate
 
-$ # 3. Install modules - SQLite Storage
+# 3. Install modules - SQLite Storage
 $ pip3 install -r requirements.txt
 
-$ # 4. Create tables
+# 4. Create tables
 $ python manage.py makemigrations && python manage.py migrate
 
-$ # 5. Start the application (development mode) default port 8000
+# 5. Start the application (development mode) default port 8000
 $ python manage.py runserver
 
-$ # 6. To use PostgreSQL add the following line to your .env file:
-$ DATABASE_URL=postgres://changeme:changeme_pass@asrg-postgres:5432/asrg
+# 6. To use PostgreSQL add this line to ~/asrg.io/member-portal/django-dashboard-coreui/.env
+DATABASE_URL=postgres://changeme:changeme_pass@asrg-postgres:5432/asrg
 
-$ # 7. (OPTIONAL) Start the app - custom port
-$ # python manage.py runserver 0.0.0.0:<your_port>
+# 7. (OPTIONAL) Start the app - custom port
+python manage.py runserver 0.0.0.0:<your_port>
 
-$ # 8. Access the web app in browser:
-$ http://127.0.0.1:8000/
+# 8. Access the web app in browser:
+http://127.0.0.1:8000/
 ```
 
 <br/>
@@ -76,6 +77,7 @@ $ http://127.0.0.1:8000/
 The app is provided with a basic configuration to be executed in:
 * [Heroku](https://heroku.com/)
 * [Docker](https://www.docker.com/)
+* [Django-CSP](https://github.com/mozilla/django-csp)
 * [Gunicorn](https://gunicorn.org/)
 * [Waitress](https://docs.pylonsproject.org/projects/waitress/en/stable/)
 
@@ -94,14 +96,14 @@ $ touch .env
 ```
 
 ### The .env file
-Hidden file used by the Dockerfile and the docker-compose, in order to enable environment variables while running/building with docker commands.
+A hidden file used by Dockerfile and docker-compose, in order to enable environment variables
+ while running/building with docker commands.
 * Make sure this file is `.gitignored` but present in path: `~\asrg.io\member-portal\django-dashboard-coreui\.env`
-* Otherwise, your docker-compose build will fail 
+* We need to specify Django to connect using this specific DB. By default, it will use sqlite if
+ not declared. 
 
-```
+``` bash
 DEBUG=True
-SECRET_KEY=SECRET_KEY_CHANGE
-SERVER=django-dashboard-coreui.appseed.us
 DATABASE_URL=postgres://changeme:changeme_pass@asrg-postgres:5432/asrg
 ```
 <br/>
@@ -150,8 +152,19 @@ sudo docker-compose pull asrg-app && sudo docker-compose build asrg-app &&\
 sudo docker-compose up -d --remove-orphans asrg-app
 
 # [Windows] Stop and re build only the dashboard-ui for updates: asrg-app
-docker-compose stop asrg-app && docker-compose rm -f asrg-app && docker-compose pull asrg-app &&\
-docker-compose build asrg-app && docker-compose up -d --remove-orphans asrg-app
+docker-compose stop asrg-app && docker-compose rm -f asrg-app && docker-compose pull asrg-app && docker-compose build asrg-app && docker-compose up -d --remove-orphans asrg-app
+```
+
+<br/>
+
+### Django-csp
+---
+
+[django-csp](https://django-csp.readthedocs.io/en/latest/) 'Django Content Security Policy'.
+
+> Install using pip
+```bash
+$ pip install django-csp
 ```
 
 <br/>
@@ -197,7 +210,36 @@ Visit [http://localhost:8001](http://localhost:8001) in your browser. The app sh
 
 ## Troubleshooting
 ### django.db.utils.OperationalError: could not translate host name "postgres" to address: Unknown host
-**Solution:** Please fill @DBTeam.
+> **Solution:** The issue was fixed, after latest changes update.
+
+
+# Recreating CONTAINERID_asrg-postgres ... error
+## ERROR: for CONTAINERID_asrg-postgres  Cannot create container for service asrg-db: Duplicate mount point: /var/lib/postgresql/data
+### ERROR: for asrg-db  Cannot create container for service asrg-db: Duplicate mount point: /var/lib/postgresql/data
+> **Solution:** This issue is related to older docker volumes (mount points for db), not being
+> properly removed from older builds. To fix this issue we need to:
+```bash
+# 1. Check all containers for Exited, Stopped, etc related to *asrg*
+$ docker container ps -a
+# 2. Stop all these specific containers related to the db (use ID or name)
+$ docker container stop CONTAINERID_asrg-postgres asrg-nginx asrg-app
+# 3. Remove failing container due to old version
+$ docker container rm -f CONTAINERID_asrg-postgres asrg-nginx asrg-app
+# 4. Check docker volumes for old versions
+$ docker volume ls
+# 5. Remove old docker volumes
+$ docker volume rm django-dashboard-coreui_db_data
+# 6. Check docker networks for old versions
+$ docker network ls
+# 7. Remove old docker networks
+$ docker volume rm django-dashboard-coreui_db_network django-dashboard-coreui_web_network
+# 8. Clean for space (<none> images)
+$ docker image prune
+# 9. Finally, pull, build and run the dashboard (clean/fresh)
+$ docker-compose pull && docker-compose build && docker-compose up -d --remove-orphans
+# 10. Check all containers running then go to the site:
+http://localhost:5005/login/
+```
 
 <br/>
 
