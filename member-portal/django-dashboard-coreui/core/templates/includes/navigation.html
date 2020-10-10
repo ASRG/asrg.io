@@ -31,7 +31,7 @@
       <a class="c-header-nav-link" href="{% url 'events' %}">Events</a>
     </li>
     <li class="c-header-nav-item px-3">
-      <a class="c-header-nav-link" href="#">Threat Intelligence</a>
+      <a class="c-header-nav-link" href="/threatq">Threat Intelligence</a>
     </li>
     <li class="c-header-nav-item px-3">
       <a class="c-header-nav-link" href="https://docs.asrg.io/">Wiki</a>
@@ -41,30 +41,6 @@
     </li>
   </ul>
   <ul class="c-header-nav ml-auto mr-4">
-    <!-- <li class="c-header-nav-item d-md-down-none mx-2">
-      <a class="c-header-nav-link" href="#">
-        <svg class="c-icon">
-          <use
-            xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-bell"
-          ></use></svg
-      ></a>
-    </li>
-    <li class="c-header-nav-item d-md-down-none mx-2">
-      <a class="c-header-nav-link" href="#">
-        <svg class="c-icon">
-          <use
-            xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-list-rich"
-          ></use></svg
-      ></a>
-    </li>
-    <li class="c-header-nav-item d-md-down-none mx-2">
-      <a class="c-header-nav-link" href="#">
-        <svg class="c-icon">
-          <use
-            xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-envelope-open"
-          ></use></svg
-      ></a>
-    </li> -->
     <li class="c-header-nav-item dropdown">
       <a
         class="c-header-nav-link"
@@ -91,15 +67,6 @@
         <div class="dropdown-header bg-light py-2">
           <strong>Account</strong>
         </div>
-        <!-- <a class="dropdown-item" href="#">
-          <svg class="c-icon mr-2">
-            <use
-              xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-bell"
-            ></use>
-          </svg>
-          Updates</a> -->
-          <!-- <a class="dropdown-item" href="#"> -->
-          <!-- <div class="dropdown-header bg-light py-2"><strong>Settings</strong></div> -->
 
           <a class="dropdown-item" href="{% url 'profile' %}">
             <svg class="c-icon mr-2">
@@ -110,17 +77,7 @@
             Profile
           </a>
 
-          <!-- <a class="dropdown-item" href="#"> -->
           <div class="dropdown-divider"></div>
-
-          <!-- <a class="dropdown-item" href="#">
-            <svg class="c-icon mr-2">
-              <use
-                xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-lock-locked"
-              ></use>
-            </svg>
-            Lock Account
-          </a> -->
 
             <a class="dropdown-item" href="{% url 'password_change' %}">
               Change password
