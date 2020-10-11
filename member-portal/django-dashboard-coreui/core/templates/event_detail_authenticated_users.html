@@ -1,6 +1,6 @@
 {% extends "layouts/base.html" %}
 
-{% block title %} Dashboard {% endblock %} 
+{% block title %} Event Details {% endblock %} 
 
 {% block content %}
 
@@ -14,11 +14,11 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <body> 
  
-    <article id="main">
+    <article id="main" class="events_page">
         <header>
             <h2>{{ event.location|capfirst }}</h2>
             <p>LiveStream</p>
-            <h3>{{ event.title|capfirst }}</h3>
+            <h3 style="margin-bottom: 25px;">{{ event.title|capfirst }}</h3>
             <li style="list-style: none;">
                 {% if event.link %}
                 <a id="join-btn"
@@ -59,11 +59,11 @@
     
                 <p>
                 <!-- <h4>Presentation:</h4> -->
-                <h3>{{ event.title }}</h3>
+                <h4 style="margin-top: 3rem;">{{ event.title }}</h4>
                 {{ event.event_description }}
                 </p>
                 {% if event.presenter_bio %}
-                <h4>About the Presenter:</h4>
+                <h4 style="margin-top: 3rem;">About the Presenter:</h4>
                 <!-- <div>
                     <img src={{ event.presenter_picture.url }}>
                 </div>
@@ -71,7 +71,7 @@
                 {{ event.presenter_bio }}
                 {% endif %}
                 <br><br>
-                <a href="{{ event.presenter_profile_url }}" target="_blank">Visit Speaker Profile</a>
+                <a href="{{ event.presenter_profile_url }}" target="_blank" class="button">Visit Speaker Profile</a>
                 </p>
                 <!-- <iframe class="webinar"
                         width="560"

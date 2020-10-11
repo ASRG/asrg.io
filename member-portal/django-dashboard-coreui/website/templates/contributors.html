@@ -1,24 +1,46 @@
 {% extends "base.html" %}
 {% load staticfiles %}{% block content %}
 <style>
-    .social-link {
-        width: 30px;
-        height: 30px;
-        border: 1px solid #ddd;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #666;
-        border-radius: 50%;
-        transition: all 0.3s;
-        font-size: 0.9rem;
+    .card {
+        width: 260px;
+        text-align: center;
+        padding: 20px 5px 50px 5px;
+        background-color: white;
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+        border-radius: 4px;
+        margin: 20px 0;
     }
 
-    .social-link:hover,
-    .social-link:focus {
-        background: #ddd;
-        text-decoration: none;
-        color: #555;
+    .card img {
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+    }
+
+    .card .social-icons i {
+        border: 1px solid #bbbbbb;
+        color: #333333;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+    }
+
+    .card .social-icons i:hover {
+        background-color: #eee;
+        cursor: pointer;
+    }
+
+    .card .social-icons i:not(:last-child) {
+        margin-right: 10px;
+    }
+
+    .cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 25px;
+        justify-content: center;
     }
 </style>
 <article id="main">
@@ -26,23 +48,19 @@
         <h2>ASRG | Contributors</h2>
     </header>
     <section class="wrapper style5">
-        <div class="container">
-            <div class="row text-center">
+        <div class="inner" style="width: 70em;">
+            <div class="cards">
                 {% if contributor_list %}
                 {% for contri in contributor_list %}
-                <div class="col-xl-3 col-sm-6 mb-5">
-                    <div class="bg-white shadow h-100 rounded py-5 px-4"><img src="{{ contri.image_thumbnail.url }}" alt=""
-                            width="100" class="img-fluid rounded-circle mb-3 shadow-sm">
-                        <h5 class="mb-0" style="letter-spacing: normal;">{{ contri.name }}</h5><span
-                            class="small text-uppercase text-muted">{{ contri.position}}</span>
-                        <ul class="social mb-0 list-inline mt-3">
-                            <li class="list-inline-item"><a href="{{ contri.github }}" class="social-link"><i
-                                        class="fa fa-github"></i></a></li>
-                            </li>
-                            <li class="list-inline-item"><a href="{{ contri.linkedin }}" class="social-link"><i
-                                        class="fa fa-linkedin"></i></a>
-                            </li>
-                        </ul>
+                <div class="card">
+                    <img src="{{ contri.image_thumbnail.url }}" alt="icon">
+                    <h3>{{ contri.name }}</h3>
+                    <p>{{ contri.position}}</p>
+                    <div class="social-icons">
+                        <a href="{{ contri.linkedin }}" target="_blank" style="border-bottom: 0px"><i
+                                class="fa fa-linkedin"></i></a>
+                        <a href="{{ contri.github }}" target="_blank" style="border-bottom: 0px"><i
+                                class="fa fa-github"></i></a>
                     </div>
                 </div>
                 {% endfor %}

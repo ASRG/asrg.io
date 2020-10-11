@@ -10,7 +10,7 @@
       <div class="col-md-6">
         <div class="card mx-4">
 
-          <form role="form" method="post" action="">
+          <form role="form" method="post" action="" enctype="multipart/form-data">
 
             {% csrf_token %} 
 
@@ -248,9 +248,9 @@
                 {{ profile_form.pp_src }}
               </div>
 
+              
 
-
-
+              
               <br />
 
               <div class="text-center">
