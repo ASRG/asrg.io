@@ -5939,9 +5939,9 @@ html:not([dir="rtl"]) .was-validated .custom-select:invalid, html:not([dir="rtl"
   border-bottom: 1px solid #d8dbe0;
 }
 
-.c-header.c-header-with-subheader {
-  height: 104px;
-}
+/* .c-header.c-header-with-subheader {
+   height: 104px; 
+}  */
 
 .c-header.c-header-with-subheader .c-header-nav {
   height: 56px;
