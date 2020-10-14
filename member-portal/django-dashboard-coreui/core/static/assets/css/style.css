@@ -16223,42 +16223,4 @@ height:0;
 
 
 
-$accent: #EF629F;
-$secondary: #EECDA3;
-$dark: #222;
-$medium-dark: lighten($dark, 25%);
-
-
-@mixin section-padding {
-  padding: 10vh 0;
-  @media (min-width: 768px) { // I'd prefer this to be the $md Bootstrap grid variable
-    padding: 20vh 0;
-  }
-}
-
-body {
-  padding-top: 3rem;
-}
-
-.hero {
-  padding: 20vh 0;
-  background: linear-gradient(to right, $secondary, $accent);
-}
-
-.features {
-  @include section-padding;
-  background: $dark;
-  color: white;
-}
-
-.pricing {
-  @include section-padding;
-  text-align: center;
-}
-
-.featured-price {
-  transform: scale(1.1);
-  z-index: 10;
-  background: $dark;
-}
 /*# sourceMappingURL=style.css.map */

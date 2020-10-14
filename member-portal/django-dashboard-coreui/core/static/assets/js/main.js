@@ -333,44 +333,5 @@ var brandBoxChart3 = new Chart(document.getElementById('social-box-chart-3'), {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-$(document).ready(function() {
-
-  scrollLink.click(function(e) {
-    var scrollLink = $('.scroll');
-
-    // Smooth scrolling
-    e.preventDefault();
-    $('body,html').animate({
-      scrollTop: $(this.hash).offset().top
-    }, 1000 );
-  });
-
-  // Active link switching
-  $(window).scroll(function() {
-    var scrollbarLocation = $(this).scrollTop();
-
-    scrollLink.each(function() {
-
-      var sectionOffset = $(this.hash).offset().top - 20;
-
-      if ( sectionOffset <= scrollbarLocation ) {
-        $(this).parent().addClass('active');
-        $(this).parent().siblings().removeClass('active');
-      }
-    })
-
-  })
-
-})
 //# sourceMappingURL=main.js.map
 
