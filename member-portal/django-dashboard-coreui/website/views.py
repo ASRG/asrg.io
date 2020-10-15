@@ -1,7 +1,11 @@
+import pytz
+from datetime import datetime
+
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, get_object_or_404
+from django.utils import timezone
 
 from .models import JobPosting, Contributor, Announcement
 from authentication.models import Chapter, User
@@ -9,10 +13,11 @@ from events.models import Event
 from website.filters import JobPostingFilters
 
 def landing(request):
+    age = round((timezone.now() - datetime(2017, 7, 18, 0, 0, 0, 0, pytz.UTC)).days / 365.25, 1)
     context = {
         "members": User.objects.exclude(chapter=None).count(),
         "locations": Chapter.objects.all().count(),
-        "age": 2.5,
+        "age": age,
         "meetings": Event.objects.all().count(),
     }
     return render(request, "landing.html", context=context)
