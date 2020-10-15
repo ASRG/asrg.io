@@ -19,7 +19,7 @@ from website.models import Announcement
 
 @login_required(login_url="/login/")
 def index(request):
-    context = {"chapters": Chapter.objects.all(), "announcements": Announcement.objects.all()}
+    context = {"chapters": Chapter.objects.all(), "announcements": Announcement.objects.all(), "main_dashboard": True}
     return render(request, "index.html", context)
 
 
