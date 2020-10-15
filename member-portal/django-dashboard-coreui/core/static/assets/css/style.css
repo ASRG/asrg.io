@@ -5939,9 +5939,9 @@ html:not([dir="rtl"]) .was-validated .custom-select:invalid, html:not([dir="rtl"
   border-bottom: 1px solid #d8dbe0;
 }
 
-.c-header.c-header-with-subheader {
-  height: 104px;
-}
+/*.c-header.c-header-with-subheader {
+   height: 104px; 
+} */
 
 .c-header.c-header-with-subheader .c-header-nav {
   height: 56px;
@@ -16187,7 +16187,7 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .alert-box {
-  background-color: #fffbcc;
+  background-color: #3c4b64; 
   color: #777;
   font-size: 14px;
   line-height: 23px;
@@ -16196,7 +16196,7 @@ a.text-dark:hover, a.text-dark:focus {
   font-family:Arial, Helvetica, sans-serif;
 }
 .alert-box .badge {
-  background-color: #f58f2a;
+  background-color: #ed4933;;
   border-radius: 3px;
   color: #fff;
   margin-left: 4px;
