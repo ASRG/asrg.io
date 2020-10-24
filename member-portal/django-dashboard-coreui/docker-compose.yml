@@ -18,10 +18,13 @@ services:
       - db_network
   asrg-app:
     container_name: asrg-app
-    restart: always
+    restart: unless-stopped
     command: /opt/code/docker-entrypoint.sh
+    env_file: ./django_app/.env
+    volumes:
+      - ./django_app/:/opt/code
     environment:
-      - WAIT_HOSTS= asrg-db:5432
+      - WAIT_HOSTS=asrg-db:5432
     build: .
     ports:
       - "5005:5005"
