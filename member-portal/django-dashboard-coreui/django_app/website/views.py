@@ -57,7 +57,7 @@ def job_posting(request):
         "job_posting.html",
         {
             'job_postings': job_postings,
-        },
+        }
     )
 
 
@@ -69,7 +69,7 @@ def job_details(request, job_id):
         "job_details.html",
         {
             'job': job,
-        },
+        }
     )
 
 
