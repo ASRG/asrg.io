@@ -12,8 +12,7 @@ services:
       - POSTGRES_PASSWORD=changeme_pass
       - PGDATA=/var/lib/postgresql/data/asrg/
     volumes:
-      - db_data:/var/lib/postgresql/data/
-      - ./db_backup/:/docker-entrypoint-initdb.d
+      - ./db_backup/:/var/lib/postgresql/data
     networks:
       - db_network
   asrg-app:
