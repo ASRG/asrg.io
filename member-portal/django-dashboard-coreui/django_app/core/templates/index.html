@@ -32,10 +32,10 @@
    border-bottom: 2px solid black;
    text-transform: uppercase;
  }</style>
-    <h3 class="mb-5 display-4 test2">Announcement</h3>
+    <h3 class="mb-5 display-4 test2">Announcements</h3>
    <div class="container">
 <div class="alert-box">
-    <span class="badge">Announcement</span> <br>
+    <span class="badge">Announcements</span> <br>
            {% for announcement in announcements %}
            <h1>{{ announcement.title }}</h1>
            <p>{{ announcement.announcement }}</p>
@@ -61,12 +61,12 @@
    border-bottom: 2px solid black;
    text-transform: uppercase;
  }</style>
-    <h3 class="mb-5 display-4 test2">Links</h3>
+    <h3 class="mb-5 display-4 test2">Resources</h3>
     <div class="container">
     <div class="row">
         <div class="col-sm-4 py-2">
             <div class="card card-body h-100">
-      <div class="card-body text-center">
+      <div class="card-body text-center" style="padding-top: 30px !important">
         <img src="/static/assets/img/knowledge.png" alt="Knowledge" width="65" height="53">
         <p class="card-text"><b>Knowledge</b></p>
         <img src="/static/assets/img/meetup.svg" alt="Meetups" width="25" height="50"> <a href="https://www.meetup.com/de-DE/Automotive-Security-Research-Group-Detroit/" target="_blank">  Monthly Meetups</a><br>
@@ -80,7 +80,7 @@
         <div class="col-sm-4 py-2">
             <div class="card card-body h-100">
                 <div class="card-body">
-      <div class="card-body text-center">
+      <div class="card-body text-center" style="padding-top: 0px !important">
         <img src="/static/assets/img/networking.png" alt="Networking" width="65" height="65">
         <p class="card-text"><b>Networking</b></p>
         <img src="/static/assets/img/linkedin.svg" alt="Linkedin" width="25" height="50"> <a href="https://www.linkedin.com/company/automotive-security-research-group/" target="_blank">  Linkedin</a><br>
@@ -93,7 +93,7 @@
         </div>
         <div class="col-sm-4 py-2">
             <div class="card h-100 card-body">
-      <div class="card-body text-center">
+      <div class="card-body text-center" style="padding-top: 40px !important">
         <img src="/static/assets/img/collaboration.png" alt="Collaboration" width="65" height="44">
         <p class="card-text"><b>Collaboration</b></p>
         <img src="/static/assets/img/project.svg" alt="Projects" width="25" height="50"> <a href="https://docs.asrg.io/collaboration/projects/" target="_blank">  Projects</a><br>

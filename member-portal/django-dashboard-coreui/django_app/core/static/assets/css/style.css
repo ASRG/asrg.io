@@ -5934,7 +5934,7 @@ html:not([dir="rtl"]) .was-validated .custom-select:invalid, html:not([dir="rtl"
   flex-direction: row;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  height: 56px;
+  height: 60px;
   background: #fff;
   border-bottom: 1px solid #d8dbe0;
 }
@@ -8647,11 +8647,12 @@ html:not([dir="rtl"]) .c-sidebar-close {
   display: -ms-flexbox;
   display: flex;
   -ms-flex: 0 0 56px;
-  flex: 0 0 56px;
+  flex: 0 0 60px;
   -ms-flex-align: center;
   align-items: center;
   -ms-flex-pack: center;
   justify-content: center;
+  height: 60px;
 }
 
 .c-sidebar-brand .c-sidebar-brand-minimized {
