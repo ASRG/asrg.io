@@ -19,7 +19,7 @@ services:
     container_name: asrg-app
     restart: unless-stopped
     command: /opt/code/docker-entrypoint.sh
-    env_file: ./django_app/.env
+    env_file: ./.env
     volumes:
       - ./django_app/:/opt/code
     environment:
