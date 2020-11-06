@@ -14,7 +14,8 @@ urlpatterns = [
     path("", include("authentication.urls")),  # authentication routes
     path("", include("website.urls")),
     path("", include("app.urls")),  # app routes
-    path("", include("events.urls")) # events routes
+    path("", include("events.urls")), # events routes
+    path("", include("projects.urls")), # projects routes
 ]
 
 if DEBUG:
