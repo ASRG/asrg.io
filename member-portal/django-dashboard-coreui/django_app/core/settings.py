@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "leaflet",
     'events',
     'projects',
+    'technical_committees',
 ]
 
 MIDDLEWARE = [
