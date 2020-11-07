@@ -34,6 +34,7 @@ class Event(models.Model):
     status = models.CharField(max_length=2, choices=STATUS_CHOICES)
     event_type = models.CharField(max_length=11, choices=EVENT_TYPE_CHOICES)
     mode = models.CharField(max_length=9, choices=MODE_CHOICES)
+    picture = models.ImageField(upload_to='events', blank=True)
     location = models.ForeignKey(
         'authentication.Chapter', related_name='event', on_delete=models.CASCADE)
     host = models.CharField(max_length=50, blank=True)
@@ -48,7 +49,7 @@ class Event(models.Model):
     presenter_picture = ImageSpecField(source='pres_img',  processors=[
                                        ResizeToFill(300, 300)])  # sized image
     presenter_picture_thumbnail = ImageSpecField(source='pres_img',  processors=[
-                                       ResizeToFill(90, 90)])  # thumbnail image
+        ResizeToFill(90, 90)])  # thumbnail image
     presenter_profile_url = models.URLField(
         blank=False, verbose_name='Public Profile URL')
     presenter_company_name = models.CharField(
