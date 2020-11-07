@@ -34,7 +34,6 @@ class Event(models.Model):
     status = models.CharField(max_length=2, choices=STATUS_CHOICES)
     event_type = models.CharField(max_length=11, choices=EVENT_TYPE_CHOICES)
     mode = models.CharField(max_length=9, choices=MODE_CHOICES)
-    picture = models.ImageField(upload_to='events', blank=True)
     location = models.ForeignKey(
         'authentication.Chapter', related_name='event', on_delete=models.CASCADE)
     host = models.CharField(max_length=50, blank=True)
