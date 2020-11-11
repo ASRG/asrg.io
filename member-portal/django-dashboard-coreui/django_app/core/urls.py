@@ -16,6 +16,7 @@ urlpatterns = [
     path("", include("app.urls")),  # app routes
     path("", include("events.urls")), # events routes
     path("", include("projects.urls")), # projects routes
+    path("", include("locations.urls")), # locations routes
     path("", include("technical_committees.urls")), # technical_committees routes
 ]
 
