@@ -30,7 +30,7 @@ STATUS_CHOICES = (
 
 
 class Event(models.Model):
-    title = models.CharField(max_length=80, blank=False)
+    title = models.CharField(max_length=160, blank=False)
     status = models.CharField(max_length=2, choices=STATUS_CHOICES)
     event_type = models.CharField(max_length=11, choices=EVENT_TYPE_CHOICES)
     mode = models.CharField(max_length=9, choices=MODE_CHOICES)
@@ -43,7 +43,7 @@ class Event(models.Model):
         max_length=50, blank=False, verbose_name='Last Name')
     presenter_designation = models.CharField(
         max_length=80, blank=False, verbose_name='Designation')
-    pres_img = ProcessedImageField(upload_to='events/presenters', blank=False,
+    pres_img = ProcessedImageField(upload_to='events/presenters', blank=True,
                                    verbose_name='Presenter Picture')  # processedimagefield
     presenter_picture = ImageSpecField(source='pres_img',  processors=[
                                        ResizeToFill(300, 300)])  # sized image
@@ -54,7 +54,7 @@ class Event(models.Model):
     presenter_company_name = models.CharField(
         max_length=100, blank=False, verbose_name='Company Name')
     pres_com_log = ProcessedImageField(
-        upload_to='events/company_logos', blank=False, verbose_name='Company Logo')  # prcessedimagefield
+        upload_to='events/company_logos', blank=True, verbose_name='Company Logo')  # prcessedimagefield
     presenter_company_logo = ImageSpecField(source='pres_com_log',  processors=[
                                             ResizeToFill(200, 200)])  # sized image
     presenter_company_website = models.URLField(
@@ -71,7 +71,7 @@ class Event(models.Model):
     end_time = models.TimeField(blank=False)
 
     added_by = models.ForeignKey(
-        "authentication.User", related_name='event', on_delete=models.CASCADE)
+        "authentication.User", related_name='event', null=True, on_delete=models.CASCADE)
     added_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

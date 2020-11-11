@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
             name='Event',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=80)),
+                ('title', models.CharField(max_length=160)),
                 ('status', models.CharField(choices=[('1', 'In Plan'), ('2', 'Confirmed'), ('3', 'Invited'), ('4', 'Completed'), ('5', 'Cancelled')], max_length=2)),
                 ('event_type', models.CharField(choices=[('Webinar', 'Webinar'), ('Meeting', 'Meeting'), ('CTF', 'CTF'), ('Workshop', 'Workshop'), ('Conference', 'Conference'), ('Tournament', 'Tournament')], max_length=11)),
                 ('mode', models.CharField(choices=[('Internal', 'Internal'), ('External', 'External')], max_length=9)),

@@ -1,5 +1,5 @@
 COUNTRIES = (
-    ('', '--Country--'),
+    ('', 'Country'),
     ('Afghanistan', 'AFG - Afghanistan'),
 ('Albania', 'ALB - Albania'),
 ('Algeria', 'DZA - Algeria'),

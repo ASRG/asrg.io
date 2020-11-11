@@ -61,7 +61,7 @@ class SignUpForm(UserCreationForm):
                 "class": "form-control"
             }
         ))
-    chapter = forms.ModelChoiceField(queryset=Chapter.objects.all(),label="",empty_label="Chapter",
+    chapter = forms.ModelChoiceField(queryset=Chapter.objects.all(),label="",empty_label="Location",
         widget=forms.Select(
             attrs={
                 "placeholder" : "Chapter",                
