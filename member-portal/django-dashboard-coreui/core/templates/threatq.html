@@ -24,9 +24,21 @@
 
     <section class="pricing" id="example">
       <div class="container">
-        <iframe is="x-frame-bypass" width="100%" height="100%"
+        <h1>Google</h1>
+        <iframe is="x-frame-bypass"
+                style="position: relative; height: 100%; width: 100%; border: 1;"
                 src="https://www.google.com"></iframe>
-        <iframe is="x-frame-bypass" width="100%" height="100%"
+        <br/>
+        <h1>ThreatQ</h1>
+        <!-- [CORS Anywhere] https://github.com/Rob--W/cors-anywhere -->
+        <!-- [ThreatQ Ask to not be blacklisted ] https://stackoverflow
+        .com/questions/40866219/how-to-resolve-iframe-cross
+        -domain-issue#answer-40866294 -->
+        <!-- [iframe] https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe -->
+        <iframe is="x-frame-bypass"
+                crossOrigin="anonymous"
+                referrerPolicy="origin"
+                style="position: relative; height: 100%; width: 100%; border: 1;"
                 src="https://intel.asrg.io"></iframe>
       </div>
     </section>
