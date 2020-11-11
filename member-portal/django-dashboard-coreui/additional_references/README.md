@@ -222,6 +222,18 @@ Visit [http://localhost:8001](http://localhost:8001) in your browser. The app sh
 
 <br/>
 
+### Automatic migration of data
+---
+
+The database gets populated with the chapters that already exist before the creation of this django app, further chapters need to be added from the Admin interface.
+If you want the events as well, there is a migration already created for this: `/member-portal/django-dashboard-coreui/django_app/events/migrations/0003_populate_initial_data.py`, in order for this to work you need to add the file `asrg_events.csv` to the following path:
+`/member-portal/django-dashboard-coreui/django_app/events/migrations/`. The `asrg_events.csv` file has the following header:
+```
+ASRG,Host,Event,Check,Presenter,Organization,Type,Status,A,,Location,Start,End
+```
+
+<br/>
+
 ## Troubleshooting
 ### django.db.utils.OperationalError: could not translate host name "postgres" to address: Unknown host
 > **Solution:** The issue was fixed, after latest changes update.
@@ -277,13 +289,6 @@ A dashboard is a set of pages that are easy to read and offer information to the
 **[CoreUI Dashboard](https://coreui.io/?ref=appseed)** admin dashboard delivers a bunch of responsive, customizable, and reusable components you need to create modern, beautiful, responsive apps. CoreUI makes app development lightning-fast - provided by **CoreUI**.
 
 <br />
-### Automatic migration of data
-The database gets populated with the chapters that already exist before the creation of this django app, further chapters need to be added from the Admin interface.
-If you want the events as well, there is a migration already created for this: `/member-portal/django-dashboard-coreui/django_app/events/migrations/0003_populate_initial_data.py`, in order for this to work you need to add the file `asrg_events.csv` to the following path:
-`/member-portal/django-dashboard-coreui/django_app/events/migrations/`. The `asrg_events.csv` file has the following header:
-```
-ASRG,Host,Event,Check,Presenter,Organization,Type,Status,A,,Location,Start,End
-```
 
 ---
 
