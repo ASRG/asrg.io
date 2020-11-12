@@ -4,131 +4,56 @@
 {% block title %}Projects{% endblock %}
 
 {% block content %}
-<style>
-    table
-{
-    table-layout: fixed;
-}
-
-td
-{
-    /* border: 1px solid green; */
-    overflow: hidden;
-}
-</style>
-
 <article id="main">
     <header>
         <h2>ASRG | PROJECTS</h2>
-        <!-- NEXT UPCOMING EVENT IN HEADER -->
-        <!-- {% if next_event %}
-        <h3>{{ next_event.title|capfirst }}</h3>
-        <li style="list-style: none;">
-            {% if next_event.link %}
-            <a id="join-btn"
-               href="{{ next_event.link }}"
-               class="button primary">Join the LiveStream</a>
-            {% endif %} -->
-        </li>
-        <!-- NEXT UPCOMING EVENT IN HEADER END -->
+        
     </header>
     <section class="wrapper style5" style="padding-top: 70px;">
         <div class="inner">
-            <!-- <h2>Next Event</h2>
+           
+          
 
-            <h4>What: <b>{{ next_event.event_type }} </b></h4>
-            <h4>When: <b>{{ next_event.start_date }} | {{ next_event.start_time }} {{ next_event.timezone }} </b></h4>
-            <h4>Where: <b>
-                
-                {% if next_event.link %}
-                    <a href="{{ next_event.link }}">LiveStream</a>
-                {% elif next_event.event_address %}
-                    {{ next_event.event_address }}
-                {% endif %}</b></h4>
-
-            <h4>Who: <b>
-                {{ next_event.presenter_first_name|capfirst }} {{ next_event.presenter_last_name|capfirst }}, 
-                {{ next_event.presenter_designation|capfirst }} at 
-                {% if next_event.presenter_company_website %} 
-                    <a href="{{ event.presenter_company_website }}">{{ next_event.presenter_company_name|capfirst }}</a></b>
-                {% else %}
-                    {{ next_event.presenter_company_name|capfirst }}
-                {% endif %}
-            </h4>
-            <hr>
-            {% endif %} -->
-            
-            <!-- NEXT UPCOMING EVENT END -->
-        </div>
-
-    </section>
-
-    
-
-    <section class="wrapper style5">
-        <div class="inner">
-            <!-- Past Events -->
-            <!-- {% if passed_events %}<br> -->
-                <h3 style="text-align: center;">PROJECTS</h3>
-            <!-- Past Events Table -->
-
-                <div>
-                    <table class="table table-responsive-sm table-hover table-outline mb-0 events-table">
-                        <thead class="thead-light">
-                            <tr>
-                                <th  style="width: 10%;"class="text-center">Short Name</th>
-                                <th style="width: 30%;">Name</th>
-                                <th style="width: 60%;">Description</th>
-                            </tr>
-                        </thead>
-                        <!-- {% for event in passed_events %}
-                        <tbody>
-                            <tr>
-                                <td  style="width: 10%;" class="text-center">
-                                    <div>
-                                        <img src="{{ event.presenter_picture_thumbnail.url }}" alt="image not loaded">
-                                    </div>
-                                </td>
-                                <td  style="width: 50%;" class="text-center">
-                                    <div>
-                                        <h3><a href="{% url 'event_details' event.pk %}"> {{ event.title|capfirst }}</a></h3>
-                                    </div>
-                                </td>
-                                <td  style="width: 20%;">
-                                    <a href="{{ event.presenter_profile_url }}" target="_blank">
-                                        <div>{{ event.presenter_first_name }} {{ event.presenter_last_name }}</div>
-                                    </a>
-
-                                    <a href="{{ event.presenter_company_website }}" target="_blank">
-                                        <div class="small text-muted"><span>{{ event.presenter_company_name }}</span></div>
-                                    </a>
-                                </td>
-                                <td  style="width: 10%;" class="text-center">
-                                    {{ event.location }}
-                                </td>
-                                <td  style="width: 10%;">
-                                    <div class="small text-muted">{{ event.start_date }}</div>
-
-                                </td>
-                            </tr>
-                            {% endfor %} -->
-                        </tbody>
-                    </table>
-
+         {% for project in projects %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+        .bcontent {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container bcontent" style="">
+        <h2>{{ project.name }}</h2>
+        <hr />
+        <div class="card" style="width: 650px;">
+            <div class="row no-gutters">
+                <div class="col-sm-5">
+                    <img class="card-img" src="{{ project.project_picture.url }}">
                 </div>
-            <!-- {% endif %} -->
-            <!-- Past Events Table END -->
-
-
+                <div class="col-sm-7">
+                    <div class="card-body">
+                        <p class="card-text">{{ project.short_name }}</p>
+                        <p class="card-text">{{ project.project_status }}</p>
+                        <p class="card-text">{{ project.description }}</p>
+                       
+                    </div>
+                </div>
+            </div>
         </div>
-
-    </section>
-
-
-
-
+    </div>
+    <br><br><br><br>
+    {% endfor %}
+</body>
 
 
+           
+</section>
 </article>
 
 
