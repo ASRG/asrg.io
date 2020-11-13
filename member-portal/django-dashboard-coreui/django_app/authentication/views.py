@@ -52,10 +52,11 @@ def register_user(request):
             form.save(commit=False)
             chapter = form.cleaned_data.get("chapter")
             user_obj = form.save()
-            user_obj.chapter.add(chapter)
-            # Add the permissions for the respective chapter as well
-            perm = Permission.objects.get(codename=chapter)
-            user_obj.user_permissions.add(perm)
+            if chapter:
+                user_obj.chapter.add(chapter)
+                # Add the permissions for the respective chapter as well
+                perm = Permission.objects.get(codename=chapter)
+                user_obj.user_permissions.add(perm)
 
             username = form.cleaned_data.get("username")
             raw_password = form.cleaned_data.get("password1")
@@ -89,7 +90,7 @@ def account_edit_view(request):
         profile = UserProfile(user=request.user)
     context['profile'] = profile
 
-    if request.POST: 
+    if request.POST:
         acc_form = f.UserUpdateForm(request.POST, instance=request.user)
         prof_form = UserProfileForm(request.POST, request.FILES, instance=profile)
 
@@ -102,7 +103,6 @@ def account_edit_view(request):
             # Add the permissions for the respective chapter as well
             perm = Permission.objects.get(codename=chapter)
             user_obj.user_permissions.add(perm)
-
 
             profile = prof_form.save(commit=False)
             profile.user = request.user
@@ -137,7 +137,7 @@ def account_edit_view(request):
         #     profile.save()
         # else:
         #     context["profile_form"] = prof_form
-            # return redirect('profile')#######################################################################
+        # return redirect('profile')#######################################################################
     else:
         acc_form = f.UserUpdateForm(
             initial={
@@ -167,7 +167,7 @@ def account_edit_view(request):
                 "skills": profile.skills,
                 "fb_link": profile.fb_link,
                 "tw_link": profile.tw_link,
-                "ig_link": profile.ig_link,                
+                "ig_link": profile.ig_link,
                 "profile_picture": profile.profile_picture,
             }
         )
