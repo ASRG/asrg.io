@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block title %}Locations{% endblock %}
+
+{% block content %}
+<article id="main">
+    <header>
+        <h2>ASRG | LOCATIONS</h2>
+        
+    </header>
+    <section class="wrapper style5" style="padding-top: 70px;">
+        <div class="inner">
+           
+          <div style="display: block;
+  margin-left: 340px;
+  margin-right: auto;
+  width: 50%;">
+          <img style="vertical-align:middle;" src="/static/assets/img/meetup.svg" alt="Security" width="80" height="80" class="center"> <a href=" https://www.meetup.com/Automotive-Security-Research-Group-Detroit/events/274516784/" target="_blank"> MONTHLY MEETUPS</a></div><br><br>
+
+         {% for location in locations %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+        .bcontent {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container bcontent" style="">
+        <h2>{{ location.name }}</h2>
+        <hr />
+        <div class="card" style="width: 650px;">
+            <div class="row no-gutters">
+                <div class="col-sm-5">
+                    <img class="card-img" src="{{ location.picture.url }}">
+                </div>
+                <div class="col-sm-7">
+                    <div class="card-body">
+                        <p class="card-text">{{ location.short_name }}</p>
+                        <p class="card-text">{{ location.lead }}</p>
+                        <p class="card-text">{{ location.country }}</p>
+                        <p class="card-text">{{ location.city }}</p>
+                        <p class="card-text">{{ location.description }}</p>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br><br><br>
+    {% endfor %}
+</body>
+
+
+           
+</section>
+</article>
+
+
+
+
+
+
+
+
+{% endblock content %}

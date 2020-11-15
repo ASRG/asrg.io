@@ -1,20 +1,12 @@
 FROM python:3.6
-
-
 ENV FLASK_APP run.py
 
 RUN apt-get update && apt-get install -y libgdal-dev g++ --no-install-recommends && apt-get clean -y
-
 RUN mkdir -p /opt/code
-COPY manage.py gunicorn-cfg.py requirements.txt .env* docker-entrypoint.sh /opt/code/
-RUN  chmod 777 /opt/code/docker-entrypoint.sh
-COPY app /opt/code/app/
-COPY website /opt/code/website/
-COPY authentication /opt/code/authentication/
-COPY core /opt/code/core/
-COPY events /opt/code/events/
+COPY ./django_app/ /opt/code/
 WORKDIR /opt/code
-
 RUN pip install --upgrade pip && pip install -r requirements.txt
+
+RUN chmod 777 /opt/code/docker-entrypoint.sh
 
 EXPOSE 5005

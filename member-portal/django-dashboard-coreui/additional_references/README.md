@@ -1,4 +1,3 @@
-
 # [Django Dashboard CoreUI](https://appseed.us/admin-dashboards/django-dashboard-coreui)
 
 > **Open-Source Admin Dashboard** coded in **Flask Framework** by **AppSeed** [Web App Generator](https://appseed.us/app-generator) - features:
@@ -98,7 +97,8 @@ $ touch .env
 ### The .env file
 A hidden file used by Dockerfile and docker-compose, in order to enable environment variables
  while running/building with docker commands.
-* Make sure this file is `.gitignored` but present in path: `~\asrg.io\member-portal\django-dashboard-coreui\.env`
+* Make sure this file is `.gitignored` but present in path: `~\asrg.io\member-portal\django
+-dashboard-coreui\django_app\.env`
 * We need to specify Django to connect using this specific DB. By default, it will use sqlite if
  not declared. 
 
@@ -143,7 +143,21 @@ docker-compose stop && docker-compose build && docker-compose up -d --remove-orp
 
 > Build (update) specific container (db, ui, etc.) with docker-compose
 
-In order to not rebuild the whole application after an update. You can run the next commands to update containers based on the specific service:
+The docker container for asrg-app is using a volume as mount binding point between the host files
+ and the running docker container.
+
+It also exists an option for gunicorn to reload every time it detects a change, so we don't have
+ to restart the Docker container each time changes are done. This is only when DEBUG is set to
+  True *(DO NOT run --reload for gunicorn in production)*.
+
+* `~\member-portal\django-dashboard-coreui\djano_app\gunicorn-cfg.py`
+```python
+if DEBUG:
+    reload = True
+```
+
+If a rebuild stills required after some changes. You can run the next commands to update an
+ specific container:
 
 ```bash
 # [Unix] Stop and re build only the dashboard-ui for updates: asrg-app
@@ -205,6 +219,18 @@ Serving on http://localhost:8001
 ```
 
 Visit [http://localhost:8001](http://localhost:8001) in your browser. The app should be up & running.
+
+<br/>
+
+### Automatic migration of data
+---
+
+The database gets populated with the chapters that already exist before the creation of this django app, further chapters need to be added from the Admin interface.
+If you want the events as well, there is a migration already created for this: `/member-portal/django-dashboard-coreui/django_app/events/migrations/0003_populate_initial_data.py`, in order for this to work you need to add the file `asrg_events.csv` to the following path:
+`/member-portal/django-dashboard-coreui/django_app/events/migrations/`. The `asrg_events.csv` file has the following header:
+```
+ASRG,Host,Event,Check,Presenter,Organization,Type,Status,A,,Location,Start,End
+```
 
 <br/>
 

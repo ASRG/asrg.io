@@ -12,16 +12,17 @@ services:
       - POSTGRES_PASSWORD=changeme_pass
       - PGDATA=/var/lib/postgresql/data/asrg/
     volumes:
-      - db_data:/var/lib/postgresql/data/
-      - ./db_backup/:/docker-entrypoint-initdb.d
+      - ./db_backup/:/var/lib/postgresql/data
     networks:
       - db_network
   asrg-app:
     container_name: asrg-app
-    restart: always
+    restart: unless-stopped
     command: /opt/code/docker-entrypoint.sh
+    volumes:
+      - ./django_app/:/opt/code
     environment:
-      - WAIT_HOSTS= asrg-db:5432
+      - WAIT_HOSTS=asrg-db:5432
     build: .
     ports:
       - "5005:5005"
