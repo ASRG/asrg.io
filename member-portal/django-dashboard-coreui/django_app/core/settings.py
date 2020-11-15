@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "website",
     "leaflet",
     'events',
+    'locations',
     'projects',
     'technical_committees',
 ]

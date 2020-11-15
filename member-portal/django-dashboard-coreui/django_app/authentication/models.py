@@ -52,17 +52,16 @@ class Chapter(models.Model):
                 self.longitude = location.longitude
                 self.save()
         return (self.latitude, self.longitude)
-    
+
     def __str__(self):
         return self.location
-    
+
     class Meta:
         permissions = []
 
 
 class User(AbstractUser):
-    chapter = models.ManyToManyField(
-        "Chapter", blank=False, related_name="users")
+    chapter = models.ManyToManyField("Chapter", blank=True, null=True, related_name="users")
     # gender = models.CharField(max_length=25, choices=GENDER_CHOICES, blank=False, default=GENDER_CHOICES[0])
     occupational_status = models.CharField(
         max_length=50,
@@ -70,9 +69,7 @@ class User(AbstractUser):
         blank=False,
         default=OCCUPATIONAL_STATUS_CHOICES[0],
     )
-    country = models.CharField(
-        max_length=150, choices=COUNTRY_CHOICES, default=COUNTRY_CHOICES[0]
-    )
+    country = models.CharField(max_length=150, choices=COUNTRY_CHOICES, default=COUNTRY_CHOICES[0])
 
     def __str__(self):
         return self.username
