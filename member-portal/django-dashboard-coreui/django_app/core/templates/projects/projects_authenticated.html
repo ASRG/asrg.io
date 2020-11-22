@@ -38,7 +38,9 @@
         <div class="card" style="width: 600px;">
             <div class="row no-gutters">
                 <div class="col-sm-5">
-                    <img class="card-img" src="{{ project.project_picture.url }}">
+                    {% if project.project_picture %}
+                        <img class="card-img" src="{{ project.project_picture.url }}">
+                    {% endif %}
                 </div>
                 <div class="col-sm-7">
                     <div class="card-body">

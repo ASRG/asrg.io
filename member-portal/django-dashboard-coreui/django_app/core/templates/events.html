@@ -85,7 +85,9 @@ td
                                 <tr>
                                     <td  style="width: 10%;" class="text-center">
                                         <div>
-                                            <img src="{{ event.presenter_picture_thumbnail.url }}" alt="image not loaded">
+                                            {% if event.presenter_picture_thumbnail %}
+                                                <img src="{{ event.presenter_picture_thumbnail.url }}" alt="image not loaded">
+                                            {% endif %}
                                         </div>
                                     </td>
                                     <td  style="width: 50%;" class="text-center">
@@ -145,7 +147,9 @@ td
                             <tr>
                                 <td  style="width: 10%;" class="text-center">
                                     <div>
-                                        <img src="{{ event.presenter_picture_thumbnail.url }}" alt="image not loaded">
+                                        {% if event.presenter_picture_thumbnail %}
+                                            <img src="{{ event.presenter_picture_thumbnail.url }}" alt="image not loaded">
+                                        {% endif %}
                                     </div>
                                 </td>
                                 <td  style="width: 50%;" class="text-center">

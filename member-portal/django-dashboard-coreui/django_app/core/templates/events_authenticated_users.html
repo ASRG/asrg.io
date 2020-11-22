@@ -123,8 +123,10 @@
                             <td style="width: 10%; vertical-align: middle;"
                                 class="text-center">
                                 <div>
+                                    {% if event.presenter_picture_thumbnail %}
                                     <img src="{{ event.presenter_picture_thumbnail.url }}"
                                          alt="image not loaded">
+                                    {% endif %}
                                 </div>
                             </td>
                             <td style="width: 50%; vertical-align: middle;"
