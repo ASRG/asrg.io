@@ -102,19 +102,20 @@ A hidden file used by Dockerfile and docker-compose, in order to enable environm
 * We need to specify Django to connect using this specific DB. By default, it will use sqlite if
  not declared. 
 * If you wish to change the ports for NGINX you can change them in this file
-* If you want to test with a local https certificate you can add the path to the certifiactes on the below config file.
- Decommenting the line from docker-compose.yml with this patt is also necessary, as well as decommenting the lines from the
- nginx config(./nginx/asrg.conf)
- 
+* If you want to test with a local https certificate you can add the path to the certificates on
+ the below config file.
+  * Uncomment the line from `docker-compose.yml` with this path is also necessary, as well as
+   uncommenting the lines from the nginx `config(./nginx/asrg.conf)`
+
 
 ``` bash
 # DJANGO CONFIG 
-DEBUG=True
+DEBUG=True  # Set to false in PROD
 DATABASE_URL=postgres://changeme:changeme_pass@asrg-postgres:5432/asrg
-ALLOWED_HOSTS="localhost,  127.0.0.1" #  modify this line if you want to add other ALLOWED_HOSTS
+ALLOWED_HOSTS="localhost,  127.0.0.1"  # Modify this line if you want to add other ALLOWED_HOSTS
 ASRG_APP_PORT=5005
 
-# POSTGRES CCONFIG
+# POSTGRES CONFIG
 POSTGRES_USER=changeme
 POSTGRES_PORT=5432
 POSTGRES_DB=asrg
@@ -122,7 +123,7 @@ POSTGRES_PASSWORD=changeme_pass
 PGDATA=/var/lib/postgresql/data/asrg/
 
 # NGINX CONFIG
-CERTS_PATH="./nginx" # Change this with the path to your certs
+CERTS_PATH="./nginx"  # Change this with the path to your certs
 NGINX_HTTP_PORT=8080
 NGINX_HTTPS_PORT=443
 SERVER_NAME=localhost
@@ -172,7 +173,7 @@ It also exists an option for gunicorn to reload every time it detects a change, 
  to restart the Docker container each time changes are done. This is only when DEBUG is set to
   True *(DO NOT run --reload for gunicorn in production)*.
 
-* `~\member-portal\django-dashboard-coreui\djano_app\gunicorn-cfg.py`
+* `~\member-portal\django-dashboard-coreui\django_app\gunicorn-cfg.py`
 ```python
 if DEBUG:
     reload = True
