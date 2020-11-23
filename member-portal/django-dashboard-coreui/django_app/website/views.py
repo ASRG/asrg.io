@@ -16,7 +16,7 @@ from website.filters import JobPostingFilters
 def landing(request):
     age = round((timezone.now() - datetime(2017, 7, 18, 0, 0, 0, 0, pytz.UTC)).days / 365.25, 1)
     context = {
-        "members": User.objects.exclude(chapter=None).count(),
+        "members": 5657+User.objects.exclude(chapter=None).count(),
         "locations": Chapter.objects.all().count(),
         "age": age,
         "meetings": Event.objects.all().count(),
