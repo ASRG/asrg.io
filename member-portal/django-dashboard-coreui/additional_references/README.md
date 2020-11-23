@@ -101,10 +101,32 @@ A hidden file used by Dockerfile and docker-compose, in order to enable environm
 -dashboard-coreui\django_app\.env`
 * We need to specify Django to connect using this specific DB. By default, it will use sqlite if
  not declared. 
+* If you wish to change the ports for NGINX you can change them in this file
+* If you want to test with a local https certificate you can add the path to the certifiactes on the below config file.
+ Decommenting the line from docker-compose.yml with this patt is also necessary, as well as decommenting the lines from the
+ nginx config(./nginx/asrg.conf)
+ 
 
 ``` bash
+# DJANGO CONFIG 
 DEBUG=True
 DATABASE_URL=postgres://changeme:changeme_pass@asrg-postgres:5432/asrg
+ALLOWED_HOSTS="localhost,  127.0.0.1" #  modify this line if you want to add other ALLOWED_HOSTS
+ASRG_APP_PORT=5005
+
+# POSTGRES CCONFIG
+POSTGRES_USER=changeme
+POSTGRES_PORT=5432
+POSTGRES_DB=asrg
+POSTGRES_PASSWORD=changeme_pass
+PGDATA=/var/lib/postgresql/data/asrg/
+
+# NGINX CONFIG
+CERTS_PATH="./nginx" # Change this with the path to your certs
+NGINX_HTTP_PORT=8080
+NGINX_HTTPS_PORT=443
+SERVER_NAME=localhost
+DOLLAR='$'
 ```
 <br/>
 
@@ -118,8 +140,8 @@ $ sudo docker-compose pull && sudo docker-compose build && sudo docker-compose u
 docker-compose pull && docker-compose build && docker-compose up -d --remove-orphans
 ```
 
-Visit [http://localhost:5005](http://localhost:5005) in your browser. The app should be up & running.
-* For [login](http://localhost:5005/login/)
+Visit [http://localhost:8080](http://localhost:8080) in your browser. The app should be up & running.
+* For [login](http://localhost:8080/login/)
 
 > Stop and remove the app with docker-compose
 
@@ -264,7 +286,7 @@ $ docker image prune
 # 9. Finally, pull, build and run the dashboard (clean/fresh)
 $ docker-compose pull && docker-compose build && docker-compose up -d --remove-orphans
 # 10. Check all containers running then go to the site:
-http://localhost:5005/login/
+http://localhost:8080/login/
 ```
 
 <br/>
