@@ -12,7 +12,7 @@ from .settings import MEDIA_ROOT, MEDIA_URL, DEBUG
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", include("authentication.urls")),  # authentication routes
-    path("", include("website.urls")),
+    path("", include("website.urls")), # website routes
     path("", include("app.urls")),  # app routes
     path("", include("events.urls")), # events routes
     path("", include("projects.urls")), # projects routes
