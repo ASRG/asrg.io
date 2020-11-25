@@ -125,11 +125,11 @@ PGDATA=/var/lib/postgresql/data/asrg/
 
 # NGINX CONFIG
 # Change this with the path to your certs
-CERTS_PATH="./nginx"
+CERTS_PATH=./nginx
 NGINX_HTTP_PORT=8080
 NGINX_HTTPS_PORT=443
 SERVER_NAME=localhost
-DOLLAR='$'
+DOLLAR=$
 ```
 <br/>
 
