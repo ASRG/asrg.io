@@ -34,10 +34,10 @@
             <h4>Who: <b>
                 {% if event.presenter_profile_url %}
                     <a href="{{ event.presenter_profile_url }}" target="_blank">
-                        {{ event.presenter_first_name|capfirst }} {{ event.presenter_last_name|capfirst }},
+                        {{ event.presenter_first_name|capfirst }} {{ event.presenter_last_name|capfirst }}
                     </a>
                 {% else %}
-                    {{ event.presenter_first_name|capfirst }} {{ event.presenter_last_name|capfirst }},
+                    {{ event.presenter_first_name|capfirst }} {{ event.presenter_last_name|capfirst }}
                 {% endif %}
 
                 {{ event.presenter_designation|capfirst }} at 

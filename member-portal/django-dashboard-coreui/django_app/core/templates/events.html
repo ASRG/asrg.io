@@ -47,7 +47,7 @@ td
                 {% endif %}</b></h4>
 
             <h4>Who: <b>
-                {{ next_event.presenter_first_name|capfirst }} {{ next_event.presenter_last_name|capfirst }}, 
+                {{ next_event.presenter_first_name|capfirst }} {{ next_event.presenter_last_name|capfirst }} 
                 {{ next_event.presenter_designation|capfirst }} at 
                 {% if next_event.presenter_company_website %} 
                     <a href="{{ event.presenter_company_website }}">{{ next_event.presenter_company_name|capfirst }}</a></b>

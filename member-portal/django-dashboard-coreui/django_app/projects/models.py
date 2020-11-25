@@ -4,9 +4,9 @@ from django.db import models
 
 
 PROJECT_STATUS_CHOICES = (
-    ('Planning Phase', 'Planning Phase'),
-    ('In Progress', 'In Progress'),
-    ('Completed', 'Completed'),
+    ('Status: Planning Phase', 'Status: Planning Phase'),
+    ('Status: In Progress', 'Status: In Progress'),
+    ('Status: Completed', 'Status: Completed'),
 )
 class Project(models.Model):
     name = models.CharField(max_length=150, blank=False)
