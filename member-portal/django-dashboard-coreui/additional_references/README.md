@@ -112,7 +112,8 @@ A hidden file used by Dockerfile and docker-compose, in order to enable environm
 # DJANGO CONFIG 
 DEBUG=True  # Set to false in PROD
 DATABASE_URL=postgres://changeme:changeme_pass@asrg-postgres:5432/asrg
-ALLOWED_HOSTS="localhost,  127.0.0.1"  # Modify this line if you want to add other ALLOWED_HOSTS
+# Modify this line if you want to add other ALLOWED_HOSTS
+ALLOWED_HOSTS="localhost",  "127.0.0.1"
 ASRG_APP_PORT=5005
 
 # POSTGRES CONFIG
@@ -123,7 +124,8 @@ POSTGRES_PASSWORD=changeme_pass
 PGDATA=/var/lib/postgresql/data/asrg/
 
 # NGINX CONFIG
-CERTS_PATH="./nginx"  # Change this with the path to your certs
+# Change this with the path to your certs
+CERTS_PATH="./nginx"
 NGINX_HTTP_PORT=8080
 NGINX_HTTPS_PORT=443
 SERVER_NAME=localhost
