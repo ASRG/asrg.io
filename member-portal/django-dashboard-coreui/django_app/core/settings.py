@@ -5,7 +5,7 @@ Copyright (c) 2019 - present AppSeed.us
 """
 
 import os
-from decouple import config
+from decouple import config, Csv
 from unipath import Path
 import dj_database_url
 
@@ -17,10 +17,10 @@ PROJECT_DIR = Path(__file__).parent
 SECRET_KEY = config("SECRET_KEY", default="S#perS3crEt_1122")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config("DEBUG", default=True)
+DEBUG = config("DEBUG", default=False, cast=bool)
 
 # load production server from .env
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", config("SERVER", default="127.0.0.1")]
+ALLOWED_HOSTS = config("ALLOWED_HOSTS", default=["127.0.0.1", "localhost"], cast=Csv())
 
 if DEBUG:
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend "
