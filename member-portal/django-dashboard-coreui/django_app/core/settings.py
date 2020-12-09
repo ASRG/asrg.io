@@ -137,7 +137,7 @@ STATICFILES_DIRS = (
 
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "app/media")
-MEDIA_URL = "/app/media/"
+MEDIA_URL = "/media/"
 
 CHAPTERS = (
     ("ASRG-S", "ASRG-Stuttgart"),
