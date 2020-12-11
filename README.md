@@ -24,7 +24,7 @@ Link to CoreUI: https://coreui.io/?ref=appseed
 
 You want to run this app locally in a nice, neat docker container (or just the django app to get rid of the docker complexity). Great! Here's how you would do that.
 
-#Running in Docker
+###Running in Docker
 
 The application can be easily executed in a docker container. The steps:
 
@@ -145,7 +145,7 @@ sudo docker-compose up -d --remove-orphans asrg-app
 docker-compose stop asrg-app && docker-compose rm -f asrg-app && docker-compose pull asrg-app && docker-compose build asrg-app && docker-compose up -d --remove-orphans asrg-app
 ```
 
-#Running the Django app [TODO]
+###Running the Django app [TODO]
 
-#Management
+##Management
 Tasks for feature development on this project are managed in Github Projects via sprints.
