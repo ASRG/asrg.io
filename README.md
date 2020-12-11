@@ -24,7 +24,7 @@ Link to CoreUI: https://coreui.io/?ref=appseed
 
 You want to run this app locally in a nice, neat docker container (or just the django app to get rid of the docker complexity). Great! Here's how you would do that.
 
-###Running in Docker
+### Running in Docker
 
 The application can be easily executed in a docker container. The steps:
 
