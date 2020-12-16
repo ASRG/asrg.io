@@ -1,0 +1,214 @@
+{% extends "base_landing.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<!-- One -->
+<section id="one"
+         class="wrapper style2 special">
+  <div class="inner">
+    <header class="major">
+      <h2>
+        Automotive Security Research
+      </h2>
+      <p>
+        The Automotive Security Research Group (ASRG) is a non-profit
+        initiative to promote the development of security solutions for
+        automotive products.
+      </p>
+      <p>
+        ​The goals of ASRG are not to produce any products or services,
+        however to support and assist with the development of security
+        solutions in the automotive industry. This will be achieved by
+        focusing 3 main topics, knowledge, networking and collaboration.
+      </p>
+    </header>
+    <ul class="icons">
+      <li>
+        <a href="#two"><span class="label"><img class="asrg-icons asrg-knowledge"
+                 src="{% static './images/Icons/knowledge.png' %}"
+                 alt="Knowledge" />Knowledge</span></a>
+      </li>
+      <li>
+        <a href="#three"><span class="label"><img class="asrg-icons networking"
+                 src="{% static './images/Icons/networking.png' %}"
+                 alt="Networking" />Networking</span></a>
+      </li>
+      <li>
+        <a href="#four"><span class="label"><img class="asrg-icons asrg-collaboration"
+                 src="{% static './images/Icons/collaboration.png' %}"
+                 alt="Collaboration" />Collaboration</span></a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<style>
+  .asrg-icons {
+    width: 65px;
+    margin: 0px 50px;
+  }
+
+  .icons a {
+    border: none;
+  }
+
+  .icons .label {
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media only screen and (max-width: 450px) {
+    ul.icons li {
+      padding-right: 0;
+      margin-bottom: 2em;
+    }
+
+    ul.icons li:last-child {
+      padding-right: 0;
+      margin-bottom: 0 !important;
+    }
+  }
+</style>
+
+<section id="meta">
+  <div class="counter-wrapper">
+    <div class="counter">
+      <span class="count">{{ members }}</span>
+      <span class="desc">Members</span>
+    </div>
+
+    <div class="counter">
+      <span class="count">{{ locations }}</span>
+      <span class="desc">Locations</span>
+    </div>
+
+    <div class="counter">
+      <span class="count">{{ meetings }}</span>
+      <span class="desc">Meetings</span>
+    </div>
+
+    <div class="counter">
+      <span class="count">{{ age }}</span>
+      <span class="desc">Years Old</span>
+    </div>
+  </div>
+</section>
+
+<!--
+
+      <section class="wrapper alt aln-center style2">
+        <section class="spotlight">
+          <div style="margin:auto; padding-bottom: 3rem;" class="content">
+            <h2>
+              News
+            </h2>
+            <p>What is going on in the Automotive Security industry</p>
+            <a
+              class="twitter-timeline"
+              data-height="800"
+              data-theme="dark"
+              href="https://twitter.com/AutoSecResGroup?ref_src=twsrc%5Etfw"
+              >Tweets by AutoSecResGroup</a
+            >
+            <script
+              async
+              src="https://platform.twitter.com/widgets.js"
+              charset="utf-8"
+            ></script>
+          </div>
+        </section>
+      </section>
+
+      -->
+
+<!-- Two -->
+<section id="two"
+         class="wrapper alt style2">
+  <section class="spotlight">
+    <div class="image"><img src="{% static 'images/pic01.jpg' %}"
+           alt="" /></div>
+    <div class="content">
+      <h2>
+        Knowledge
+      </h2>
+      <p>
+        Finding and knowing where to look for information is the first
+        step to understanding problems and proposing informed solutions.
+        By collecting information, and sources of information in a single
+        location, researchers and engineers can be more effective to find
+        the relevant data and information faster. Taking information and
+        transforming it into understanding, is where education plays an
+        important role. Education is the way we create value in ourselves
+        as competencies. It allows a better understanding of the concepts,
+        strategies, and systems which allows for better implementations of
+        solutions.
+      </p>
+    </div>
+  </section>
+  <section id="three"
+           class="spotlight">
+    <div class="image"><img src="{% static 'images/pic02.gif' %}"
+           alt="" /></div>
+    <div class="content">
+      <h2>
+        Networking
+      </h2>
+      <p>
+        Having a good network of colleagues in the area of security is
+        very important. Since the area is very wide and has a large range
+        of competencies, it’s not possible to know everything about
+        everything. By knowing where to look or who to call to gain the
+        needed information or competencies fast, allows for better
+        reactions to events, implementation strategies and safer
+        environments for everyone.
+      </p>
+    </div>
+  </section>
+  <section id="four"
+           class="spotlight">
+    <div class="image"><img src="{% static 'images/pic03.gif' %}"
+           alt="" /></div>
+    <div class="content">
+      <h2>
+        Collaboration
+      </h2>
+      <p>
+        Allowing for an environment where you can work together to
+        research new and exciting fields of interest and create meaningful
+        reults with are able to be shared with the industry through white
+        papers, presentations and workshops. ASRG promotes collarboration
+        and project teams by enabling research to be successful by
+        offering resources, knowledge and mentorship.
+      </p>
+    </div>
+  </section>
+</section>
+
+<!-- CTA -->
+<section id="cta"
+         class="wrapper style4">
+  <div class="inner">
+    <header>
+      <h2>Membership</h2>
+      <p>
+        Become a member today! Or read the
+        <a href="https://docs.asrg.io">docs</a> to get more information.
+      </p>
+    </header>
+    <ul class="actions stacked">
+      <li>
+        <a id="register-btn"
+           href="{% url 'register' %}"
+           class="button fit primary">Register</a>
+      </li>
+      <li>
+        <a href="https://docs.asrg.io"
+           class="button fit">Read the docs</a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+{% endblock content %}
