@@ -3,73 +3,47 @@
 {% block title %}Locations{% endblock %} 
 
 {% block content %}
-
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<body> 
- 
+<style>
+    body {
+    margin: 0;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    background-color: #fff;
+}
+</style>
 
 <div class="container">
-  
-</div>
-    
-    <div style="display: block;
-  margin-left: 630px;
-  margin-right: auto;
-  width: 50%;">
-    <img src="/static/assets/img/meetup.svg" alt="Security" width="80" height="80"> <a href=" https://www.meetup.com/Automotive-Security-Research-Group-Detroit/events/274516784/" target="_blank"> MONTHLY MEETUPS</a></div><br><br>
-
- {% for location in locations %}
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <style>
-        .bcontent {
-            margin-top: 10px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container bcontent">
-        <h2>{{ location.name }}</h2>
-        <hr />
-        <div class="card" style="width: 600px;">
-            <div class="row no-gutters">
-                <div class="col-sm-5">
-                    <img class="card-img" src="{{ location.picture.url }}">
+    <div class="row g-2" style="display: flex; justify-content: center;">
+        <div class="row" style="display: flex; justify-content: center;">
+            {% for location in locations %}
+            <div class="col-sm-6">
+              <div class="card">
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" role="img"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+                <!-- <div>
+                    <img class="card-img" src="{{ location.picture.url }}" alt="Chapter Image">
+                </div> -->
+                <div class="card-body">
+                    <p class="card-text"><b>Short Name: </b>{{ location.short_name }}</p>
+                    <p class="card-text"><b>Foundation: </b>{{ location.foundation }}</p>
+                    <p class="card-text"><b>Lead: </b>{{ location.lead }}</p>
+                    <p class="card-text"><b>Country: </b>{{ location.country }}</p>
+                    <p class="card-text"><b>City: </b>{{ location.city }}</p>
+                    <p class="card-text"><b>Description: </b>{{ location.description }}</p>
                 </div>
-                <div class="col-sm-7">
-                    <div class="card-body">
-                        <p class="card-text">{{ location.short_name }}</p>
-                        <p class="card-text">{{ location.lead }}</p>
-                        <p class="card-text">{{ location.country }}</p>
-                        <p class="card-text">{{ location.city }}</p>
-                        <p class="card-text">{{ location.description }}</p>
-                       
-                    </div>
-                </div>
+              </div>
             </div>
-        </div>
+            {% endfor %}
+            </div>
+          </div>
+
     </div>
-    <br><br><br><br>
-    {% endfor %}
-</body>
-
-
-</body>
-
 
 {% endblock content %}
 
 {% block javascripts %}
 {% endblock javascripts %}
-
-
 
