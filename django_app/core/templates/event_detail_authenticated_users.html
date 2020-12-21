@@ -68,7 +68,12 @@
                     <img src={{ event.presenter_picture.url }}>
                 </div>
                 <br> -->
-                {{ event.presenter_bio }}
+                <p>
+                    <div class="speaker-div">
+                    <img src="{{ event.presenter_picture.url }}" class="speaker-img">
+                <!-- <img src="{{ event.presenter_company_logo.url }}" class="speaker-img"> -->
+            </div>
+                {{ event.presenter_bio }}</p>
                 {% endif %}
                 <br><br>
                 <a href="{{ event.presenter_profile_url }}" target="_blank" class="button">Visit Speaker Profile</a>
