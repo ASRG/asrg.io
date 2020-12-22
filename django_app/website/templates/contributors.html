@@ -53,23 +53,23 @@
 
     
 
+            {% if contributor_list %}
             <div class="cards">
-                {% if contributor_list %}
                 {% for contri in contributor_list %}
-                <div class="card">
-                    <img src="{{ contri.image_thumbnail.url }}" alt="icon">
-                    <h3>{{ contri.name }}</h3>
-                    <p>{{ contri.position}}</p>
-                    <div class="social-icons">
-                        <a href="{{ contri.linkedin }}" target="_blank" style="border-bottom: 0px"><i
-                                class="fa fa-linkedin"></i></a>
-                        <a href="{{ contri.github }}" target="_blank" style="border-bottom: 0px"><i
-                                class="fa fa-github"></i></a>
+                    <div class="card">
+                        <img src="{{ contri.image_thumbnail.url }}" alt="icon" class="mx-auto my-3">
+                        <h3 style="min-height: 20%;">{{ contri.name }}</h3>
+                        <p>{{ contri.position}}</p>
+                        <div class="social-icons">
+                            <a href="{{ contri.linkedin }}" target="_blank" style="border-bottom: 0px"><i
+                                    class="fa fa-linkedin"></i></a>
+                            <a href="{{ contri.github }}" target="_blank" style="border-bottom: 0px"><i
+                                    class="fa fa-github"></i></a>
+                        </div>
                     </div>
-                </div>
                 {% endfor %}
-                {% endif %}
             </div>
+            {% endif %}
         </div>
     </section>
 </article>{% endblock content %}
