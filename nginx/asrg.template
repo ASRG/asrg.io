@@ -35,4 +35,13 @@ server {
         alias /opt/asrg/media/;    
         expires 30d;
     }
+    location /edit-profile/ {
+	client_max_body_size 10M;
+	proxy_pass http://asrg;
+        proxy_set_header Host ${DOLLAR}http_host;
+        proxy_set_header X-Real-IP ${DOLLAR}remote_addr;
+        proxy_set_header X-Forwarded-For ${DOLLAR}proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto ${DOLLAR}scheme;
+    }
+
 }
