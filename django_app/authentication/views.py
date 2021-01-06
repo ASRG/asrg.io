@@ -102,7 +102,7 @@ def account_edit_view(request):
                 user_obj.chapter.add(ch)
             # Add the permissions for the respective chapter as well
             perms = Permission.objects.filter(codename__in=chapter.values_list("location", flat=True))
-            user_obj.user_permissions.add(perms)
+            user_obj.user_permissions.add(*perms)
             profile = prof_form.save(commit=False)
             profile.user = request.user
             # profile.chapter = request.user.chapter.all
