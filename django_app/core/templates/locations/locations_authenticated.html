@@ -1,0 +1,68 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Locations{% endblock %} 
+
+{% block content %}
+<style>
+    body {
+    margin: 0;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    background-color: #fff;
+}
+
+.shadow-lg {
+    box-shadow: 0 1rem 1rem rgba(0, 0, 21, 0.175) !important;
+}
+</style>
+
+<div class="container">
+    <div class="row g-2" style="display: flex; justify-content: center;">
+        <div class="row" style="display: flex; justify-content: center;">
+            {% for location in locations %}
+            <div class="col-sm-6">
+              <div class="card shadow-lg">
+                
+                <!-- <hr> -->
+                
+                {% if location.picture %}
+                <div>
+                    <img class="card-img" src="{{ location.picture.url }}" alt="Chapter Image">
+                </div>
+                {% else %}
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" role="img"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">No image uploaded</text></svg>
+                {% endif %}
+                <div class="card-body">
+                  <h3 class="text-center py-1">{{ location.location }}</h3>
+                  <div class="px-3">
+                    <p class="card-text"><b>Short Name: </b>{{ location.location }}</p>
+                    <p class="card-text"><b>Foundation: </b>{{ location.foundation }}</p>
+                    <p class="card-text"><b>Lead: </b>{{ location.lead }}</p>
+                    <p class="card-text"><b>Country: </b>{{ location.country }}</p>
+                    <p class="card-text"><b>City: </b>{{ location.city }}</p>
+                    <p class="card-text"><b>Description: </b>{{ location.description }}</p>
+                    {% if location.meetup_link %}
+                      <div class="text-center" id="card-meetup">
+                          <a href="{{ location.meetup_link }}" target="_blank"><div class="btn btn-primary">Go to meetup</div></a>
+                      </div>
+                    {% endif %}
+                </div>
+              </div>
+              </div>
+              <!-- <hr> -->
+            </div>
+            {% endfor %}
+            </div>
+          </div>
+
+    </div>
+
+{% endblock content %}
+
+{% block javascripts %}
+{% endblock javascripts %}
+

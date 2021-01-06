@@ -1,0 +1,189 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async
+          src="https://www.googletagmanager.com/gtag/js?id=UA-131464826-2"></script>
+
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-NK7WG72');</script>
+  <!-- End Google Tag Manager -->
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "UA-131464826-2");
+
+
+    window.onload = loadLocaleLinks;
+  </script>
+
+  <title>ASRG | Automotive Security Research Group</title>
+  <meta charset="utf-8" />
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <link rel="stylesheet"
+        href="{% static 'assets/css/main.css' %}" />
+  <link rel="icon"
+        href="{% static 'favicon.ico' %}"
+        type="image/x-icon" />
+  <link rel="shortcut icon"
+        href="{% static 'icon.ico' %}"
+        type="image/x-icon" />
+  <link rel="apple-touch-icon"
+        sizes="180x180"
+        href="{% static '/apple-touch-icon.png' %}" />
+  <link rel="icon"
+        type="image/png"
+        sizes="32x32"
+        href="{% static 'favicon-32x32.png' %}" />
+  <link rel="icon"
+        type="image/png"
+        sizes="16x16"
+        href="{% static 'favicon-16x16.png' %}" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet" />
+  <noscript>
+    <link rel="stylesheet"
+          href="{% static 'assets/css/noscript.css' %}" /></noscript>
+  <link rel="stylesheet"
+        href="{% static 'assets/css/custom.css' %}" />
+  <link rel="stylesheet"
+        type="text/css"
+        href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+        <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <script href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script> -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body class="landing is-preload">
+
+
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NK7WG72"
+            height="0"
+            width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+
+  <!-- Page Wrapper -->
+  <div id="page-wrapper">
+    <!-- Header -->
+    <header id="header"
+            class="alt">
+      <h1><a href="landing.html">ASRG</a></h1>
+      <nav id="nav">
+        <ul>
+          <li class="special">
+            <a href="#menu"
+               class="menuToggle"><span>Menu</span></a>
+            <div id="menu">
+              <ul>
+                <li><a href="{% url 'landing' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About Us</a></li>
+                <li><a href="/locations">Locations</a></li>
+                <li><a href="{% url 'events' %}">Events</a></li>
+                <li><a href="/projects">Projects</a></li>
+                <li><a href="https://asrg.gitbook.io/asrg-wiki/">Docs</a></li>
+                <li><a href="{% url 'security' %}">Report a vulnerability</a></li>
+                <li><a href="{% url 'blog' %}">Blog</a></li>
+                <li><a href="{% url 'register' %}">Become a Member</a></li>
+                <li><a href="/login"> <i class="fa fa-fw fa-lock"></i> Login</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+
+    {% block content %}
+    {% endblock content %}
+
+
+    <!-- Footer -->
+    <footer id="footer">
+      <ul class="icons">
+        <li>
+          <a href="https://join.slack.com/t/asrg/shared_invite/enQtNjMyMzAyMDM4MjI1LTM2Njc3MWRkNWI1NjkwYmQ4NDRkZjYwYmE2MzcyMWY3Y2IwZjc1YTAzYjQxM2M0NzdhOGEzNjNmYjNkM2EzZWM"
+             class="icon brands fa-slack">
+            <span class="label"></span></a>
+        </li>
+        <li>
+          <a href="https://twitter.com/AutoSecResGroup"
+             class="icon brands fa-twitter"><span class="label"></span></a>
+        </li>
+        <li>
+          <a href="https://facebook.com/ASRG-Automotive-Security-Research-Group-1454803571254832/"
+             class="icon brands fa-facebook-f"><span class="label"></span></a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/company/automotive-security-research-group/"
+             class="icon brands fa-linkedin"><span class="label"></span></a>
+        </li>
+        <li>
+          <a href="mailto:hello@asrg.io"
+             class="icon solid fa-envelope"><span class="label"></span></a>
+        </li>
+      </ul>
+      <ul class="copyright">
+        <li>&copy; 2020 ASRG.io</li>
+        <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        <li><a href="privacy.html">Data Privacy</a></li>
+        <!-- <li><a href="https://asrg.io/imprint">Imprint</a></li> -->
+        <li><a href="{% url 'contributors' %}">Contributors</a></li>
+      </ul>
+    </footer>
+  </div>
+
+  <!-- Scripts -->
+  <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+  <script src="{% static 'assets/js/jquery.scrollex.min.js' %}"></script>
+  <script src="{% static 'assets/js/jquery.scrolly.min.js' %}"></script>
+  <script src="{% static 'assets/js/browser.min.js' %}"></script>
+  <script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+  <script src="{% static 'assets/js/util.js' %}"></script>
+  <script src="{% static 'assets/js/main.js' %}"></script>
+
+  <!-- Cookie Notice -->
+  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"
+          data-cfasync="false"></script>
+  <script>
+    window.cookieconsent.initialise({
+      palette: {
+        popup: {
+          background: "#000"
+        },
+        button: {
+          background: "transparent",
+          text: "#f1d600",
+          border: "#f1d600"
+        }
+      },
+      position: "bottom-right",
+      content: {
+        href: "https://asrg.io/privacy.html"
+      }
+    });
+  </script>
+
+</body>
+
+</html>
