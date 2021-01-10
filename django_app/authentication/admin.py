@@ -11,7 +11,7 @@ from django.utils import timezone
 from django.contrib.auth.models import Permission
 from django.contrib.auth.admin import UserAdmin as AuthUserAdmin
 
-from authentication.models import Chapter, User
+from authentication.models import Chapter, User, UserProfile
 
 
 class ChapterInLine(admin.StackedInline):
@@ -22,8 +22,7 @@ class ChapterInLine(admin.StackedInline):
 
 @admin.register(User)
 class UserAdmin(AuthUserAdmin):
-    list_display = ('first_name', 'last_name', 'country',
-                    'date_joined', 'last_login')
+    list_display = ('first_name', 'last_name', 'country', 'date_joined', 'last_login')
     search_fields = ('country', 'first_name', 'last_name')
     inlines = [ChapterInLine]
     readonly_fields = ('date_joined', 'last_login')
@@ -51,3 +50,17 @@ class ChapterAdmin(admin.ModelAdmin):
         delta = now - obj.foundation
         fraction = delta.days / 365.25
         return f"{fraction:.2f}"
+
+
+@admin.register(UserProfile)
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ('username', 'dob', 'gender', 'field_of_study')
+    search_fields = ('username', 'field_of_study')
+    readonly_fields = ('date_joined', 'last_login')
+
+    filter_horizontal = ()
+    # list_filter = ('chapter',)
+    fieldsets = ()
+
+    def username(self, obj):
+        return obj.user.username

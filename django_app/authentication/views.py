@@ -8,14 +8,13 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import Permission
-from django.forms.utils import ErrorList
 from django.http import HttpResponse
+from django.template import loader
+from django import template
 
-from .forms import LoginForm, SignUpForm
-from app.forms import UserProfileForm
-import authentication.forms as f
-from .models import User, Chapter
-from app.models import UserProfile
+from .forms import LoginForm, SignUpForm, UserUpdateForm, UserProfileForm
+from .models import Chapter, UserProfile
+from website.models import Announcement
 
 
 def login_view(request):
@@ -44,7 +43,6 @@ def register_user(request):
 
     msg = None
     success = False
-    errors = None
 
     if request.method == "POST":
         form = SignUpForm(request.POST)
@@ -91,7 +89,7 @@ def account_edit_view(request):
     context['profile'] = profile
 
     if request.POST:
-        acc_form = f.UserUpdateForm(request.POST, instance=request.user)
+        acc_form = UserUpdateForm(request.POST, instance=request.user)
         prof_form = UserProfileForm(request.POST, request.FILES, instance=profile)
 
         if acc_form.is_valid() and prof_form.is_valid():
@@ -138,7 +136,7 @@ def account_edit_view(request):
         #     context["profile_form"] = prof_form
         # return redirect('profile')#######################################################################
     else:
-        acc_form = f.UserUpdateForm(
+        acc_form = UserUpdateForm(
             initial={
                 'username': request.user.username,
                 'email': request.user.email,
@@ -174,3 +172,98 @@ def account_edit_view(request):
     context["profile_form"] = prof_form
 
     return render(request, 'accounts/account_update.html', context)
+
+
+@login_required(login_url="/login/")
+def index(request):
+    context = {"chapters": Chapter.objects.all(), "announcements": Announcement.objects.all(), "main_dashboard": True}
+    return render(request, "index.html", context)
+
+
+@login_required(login_url="/login/")
+def pages(request):
+    context = {}
+    # All resource paths end in .html.
+    # Pick out the html file name from the url. And load that template.
+    try:
+
+        load_template = request.path.split("/")[-1]
+        html_template = loader.get_template(load_template)
+        return HttpResponse(html_template.render(context, request))
+
+    except template.TemplateDoesNotExist:
+
+        html_template = loader.get_template("error-404.html")
+        return HttpResponse(html_template.render(context, request))
+
+    except:
+
+        html_template = loader.get_template("error-500.html")
+        return HttpResponse(html_template.render(context, request))
+
+
+@login_required(login_url="/login/")
+def profile_create_view(request):
+    context = {}
+    try:
+        profile = request.user.profile
+    except UserProfile.DoesNotExist:
+        profile = UserProfile(user=request.user)
+    context['profile'] = profile
+
+    if request.POST:
+        prof_form = UserProfileForm(request.POST, request.FILES, instance=profile)
+        if prof_form.is_valid():
+            profile = prof_form.save(commit=False)
+            profile.user = request.user
+            # profile.chapter = request.user.chapter.all
+            if request.FILES:
+                profile.profile_picture = request.FILES.get("profile_picture")
+            else:
+                profile.profile_picture = profile.profile_picture
+            # profile.date_joined = datetime.now()
+            # profile.last_login = datetime.now()
+            if profile.dob and profile.field_of_study and profile.bio and profile.status and profile.skills:
+                profile.is_complete = True
+            profile.save()
+            return redirect("profile")
+        else:
+            context["profile_form"] = prof_form
+    else:
+        prof_form = UserProfileForm(
+            initial={
+                # 'first_name': profile.first_name,
+                # 'last_name': profile.last_name,
+                "dob": profile.dob,
+                # 'gender': profile.gender,
+                # 'occupational_status': profile.occupational_status,
+                "field_of_study": profile.field_of_study,
+                # 'chapter': profile.chapter.all,
+                # 'country': profile.country,
+                "bio": profile.bio,
+                "status": profile.status,
+                "skills": profile.skills,
+                "fb_link": profile.fb_link,
+                "tw_link": profile.tw_link,
+                "ig_link": profile.ig_link,
+                # "profile_picture": profile.profile_picture,
+                'pp_src': profile.pp_src,
+            }
+        )
+
+        context["profile_form"] = prof_form
+
+    return render(request, "accounts/create-profile.html", context)
+
+
+@login_required(login_url="/login/")
+def profile_view(request):
+    context = {}
+    # print(request.user.chapter)
+    try:
+        profile = request.user.profile
+    except UserProfile.DoesNotExist:
+        profile = UserProfile(user=request.user)
+    context["profile"] = profile
+    context["user"] = request.user
+    return render(request, "accounts/profile.html", context)
