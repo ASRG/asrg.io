@@ -1,7 +1,7 @@
 import django_filters
 from django import forms
 
-from website.models import JobPosting
+from .models import JobPosting
 
 
 class JobPostingFilters(django_filters.FilterSet):

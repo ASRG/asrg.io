@@ -11,16 +11,12 @@ def migrate_data(apps, schema_editor):
             linkedin=contributor.linkedin,
             github=contributor.github,
             img=contributor.img,
-            image_thumbnail=contributor.image_thumbnail
         )
 
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ("contributors", "0001_initial"),
-        ("website", "0004_jobposting_company_name")
-    ]
+    dependencies = [("contributors", "0001_initial"), ("website", "0004_jobposting_company_name")]
 
     operations = [
         migrations.RunPython(migrate_data),

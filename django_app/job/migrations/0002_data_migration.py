@@ -2,8 +2,8 @@ from django.db import migrations, models
 
 
 def migrate_data(apps, schema_editor):
-    old_job_model = apps.get_model("website", "jobpostings")
-    job_model = apps.get_model("job", "jobpostings")
+    old_job_model = apps.get_model("website", "jobposting")
+    job_model = apps.get_model("job", "jobposting")
     for job in old_job_model.objects.all():
         job_model.objects.create(
             title=job.title,
