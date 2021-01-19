@@ -11,9 +11,11 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("", include("landing_page.urls")),  # landing_page routes
     path("", include("authentication.urls")),  # authentication routes
-    path("", include("website.urls")),  # website routes
-    # path("", include("app.urls")),  # app routes
+    path("", include("announcements.urls")),  # announcements routes
+    path("", include("job.urls")),  # jobs routes
+    path("", include("contributors.urls")),  # contributors routes
     path("", include("events.urls")),  # events routes
     path("", include("projects.urls")),  # projects routes
     path("", include("locations.urls")),  # locations routes

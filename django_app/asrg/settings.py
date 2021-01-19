@@ -34,9 +34,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # "app",  # Enable the inner app
     "authentication",
-    "website",
+    "announcements",
+    "job",
+    "landing_page",
+    "contributors",
+    "website",  # TODO: remove after cleanup
     "leaflet",
     'events',
     'locations',
