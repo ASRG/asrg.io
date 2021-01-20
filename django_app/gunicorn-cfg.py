@@ -3,12 +3,9 @@
 License: MIT
 Copyright (c) 2019 - present AppSeed.us
 """
-from environs import Env
+from decouple import config
 
-env = Env()
-env.read_env("./.env")
-
-DEBUG = env.bool('DEBUG', default=False)
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 bind = '0.0.0.0:5005'
 workers = 1

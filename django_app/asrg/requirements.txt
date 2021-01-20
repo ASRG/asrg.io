@@ -1,0 +1,2 @@
+Unipath==1.1
+python-decouple==3.4
