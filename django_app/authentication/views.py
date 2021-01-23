@@ -7,15 +7,25 @@ Copyright (c) 2019 - present AppSeed.us
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth.models import Permission
 from django.forms.utils import ErrorList
+from django.template.loader import render_to_string
+from django.core.mail import EmailMessage
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.http import HttpResponse
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.encoding import force_bytes
+from django.core.signing import TimestampSigner, BadSignature, SignatureExpired
+
 
 from .forms import LoginForm, SignUpForm
 from app.forms import UserProfileForm
 import authentication.forms as f
 from .models import User, Chapter
 from app.models import UserProfile
+
+_24_HOUR_TIMESTAMP = 60 * 60 * 24
 
 
 def login_view(request):
@@ -43,8 +53,8 @@ def login_view(request):
 def register_user(request):
 
     msg = None
-    success = False
     errors = None
+    success = True
 
     if request.method == "POST":
         form = SignUpForm(request.POST)
@@ -52,27 +62,31 @@ def register_user(request):
             form.save(commit=False)
             chapter = form.cleaned_data.get("chapter")
             user_obj = form.save()
+            user_obj.is_active = False
+            user_obj.save()
             if chapter:
                 user_obj.chapter.add(chapter)
                 # Add the permissions for the respective chapter as well
                 perm = Permission.objects.get(codename=chapter)
                 user_obj.user_permissions.add(perm)
-
-            username = form.cleaned_data.get("username")
-            raw_password = form.cleaned_data.get("password1")
-            user = authenticate(username=username, password=raw_password)
-            login(request, user)
-            return redirect('profile')
-            # user.chapter.add(chapter)
-            # chapter.user.add(user)
-
-            msg = 'User created.'
-            success = True
-
-            return redirect("/login/")
+            current_site = get_current_site(request)
+            mail_subject = "Activate your account."
+            message = render_to_string(
+                "authentication/templates/acc_activate_email.html",
+                {
+                    "user": user_obj.username,
+                    "domain": current_site.domain,
+                    "uid": urlsafe_base64_encode(force_bytes(user_obj.pk)),
+                    "token": TimestampSigner().sign(default_token_generator.make_token(user_obj)),
+                },
+            )
+            to_email = user_obj.email
+            email = EmailMessage(mail_subject, message, to=[to_email])
+            email.send()
+            return HttpResponse('Please confirm your email address to complete the registration')
 
         else:
-            # errors = form.errors
+            success = False
             msg = "form not valid"
 
     else:
@@ -174,3 +188,23 @@ def account_edit_view(request):
     context["profile_form"] = prof_form
 
     return render(request, 'accounts/account_update.html', context)
+
+
+def activate(request, uidb64, token):
+    try:
+        uid = urlsafe_base64_decode(uidb64).decode()
+        user = User._default_manager.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+
+    try:
+        _token = TimestampSigner().unsign(token, max_age=_24_HOUR_TIMESTAMP)
+    except (BadSignature, SignatureExpired):
+        return HttpResponse('Activation link expired or is invalid!')
+
+    if user is not None and default_token_generator.check_token(user, _token):
+        user.is_active = True
+        user.save()
+        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+    else:
+        return HttpResponse('Activation link is invalid!')

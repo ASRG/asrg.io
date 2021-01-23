@@ -22,8 +22,13 @@ DEBUG = config("DEBUG", default=False, cast=bool)
 # load production server from .env
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="127.0.0.1, localhost", cast=Csv())
 
-if DEBUG:
-    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend "
+
+EMAIL_BACKEND = config("EMAIL_BACKEND", "django.core.mail.backends.console.EmailBackend ")
+EMAIL_HOST = config("EMAIL_HOST", "NOT_THIS_ONE")
+EMAIL_USE_TLS = config("EMAIL_USE_TLS", "NOT_THIS_ONE")
+EMAIL_PORT = config("EMAIL_PORT", "NOT_THIS_ONE")
+EMAIL_HOST_USER = config("EMAIL_HOST_USER", "NOT_THIS_ONE")
+EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", "NOT_THIS_ONE")
 
 # Application definition
 
@@ -52,7 +57,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware"
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = "core.urls"
@@ -96,9 +101,15 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",},
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",},
-    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
+    {
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+    },
 ]
 
 
