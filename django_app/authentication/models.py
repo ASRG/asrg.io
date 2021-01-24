@@ -68,7 +68,7 @@ class Chapter(models.Model):
 
 
 class User(AbstractUser):
-    chapter = models.ManyToManyField("Chapter", blank=True, null=True, related_name="users")
+    chapter = models.ManyToManyField("Chapter", blank=True, related_name="users")
     # gender = models.CharField(max_length=25, choices=GENDER_CHOICES, blank=False, default=GENDER_CHOICES[0])
     occupational_status = models.CharField(
         max_length=50,

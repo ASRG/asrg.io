@@ -17,28 +17,28 @@ def landing(request):
         "age": age,
         "meetings": Event.objects.all().count(),
     }
-    return render(request, "landing.html", context=context)
+    return render(request, "landing_page/landing.html", context=context)
 
 
 def about(request):
-    return render(request, "about.html")
+    return render(request, "landing_page/about.html")
 
 
 def blog(request):
-    return render(request, "blog.html")
+    return render(request, "landing_page/blog.html")
 
 
 def privacy(request):
-    return render(request, "privacy.html")
+    return render(request, "landing_page/privacy.html")
 
 
 def security(request):
-    return render(request, "security.html")
+    return render(request, "landing_page/security.html")
 
 
 def threatq(request):
-    return render(request, "threatq.html")
+    return render(request, "landing_page/threatq.html")
 
 
 def dashboard(request):
-    return redirect('index.html')
+    return redirect('landing_page/index.html')

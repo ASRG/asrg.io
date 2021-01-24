@@ -12,6 +12,7 @@ django-leaflet==0.27.1
 geopy==2.0.0
 django-imagekit==4.0.2
 environs==9.3.0
+Pillow==7.2.0
 
 
 -r announcements/requirements.txt
@@ -23,4 +24,5 @@ environs==9.3.0
 -r landing_page/requirements.txt
 -r locations/requirements.txt
 -r projects/requirements.txt
--r technical_committeess/requirements.txt
+-r technical_committees/requirements.txt
+

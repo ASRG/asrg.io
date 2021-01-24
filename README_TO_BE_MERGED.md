@@ -110,8 +110,11 @@ A hidden file used by Dockerfile and docker-compose, in order to enable environm
 
 ``` bash
 # DJANGO CONFIG 
-DEBUG=True  # Set to false in PROD
+# Set to false in PROD
+DEBUG=True
 DATABASE_URL=postgres://changeme:changeme_pass@asrg-postgres:5432/asrg
+# Uncomment this in development if you want gunicorn to update automatically
+# REALOAD_GUNICORN=True
 # Modify this line if you want to add other ALLOWED_HOSTS
 ALLOWED_HOSTS="localhost",  "127.0.0.1"
 ASRG_APP_PORT=5005
