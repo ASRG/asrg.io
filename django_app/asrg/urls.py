@@ -21,3 +21,4 @@ urlpatterns = [
     path("", include("locations.urls")),  # locations routes
     path("", include("technical_committees.urls")),  # technical_committees routes
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
