@@ -46,10 +46,10 @@ class Chapter(models.Model):
     longitude = models.DecimalField(max_digits=9, decimal_places=6, default=0)
     description = models.CharField(max_length=300)
     meetup_link = models.URLField()
-    picture_src = ProcessedImageField(upload_to='chapters/cover', blank=True,
-                                   verbose_name='picture')  # processedimagefield
-    picture = ImageSpecField(source='picture_src',  processors=[
-                                       ResizeToFill(611, 180)])  # sized image
+    picture_src = ProcessedImageField(
+        upload_to='chapters/cover', blank=True, verbose_name='picture'
+    )  # processedimagefield
+    picture = ImageSpecField(source='picture_src', processors=[ResizeToFill(611, 180)])  # sized image
     # picture = models.ImageField(upload_to='chapters/pictures',blank=True)
 
     def get_coordinates(self):

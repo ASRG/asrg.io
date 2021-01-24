@@ -3,6 +3,7 @@
 License: MIT
 Copyright (c) 2019 - present AppSeed.us
 """
+import base64
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
@@ -12,11 +13,11 @@ from django.contrib.auth.models import Permission
 from django.forms.utils import ErrorList
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.http import HttpResponse
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes
 from django.core.signing import TimestampSigner, BadSignature, SignatureExpired
+from django.db import transaction
 
 
 from .forms import LoginForm, SignUpForm
@@ -50,6 +51,7 @@ def login_view(request):
     return render(request, "accounts/login.html", {"form": form, "msg": msg})
 
 
+@transaction.atomic
 def register_user(request):
 
     msg = None
@@ -72,11 +74,11 @@ def register_user(request):
             current_site = get_current_site(request)
             mail_subject = "Activate your account."
             message = render_to_string(
-                "authentication/templates/acc_activate_email.html",
+                "email/acc_activate_email.html",
                 {
                     "user": user_obj.username,
                     "domain": current_site.domain,
-                    "uid": urlsafe_base64_encode(force_bytes(user_obj.pk)),
+                    "uid": base64.urlsafe_b64encode(force_bytes(user_obj.pk)).decode("utf-8"),
                     "token": TimestampSigner().sign(default_token_generator.make_token(user_obj)),
                 },
             )
@@ -192,7 +194,7 @@ def account_edit_view(request):
 
 def activate(request, uidb64, token):
     try:
-        uid = urlsafe_base64_decode(uidb64).decode()
+        uid = base64.urlsafe_b64decode(uidb64)
         user = User._default_manager.get(pk=uid)
     except (TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
