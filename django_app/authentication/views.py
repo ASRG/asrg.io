@@ -74,7 +74,7 @@ def register_user(request):
             current_site = get_current_site(request)
             mail_subject = "Activate your account."
             message = render_to_string(
-                "email/acc_activate_email.html",
+                "authentication/email/acc_activate_email.html",
                 {
                     "user": user_obj.username,
                     "domain": current_site.domain,
@@ -199,14 +199,44 @@ def activate(request, uidb64, token):
     except (TypeError, ValueError, OverflowError, User.DoesNotExist):
         user = None
 
-    try:
-        _token = TimestampSigner().unsign(token, max_age=_24_HOUR_TIMESTAMP)
-    except (BadSignature, SignatureExpired):
-        return HttpResponse('Activation link expired or is invalid!')
+    if user:
+        try:
+            _token = TimestampSigner().unsign(token, max_age=_24_HOUR_TIMESTAMP)
+        except SignatureExpired:
+            return render(request, "authentication/email_link_expired.html", {"uidb64": uidb64})
+        except BadSignature:
+            return HttpResponse('Activation link is invalid!')
 
-    if user is not None and default_token_generator.check_token(user, _token):
-        user.is_active = True
-        user.save()
-        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
-    else:
-        return HttpResponse('Activation link is invalid!')
+        if default_token_generator.check_token(user, _token):
+            user.is_active = True
+            user.save()
+            return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+
+    return HttpResponse('Activation link is invalid!')
+
+
+def resend_email_activation(request, uidb64):
+    try:
+        uid = base64.urlsafe_b64decode(uidb64)
+        user = User._default_manager.get(pk=uid)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+
+    if user:
+        current_site = get_current_site(request)
+        mail_subject = "Activate your account."
+        message = render_to_string(
+            "authentication/email/acc_activate_email.html",
+            {
+                "user": user.username,
+                "domain": current_site.domain,
+                "uid": base64.urlsafe_b64encode(force_bytes(user.pk)).decode("utf-8"),
+                "token": TimestampSigner().sign(default_token_generator.make_token(user)),
+            },
+        )
+        to_email = user.email
+        email = EmailMessage(mail_subject, message, to=[to_email])
+        email.send()
+        return HttpResponse('Check you inbox and click on the link from the E-mail to activate your acccount!')
+
+    return HttpResponse('Link is invalid!')
