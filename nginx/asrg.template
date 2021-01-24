@@ -35,11 +35,6 @@ server {
         alias /opt/asrg/media/;    
         expires 30d;
     }
-    location ^~ /static/ {
-        autoindex on;    
-        alias /opt/asrg/staticfiles/;    
-        expires 30d;
-    }
     location /edit-profile/ {
 	client_max_body_size 10M;
 	proxy_pass http://asrg;
