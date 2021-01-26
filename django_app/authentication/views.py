@@ -10,14 +10,15 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth.models import Permission
-from django.forms.utils import ErrorList
 from django.template.loader import render_to_string
-from django.core.mail import EmailMessage
+from django.core import mail
 from django.http import HttpResponse
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes
 from django.core.signing import TimestampSigner, BadSignature, SignatureExpired
 from django.db import transaction
+from django.utils.html import strip_tags
+from django.conf import settings
 
 
 from .forms import LoginForm, SignUpForm
@@ -82,9 +83,9 @@ def register_user(request):
                     "token": TimestampSigner().sign(default_token_generator.make_token(user_obj)),
                 },
             )
+            plain_message = strip_tags(message)
             to_email = user_obj.email
-            email = EmailMessage(mail_subject, message, to=[to_email])
-            email.send()
+            mail.send_mail(mail_subject, plain_message, settings.EMAIL_HOST_USER, [to_email], html_message=message)
             return HttpResponse('Please confirm your email address to complete the registration')
 
         else:
@@ -234,9 +235,9 @@ def resend_email_activation(request, uidb64):
                 "token": TimestampSigner().sign(default_token_generator.make_token(user)),
             },
         )
+        plain_message = strip_tags(message)
         to_email = user.email
-        email = EmailMessage(mail_subject, message, to=[to_email])
-        email.send()
+        mail.send_mail(mail_subject, plain_message, settings.EMAIL_HOST_USER, [to_email], html_message=message)
         return HttpResponse('Check you inbox and click on the link from the E-mail to activate your acccount!')
 
     return HttpResponse('Link is invalid!')
