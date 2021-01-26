@@ -9,11 +9,11 @@ from .filters import JobPostingFilters
 @login_required(login_url="/login/")
 def job_posting(request):
     queryset = JobPosting.objects.all().order_by('-date_posted')
-    # job_postings = JobPostingFilters(request.GET, queryset=queryset)
+    job_postings = JobPostingFilters(request.GET, queryset=queryset)
     return render(
         request,
-        "job_posting.html",
-        {'job_postings': None},  # job_postings,
+        "job/job_posting.html",
+        {'job_postings': job_postings},
     )
 
 
@@ -22,7 +22,7 @@ def job_details(request, pk):
     job = get_object_or_404(JobPosting, pk=pk)
     return render(
         request,
-        "job_details.html",
+        "job/job_details.html",
         {
             'job': job,
         },
