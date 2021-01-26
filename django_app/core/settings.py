@@ -22,8 +22,7 @@ DEBUG = config("DEBUG", default=False, cast=bool)
 # load production server from .env
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="127.0.0.1, localhost", cast=Csv())
 
-
-EMAIL_BACKEND = config("EMAIL_BACKEND", "django.core.mail.backends.console.EmailBackend ")
+EMAIL_BACKEND = config("EMAIL_BACKEND", "django.core.mail.backends.console.EmailBackend")
 EMAIL_HOST = config("EMAIL_HOST", "NOT_THIS_ONE")
 EMAIL_USE_TLS = config("EMAIL_USE_TLS", "NOT_THIS_ONE")
 EMAIL_PORT = config("EMAIL_PORT", "NOT_THIS_ONE")
@@ -43,10 +42,10 @@ INSTALLED_APPS = [
     "authentication",
     "website",
     "leaflet",
-    'events',
-    'locations',
-    'projects',
-    'technical_committees',
+    "events",
+    "locations",
+    "projects",
+    "technical_committees",
 ]
 
 MIDDLEWARE = [
