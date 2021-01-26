@@ -7,7 +7,6 @@ Copyright (c) 2019 - present AppSeed.us
 from django.contrib import admin
 from django.utils import timezone
 
-# from django.contrib.auth.models import User
 from django.contrib.auth.models import Permission
 from django.contrib.auth.admin import UserAdmin as AuthUserAdmin
 
@@ -59,7 +58,6 @@ class UserProfileAdmin(admin.ModelAdmin):
     readonly_fields = ('date_joined', 'last_login')
 
     filter_horizontal = ()
-    # list_filter = ('chapter',)
     fieldsets = ()
 
     def username(self, obj):

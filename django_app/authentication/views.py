@@ -61,16 +61,7 @@ def register_user(request):
             user = authenticate(username=username, password=raw_password)
             login(request, user)
             return redirect('profile')
-            # user.chapter.add(chapter)
-            # chapter.user.add(user)
-
-            msg = 'User created.'
-            success = True
-
-            return redirect("/login/")
-
         else:
-            # errors = form.errors
             msg = "form not valid"
 
     else:
@@ -103,13 +94,10 @@ def account_edit_view(request):
             user_obj.user_permissions.add(*perms)
             profile = prof_form.save(commit=False)
             profile.user = request.user
-            # profile.chapter = request.user.chapter.all
             if request.FILES:
                 profile.profile_picture = request.FILES.get("profile_picture")
             else:
                 profile.profile_picture = profile.profile_picture
-            # profile.date_joined = datetime.now()
-            # profile.last_login = datetime.now()
             if profile.dob and profile.field_of_study and profile.bio and profile.status and profile.skills:
                 profile.is_complete = True
             profile.save()
@@ -117,24 +105,6 @@ def account_edit_view(request):
         else:
             context['account_form'] = acc_form
             context["profile_form"] = prof_form
-
-        # prof_form = UserProfileForm(request.POST, request.FILES, instance=profile)
-        # if prof_form.is_valid():
-        #     profile = prof_form.save(commit=False)
-        #     profile.user = request.user
-        #     # profile.chapter = request.user.chapter.all
-        #     if request.FILES:
-        #         profile.profile_picture = request.FILES.get("profile_picture")
-        #     else:
-        #         profile.profile_picture = profile.profile_picture
-        #     # profile.date_joined = datetime.now()
-        #     # profile.last_login = datetime.now()
-        #     if profile.dob and profile.field_of_study and profile.bio and profile.status and profile.skills:
-        #         profile.is_complete = True
-        #     profile.save()
-        # else:
-        #     context["profile_form"] = prof_form
-        # return redirect('profile')#######################################################################
     else:
         acc_form = UserUpdateForm(
             initial={
@@ -142,7 +112,6 @@ def account_edit_view(request):
                 'email': request.user.email,
                 'first_name': request.user.first_name,
                 'last_name': request.user.last_name,
-                # 'gender': request.user.gender,
                 'chapter': request.user.chapter.all(),
                 'occupational_status': request.user.occupational_status,
                 'country': request.user.country,
@@ -151,14 +120,9 @@ def account_edit_view(request):
 
         prof_form = UserProfileForm(
             initial={
-                # 'first_name': profile.first_name,
-                # 'last_name': profile.last_name,
                 "dob": profile.dob,
                 'gender': profile.gender,
-                # 'occupational_status': profile.occupational_status,
                 "field_of_study": profile.field_of_study,
-                # 'chapter': profile.chapter.all,
-                # 'country': profile.country,
                 "bio": profile.bio,
                 "status": profile.status,
                 "skills": profile.skills,
@@ -216,13 +180,10 @@ def profile_create_view(request):
         if prof_form.is_valid():
             profile = prof_form.save(commit=False)
             profile.user = request.user
-            # profile.chapter = request.user.chapter.all
             if request.FILES:
                 profile.profile_picture = request.FILES.get("profile_picture")
             else:
                 profile.profile_picture = profile.profile_picture
-            # profile.date_joined = datetime.now()
-            # profile.last_login = datetime.now()
             if profile.dob and profile.field_of_study and profile.bio and profile.status and profile.skills:
                 profile.is_complete = True
             profile.save()
@@ -232,21 +193,14 @@ def profile_create_view(request):
     else:
         prof_form = UserProfileForm(
             initial={
-                # 'first_name': profile.first_name,
-                # 'last_name': profile.last_name,
                 "dob": profile.dob,
-                # 'gender': profile.gender,
-                # 'occupational_status': profile.occupational_status,
                 "field_of_study": profile.field_of_study,
-                # 'chapter': profile.chapter.all,
-                # 'country': profile.country,
                 "bio": profile.bio,
                 "status": profile.status,
                 "skills": profile.skills,
                 "fb_link": profile.fb_link,
                 "tw_link": profile.tw_link,
                 "ig_link": profile.ig_link,
-                # "profile_picture": profile.profile_picture,
                 'pp_src': profile.pp_src,
             }
         )
@@ -259,7 +213,6 @@ def profile_create_view(request):
 @login_required(login_url="/login/")
 def profile_view(request):
     context = {}
-    # print(request.user.chapter)
     try:
         profile = request.user.profile
     except UserProfile.DoesNotExist:
