@@ -10,19 +10,19 @@ class JobPostingFilters(django_filters.FilterSet):
 
     def __init__(self, *args, **kwargs):
         super(JobPostingFilters, self).__init__(*args, **kwargs)
-        location_choices = list(
+        location_choices = [
             (x, x) for x in self.queryset.order_by('location').values_list('location', flat=True).distinct()
-        )
-        job_category_choices = list(
+        ]
+        job_category_choices = [
             (x, x) for x in self.queryset.order_by('job_category').values_list('job_category', flat=True).distinct()
-        )
+        ]
         self.filters['location'].field.choices = location_choices
         self.filters['job_category'].field.choices = job_category_choices
 
-    location = django_filters.MultipleChoiceFilter(
+    location = django_filters.ChoiceFilter(
         choices=location_choices, widget=forms.Select(attrs={'class': 'form-control'})
     )
-    job_category = django_filters.MultipleChoiceFilter(
+    job_category = django_filters.ChoiceFilter(
         choices=location_choices, widget=forms.Select(attrs={'class': 'form-control'})
     )
     date_posted = django_filters.DateRangeFilter(field_name='date_posted')

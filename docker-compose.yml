@@ -43,7 +43,7 @@ services:
       - "${NGINX_HTTPS_PORT}:443"
     volumes:
       - ./nginx:/etc/nginx/conf.d
-      - ./django_app/app/media:/opt/asrg/media
+      - ./django_app/asrg/media:/opt/asrg/media
       # - ${CERTS_PATH}:/etc/nginx/certs
     networks:
       - web_network

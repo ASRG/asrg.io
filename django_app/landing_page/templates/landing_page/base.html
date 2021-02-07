@@ -28,8 +28,6 @@
 
     gtag("config", "UA-131464826-2");
 
-
-    window.onload = loadLocaleLinks;
   </script>
 
   <title>ASRG | Automotive Security Research Group</title>
@@ -38,7 +36,7 @@
         content="width=device-width, initial-scale=1, user-scalable=no" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
   <link rel="stylesheet"
-        href="{% static 'assets/css/main.css' %}" />
+        href="{% static 'landing_page/css/main.css' %}" />
   <link rel="icon"
         href="{% static 'favicon.ico' %}"
         type="image/x-icon" />
@@ -60,9 +58,9 @@
         rel="stylesheet" />
   <noscript>
     <link rel="stylesheet"
-          href="{% static 'assets/css/noscript.css' %}" /></noscript>
+          href="{% static 'landing_page/css/noscript.css' %}" /></noscript>
   <link rel="stylesheet"
-        href="{% static 'assets/css/custom.css' %}" />
+        href="{% static 'landing_page/css/custom.css' %}" />
   <link rel="stylesheet"
         type="text/css"
         href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
@@ -119,38 +117,7 @@
 
 
     <!-- Footer -->
-    <footer id="footer">
-      <ul class="icons">
-        <li>
-          <a href="https://join.slack.com/t/asrg/shared_invite/enQtNjMyMzAyMDM4MjI1LTM2Njc3MWRkNWI1NjkwYmQ4NDRkZjYwYmE2MzcyMWY3Y2IwZjc1YTAzYjQxM2M0NzdhOGEzNjNmYjNkM2EzZWM"
-             class="icon brands fa-slack">
-            <span class="label"></span></a>
-        </li>
-        <li>
-          <a href="https://twitter.com/AutoSecResGroup"
-             class="icon brands fa-twitter"><span class="label"></span></a>
-        </li>
-        <li>
-          <a href="https://facebook.com/ASRG-Automotive-Security-Research-Group-1454803571254832/"
-             class="icon brands fa-facebook-f"><span class="label"></span></a>
-        </li>
-        <li>
-          <a href="https://www.linkedin.com/company/automotive-security-research-group/"
-             class="icon brands fa-linkedin"><span class="label"></span></a>
-        </li>
-        <li>
-          <a href="mailto:hello@asrg.io"
-             class="icon solid fa-envelope"><span class="label"></span></a>
-        </li>
-      </ul>
-      <ul class="copyright">
-        <li>&copy; 2020 ASRG.io</li>
-        <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-        <li><a href="privacy.html">Data Privacy</a></li>
-        <!-- <li><a href="https://asrg.io/imprint">Imprint</a></li> -->
-        <li><a href="{% url 'contributors' %}">Contributors</a></li>
-      </ul>
-    </footer>
+      {% include 'includes/footer.html' %}
   </div>
 
   <!-- Scripts -->

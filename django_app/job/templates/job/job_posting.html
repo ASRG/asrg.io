@@ -3,10 +3,11 @@
 {% block title %} Job postings {% endblock %} 
 
 {% block content %}
-<div class="card-header"><i class="fa fa-align-justify"></i> Job postings</div>
 <div class="card-body">
+  <h2> Job Postings </h2>
   <form method="get">
       {{ job_postings.form.as_p }}
+      {{ job_postings.form.media }}
       <input type="submit" />
   </form>
   <table class="table table-responsive-sm table-striped">
@@ -32,14 +33,6 @@
     </tbody>
   </table>
   <ul class="pagination">
-    {% comment %}
-    <li class="page-item"><a class="page-link" href="#">Prev</a></li>
-    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">4</a></li>
-    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-    {% endcomment %}
   </ul>
 </div>
 

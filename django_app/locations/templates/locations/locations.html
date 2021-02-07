@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "landing_page/base.html" %}
 {% load staticfiles %}
 
 {% block title %}Events{% endblock %}
@@ -25,7 +25,7 @@
     </header>
     <section class="wrapper style5" style="padding-top: 70px;">
         <div class="inner">
-            <div class="container">
+            <div class="container wrapper style5">
                 <div class="row g-2" style="display: flex; justify-content: center;">
                     <div class="row" style="display: flex; justify-content: center;">
                         {% for location in locations %}

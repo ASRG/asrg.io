@@ -38,6 +38,7 @@
 <div class="alert-box">
     <span class="badge">Announcements</span> <br>
            {% for announcement in announcements %}
+           {{ announcement.id }}
            <h1 style="color: #fff">{{ announcement.title }}</h1>
            <p style="color: #fff">{{ announcement.announcement }}</p>
         {% endfor %}
@@ -67,7 +68,7 @@
     <div class="row">
         <div class="col-sm-4 py-2">
             <div class="card card-body h-100">
-      <div class="card-body text-center" style="padding-top: 30px !important">
+      <div class="card-body text-center style5 wrapper" style="padding-top: 30px !important">
         <img src="/static/assets/img/knowledge.png" alt="Knowledge" width="65" height="53">
         <p class="card-text"><b>Knowledge</b></p>
         <div style="text-align: center;">
@@ -85,7 +86,7 @@
         <div class="col-sm-4 py-2">
             <div class="card card-body h-100">
                 <div class="card-body">
-      <div class="card-body text-center" style="padding-top: 0px !important">
+      <div class="card-body text-center wrapper style5" style="padding-top: 0px !important">
         <img src="/static/assets/img/networking.png" alt="Networking" width="65" height="65">
         <p class="card-text"><b>Networking</b></p>
         <div style="text-align: center;">
@@ -102,7 +103,7 @@
         </div>
         <div class="col-sm-4 py-2">
             <div class="card h-100 card-body">
-      <div class="card-body text-center" style="padding-top: 40px !important">
+      <div class="card-body text-center wrapper style5" style="padding-top: 40px !important">
         <img src="/static/assets/img/collaboration.png" alt="Collaboration" width="65" height="44">
         <p class="card-text"><b>Collaboration</b></p>
         <div style="text-align: center;">
@@ -160,8 +161,6 @@
 
 {% block javascripts %}
 
-<script src="/static/assets/vendors/@coreui/coreui-chartjs/js/coreui-chartjs.bundle.js"></script>
-<script src="/static/assets/js/main.js"></script>
 {% leaflet_js %}
 {% leaflet_css %}
 <style>

@@ -6,4 +6,4 @@ from .models import Contributor
 def contributors(request):
     contributors = Contributor.objects.all()
     context = {'contributor_list': contributors}
-    return render(request, 'contributors.html', context)
+    return render(request, 'contributors/contributors.html', context)

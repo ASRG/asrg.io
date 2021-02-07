@@ -14,10 +14,13 @@ from django import template
 
 from .forms import LoginForm, SignUpForm, UserUpdateForm, UserProfileForm
 from .models import Chapter, UserProfile
-from website.models import Announcement
+from announcements.models import Announcement
 
 
 def login_view(request):
+    if request.user.is_authenticated:
+        return redirect("/index.html")
+
     form = LoginForm(request.POST or None)
 
     msg = None
