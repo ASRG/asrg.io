@@ -92,6 +92,8 @@ The application can be easily executed in a docker container. The steps:
 $ git clone https://github.com/ASRG/asrg.io.git
 $ cd member-portal/django-dashboard-coreui
 $ touch .env
+# [Windows] Then proceed to add the required properties.
+# type nul > .env
 ```
 
 ### The .env file
@@ -270,15 +272,17 @@ ASRG,Host,Event,Check,Presenter,Organization,Type,Status,A,,Location,Start,End
 # Recreating CONTAINERID_asrg-postgres ... error
 ## ERROR: for CONTAINERID_asrg-postgres  Cannot create container for service asrg-db: Duplicate mount point: /var/lib/postgresql/data
 ### ERROR: for asrg-db  Cannot create container for service asrg-db: Duplicate mount point: /var/lib/postgresql/data
+## Creating asrg-postgres ... error. ERROR: Encountered errors while bringing up the project.
+### ERROR: for asrg-postgres  Cannot create container for service asrg-db: Conflict. The container name "/asrg-postgres" is already in use by container "
 > **Solution:** This issue is related to older docker volumes (mount points for db), not being
 > properly removed from older builds. To fix this issue we need to:
 ```bash
 # 1. Check all containers for Exited, Stopped, etc related to *asrg*
 $ docker container ps -a
 # 2. Stop all these specific containers related to the db (use ID or name)
-$ docker container stop CONTAINERID_asrg-postgres asrg-nginx asrg-app
+$ docker container stop asrg-postgres asrg-nginx asrg-app
 # 3. Remove failing container due to old version
-$ docker container rm -f CONTAINERID_asrg-postgres asrg-nginx asrg-app
+$ docker container rm -f asrg-postgres asrg-nginx asrg-app
 # 4. Check docker volumes for old versions
 $ docker volume ls
 # 5. Remove old docker volumes
