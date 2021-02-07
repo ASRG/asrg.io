@@ -65,11 +65,15 @@
 
   <body class="c-app" style="padding-top: 0;">
 
-    {% include 'includes/sidebar.html' %}
+    {% if user.is_authenticated %}
+      {% include 'includes/sidebar.html' %}
+    {% endif %}
 
     <div class="c-wrapper">
 
+    {% if user.is_authenticated %}
       {% include 'includes/navigation.html' with user=request.user %} 
+    {% endif %}
 
       <div class="c-body">
         <main class="c-main">
