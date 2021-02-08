@@ -15,13 +15,14 @@ The objective of the ASRG member portal is to provide a central place for member
 
 
 
-To start, this app is intended to be _least effort possible_ because we don't have the resources to support it. If you're interested in helping with this project (we need it), reach out to hello@asrg.io.
+To start, this app is intended to be _the least effort possible_ because we don't have the 
+resources to support it. If you're interested in helping with this project (we need it), reach out to hello@asrg.io.
 
 The core of the application will be built on the Django version of CoreUI. (https://github.com/app-generator/django-dashboard-coreui). They give a nice template for standard use cases in a basic UI (i.e. handles authentication/authorization/roles well). We'll take this template, and we will modify it to create a basic application that we can host as our member portal.
 
 We're using Docker to launch the app. Clone the repo, run:
 
-sudo docker-compose pull && sudo docker-compose build && sudo docker-compose up -d
+`sudo docker-compose pull && sudo docker-compose build && sudo docker-compose up -d`
 
 Then visit:
 
@@ -39,9 +40,14 @@ http://localhost:5005/admin
 
 To create admin credentials you need to  follow these steps:
 
+1. Run ssh into the docker container.
+`docker exec -it asrg-app /bin/bash`
+   
+2. Then inside the `asrg-app` container.
 ```bash
 python manage.py makemigrations
 python manage.py migrate
+# Then it should ask you for user, email and password
 python manage.py createsuperuser
 ```
 

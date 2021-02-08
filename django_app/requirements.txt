@@ -1,19 +1,28 @@
-asgiref
-autopep8
+asgiref==3.3.1
+autopep8==1.5.4
 Django==2.1.*
-pycodestyle
-pytz
-sqlparse
-Unipath
-dj-database-url
-python-decouple
-gunicorn
-whitenoise
-Pillow==7.2.0
+pycodestyle==2.6.0
+pytz==2020.5
+sqlparse==0.4.1
+gunicorn==20.0.4
 psycopg2==2.8.5
 django-filter==2.2.0
 six==1.15.0
-django-leaflet==0.27.1
+django-leaflet==0.27.1 
 geopy==2.0.0
 django-imagekit==4.0.2
-environs
+environs==9.3.0
+Pillow==7.2.0
+
+
+-r announcements/requirements.txt
+-r asrg/requirements.txt
+-r authentication/requirements.txt
+-r contributors/requirements.txt
+-r events/requirements.txt
+-r job/requirements.txt
+-r landing_page/requirements.txt
+-r locations/requirements.txt
+-r projects/requirements.txt
+-r technical_committees/requirements.txt
+

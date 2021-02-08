@@ -10,6 +10,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth.models import Permission
+<<<<<<< HEAD
 from django.template.loader import render_to_string
 from django.core import mail
 from django.http import HttpResponse
@@ -27,12 +28,24 @@ from app.forms import UserProfileForm
 import authentication.forms as f
 from .models import User, Chapter
 from app.models import UserProfile
+=======
+from django.http import HttpResponse
+from django.template import loader
+from django import template
+
+from .forms import LoginForm, SignUpForm, UserUpdateForm, UserProfileForm
+from .models import Chapter, UserProfile
+from announcements.models import Announcement
+>>>>>>> 873d5f43d02a0825a9404478b1f1c083462dcf65
 
 _24_HOUR_TIMESTAMP = 60 * 60 * 24
 _4_HOUR_TIMESTAMP = 60 * 60 * 4
 
 
 def login_view(request):
+    if request.user.is_authenticated:
+        return redirect("/index.html")
+
     form = LoginForm(request.POST or None)
 
     msg = None
@@ -56,8 +69,7 @@ def login_view(request):
 def register_user(request):
 
     msg = None
-    errors = None
-    success = True
+    success = False
 
     if request.method == "POST":
         form = SignUpForm(request.POST)
@@ -109,7 +121,7 @@ def account_edit_view(request):
     context['profile'] = profile
 
     if request.POST:
-        acc_form = f.UserUpdateForm(request.POST, instance=request.user)
+        acc_form = UserUpdateForm(request.POST, instance=request.user)
         prof_form = UserProfileForm(request.POST, request.FILES, instance=profile)
 
         if acc_form.is_valid() and prof_form.is_valid():
@@ -123,13 +135,10 @@ def account_edit_view(request):
             user_obj.user_permissions.add(*perms)
             profile = prof_form.save(commit=False)
             profile.user = request.user
-            # profile.chapter = request.user.chapter.all
             if request.FILES:
                 profile.profile_picture = request.FILES.get("profile_picture")
             else:
                 profile.profile_picture = profile.profile_picture
-            # profile.date_joined = datetime.now()
-            # profile.last_login = datetime.now()
             if profile.dob and profile.field_of_study and profile.bio and profile.status and profile.skills:
                 profile.is_complete = True
             profile.save()
@@ -137,32 +146,13 @@ def account_edit_view(request):
         else:
             context['account_form'] = acc_form
             context["profile_form"] = prof_form
-
-        # prof_form = UserProfileForm(request.POST, request.FILES, instance=profile)
-        # if prof_form.is_valid():
-        #     profile = prof_form.save(commit=False)
-        #     profile.user = request.user
-        #     # profile.chapter = request.user.chapter.all
-        #     if request.FILES:
-        #         profile.profile_picture = request.FILES.get("profile_picture")
-        #     else:
-        #         profile.profile_picture = profile.profile_picture
-        #     # profile.date_joined = datetime.now()
-        #     # profile.last_login = datetime.now()
-        #     if profile.dob and profile.field_of_study and profile.bio and profile.status and profile.skills:
-        #         profile.is_complete = True
-        #     profile.save()
-        # else:
-        #     context["profile_form"] = prof_form
-        # return redirect('profile')#######################################################################
     else:
-        acc_form = f.UserUpdateForm(
+        acc_form = UserUpdateForm(
             initial={
                 'username': request.user.username,
                 'email': request.user.email,
                 'first_name': request.user.first_name,
                 'last_name': request.user.last_name,
-                # 'gender': request.user.gender,
                 'chapter': request.user.chapter.all(),
                 'occupational_status': request.user.occupational_status,
                 'country': request.user.country,
@@ -171,14 +161,9 @@ def account_edit_view(request):
 
         prof_form = UserProfileForm(
             initial={
-                # 'first_name': profile.first_name,
-                # 'last_name': profile.last_name,
                 "dob": profile.dob,
                 'gender': profile.gender,
-                # 'occupational_status': profile.occupational_status,
                 "field_of_study": profile.field_of_study,
-                # 'chapter': profile.chapter.all,
-                # 'country': profile.country,
                 "bio": profile.bio,
                 "status": profile.status,
                 "skills": profile.skills,
@@ -257,3 +242,85 @@ def inactive_user(request):
                     )
 
     return render(request, "authentication/resend_email.html", {"form": form, "msg": msg, "success": success})
+@login_required(login_url="/login/")
+def index(request):
+    context = {"chapters": Chapter.objects.all(), "announcements": Announcement.objects.all(), "main_dashboard": True}
+    return render(request, "index.html", context)
+
+
+@login_required(login_url="/login/")
+def pages(request):
+    context = {}
+    # All resource paths end in .html.
+    # Pick out the html file name from the url. And load that template.
+    try:
+
+        load_template = request.path.split("/")[-1]
+        html_template = loader.get_template(load_template)
+        return HttpResponse(html_template.render(context, request))
+
+    except template.TemplateDoesNotExist:
+
+        html_template = loader.get_template("error-404.html")
+        return HttpResponse(html_template.render(context, request))
+
+    except:
+
+        html_template = loader.get_template("error-500.html")
+        return HttpResponse(html_template.render(context, request))
+
+
+@login_required(login_url="/login/")
+def profile_create_view(request):
+    context = {}
+    try:
+        profile = request.user.profile
+    except UserProfile.DoesNotExist:
+        profile = UserProfile(user=request.user)
+    context['profile'] = profile
+
+    if request.POST:
+        prof_form = UserProfileForm(request.POST, request.FILES, instance=profile)
+        if prof_form.is_valid():
+            profile = prof_form.save(commit=False)
+            profile.user = request.user
+            if request.FILES:
+                profile.profile_picture = request.FILES.get("profile_picture")
+            else:
+                profile.profile_picture = profile.profile_picture
+            if profile.dob and profile.field_of_study and profile.bio and profile.status and profile.skills:
+                profile.is_complete = True
+            profile.save()
+            return redirect("profile")
+        else:
+            context["profile_form"] = prof_form
+    else:
+        prof_form = UserProfileForm(
+            initial={
+                "dob": profile.dob,
+                "field_of_study": profile.field_of_study,
+                "bio": profile.bio,
+                "status": profile.status,
+                "skills": profile.skills,
+                "fb_link": profile.fb_link,
+                "tw_link": profile.tw_link,
+                "ig_link": profile.ig_link,
+                'pp_src': profile.pp_src,
+            }
+        )
+
+        context["profile_form"] = prof_form
+
+    return render(request, "accounts/create-profile.html", context)
+
+
+@login_required(login_url="/login/")
+def profile_view(request):
+    context = {}
+    try:
+        profile = request.user.profile
+    except UserProfile.DoesNotExist:
+        profile = UserProfile(user=request.user)
+    context["profile"] = profile
+    context["user"] = request.user
+    return render(request, "accounts/profile.html", context)
