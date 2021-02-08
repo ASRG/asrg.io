@@ -15,19 +15,21 @@ from django.core import mail
 from django.http import HttpResponse
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes
+from django.utils import timezone
 from django.core.signing import TimestampSigner, BadSignature, SignatureExpired
 from django.db import transaction
 from django.utils.html import strip_tags
 from django.conf import settings
 
 
-from .forms import LoginForm, SignUpForm
+from .forms import LoginForm, SignUpForm, ResendEmailForm
 from app.forms import UserProfileForm
 import authentication.forms as f
 from .models import User, Chapter
 from app.models import UserProfile
 
 _24_HOUR_TIMESTAMP = 60 * 60 * 24
+_4_HOUR_TIMESTAMP = 60 * 60 * 4
 
 
 def login_view(request):
@@ -44,8 +46,6 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 return redirect("/index.html")
-            else:
-                msg = 'Invalid credentials'
         else:
             msg = 'Error validating the form'
 
@@ -86,6 +86,7 @@ def register_user(request):
             plain_message = strip_tags(message)
             to_email = user_obj.email
             mail.send_mail(mail_subject, plain_message, settings.EMAIL_HOST_USER, [to_email], html_message=message)
+            user_obj.verification_email_sent_date = timezone.now()
             return HttpResponse('Please confirm your email address to complete the registration')
 
         else:
@@ -216,28 +217,43 @@ def activate(request, uidb64, token):
     return HttpResponse('Activation link is invalid!')
 
 
-def resend_email_activation(request, uidb64):
-    try:
-        uid = base64.urlsafe_b64decode(uidb64)
-        user = User._default_manager.get(pk=uid)
-    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
-        user = None
+def inactive_user(request):
+    success = False
+    msg = None
+    form = ResendEmailForm(request.POST or None)
+    if request.method == "POST":
+        if form.is_valid():
+            try:
+                user = User._default_manager.get(email=form.cleaned_data['email'])
+            except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+                return HttpResponse(
+                    'If a user is registered with this address an e-mail an activation E-mail was sent to the address.'
+                )
 
-    if user:
-        current_site = get_current_site(request)
-        mail_subject = "Activate your account."
-        message = render_to_string(
-            "authentication/email/acc_activate_email.html",
-            {
-                "user": user.username,
-                "domain": current_site.domain,
-                "uid": base64.urlsafe_b64encode(force_bytes(user.pk)).decode("utf-8"),
-                "token": TimestampSigner().sign(default_token_generator.make_token(user)),
-            },
-        )
-        plain_message = strip_tags(message)
-        to_email = user.email
-        mail.send_mail(mail_subject, plain_message, settings.EMAIL_HOST_USER, [to_email], html_message=message)
-        return HttpResponse('Check you inbox and click on the link from the E-mail to activate your acccount!')
+            if user and user.verification_email_sent_date:
+                if (timezone.now() - user.verification_email_sent_date).seconds < _4_HOUR_TIMESTAMP:
+                    current_site = get_current_site(request)
+                    mail_subject = "Activate your account."
+                    message = render_to_string(
+                        "authentication/email/acc_activate_email.html",
+                        {
+                            "user": user.username,
+                            "domain": current_site.domain,
+                            "uid": base64.urlsafe_b64encode(force_bytes(user.pk)).decode("utf-8"),
+                            "token": TimestampSigner().sign(default_token_generator.make_token(user)),
+                        },
+                    )
+                    plain_message = strip_tags(message)
+                    to_email = user.email
+                    mail.send_mail(
+                        mail_subject, plain_message, settings.EMAIL_HOST_USER, [to_email], html_message=message
+                    )
+                    return HttpResponse(
+                        'If a user is registered with this address an e-mail an activation E-mail was sent to the address.'
+                    )
+                else:
+                    return HttpResponse(
+                        'If a user is registered with this address an e-mail an activation E-mail was sent to the address.'
+                    )
 
-    return HttpResponse('Link is invalid!')
+    return render(request, "authentication/resend_email.html", {"form": form, "msg": msg, "success": success})

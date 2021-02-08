@@ -1,0 +1,88 @@
+{% extends "layouts/base-fullscreen.html" %}
+
+{% load staticfiles %}
+
+{% block title %} Register {% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card mx-4">
+
+      <form role="form"
+            method="post"
+            action="">
+
+        {% csrf_token %}
+
+        <div class="card-body p-4">
+          <div class="text-center">
+
+            <!-- Banner -->
+            <section id="banner">
+              <div class="inner">
+                <span>
+                  <h2>
+                    <a href="https://asrg.io/">
+                      <img src="{% static './images/ASRG_Logo_black.png' %}"
+                           alt="ASRG"
+                           width="300"
+                           height="107"
+                           title="Automotive Security Research Group" />
+                    </a>
+                  </h2>
+                </span>
+              </div>
+            </section>
+
+            <h5>Resend E-mail verification</h5>
+            <p class="text-muted">
+              {% for field in form %}
+              {% if field.errors %}
+              {% for error in field.errors %}
+              <span style="color: red;">{{field.name }} {{ error | safe }}<br></span>
+              {% endfor %}
+              {% endif %}
+              {% endfor %}
+
+              {% if msg %}
+              <span style="color: red;">{{ msg | safe }}<br></span>
+              {% endif %}
+
+
+            </p>
+          </div>
+
+          <br />
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend"><span class="input-group-text">
+                <svg class="c-icon">
+                  <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
+                </svg></span></div>
+            {{ form.email }}
+          </div>
+
+
+          <br />
+
+          <div class="text-center">
+            <button type="submit"
+                    name="register"
+                    class="btn btn-primary px-4">Resend</button>
+          </div>
+
+        </div>
+
+      </form>
+
+      <div class="card-footer p-4 text-center">
+        Have an account? <a href={% url 'login' %}>Login</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
