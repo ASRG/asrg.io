@@ -7,21 +7,17 @@ Copyright (c) 2019 - present AppSeed.us
 from django.db import models
 
 # from django.contrib.auth.models import User
-from django.db.models.base import ModelBase
-from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
 from geopy.geocoders import Nominatim
 from imagekit.models import ImageSpecField, ProcessedImageField
 from imagekit.processors import ResizeToFill
 
-from authentication.countries import COUNTRIES as COUNTRY_CHOICES
+from .countries import COUNTRIES as COUNTRY_CHOICES
 
 OCCUPATIONAL_STATUS_CHOICES = (
     ("", "Occupational Status"),
     ("Student", "Student"),
-    # ("Undergraduate Student", "Undergraduate Student"),
-    # ("Graduate Student", "Graduate Student"),
     ("Engineer", "Engineer"),
     ("Manager", "Manager"),
     ("Executive", "Executive Management"),
@@ -46,11 +42,8 @@ class Chapter(models.Model):
     longitude = models.DecimalField(max_digits=9, decimal_places=6, default=0)
     description = models.CharField(max_length=300)
     meetup_link = models.URLField()
-    picture_src = ProcessedImageField(upload_to='chapters/cover', blank=True,
-                                   verbose_name='picture')  # processedimagefield
-    picture = ImageSpecField(source='picture_src',  processors=[
-                                       ResizeToFill(611, 180)])  # sized image
-    # picture = models.ImageField(upload_to='chapters/pictures',blank=True)
+    picture_src = ProcessedImageField(upload_to='chapters/cover', blank=True, verbose_name='picture')
+    picture = ImageSpecField(source='picture_src', processors=[ResizeToFill(611, 180)])  # sized image
 
     def get_coordinates(self):
         if (self.latitude == 0 or self.longitude == 0) and self.city:
@@ -70,8 +63,7 @@ class Chapter(models.Model):
 
 
 class User(AbstractUser):
-    chapter = models.ManyToManyField("Chapter", blank=True, null=True, related_name="users")
-    # gender = models.CharField(max_length=25, choices=GENDER_CHOICES, blank=False, default=GENDER_CHOICES[0])
+    chapter = models.ManyToManyField("Chapter", blank=True, related_name="users")
     occupational_status = models.CharField(
         max_length=50,
         choices=OCCUPATIONAL_STATUS_CHOICES,
@@ -82,3 +74,42 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.username
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    dob = models.DateField(verbose_name='Date of Birth', blank=True, null=True)
+    gender = models.CharField(max_length=25, choices=GENDER_CHOICES, blank=False, default=GENDER_CHOICES[0])
+    field_of_study = models.CharField(max_length=100, blank=True, null=True)
+    bio = models.TextField(default='', blank=True, null=True)
+    status = models.CharField(max_length=256, default='', blank=True, null=True)
+    skills = models.CharField(max_length=350, default='', blank=True, null=True)
+    pp_src = models.ImageField(upload_to='users/profile_pictures', blank=True, verbose_name='Profile Picture')
+    profile_picture = ImageSpecField(source='pp_src', processors=[ResizeToFill(350, 350)])  # sized image
+    fb_link = models.URLField(blank=True, verbose_name="Facebook Proifle Link", null=True)
+    tw_link = models.URLField(blank=True, verbose_name="Twitter Proifle Link", null=True)
+    ig_link = models.URLField(blank=True, verbose_name="Instagram Proifle Link", null=True)
+
+    date_joined = models.DateTimeField(auto_now_add=True)
+    last_login = models.DateTimeField(auto_now=True)
+    is_complete = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.user.username
+
+    class Meta:
+        permissions = [
+            ("ASRG_member", "ASRG_member"),
+            (
+                "ASRG_global_lead",
+                "ASRG_global_lead",
+            ),
+            (
+                "ASRG_global_admin",
+                "ASRG_global_admin",
+            ),
+            ("ASRG_sponsor_L1", "ASRG_sponsor_L1"),
+            ("ASRG_sponsor_L2", "ASRG_sponsor_L2"),
+            ("ASRG_sponsor_L3", "ASRG_sponsor_L3"),
+            ("ASRG_asip_contributor", "ASRG_asip_contributor"),
+        ]

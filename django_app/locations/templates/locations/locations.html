@@ -1,0 +1,106 @@
+{% extends base_template %}
+{% load staticfiles %}
+
+{% block title %}Events{% endblock %}
+
+{% block content %}
+<style>
+   .wrapper > .inner {
+    width: 75em;
+    margin: 0 auto;
+}
+
+.shadow-lg {
+    box-shadow: 0 1rem 1rem rgba(0, 0, 21, 0.175) !important;
+}
+#card-meetup > a{
+    color: blue;
+    text-decoration: underline;
+}
+</style>
+
+<article id="main">
+    <header>
+        <h2>ASRG | LOCATIONS</h2>
+    </header>
+    <section class="wrapper style5" style="padding-top: 70px;">
+        <div class="inner">
+            <div class="container wrapper style5">
+                <div class="row g-2" style="display: flex; justify-content: center;">
+                    <div class="row" style="display: flex; justify-content: center;">
+                        {% for location in locations %}
+                        <div class="col-sm-6 my-3">
+                          <div class="card shadow-lg">
+                            
+                            {% if location.picture %}
+                                <div>
+                                    <img class="card-img" src="{{ location.picture.url }}" alt="Chapter Image">
+                                </div>
+                            {% else %}
+                                <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" role="img"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
+                            {% endif %}
+                            
+                            <div class="card-body">
+
+                                <h3 class="text-center my-3">{{ location.location }}</h3>
+                                <div class="px-4">
+                                    <p class="card-text"><b>Short Name: </b>{{ location.location }}</p>
+                                    <p class="card-text"><b>Foundation: </b>{{ location.foundation }}</p>
+                                    <p class="card-text"><b>Lead: </b>{{ location.lead }}</p>
+                                    <p class="card-text"><b>Country: </b>{{ location.country }}</p>
+                                    <p class="card-text"><b>City: </b>{{ location.city }}</p>
+                                    <p class="card-text"><b>Description: </b>{{ location.description }}</p>
+                                    {% if location.meetup_link %}
+                                        <div class="text-center" id="card-meetup">
+                                            <a href="{{ location.meetup_link }}" target="_blank"><div class="button primary">Go to meetup</div></a>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        {% endfor %}
+                        </div>
+                      </div>
+            
+                </div>
+        </div>
+
+    </section>
+
+    
+
+
+
+
+{% endblock content %}
+
+
+
+{% for location in locations %}
+
+    <!-- <div class="container bcontent col-4"> -->
+
+        <h2>
+{{ location.location }}</h2>
+        <!-- <hr /> -->
+        <div class="card">
+            <div class="row no-gutters">
+                <div class="col-sm-5">
+                    <img class="card-img" src="{{ location.picture.url }}">
+                </div>
+                <div class="col-sm-7">
+                    <div class="card-body">
+                        <p class="card-text">{{ location.short_name }}</p>
+                        <p class="card-text">{{ location.lead }}</p>
+                        <p class="card-text">{{ location.country }}</p>
+                        <p class="card-text">{{ location.city }}</p>
+                        <p class="card-text">{{ location.description }}</p>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- </div> -->
+    <!-- <br><br><br><br> -->
+    {% endfor %}

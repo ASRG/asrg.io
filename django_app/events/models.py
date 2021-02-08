@@ -2,7 +2,6 @@ from django.db import models
 from imagekit.models import ImageSpecField, ProcessedImageField
 from imagekit.processors import ResizeToFill
 
-from core.settings import CHAPTERS
 from authentication.models import Chapter, User
 from .timezones import TIMEZONES as TIMEZONE_CHOICES
 

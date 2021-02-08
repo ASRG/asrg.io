@@ -3,11 +3,14 @@ from django.shortcuts import render
 from .models import Location
 from authentication.models import Chapter
 
+
 def location_view(request):
     context = {}
     locations = Chapter.objects.all()
     context['locations'] = locations
     if request.user.is_authenticated:
-        return render(request, "locations/locations_authenticated.html",context)
+        context['base_template'] = "layouts/base.html"
     else:
-        return render(request, "locations/locations.html",context)
+        context['base_template'] = "landing_page/base.html"
+
+    return render(request, "locations/locations.html", context)
