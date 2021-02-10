@@ -7,7 +7,7 @@ Copyright (c) 2019 - present AppSeed.us
 from django.urls import path, re_path
 from django.contrib.auth import views as auth_views
 
-from .views import login_view, register_user, index, profile_create_view, profile_view, account_edit_view
+from .views import login_view, register_user, index, profile_create_view, profile_view, account_edit_view, activate, inactive_user
 
 urlpatterns = [
     path("", index, name="home"),
@@ -47,5 +47,7 @@ urlpatterns = [
         "reset/done/",
         auth_views.PasswordResetCompleteView.as_view(template_name="passwordreset/password_reset_complete.html"),
         name="password_reset_complete",
-    ),
+    ),    
+    path("activate/<uidb64>/<token>/", activate, name="activate"),
+    path("resend-email-activation/", inactive_user, name="resend-email-activation"),
 ]
