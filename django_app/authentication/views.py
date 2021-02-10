@@ -10,7 +10,6 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth.models import Permission
-<<<<<<< HEAD
 from django.template.loader import render_to_string
 from django.core import mail
 from django.http import HttpResponse
@@ -21,14 +20,6 @@ from django.core.signing import TimestampSigner, BadSignature, SignatureExpired
 from django.db import transaction
 from django.utils.html import strip_tags
 from django.conf import settings
-
-
-from .forms import LoginForm, SignUpForm, ResendEmailForm
-from app.forms import UserProfileForm
-import authentication.forms as f
-from .models import User, Chapter
-from app.models import UserProfile
-=======
 from django.http import HttpResponse
 from django.template import loader
 from django import template
@@ -36,7 +27,6 @@ from django import template
 from .forms import LoginForm, SignUpForm, UserUpdateForm, UserProfileForm
 from .models import Chapter, UserProfile
 from announcements.models import Announcement
->>>>>>> 873d5f43d02a0825a9404478b1f1c083462dcf65
 
 _24_HOUR_TIMESTAMP = 60 * 60 * 24
 _4_HOUR_TIMESTAMP = 60 * 60 * 4
@@ -242,6 +232,8 @@ def inactive_user(request):
                     )
 
     return render(request, "authentication/resend_email.html", {"form": form, "msg": msg, "success": success})
+
+
 @login_required(login_url="/login/")
 def index(request):
     context = {"chapters": Chapter.objects.all(), "announcements": Announcement.objects.all(), "main_dashboard": True}
