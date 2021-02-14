@@ -1,0 +1,23 @@
+django-cms==3.8.0
+
+django-mptt==0.11.0
+django-sekizai==0.9.0
+django-classy-tags==0.7.2
+djangocms-admin-style==1.2
+django-treebeard==4.4
+html5lib>=1
+
+django-filer==2.0.2
+django-polymorphic>=2.0
+django-reversion==1.8
+
+# Plugins:
+# djangocms-file==3.0.0
+# djangocms-flash==0.3.0
+# djangocms-googlemap==2.0.0
+# djangocms-inherit==0.2.2 # DEPRECATED!
+# djangocms-picture==3.0.0
+# djangocms-teaser==0.2.0
+# djangocms-video==3.0.0
+djangocms-link==3.0.0
+djangocms-text-ckeditor==4.0.0
