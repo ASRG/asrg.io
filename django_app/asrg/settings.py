@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     "job",
     "landing_page",
     "contributors",
-    "website",  # TODO: remove after cleanup
     "leaflet",
     "events",
     "locations",
