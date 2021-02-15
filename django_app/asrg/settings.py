@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     "menus",  # helper for model independent hierarchical website navigation
     "sekizai",  # for javascript and css management
     # Internal Apps:
+    "cms_app",
     "announcements",
     "job",
     "landing_page",
