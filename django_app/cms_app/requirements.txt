@@ -17,7 +17,7 @@ djangocms-file==3.0.0
 # djangocms-googlemap==2.0.0
 # djangocms-inherit==0.2.2 # DEPRECATED!
 djangocms-picture==3.0.0
-# djangocms-style==3.0.0
+djangocms-style==3.0.0
 # djangocms-snippet==3.0.0
 # djangocms-teaser==0.2.0
 # djangocms-video==3.0.0

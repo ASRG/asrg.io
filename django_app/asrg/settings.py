@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     "djangocms_file",
     #"djangocms_flash",
     #"djangocms_googlemap",
-    #"djangocms_style",
+    "djangocms_style",
     "djangocms_picture",
     #"djangocms_snippet",
     #"djangocms_video",
