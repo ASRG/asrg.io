@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     "djangocms_style",
     "djangocms_picture",
     #"djangocms_snippet",
-    #"djangocms_video",
+    "djangocms_video",
     #"djangocms_link",
     "djangocms_text_ckeditor",  # note this needs to be above the 'cms' entry
     "cms",  # django CMS itself

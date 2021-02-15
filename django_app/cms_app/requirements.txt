@@ -20,7 +20,7 @@ djangocms-picture==3.0.0
 djangocms-style==3.0.0
 # djangocms-snippet==3.0.0
 # djangocms-teaser==0.2.0
-# djangocms-video==3.0.0
+djangocms-video==3.0.0
 # djangocms-link==3.0.0
 djangocms-text-ckeditor==4.0.0
 
