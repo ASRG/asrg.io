@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     # CMS Apps:
     "djangocms_file",
     #"djangocms_flash",
-    #"djangocms_googlemap",
+    "djangocms_googlemap",
     "djangocms_style",
     "djangocms_picture",
     #"djangocms_snippet",
@@ -232,3 +232,6 @@ LEAFLET_CONFIG = {
     "MAX_ZOOM": 18,
     "DEFAULT_PRECISION": 6,
 }
+
+# Google API Key <- Before Production need to save secret key somewhere.
+DJANGOCMS_GOOGLEMAP_API_KEY = 'AIzaSyDNoQBsyC9-L8M-YuCvdsyamnbRUnb7P4s'
