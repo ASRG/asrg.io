@@ -46,14 +46,14 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "authentication",
     # CMS Apps:
-    # 'djangocms_file',
-    # 'djangocms_flash',
-    # 'djangocms_googlemap',
-    # 'djangocms_inherit',
-    # 'djangocms_picture',
-    # 'djangocms_teaser',
-    # 'djangocms_video',
-    "djangocms_link",
+    "djangocms_file",
+    #"djangocms_flash",
+    #"djangocms_googlemap",
+    #"djangocms_style",
+    "djangocms_picture",
+    #"djangocms_snippet",
+    #"djangocms_video",
+    #"djangocms_link",
     "djangocms_text_ckeditor",  # note this needs to be above the 'cms' entry
     "cms",  # django CMS itself
     "mptt",  # utilities for implementing a tree
