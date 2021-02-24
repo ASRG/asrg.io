@@ -8,14 +8,6 @@ from authentication.models import Chapter, User
 
 
 @receiver(post_save, sender=Chapter)
-def add_user_to_asrg_group(sender, instance, created, **kwargs):
-    if instance.users.exists():
-        for chapter in instance.chapter.all():
-            asrg_goup = Group.objects.get(name=chapter.location)
-            asrg_goup
-
-
-@receiver(post_save, sender=Chapter)
 def add_groups_asrgs(sender, instance, created, **kwargs):
     if created:
         location = instance.location
