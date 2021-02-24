@@ -140,37 +140,6 @@ STATICFILES_FINDERS = (
 MEDIA_ROOT = os.path.join(BASE_DIR, "asrg/media")
 MEDIA_URL = "/media/"
 
-CHAPTERS = (
-    ("ASRG-S", "ASRG-Stuttgart"),
-    ("ASRG-D", "ASRG-Detroit"),
-    ("ASRG-TLV", "ASRG-Tel Aviv"),
-    ("ASRG-C", "ASRG-Cluj-Napoca"),
-    ("ASRG-SIN", "ASRG-Singapore"),
-    ("ASRG-MUC", "ASRG-Munich"),
-    ("ASRG-CAI", "ASRG-Cairo"),
-    ("ASRG-SHA", "ASRG-Shanghai"),
-    ("ASRG-BER", "ASRG-Berlin"),
-    ("ASRG-PIT", "ASRG-Pittsburgh"),
-    ("ASRG-SFO", "ASRG-San Francisco"),
-    ("ASRG-FRA", "ASRG-Darmstadt"),
-    ("ASRG-JPN", "ASRG-Tokyo"),
-    ("ASRG-OXF", "ASRG-Oxford"),
-    ("ASRG-SYD", "ASRG-Sydney"),
-    ("ASRG-IASI", "ASRG-Iasi"),
-    ("ASRG-DNCR", "ASRG-Delhi"),
-    ("ASRG-DAY", "ASRG-Dayton"),
-    ("ASRG-REC", "ASRG-Recife"),
-    ("ASRG-BLR", "ASRG-Bangalore"),
-    ("ASRG-LAX", "ASRG-Los Angeles"),
-    ("ASRG-BUC", "ASRG-Bucharest"),
-    ("ASRG-QRO", "ASRG-Querétaro"),
-    ("ASRG-CGN", "ASRG-Cologne"),
-    ("ASRG-TOR", "ASRG-Toronto"),
-    ("ASRG-WIN", "ASRG-Windsor"),
-    ("ASRG-KER", "ASRG-Kochi"),
-    ("ASRG-VIE", "ASRG-Vienna"),
-    ("ASRG-HYD", "ASRG-Hyderabad"),
-)
 LEAFLET_CONFIG = {
     "DEFAULT_CENTER": (6.0, 45.0),
     "DEFAULT_ZOOM": 3,
