@@ -8,6 +8,7 @@ server {
     listen ${NGINX_HTTP_PORT};
     listen [::]:${NGINX_HTTP_PORT};
     server_name ${SERVER_NAME};
+    server_tokens off;
     return 302 ${DOLLAR}scheme://${DOLLAR}server_name${DOLLAR}request_uri;
 }
 server {
@@ -21,6 +22,7 @@ server {
     access_log /var/log/nginx/nginx.vhost.access.log;
     error_log /var/log/nginx/nginx.vhost.error.log;
     # Site configuration.
+    server_tokens off;
 
     location / {
         client_max_body_size 10M;
