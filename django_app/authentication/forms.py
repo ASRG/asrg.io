@@ -6,6 +6,7 @@ Copyright (c) 2019 - present AppSeed.us
 
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate
 
 from .models import User, Chapter, OCCUPATIONAL_STATUS_CHOICES, GENDER_CHOICES
 from authentication.countries import COUNTRIES as COUNTRY_CHOICES
@@ -19,6 +20,14 @@ for i in range(1901, 2099):
 class LoginForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Username", "class": "form-control"}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Password", "class": "form-control"}))
+
+
+class ResendEmailForm(forms.Form):
+    email = forms.EmailField(widget=forms.EmailInput(attrs={"placeholder": "Email", "class": "form-control"}))
+
+    class Meta:
+        model = User
+        fields = ("email",)
 
 
 class SignUpForm(UserCreationForm):

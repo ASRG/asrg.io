@@ -6226,7 +6226,7 @@ html:not([dir="rtl"]) .c-header-nav .c-header-nav-link .badge, html:not([dir="rt
 .c-header.c-header-dark .c-header-nav .c-active > .c-header-nav-link,
 .c-header.c-header-dark .c-header-nav .c-header-nav-link.c-show,
 .c-header.c-header-dark .c-header-nav .c-header-nav-link.c-active {
-  color: #fff;
+  color: #8a93a2;
 }
 
 .c-header.c-header-dark .c-header-toggler {

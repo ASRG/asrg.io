@@ -71,6 +71,7 @@ class User(AbstractUser):
         default=OCCUPATIONAL_STATUS_CHOICES[0],
     )
     country = models.CharField(max_length=150, choices=COUNTRY_CHOICES, default=COUNTRY_CHOICES[0])
+    verification_email_sent_date = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
         return self.username
