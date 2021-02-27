@@ -1,13 +1,153 @@
-{% load cms_tags sekizai_tags %}
+{% load cms_tags menu_tags sekizai_tags %}
+{% load static %}
+{% load staticfiles %}
+<!DOCTYPE html>
+
 <html>
   <head>
+
       <title>{% page_attribute "page_title" %}</title>
+      <meta charset="utf-8" />
+      <meta name="viewport"
+            content="width=device-width, initial-scale=1, user-scalable=no" />
+      {% addtoblock "css" %} <link rel="stylesheet" href="{% static 'landing_page/css/main.css' %}" /> {% endaddtoblock %}
+      {% addtoblock "css" %} <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon" /> {% endaddtoblock %}
+      {% addtoblock "css" %}
+      {% endaddtoblock %} <link rel="shortcut icon" href="{% static 'icon.ico' %}" type="image/x-icon" /> {% addtoblock "css" %}
+      {% endaddtoblock %}
+      {% addtoblock "css" %} <link rel="apple-touch-icon" sizes="180x180" href="{% static '/apple-touch-icon.png' %}" /> {% endaddtoblock %}
+      {% addtoblock "css" %} <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}" /> {% endaddtoblock %}
+      {% addtoblock "css" %} <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}" /> {% endaddtoblock %}
+      {% addtoblock "css" %} <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" /> {% endaddtoblock %}
+      {% addtoblock "css" %} <noscript> <link rel="stylesheet" href="{% static 'landing_page/css/noscript.css' %}" /></noscript> {% endaddtoblock %}
+      {% addtoblock "css" %} <link rel="stylesheet" href="{% static 'landing_page/css/custom.css' %}" /> {% endaddtoblock %}
+      {% addtoblock "css" %} <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" /> {% endaddtoblock %}
       {% render_block "css" %}
   </head>
-  <body>
-      {% cms_toolbar %}
-      {% placeholder base_content %}
-      {% block base_content %}{% endblock %}
-      {% render_block "js" %}
+  <body class="landing is-preload">
+    {% cms_toolbar %}
+
+    <div id="page-wrapper">
+      <!-- Header -->
+      <header id="header" class="alt">
+        <h1><a href="landing.html">ASRG</a></h1>
+        <nav id="nav">
+          <ul>
+            <li class="special">
+              <a href="#menu" class="menuToggle"><span>Menu</span></a>
+              <div id="menu">
+                <ul>
+                  {% show_menu 0 10 10 10 "cms_app/menu.html" %}
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      {% placeholder content %}
+
+      {% block content %}{% endblock content %}
+
+      {% static_placeholder "footer" or %} 
+      <footer id="footer">
+        <ul class="icons">
+          <li>
+            <a href="https://join.slack.com/t/asrg/shared_invite/enQtNjMyMzAyMDM4MjI1LTM2Njc3MWRkNWI1NjkwYmQ4NDRkZjYwYmE2MzcyMWY3Y2IwZjc1YTAzYjQxM2M0NzdhOGEzNjNmYjNkM2EzZWM"
+               class="icon brands fa-slack">
+              <span class="label"></span></a>
+          </li>
+          <li>
+            <a href="https://twitter.com/AutoSecResGroup"
+               class="icon brands fa-twitter"><span class="label"></span></a>
+          </li>
+          <li>
+            <a href="https://facebook.com/ASRG-Automotive-Security-Research-Group-1454803571254832/"
+               class="icon brands fa-facebook-f"><span class="label"></span></a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/company/automotive-security-research-group/"
+               class="icon brands fa-linkedin"><span class="label"></span></a>
+          </li>
+          <li>
+            <a href="mailto:hello@asrg.io"
+               class="icon solid fa-envelope"><span class="label"></span></a>
+          </li>
+        </ul>
+        <ul class="copyright">
+          <li>&copy; 2020 ASRG.io</li>
+          <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+          <li><a href="{% url 'privacy' %}">Data Privacy</a></li>
+          <!-- <li><a href="https://asrg.io/imprint">Imprint</a></li> -->
+          <li><a href="{% url 'contributors' %}">Contributors</a></li>
+        </ul>
+      </footer>
+      {% endstatic_placeholder%}
+    </div>
+
+
+    <!-- Scripts -->
+    {% addtoblock "js" %} <script src="{% static 'landing_page/js/jquery.min.js' %}"></script> {% endaddtoblock %}
+    {% addtoblock "js" %} <script src="{% static 'landing_page/js/jquery.scrollex.min.js' %}"></script> {% endaddtoblock %}
+    {% addtoblock "js" %} <script src="{% static 'landing_page/js/jquery.scrolly.min.js' %}"></script> {% endaddtoblock %}
+    {% addtoblock "js" %} <script src="{% static 'landing_page/js/browser.min.js' %}"></script> {% endaddtoblock %}
+    {% addtoblock "js" %} <script src="{% static 'landing_page/js/breakpoints.min.js' %}"></script> {% endaddtoblock %}
+    {% addtoblock "js" %} <script src="{% static 'landing_page/js/util.js' %}"></script> {% endaddtoblock %}
+    {% addtoblock "js" %} <script src="{% static 'landing_page/js/main.js' %}"></script> {% endaddtoblock %}
+    {% addtoblock "js" %} 
+      <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"
+              data-cfasync="false"></script>
+    {% endaddtoblock %}
+    {% addtoblock "js" %} 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async
+            src="https://www.googletagmanager.com/gtag/js?id=UA-131464826-2"></script>
+    {% endaddtoblock %}
+    {% addtoblock "js" %} 
+      <!-- Google Tag Manager -->
+      <script>
+        (function (w, d, s, l, i) {
+          w[l] = w[l] || []; w[l].push({
+            'gtm.start':
+              new Date().getTime(), event: 'gtm.js'
+          }); var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+              'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-NK7WG72');
+      </script>
+    {% endaddtoblock %}
+    {% addtoblock "js" %} 
+      <!-- Cookie Notice -->
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+
+        gtag("config", "UA-131464826-2");
+
+
+        // window.onload = loadLocaleLinks;
+
+        window.cookieconsent.initialise({
+          palette: {
+            popup: {
+              background: "#000"
+            },
+            button: {
+              background: "transparent",
+              text: "#f1d600",
+              border: "#f1d600"
+            }
+          },
+          position: "bottom-right",
+          content: {
+            href: "https://asrg.io/privacy.html"
+          }
+        });
+      </script>
+    {% endaddtoblock %}
+    {% render_block "js" %}
   </body>
 </html>

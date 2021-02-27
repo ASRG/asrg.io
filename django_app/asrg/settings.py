@@ -47,13 +47,13 @@ INSTALLED_APPS = [
     "authentication",
     # CMS Apps:
     "djangocms_file",
-    #"djangocms_flash",
+    # "djangocms_flash",
     "djangocms_googlemap",
     "djangocms_style",
     "djangocms_picture",
-    #"djangocms_snippet",
+    # "djangocms_snippet",
     "djangocms_video",
-    #"djangocms_link",
+    # "djangocms_link",
     "djangocms_text_ckeditor",  # note this needs to be above the 'cms' entry
     "cms",  # django CMS itself
     "mptt",  # utilities for implementing a tree
@@ -96,8 +96,8 @@ LOGIN_REDIRECT_URL = "home"  # Route defined in app/urls.py
 LOGOUT_REDIRECT_URL = "home"  # Route defined in app/urls.py
 TEMPLATE_DIR = os.path.join(BASE_DIR, "asrg/templates")  # ROOT dir for templates
 CMS_TEMPLATES = (
-    ("cms_app/template_1.html", "Template One"),
-    ("cms_app/template_2.html", "Template Two"),
+    ("cms_app/landing_template.html", "Landing page template"),
+    ("cms_app/template1.html", "Article template"),
 )
 
 
@@ -234,4 +234,4 @@ LEAFLET_CONFIG = {
 }
 
 # Google API Key <- Before Production need to save secret key somewhere.
-DJANGOCMS_GOOGLEMAP_API_KEY = 'AIzaSyDNoQBsyC9-L8M-YuCvdsyamnbRUnb7P4s'
+DJANGOCMS_GOOGLEMAP_API_KEY = "AIzaSyDNoQBsyC9-L8M-YuCvdsyamnbRUnb7P4s"

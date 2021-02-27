@@ -74,33 +74,3 @@
 
 
 {% endblock content %}
-
-
-
-{% for location in locations %}
-
-    <!-- <div class="container bcontent col-4"> -->
-
-        <h2>
-{{ location.location }}</h2>
-        <!-- <hr /> -->
-        <div class="card">
-            <div class="row no-gutters">
-                <div class="col-sm-5">
-                    <img class="card-img" src="{{ location.picture.url }}">
-                </div>
-                <div class="col-sm-7">
-                    <div class="card-body">
-                        <p class="card-text">{{ location.short_name }}</p>
-                        <p class="card-text">{{ location.lead }}</p>
-                        <p class="card-text">{{ location.country }}</p>
-                        <p class="card-text">{{ location.city }}</p>
-                        <p class="card-text">{{ location.description }}</p>
-                       
-                    </div>
-                </div>
-            </div>
-        </div>
-    <!-- </div> -->
-    <!-- <br><br><br><br> -->
-    {% endfor %}
