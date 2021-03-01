@@ -32,12 +32,6 @@ services:
       - db_network
     depends_on:
       - asrg-db
-  cms:
-    container_name: asrg-cms
-    restart: unless-stopped
-    image: "vimagick/django-cms"
-    ports:
-      - "8000:80"
   nginx:
     container_name: asrg-nginx
     restart: unless-stopped
