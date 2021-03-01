@@ -25,7 +25,7 @@ from django.template import loader
 from django import template
 
 from .forms import LoginForm, SignUpForm, UserUpdateForm, UserProfileForm
-from .models import Chapter, UserProfile
+from .models import Chapter, UserProfile, User
 from announcements.models import Announcement
 
 _24_HOUR_TIMESTAMP = 60 * 60 * 24
@@ -50,7 +50,7 @@ def login_view(request):
                 login(request, user)
                 return redirect("/index.html")
         else:
-            msg = 'Error validating the form'
+            msg = "Error validating the form"
 
     return render(request, "accounts/login.html", {"form": form, "msg": msg})
 
@@ -81,15 +81,27 @@ def register_user(request):
                 {
                     "user": user_obj.username,
                     "domain": current_site.domain,
-                    "uid": base64.urlsafe_b64encode(force_bytes(user_obj.pk)).decode("utf-8"),
-                    "token": TimestampSigner().sign(default_token_generator.make_token(user_obj)),
+                    "uid": base64.urlsafe_b64encode(force_bytes(user_obj.pk)).decode(
+                        "utf-8"
+                    ),
+                    "token": TimestampSigner().sign(
+                        default_token_generator.make_token(user_obj)
+                    ),
                 },
             )
             plain_message = strip_tags(message)
             to_email = user_obj.email
-            mail.send_mail(mail_subject, plain_message, settings.EMAIL_HOST_USER, [to_email], html_message=message)
+            mail.send_mail(
+                mail_subject,
+                plain_message,
+                settings.EMAIL_HOST_USER,
+                [to_email],
+                html_message=message,
+            )
             user_obj.verification_email_sent_date = timezone.now()
-            return HttpResponse('Please confirm your email address to complete the registration')
+            return HttpResponse(
+                "Please confirm your email address to complete the registration"
+            )
 
         else:
             success = False
@@ -98,7 +110,11 @@ def register_user(request):
     else:
         form = SignUpForm()
 
-    return render(request, "accounts/register.html", {"form": form, "msg": msg, "success": success})
+    return render(
+        request,
+        "accounts/register.html",
+        {"form": form, "msg": msg, "success": success},
+    )
 
 
 @login_required(login_url="/login/")
@@ -108,7 +124,7 @@ def account_edit_view(request):
         profile = request.user.profile
     except UserProfile.DoesNotExist:
         profile = UserProfile(user=request.user)
-    context['profile'] = profile
+    context["profile"] = profile
 
     if request.POST:
         acc_form = UserUpdateForm(request.POST, instance=request.user)
@@ -121,7 +137,9 @@ def account_edit_view(request):
             for ch in chapter:
                 user_obj.chapter.add(ch)
             # Add the permissions for the respective chapter as well
-            perms = Permission.objects.filter(codename__in=chapter.values_list("location", flat=True))
+            perms = Permission.objects.filter(
+                codename__in=chapter.values_list("location", flat=True)
+            )
             user_obj.user_permissions.add(*perms)
             profile = prof_form.save(commit=False)
             profile.user = request.user
@@ -129,30 +147,36 @@ def account_edit_view(request):
                 profile.profile_picture = request.FILES.get("profile_picture")
             else:
                 profile.profile_picture = profile.profile_picture
-            if profile.dob and profile.field_of_study and profile.bio and profile.status and profile.skills:
+            if (
+                profile.dob
+                and profile.field_of_study
+                and profile.bio
+                and profile.status
+                and profile.skills
+            ):
                 profile.is_complete = True
             profile.save()
-            return redirect('profile')
+            return redirect("profile")
         else:
-            context['account_form'] = acc_form
+            context["account_form"] = acc_form
             context["profile_form"] = prof_form
     else:
         acc_form = UserUpdateForm(
             initial={
-                'username': request.user.username,
-                'email': request.user.email,
-                'first_name': request.user.first_name,
-                'last_name': request.user.last_name,
-                'chapter': request.user.chapter.all(),
-                'occupational_status': request.user.occupational_status,
-                'country': request.user.country,
+                "username": request.user.username,
+                "email": request.user.email,
+                "first_name": request.user.first_name,
+                "last_name": request.user.last_name,
+                "chapter": request.user.chapter.all(),
+                "occupational_status": request.user.occupational_status,
+                "country": request.user.country,
             }
         )
 
         prof_form = UserProfileForm(
             initial={
                 "dob": profile.dob,
-                'gender': profile.gender,
+                "gender": profile.gender,
                 "field_of_study": profile.field_of_study,
                 "bio": profile.bio,
                 "status": profile.status,
@@ -163,10 +187,10 @@ def account_edit_view(request):
                 "profile_picture": profile.profile_picture,
             }
         )
-    context['account_form'] = acc_form
+    context["account_form"] = acc_form
     context["profile_form"] = prof_form
 
-    return render(request, 'accounts/account_update.html', context)
+    return render(request, "accounts/account_update.html", context)
 
 
 def activate(request, uidb64, token):
@@ -180,16 +204,20 @@ def activate(request, uidb64, token):
         try:
             _token = TimestampSigner().unsign(token, max_age=_24_HOUR_TIMESTAMP)
         except SignatureExpired:
-            return render(request, "authentication/email_link_expired.html", {"uidb64": uidb64})
+            return render(
+                request, "authentication/email_link_expired.html", {"uidb64": uidb64}
+            )
         except BadSignature:
-            return HttpResponse('Activation link is invalid!')
+            return HttpResponse("Activation link is invalid!")
 
         if default_token_generator.check_token(user, _token):
             user.is_active = True
             user.save()
-            return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+            return HttpResponse(
+                "Thank you for your email confirmation. Now you can login your account."
+            )
 
-    return HttpResponse('Activation link is invalid!')
+    return HttpResponse("Activation link is invalid!")
 
 
 def inactive_user(request):
@@ -199,14 +227,16 @@ def inactive_user(request):
     if request.method == "POST":
         if form.is_valid():
             try:
-                user = User._default_manager.get(email=form.cleaned_data['email'])
+                user = User._default_manager.get(email=form.cleaned_data["email"])
             except (TypeError, ValueError, OverflowError, User.DoesNotExist):
                 return HttpResponse(
-                    'If a user is registered with this address an e-mail an activation E-mail was sent to the address.'
+                    "If a user is registered with this address an e-mail an activation E-mail was sent to the address."
                 )
 
             if user and user.verification_email_sent_date:
-                if (timezone.now() - user.verification_email_sent_date).seconds < _4_HOUR_TIMESTAMP:
+                if (
+                    timezone.now() - user.verification_email_sent_date
+                ).seconds < _4_HOUR_TIMESTAMP:
                     current_site = get_current_site(request)
                     mail_subject = "Activate your account."
                     message = render_to_string(
@@ -214,29 +244,45 @@ def inactive_user(request):
                         {
                             "user": user.username,
                             "domain": current_site.domain,
-                            "uid": base64.urlsafe_b64encode(force_bytes(user.pk)).decode("utf-8"),
-                            "token": TimestampSigner().sign(default_token_generator.make_token(user)),
+                            "uid": base64.urlsafe_b64encode(
+                                force_bytes(user.pk)
+                            ).decode("utf-8"),
+                            "token": TimestampSigner().sign(
+                                default_token_generator.make_token(user)
+                            ),
                         },
                     )
                     plain_message = strip_tags(message)
                     to_email = user.email
                     mail.send_mail(
-                        mail_subject, plain_message, settings.EMAIL_HOST_USER, [to_email], html_message=message
+                        mail_subject,
+                        plain_message,
+                        settings.EMAIL_HOST_USER,
+                        [to_email],
+                        html_message=message,
                     )
                     return HttpResponse(
-                        'If a user is registered with this address an e-mail an activation E-mail was sent to the address.'
+                        "If a user is registered with this address an e-mail an activation E-mail was sent to the address."
                     )
                 else:
                     return HttpResponse(
-                        'If a user is registered with this address an e-mail an activation E-mail was sent to the address.'
+                        "If a user is registered with this address an e-mail an activation E-mail was sent to the address."
                     )
 
-    return render(request, "authentication/resend_email.html", {"form": form, "msg": msg, "success": success})
+    return render(
+        request,
+        "authentication/resend_email.html",
+        {"form": form, "msg": msg, "success": success},
+    )
 
 
 @login_required(login_url="/login/")
 def index(request):
-    context = {"chapters": Chapter.objects.all(), "announcements": Announcement.objects.all(), "main_dashboard": True}
+    context = {
+        "chapters": Chapter.objects.all(),
+        "announcements": Announcement.objects.all(),
+        "main_dashboard": True,
+    }
     return render(request, "index.html", context)
 
 
@@ -269,7 +315,7 @@ def profile_create_view(request):
         profile = request.user.profile
     except UserProfile.DoesNotExist:
         profile = UserProfile(user=request.user)
-    context['profile'] = profile
+    context["profile"] = profile
 
     if request.POST:
         prof_form = UserProfileForm(request.POST, request.FILES, instance=profile)
@@ -280,7 +326,13 @@ def profile_create_view(request):
                 profile.profile_picture = request.FILES.get("profile_picture")
             else:
                 profile.profile_picture = profile.profile_picture
-            if profile.dob and profile.field_of_study and profile.bio and profile.status and profile.skills:
+            if (
+                profile.dob
+                and profile.field_of_study
+                and profile.bio
+                and profile.status
+                and profile.skills
+            ):
                 profile.is_complete = True
             profile.save()
             return redirect("profile")
@@ -297,7 +349,7 @@ def profile_create_view(request):
                 "fb_link": profile.fb_link,
                 "tw_link": profile.tw_link,
                 "ig_link": profile.ig_link,
-                'pp_src': profile.pp_src,
+                "pp_src": profile.pp_src,
             }
         )
 
