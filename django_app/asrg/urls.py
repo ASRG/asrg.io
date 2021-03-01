@@ -10,7 +10,9 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
+    path("cms/", include("cms.urls")),
+    path("filer/", include("filer.urls")),
     path("", include("landing_page.urls")),  # landing_page routes
     path("", include("authentication.urls")),  # authentication routes
     path("", include("announcements.urls")),  # announcements routes
