@@ -203,4 +203,4 @@ LEAFLET_CONFIG = {
 }
 
 # Google API Key <- Before Production need to save secret key somewhere.
-DJANGOCMS_GOOGLEMAP_API_KEY = "AIzaSyDNoQBsyC9-L8M-YuCvdsyamnbRUnb7P4s"
+DJANGOCMS_GOOGLEMAP_API_KEY = config("GOOGLEMAP_API_KEY", default="NOT_THIS_ONE")
