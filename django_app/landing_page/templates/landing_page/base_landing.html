@@ -99,8 +99,13 @@
                 <li><a href="https://asrg.gitbook.io/asrg-wiki/">Docs</a></li>
                 <li><a href="{% url 'security' %}">Report a vulnerability</a></li>
                 <li><a href="{% url 'blog' %}">Blog</a></li>
-                <li><a href="{% url 'register' %}">Become a Member</a></li>
-                <li><a href="{% url 'login' %}"> <i class="fa fa-fw fa-lock"></i> Login</a></li>
+                <li><a href="{% url 'sponsors' %}">Sponsors</a></li>
+                {% if not user.is_authenticated %}
+                  <li><a href="{% url 'register' %}">Become a Member</a></li>
+                  <li><a href="{% url 'login' %}"> <i class="fa fa-fw fa-lock"></i> Login</a></li>
+                {% else %}
+                  <li><a href="{% url 'index' %}">Member portal</a></li>
+                {% endif %}
               </ul>
             </div>
           </li>
