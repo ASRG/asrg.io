@@ -42,8 +42,12 @@ class Chapter(models.Model):
     longitude = models.DecimalField(max_digits=9, decimal_places=6, default=0)
     description = models.CharField(max_length=300)
     meetup_link = models.URLField()
-    picture_src = ProcessedImageField(upload_to='chapters/cover', blank=True, verbose_name='picture')
-    picture = ImageSpecField(source='picture_src', processors=[ResizeToFill(611, 180)])  # sized image
+    picture_src = ProcessedImageField(
+        upload_to="chapters/cover", blank=True, verbose_name="picture"
+    )
+    picture = ImageSpecField(
+        source="picture_src", processors=[ResizeToFill(611, 180)]
+    )  # sized image
 
     def get_coordinates(self):
         if (self.latitude == 0 or self.longitude == 0) and self.city:
@@ -59,6 +63,8 @@ class Chapter(models.Model):
         return self.location
 
     class Meta:
+        verbose_name = "Location"
+        verbose_name_plural = "Locations"
         permissions = []
 
 
@@ -70,7 +76,9 @@ class User(AbstractUser):
         blank=False,
         default=OCCUPATIONAL_STATUS_CHOICES[0],
     )
-    country = models.CharField(max_length=150, choices=COUNTRY_CHOICES, default=COUNTRY_CHOICES[0])
+    country = models.CharField(
+        max_length=150, choices=COUNTRY_CHOICES, default=COUNTRY_CHOICES[0]
+    )
     verification_email_sent_date = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
@@ -78,18 +86,30 @@ class User(AbstractUser):
 
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-    dob = models.DateField(verbose_name='Date of Birth', blank=True, null=True)
-    gender = models.CharField(max_length=25, choices=GENDER_CHOICES, blank=False, default=GENDER_CHOICES[0])
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
+    dob = models.DateField(verbose_name="Date of Birth", blank=True, null=True)
+    gender = models.CharField(
+        max_length=25, choices=GENDER_CHOICES, blank=False, default=GENDER_CHOICES[0]
+    )
     field_of_study = models.CharField(max_length=100, blank=True, null=True)
-    bio = models.TextField(default='', blank=True, null=True)
-    status = models.CharField(max_length=256, default='', blank=True, null=True)
-    skills = models.CharField(max_length=350, default='', blank=True, null=True)
-    pp_src = models.ImageField(upload_to='users/profile_pictures', blank=True, verbose_name='Profile Picture')
-    profile_picture = ImageSpecField(source='pp_src', processors=[ResizeToFill(350, 350)])  # sized image
-    fb_link = models.URLField(blank=True, verbose_name="Facebook Proifle Link", null=True)
-    tw_link = models.URLField(blank=True, verbose_name="Twitter Proifle Link", null=True)
-    ig_link = models.URLField(blank=True, verbose_name="Instagram Proifle Link", null=True)
+    bio = models.TextField(default="", blank=True, null=True)
+    status = models.CharField(max_length=256, default="", blank=True, null=True)
+    skills = models.CharField(max_length=350, default="", blank=True, null=True)
+    pp_src = models.ImageField(
+        upload_to="users/profile_pictures", blank=True, verbose_name="Profile Picture"
+    )
+    profile_picture = ImageSpecField(
+        source="pp_src", processors=[ResizeToFill(350, 350)]
+    )  # sized image
+    fb_link = models.URLField(
+        blank=True, verbose_name="Facebook Proifle Link", null=True
+    )
+    tw_link = models.URLField(
+        blank=True, verbose_name="Twitter Proifle Link", null=True
+    )
+    ig_link = models.URLField(
+        blank=True, verbose_name="Instagram Proifle Link", null=True
+    )
 
     date_joined = models.DateTimeField(auto_now_add=True)
     last_login = models.DateTimeField(auto_now=True)

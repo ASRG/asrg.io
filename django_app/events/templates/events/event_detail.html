@@ -55,15 +55,11 @@
             </p>
             {% if event.presenter_bio %}
             <h4>About the Presenter:</h4>
-            <!-- <div>
-                <img src={{ event.presenter_picture.url }}>
-            </div>
-            <br> -->
             <p>
-                <div class="speaker-div">
-                <img src="{{ event.presenter_picture.url }}" class="speaker-img">
-            <img src="{{ event.presenter_company_logo.url }}" class="speaker-img">
-        </div>
+              <div class="speaker-div">
+                <img src="{{ event.pres_img.url }}" class="speaker-img">
+                <img src="{{ event.pres_com_log.url }}" class="logo-img">
+              </div>
             {{ event.presenter_bio }}</p>
             {% endif %}
             <br><br>

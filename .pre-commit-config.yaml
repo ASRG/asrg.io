@@ -19,7 +19,7 @@ repos:
     hooks:
     - id: check-migrations
       name: check-migrations
-      entry: python surface/manage.py makemigrations --check --dry-run
+      entry: python3 django_app/manage.py makemigrations --check --dry-run
       language: system
       files: models.*\.py$
       pass_filenames: false
