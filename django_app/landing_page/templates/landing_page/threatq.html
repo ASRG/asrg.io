@@ -6,36 +6,41 @@
 {% block title %}Threat Intelligence{% endblock %}
 
 {% block content %}
+  {% if site == "127.0.0.1:8080" %}
+    {% comment %}
+      Replace the iframe with a local one to test this locally
+    {% endcomment %}
+    <iframe src="http://127.0.0.1:5601/app/dashboards#/view/edf84fe0-e1a0-11e7-b6d5-4dc382ef7f5b?embed=true&_g=(filters%3A!()%2CrefreshInterval%3A(pause%3A!f%2Cvalue%3A900000)%2Ctime%3A(from%3Anow-7d%2Cto%3Anow))&show-time-filter=true" height="100%" width="100%"></iframe>
+  {% else %}
+    <section>
+      <body>
 
-<section>
-  <body>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="/static/assets/js/breakpoints.min.js"></script>
+        <script src="/static/assets/js/browser.min.js"></script>
+        <script src="/static/assets/js/jquery.scrolly.min.js"></script>
+        <script src="/static/assets/js/util.js"></script>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="/static/assets/js/breakpoints.min.js"></script>
-    <script src="/static/assets/js/browser.min.js"></script>
-    <script src="/static/assets/js/jquery.scrolly.min.js"></script>
-    <script src="/static/assets/js/util.js"></script>
+        <section class="pricing" id="example">
+          <div class="container">
+            <h3 style="text-align: center;font-weight: bold; margin-bottom: 26px;">Stay Tuned! Project Automotive Security Intelligence Platform (ASIP) coming soon...</h3>
+          </div>
+        </section>
 
-    <section class="pricing" id="example">
-      <div class="container">
-        <h3 style="text-align: center;font-weight: bold; margin-bottom: 26px;">Stay Tuned! Project Automotive Security Intelligence Platform (ASIP) coming soon...</h3>
-      </div>
+      </body>
     </section>
+  {% endif %}
+{% endblock content %}
 
-  </body>
-</section>
+{% block javascripts %}
 
-  {% endblock content %}
+  <script src="/static/assets/vendors/@coreui/coreui-chartjs/js/coreui-chartjs.bundle.js"></script>
+  <script src="/static/assets/js/main.js"></script>
+  {% leaflet_js %}
+  {% leaflet_css %}
 
-  {% block javascripts %}
-
-    <script src="/static/assets/vendors/@coreui/coreui-chartjs/js/coreui-chartjs.bundle.js"></script>
-    <script src="/static/assets/js/main.js"></script>
-    {% leaflet_js %}
-    {% leaflet_css %}
-
-  {% endblock javascripts %}
+{% endblock javascripts %}

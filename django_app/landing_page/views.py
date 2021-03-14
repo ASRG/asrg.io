@@ -10,7 +10,9 @@ from events.models import Event
 
 
 def landing(request):
-    age = round((timezone.now() - datetime(2017, 7, 18, 0, 0, 0, 0, pytz.UTC)).days / 365.25, 1)
+    age = round(
+        (timezone.now() - datetime(2017, 7, 18, 0, 0, 0, 0, pytz.UTC)).days / 365.25, 1
+    )
     context = {
         "members": 5657 + User.objects.exclude(chapter=None).count(),
         "locations": Chapter.objects.all().count(),
@@ -37,8 +39,14 @@ def security(request):
 
 
 def threatq(request):
-    return render(request, "landing_page/threatq.html")
+    from django.contrib.sites.shortcuts import get_current_site
+
+    return render(
+        request,
+        "landing_page/threatq.html",
+        context={"site": get_current_site(request).domain},
+    )
 
 
 def dashboard(request):
-    return redirect('landing_page/index.html')
+    return redirect("landing_page/index.html")
