@@ -7,6 +7,8 @@ Copyright (c) 2019 - present AppSeed.us
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate
+from django.contrib.auth.forms import PasswordResetForm
+from django.contrib.auth.tokens import default_token_generator
 
 from .models import User, Chapter, OCCUPATIONAL_STATUS_CHOICES, GENDER_CHOICES
 from authentication.countries import COUNTRIES as COUNTRY_CHOICES
@@ -17,13 +19,71 @@ for i in range(1901, 2099):
     DOB_CHOICES.append(str(i))
 
 
+class CustomPasswordResetForm(PasswordResetForm):
+    """
+    Overriding the Email Password Resert Forms Save to be able to send HTML email
+    """
+
+    def save(
+        self,
+        domain_override=None,
+        email_template_name="passwordreset/password_reset_email.html",
+        use_https=False,
+        token_generator=default_token_generator,
+        request=None,
+        email_subject_name="passwordreset/password_reset_subject.txt",
+        **kwargs,
+    ):
+        from django.core.mail import EmailMultiAlternatives
+        from django.utils.html import strip_tags
+        from django.template.loader import render_to_string
+        from django.contrib.sites.shortcuts import get_current_site
+        from django.utils.http import int_to_base36
+
+        for user in self.users_cache:
+            if not domain_override:
+                current_site = get_current_site(request)
+                site_name = current_site.name
+                domain = current_site.domain
+            else:
+                site_name = domain = domain_override
+
+            c = {
+                "email": user.email,
+                "domain": domain,
+                "site_name": site_name,
+                "uid": int_to_base36(user.id),
+                "user": user,
+                "token": token_generator.make_token(user),
+                "protocol": use_https and "https" or "http",
+            }
+            render = render_to_string(email_template_name, c)
+            render_subject = render_to_string(email_subject_name, c)
+
+            msg = EmailMultiAlternatives(
+                render_subject, strip_tags(render), None, [user.email]
+            )
+            msg.attach_alternative(render, "text/html")
+            msg.send()
+
+
 class LoginForm(forms.Form):
-    username = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Username", "class": "form-control"}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Password", "class": "form-control"}))
+    username = forms.CharField(
+        widget=forms.TextInput(
+            attrs={"placeholder": "Username", "class": "form-control"}
+        )
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={"placeholder": "Password", "class": "form-control"}
+        )
+    )
 
 
 class ResendEmailForm(forms.Form):
-    email = forms.EmailField(widget=forms.EmailInput(attrs={"placeholder": "Email", "class": "form-control"}))
+    email = forms.EmailField(
+        widget=forms.EmailInput(attrs={"placeholder": "Email", "class": "form-control"})
+    )
 
     class Meta:
         model = User
@@ -31,11 +91,23 @@ class ResendEmailForm(forms.Form):
 
 
 class SignUpForm(UserCreationForm):
-    username = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Username", "class": "form-control"}))
-    email = forms.EmailField(widget=forms.EmailInput(attrs={"placeholder": "Email", "class": "form-control"}))
-    password1 = forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Password", "class": "form-control"}))
+    username = forms.CharField(
+        widget=forms.TextInput(
+            attrs={"placeholder": "Username", "class": "form-control"}
+        )
+    )
+    email = forms.EmailField(
+        widget=forms.EmailInput(attrs={"placeholder": "Email", "class": "form-control"})
+    )
+    password1 = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={"placeholder": "Password", "class": "form-control"}
+        )
+    )
     password2 = forms.CharField(
-        widget=forms.PasswordInput(attrs={"placeholder": "Password check", "class": "form-control"})
+        widget=forms.PasswordInput(
+            attrs={"placeholder": "Password check", "class": "form-control"}
+        )
     )
     chapter = forms.ModelChoiceField(
         queryset=Chapter.objects.all(),
@@ -44,15 +116,25 @@ class SignUpForm(UserCreationForm):
         required=False,
         widget=forms.Select(attrs={"placeholder": "Chapter", "class": "form-control"}),
     )
-    first_name = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "First Name", "class": "form-control"}))
-    last_name = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Last Name", "class": "form-control"}))
+    first_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={"placeholder": "First Name", "class": "form-control"}
+        )
+    )
+    last_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={"placeholder": "Last Name", "class": "form-control"}
+        )
+    )
     occupational_status = forms.ChoiceField(
-        label='Occupational Status',
+        label="Occupational Status",
         choices=OCCUPATIONAL_STATUS_CHOICES,  # empty_label="Occupational Status",
-        widget=forms.Select(attrs={"placeholder": "Occupational Status", "class": "form-control"}),
+        widget=forms.Select(
+            attrs={"placeholder": "Occupational Status", "class": "form-control"}
+        ),
     )
     country = forms.ChoiceField(
-        label='Country',
+        label="Country",
         choices=COUNTRY_CHOICES,  # empty_label="Country",
         widget=forms.Select(attrs={"placeholder": "Country", "class": "form-control"}),
     )
@@ -60,20 +142,20 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = (
-            'username',
-            'email',
-            'password1',
-            'password2',
-            'chapter',
-            'first_name',
-            'last_name',
-            'occupational_status',
-            'country',
+            "username",
+            "email",
+            "password1",
+            "password2",
+            "chapter",
+            "first_name",
+            "last_name",
+            "occupational_status",
+            "country",
         )
 
     def clean_email(self):
         if self.is_valid():
-            email = self.cleaned_data['email']
+            email = self.cleaned_data["email"]
             try:
                 user = User.objects.exclude(pk=self.instance.pk).get(email=email)
             except User.DoesNotExist:
@@ -82,21 +164,25 @@ class SignUpForm(UserCreationForm):
 
     def clean_username(self):
         if self.is_valid():
-            username = self.cleaned_data['username']
+            username = self.cleaned_data["username"]
             try:
                 user = User.objects.exclude(pk=self.instance.pk).get(username=username)
             except User.DoesNotExist:
                 return username
-            raise forms.ValidationError('Username "%s" is already in use' % (user.username))
+            raise forms.ValidationError(
+                'Username "%s" is already in use' % (user.username)
+            )
 
     def clean_password2(self):
         if self.is_valid():
-            pass1 = self.cleaned_data.get('password1')
-            pass2 = self.cleaned_data.get('password2')
-            username = self.cleaned_data.get('username')
+            pass1 = self.cleaned_data.get("password1")
+            pass2 = self.cleaned_data.get("password2")
+            username = self.cleaned_data.get("username")
             if pass1 == pass2:
                 if pass1.lower() in username.lower():
-                    raise forms.ValidationError("Password is similar to username.<br>Try a different Password")
+                    raise forms.ValidationError(
+                        "Password is similar to username.<br>Try a different Password"
+                    )
                 else:
                     return pass2
             else:
@@ -104,12 +190,26 @@ class SignUpForm(UserCreationForm):
 
 
 class UserUpdateForm(forms.ModelForm):
-    username = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Username", "class": "form-control"}))
-    email = forms.EmailField(widget=forms.EmailInput(attrs={"placeholder": "Email", "class": "form-control"}))
-    first_name = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "First Name", "class": "form-control"}))
-    last_name = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Last Name", "class": "form-control"}))
+    username = forms.CharField(
+        widget=forms.TextInput(
+            attrs={"placeholder": "Username", "class": "form-control"}
+        )
+    )
+    email = forms.EmailField(
+        widget=forms.EmailInput(attrs={"placeholder": "Email", "class": "form-control"})
+    )
+    first_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={"placeholder": "First Name", "class": "form-control"}
+        )
+    )
+    last_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={"placeholder": "Last Name", "class": "form-control"}
+        )
+    )
     gender = forms.ChoiceField(
-        label='Gender',
+        label="Gender",
         choices=GENDER_CHOICES,
         required=False,
         widget=forms.Select(attrs={"class": "form-control"}),
@@ -117,17 +217,21 @@ class UserUpdateForm(forms.ModelForm):
 
     chapter = forms.ModelMultipleChoiceField(
         queryset=Chapter.objects.all(),
-        widget=forms.SelectMultiple(attrs={"placeholder": "Chapter", "class": "form-control"}),
+        widget=forms.SelectMultiple(
+            attrs={"placeholder": "Chapter", "class": "form-control"}
+        ),
     )
 
     occupational_status = forms.ChoiceField(
-        label='Occupational Status',
+        label="Occupational Status",
         choices=OCCUPATIONAL_STATUS_CHOICES,
-        widget=forms.Select(attrs={"placeholder": "Occupational Status", "class": "form-control"}),
+        widget=forms.Select(
+            attrs={"placeholder": "Occupational Status", "class": "form-control"}
+        ),
     )
 
     country = forms.ChoiceField(
-        label='Country',
+        label="Country",
         choices=COUNTRY_CHOICES,
         widget=forms.Select(attrs={"placeholder": "Country", "class": "form-control"}),
     )
@@ -135,18 +239,18 @@ class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
         fields = (
-            'username',
-            'email',
-            'first_name',
-            'last_name',
-            'gender',
-            'occupational_status',
-            'country',
+            "username",
+            "email",
+            "first_name",
+            "last_name",
+            "gender",
+            "occupational_status",
+            "country",
         )
 
     def clean_email(self):
         if self.is_valid():
-            email = self.cleaned_data['email']
+            email = self.cleaned_data["email"]
             try:
                 user = User.objects.exclude(pk=self.instance.pk).get(email=email)
             except User.DoesNotExist:
@@ -155,54 +259,81 @@ class UserUpdateForm(forms.ModelForm):
 
     def clean_username(self):
         if self.is_valid():
-            username = self.cleaned_data['username']
+            username = self.cleaned_data["username"]
             try:
                 user = User.objects.exclude(pk=self.instance.pk).get(username=username)
             except User.DoesNotExist:
                 return username
-            raise forms.ValidationError('Username "%s" is already in use' % (user.username))
+            raise forms.ValidationError(
+                'Username "%s" is already in use' % (user.username)
+            )
 
 
 class UserProfileForm(forms.ModelForm):
     dob = forms.DateField(
         required=False,
         widget=forms.SelectDateWidget(
-            years=DOB_CHOICES, attrs={"Placeholder": 'Date of Birth', "class": "form-control"}
+            years=DOB_CHOICES,
+            attrs={"Placeholder": "Date of Birth", "class": "form-control"},
         ),
     )
     field_of_study = forms.CharField(
         required=False,
-        widget=forms.TextInput(attrs={"placeholder": "Field of Study", "class": "form-control", "required": False}),
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Field of Study",
+                "class": "form-control",
+                "required": False,
+            }
+        ),
     )
     bio = forms.CharField(
-        required=False, widget=forms.Textarea(attrs={"placeholder": "Your short bio", "class": "form-control"})
+        required=False,
+        widget=forms.Textarea(
+            attrs={"placeholder": "Your short bio", "class": "form-control"}
+        ),
     )
     status = forms.CharField(
-        required=False, widget=forms.TextInput(attrs={"placeholder": "Status message", "class": "form-control"})
+        required=False,
+        widget=forms.TextInput(
+            attrs={"placeholder": "Status message", "class": "form-control"}
+        ),
     )
     skills = forms.CharField(
-        required=False, widget=forms.TextInput(attrs={"placeholder": "Skills", "class": "form-control"})
+        required=False,
+        widget=forms.TextInput(
+            attrs={"placeholder": "Skills", "class": "form-control"}
+        ),
     )
     fb_link = forms.URLField(
-        required=False, widget=forms.URLInput(attrs={"placeholder": "Facebook Profile Link", "class": "form-control"})
+        required=False,
+        widget=forms.URLInput(
+            attrs={"placeholder": "Facebook Profile Link", "class": "form-control"}
+        ),
     )
     tw_link = forms.URLField(
-        required=False, widget=forms.URLInput(attrs={"placeholder": "Twitter Profile Link", "class": "form-control"})
+        required=False,
+        widget=forms.URLInput(
+            attrs={"placeholder": "Twitter Profile Link", "class": "form-control"}
+        ),
     )
     ig_link = forms.URLField(
-        required=False, widget=forms.URLInput(attrs={"placeholder": "Instagram Profile Link", "class": "form-control"})
+        required=False,
+        widget=forms.URLInput(
+            attrs={"placeholder": "Instagram Profile Link", "class": "form-control"}
+        ),
     )
 
     class Meta:
         model = UserProfile
         fields = (
-            'dob',
-            'field_of_study',
-            'bio',
-            'status',
-            'skills',
-            'fb_link',
-            'tw_link',
-            'ig_link',
-            'pp_src',
+            "dob",
+            "field_of_study",
+            "bio",
+            "status",
+            "skills",
+            "fb_link",
+            "tw_link",
+            "ig_link",
+            "pp_src",
         )

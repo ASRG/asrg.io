@@ -10,6 +10,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth.models import Permission
+from django.contrib.auth.forms import PasswordResetForm
 from django.template.loader import render_to_string
 from django.core import mail
 from django.http import HttpResponse
@@ -99,9 +100,8 @@ def register_user(request):
                 html_message=message,
             )
             user_obj.verification_email_sent_date = timezone.now()
-            return HttpResponse(
-                "Please confirm your email address to complete the registration"
-            )
+            success = True
+            msg = "Please confirm your email address to complete the registration"
 
         else:
             success = False
@@ -301,9 +301,7 @@ def pages(request):
 
         html_template = loader.get_template("error-404.html")
         return HttpResponse(html_template.render(context, request))
-
     except:
-
         html_template = loader.get_template("error-500.html")
         return HttpResponse(html_template.render(context, request))
 
@@ -368,3 +366,29 @@ def profile_view(request):
     context["profile"] = profile
     context["user"] = request.user
     return render(request, "accounts/profile.html", context)
+
+
+@transaction.atomic
+def reset_password(request):
+    success = False
+    msg = None
+    if request.method == "POST":
+        form = PasswordResetForm(request.POST)
+        if form.is_valid():
+            form.save(
+                html_email_template_name="passwordreset/password_reset_email.html"
+            )
+            success = True
+            msg = "We have sent a reset password link to you E-mail address!"
+        else:
+            success = False
+            msg = "No account associated with this e-mail address!"
+
+    else:
+        form = PasswordResetForm()
+
+    return render(
+        request,
+        "accounts/reset_password.html",
+        {"form": form, "success": success, "msg": msg},
+    )
