@@ -45,9 +45,10 @@
         </nav>
       </header>
 
-      {% placeholder content %}
 
-      {% block content %}{% endblock content %}
+      {% block content %}
+      {% placeholder "all_content" %}
+      {% endblock content %}
 
       {% static_placeholder "footer" or %} 
       <footer id="footer">
