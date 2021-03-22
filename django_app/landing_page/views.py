@@ -4,6 +4,7 @@ from datetime import datetime
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.utils import timezone
+from django.conf import settings
 
 from authentication.models import Chapter, User
 from events.models import Event
@@ -39,12 +40,10 @@ def security(request):
 
 
 def threatq(request):
-    from django.contrib.sites.shortcuts import get_current_site
-
     return render(
         request,
         "landing_page/threatq.html",
-        context={"site": get_current_site(request).domain},
+        context={"link": settings.ASIP_DASHBOARD_LINK},
     )
 
 

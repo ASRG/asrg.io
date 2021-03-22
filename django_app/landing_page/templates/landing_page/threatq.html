@@ -6,11 +6,8 @@
 {% block title %}Threat Intelligence{% endblock %}
 
 {% block content %}
-  {% if site == "127.0.0.1:8080" %}
-    {% comment %}
-      Replace the iframe with a local one to test this locally
-    {% endcomment %}
-    <iframe src="http://127.0.0.1:5601/app/dashboards#/view/edf84fe0-e1a0-11e7-b6d5-4dc382ef7f5b?embed=true&_g=(filters%3A!()%2CrefreshInterval%3A(pause%3A!f%2Cvalue%3A900000)%2Ctime%3A(from%3Anow-7d%2Cto%3Anow))&show-time-filter=true" height="100%" width="100%"></iframe>
+  {% if link %}
+    <iframe src="link" height="100%" width="100%"></iframe>
   {% else %}
     <section>
       <body>
