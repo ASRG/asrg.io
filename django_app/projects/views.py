@@ -2,12 +2,14 @@ from django.shortcuts import render
 
 from .models import Project
 
+
 def project_view(request):
     context = {}
     projects = Project.objects.all()
     context['projects'] = projects
     if request.user.is_authenticated:
-        return render(request, "projects/projects_authenticated.html",context)
+        context['base_template'] = "layouts/base.html"
     else:
-        return render(request, "projects/projects.html",context)
+        context['base_template'] = "landing_page/base.html"
 
+    return render(request, "projects/projects.html", context)

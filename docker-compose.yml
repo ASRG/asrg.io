@@ -18,7 +18,7 @@ services:
   asrg-app:
     container_name: asrg-app
     restart: unless-stopped
-    command: /opt/code/docker-entrypoint.sh
+    command: /bin/bash /opt/code/docker-entrypoint.sh
     volumes:
       - ./django_app/:/opt/code
     env_file: ./.env
@@ -43,7 +43,7 @@ services:
       - "${NGINX_HTTPS_PORT}:443"
     volumes:
       - ./nginx:/etc/nginx/conf.d
-      - ./django_app/app/media:/opt/asrg/media
+      - ./django_app/asrg/media:/opt/asrg/media
       # - ${CERTS_PATH}:/etc/nginx/certs
     networks:
       - web_network

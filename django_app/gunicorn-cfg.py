@@ -3,18 +3,16 @@
 License: MIT
 Copyright (c) 2019 - present AppSeed.us
 """
-from environs import Env
+import os
 
-env = Env()
-env.read_env("./.env")
+RELOAD = os.environ.get("DEBUG", False)
 
-DEBUG = env.bool('DEBUG', default=False)
-
-bind = '0.0.0.0:5005'
+bind = "0.0.0.0:5005"
 workers = 1
-accesslog = '-'
-loglevel = 'debug'
+accesslog = "-"
+loglevel = "debug"
 capture_output = True
 enable_stdio_inheritance = True
-if DEBUG:
+if RELOAD:
     reload = True
+    print("Reload for GUnicorn is active")
