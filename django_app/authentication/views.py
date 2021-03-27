@@ -389,6 +389,6 @@ def reset_password(request):
 
     return render(
         request,
-        "accounts/reset_password.html",
+        "passwordreset/password_reset_email_form.html",
         {"form": form, "success": success, "msg": msg},
     )
