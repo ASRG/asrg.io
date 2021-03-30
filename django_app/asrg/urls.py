@@ -22,5 +22,6 @@ urlpatterns = [
     path("", include("projects.urls")),  # projects routes
     path("", include("locations.urls")),  # locations routes
     path("", include("technical_committees.urls")),  # technical_committees routes
+    path("sponsors/", include("sponsors.urls")),  # sponsors routes
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
