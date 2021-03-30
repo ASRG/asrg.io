@@ -45,6 +45,12 @@
     {% block stylesheets %}{% endblock stylesheets %}
 
     <style>
+      .anchor{
+          display: block;
+          height: 50vh; /* 50% viewport height */
+          margin-top: -50vh;
+          visibility: hidden;
+      }
       .bcontent {
           margin-top: 10px;
       }
@@ -58,6 +64,16 @@
       display: block; 
       margin: auto; 
       margin-bottom: 2rem;
+      border-radius: 8px;
+      max-width: 150px;
+      max-height: 180px;
+    }
+    .logo-img{
+      display: block; 
+      margin: auto; 
+      margin-bottom: 2rem;
+      border-radius: 8px;
+      max-width: 150px;
     }
   </style>
     
@@ -92,5 +108,27 @@
     <!-- Specific Page JS goes HERE  -->
     {% block javascripts %}{% endblock javascripts %}
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+  var sections = document.querySelectorAll('section');
+  var sidemenu = document.querySelectorAll('#sidebar-menu')[0];
+  sidemenu.innerHTML = '';
+  for (var i = 0; i < sections.length; i++) {
+    var section = sections[i];
+    var id = section.id;
+    if (id == ""){
+      continue;
+    }
+    var h1 = section.querySelectorAll("h1, h2, h3, h4, h5, h6")[0];
+    var text = h1.innerHTML;
+    h1.innerHTML = `<span> <a onclick="customScroll('${id}')" href="javascript:void(0);"> ${text} </a> </span>`;
+    sidemenu.innerHTML += `<li class="c-sidebar-nav-item">
+      <a class="c-sidebar-nav-link" onclick="customScroll('${id}')" href="javascript:void(0);"> <span> ${text}
+      </span> </a></li>`;
+  }
+  function customScroll(id){
+    $('html, body').animate({scrollTop: $(`#${id}`).offset().top - 300 }, 'fast');
+  }
+  </script>
   </body>
 </html>

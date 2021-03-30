@@ -1,33 +1,20 @@
-
-    <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" style="background-color: #1d242a" id="sidebar">
-            <div class="c-sidebar-brand"><a href="/dashboard"><img class="c-sidebar-brand-full" src="/static/assets/brand/asrg logo_v5.png" width="160" height="50" alt="ASRG Logo"><img class="c-sidebar-brand-minimized" src="/static/assets/brand/asrg logo_v5.png" width="50" height="16" alt="ASRG Logo"></a></div>
-           <ul class="c-sidebar-nav">
-               {% if main_dashboard %}
-              <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="#announcement">
-                  <svg class="c-sidebar-nav-icon">
-                   <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
-                  </svg> Announcements</span></a></li>
-              <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="#links">
-                  <svg class="c-sidebar-nav-icon">
-                    <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-link"></use>
-                  </svg> Links</a></li>
-              <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="#map">
-                  <svg class="c-sidebar-nav-icon">
-                   <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-map"></use>
-                  </svg> Locations Map</a></li>
-                {% endif %}
-            </ul>      
-            <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-minimized"></button>
-          </div>
-      
-
-
-
-
-
-
-
-
-
-
-       
+<div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" style="background-color: #1d242a" id="sidebar">
+  <div class="c-sidebar-brand"><a href="/dashboard"><img class="c-sidebar-brand-full" src="/static/assets/brand/asrg logo_v5.png" width="160" height="50" alt="ASRG Logo"><img class="c-sidebar-brand-minimized" src="/static/assets/brand/asrg logo_v5.png" width="50" height="16" alt="ASRG Logo"></a></div>
+  <ul class="c-sidebar-nav" id="sidebar-menu">
+    {% if main_dashboard %}
+      <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="#announcement">
+        <svg class="c-sidebar-nav-icon">
+          <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
+        </svg> Announcements</a></li>
+      <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="#links">
+        <svg class="c-sidebar-nav-icon">
+          <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-link"></use>
+        </svg> Links</a></li>
+      <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="#map">
+        <svg class="c-sidebar-nav-icon">
+          <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-map"></use>
+        </svg> Locations Map</a></li>
+    {% endif %}
+  </ul>      
+  <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-minimized"></button>
+</div>

@@ -45,9 +45,10 @@
         </nav>
       </header>
 
-      {% placeholder content %}
 
-      {% block content %}{% endblock content %}
+      {% block content %}
+      {% placeholder "all_content" %}
+      {% endblock content %}
 
       {% static_placeholder "footer" or %} 
       <footer id="footer">
@@ -75,7 +76,7 @@
           </li>
         </ul>
         <ul class="copyright">
-          <li>&copy; 2020 ASRG.io</li>
+          <li>&copy; 2021 ASRG.io</li>
           <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
           <li><a href="{% url 'privacy' %}">Data Privacy</a></li>
           <!-- <li><a href="https://asrg.io/imprint">Imprint</a></li> -->

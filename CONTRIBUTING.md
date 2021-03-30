@@ -1,13 +1,18 @@
 
 Great! You've read the README and you understand what the ASRG is and why we're developing this member portal.
-
+- [Running in docker](#running-in-docker)
+- [Setup .env file](#the-env-file)
+- [Developing a Feature or a Change](#developing-a-feature-or-a-change)
+- [Populate menu items in member-portal](#populate-left-menu-item-in-member-portal)
+- [Create local users for testing](#create-local-users-for-testing)
+- [Code Style Guidelines](#code-style-guidelines)
 ## Getting Started
 
 Join the discussion in our Slack channel: [Link](https://join.slack.com/t/asrg/shared_invite/enQtNTYzMjE5NDcyMzUyLWZmMzBhYTRmMzIzZDMyODA5NDkwZDc0Y2EwMDc5NjM2ODhlYWM5NjVlZjY3OWQyMGZhMDljNWI5ZDI1OWUzMDc)
 
 You want to run this app locally in a nice, neat docker container (or just the django app to get rid of the docker complexity). Great! Here's how you would do that.
 
-### Running in Docker
+## Running in Docker
 
 The application can be easily executed in a docker container. The steps:
 
@@ -128,14 +133,16 @@ docker-compose stop asrg-app && docker-compose rm -f asrg-app && docker-compose 
 
 Great! You got your local member portal working. Now, let's go through how to make contribute changes to the member portal.
 
-### Code Pipeline
+## Code Pipeline
 
 Develop code in your local branch, then issue a pull request to have that branch merged into develop. Once it's in develop and demonstrated that the application is functional, develop will be periodically merged into master, which goes to the server.
 
 ### Developing a Feature or a Change.
 
 1. Create a new branch that's named somewhat reasonably as it relates to the feature or change you're working on.
-`git checkout -b new-branch`
+```
+git checkout -b new-branch
+```
 
 2. Make your changes to that branch.
   -If you're adding a new functionality, create a new app with `python manage.py startapp name_of_the_app`
@@ -143,8 +150,30 @@ Develop code in your local branch, then issue a pull request to have that branch
   -update `/django_app/asrg/requirements.txt` with `-r YOURAPP/requirements.txt`
 
 3. Issue a pull request to have approved so that your branch can be merged into the develop branch.
+### Populate menu items in member-portal
+If you are creating a page that requires menu items to quickly scroll trough the sections you can split your page into `<sections>` and give them id's. Every section with an id will be linked in the menu and a scroll listener will be added to the section.
+The below code example will result in two menu entries for the two sections as long as it will extend our main template `django_app/asrg/templates/layouts/base.html`:
+```
+<section id="first-item">
+<h1> First item</h1>
+</section>
+<section id="second-item">
+<h1> Second item</h1>
+</section>
+```
 
-### Code Style Guidelines
 
-TODO: Insert guidelines.
-TODO: Insert statement abotu precommits. 
+## Create local users for testing
+If you are running with docker run the following command to create local users:
+```bash
+ docker exec asrg-app python manage.py create_test_users --force
+ ```
+ If you are running locally without docker you can just run the following command inside the folder `django_app`
+ ```bash
+  python manage.py create_test_users
+```
+## Code Style Guidelines
+1. We are using [Black](https://github.com/psf/black) to automatically format the code.
+    - If you want to install black on your IDE you can find integrations [here](https://black.readthedocs.io/en/stable/editor_integration.html)
+    - Run `pre-commit install` (it runs black, flake8 and checkf for missing migrations)
+ 
