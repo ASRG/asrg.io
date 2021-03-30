@@ -208,13 +208,21 @@ def activate(request, uidb64, token):
                 request, "authentication/email_link_expired.html", {"uidb64": uidb64}
             )
         except BadSignature:
-            return HttpResponse("Activation link is invalid!")
+            return render(
+                request,
+                "authentication/activation/activation_completed.html",
+                {"message": "Activation link is invalid!"},
+            )
 
         if default_token_generator.check_token(user, _token):
             user.is_active = True
             user.save()
-            return HttpResponse(
-                "Thank you for your email confirmation. Now you can login your account."
+            return render(
+                request,
+                "authentication/activation/activation_completed.html",
+                {
+                    "message": "Thank you for your email confirmation. Now you can login your account."
+                },
             )
 
     return HttpResponse("Activation link is invalid!")
