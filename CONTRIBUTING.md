@@ -3,6 +3,7 @@ Great! You've read the README and you understand what the ASRG is and why we're 
 - [Running in docker](#running-in-docker)
 - [Setup .env file](#the-env-file)
 - [Developing a Feature or a Change](#developing-a-feature-or-a-change)
+- [Populate menu items in member-portal](#populate-left-menu-item-in-member-portal)
 - [Create local users for testing](#create-local-users-for-testing)
 - [Code Style Guidelines](#code-style-guidelines)
 ## Getting Started
@@ -149,6 +150,19 @@ git checkout -b new-branch
   -update `/django_app/asrg/requirements.txt` with `-r YOURAPP/requirements.txt`
 
 3. Issue a pull request to have approved so that your branch can be merged into the develop branch.
+### Populate menu items in member-portal
+If you are creating a page that requires menu items to quickly scroll trough the sections you can split your page into `<sections>` and give them id's. Every section with an id will be linked in the menu and a scroll listener will be added to the section.
+The below code example will result in two menu entries for the two sections as long as it will extend our main template `django_app/asrg/templates/layouts/base.html`:
+```
+<section id="first-item">
+<h1> First item</h1>
+</section>
+<section id="second-item">
+<h1> Second item</h1>
+</section>
+```
+
+
 ## Create local users for testing
 If you are running with docker run the following command to create local users:
 ```bash

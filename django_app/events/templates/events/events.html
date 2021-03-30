@@ -32,7 +32,7 @@ td
         </li>
         <!-- NEXT UPCOMING EVENT IN HEADER END -->
     </header>
-    <section class="wrapper style5" style="padding-top: 70px;">
+    <section class="wrapper style5" style="padding-top: 70px;", id="next_event">
         <div class="inner">
             <h2>Next Event</h2>
 
@@ -64,7 +64,7 @@ td
     </section>
 
     {% if upcoming_events %}
-        <section class="wrapper style5">
+        <section class="wrapper style5" id="upcoming_events">
             <div class="inner">
                 
                     <!-- Upcoming events Table -->
@@ -124,7 +124,7 @@ td
         <h3 style="text-align: center;">Stay Tuned!. More Events are coming...</h3>
     {% endif %}
 
-    <section class="wrapper style5">
+    <section class="wrapper style5" id="past_events">
         <div class="inner">
             <!-- Past Events -->
             {% if passed_events %}<br>

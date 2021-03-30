@@ -74,6 +74,7 @@ INSTALLED_APPS = [
     "locations",
     "projects",
     "technical_committees",
+    "sponsors",
 ]
 
 MIDDLEWARE = [

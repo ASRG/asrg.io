@@ -19,7 +19,8 @@ repos:
     hooks:
     - id: check-migrations
       name: check-migrations
-      entry: python3 django_app/manage.py makemigrations --check --dry-run
+      entry: docker exec asrg-app python manage.py makemigrations --check --dry-run
       language: system
+      types: [python]
       files: models.*\.py$
       pass_filenames: false
