@@ -288,7 +288,9 @@ img {
                       <tr>
                         <td class="col-2 sm-col-2" style="width: 7.8333333333%;"></td>
                         <td class="type-16 soft-black text-left" style="color: #282828; font-size: 16px; line-height: 24px;" align="left">
-                          For your security as well as ours, we require all ASRG users verify their email addresses.
+                          For your security as well as ours, we require all ASRG users verify their email addresses.<br>
+                          To complete the registration access the following link or click on the button below:<br>
+                          <a href="{{ domain }}{% url 'activate' uidb64=uid token=token %}">{{ domain }}{% url 'activate' uidb64=uid token=token %}</a>
                         </td>
                         <td class="col-2 pt5 sm-col-2" style="padding-top: 30px; width: 7.8333333333%;"></td>
                       </tr>
@@ -304,7 +306,7 @@ img {
                     <table align="center" class="col-12 sm-col-16 mx-auto" style="border-collapse: collapse; border-spacing: 0; margin-left: auto; margin-right: auto; mso-table-lspace: 0pt; mso-table-rspace: 0pt; table-layout: fixed; width: 49.5%;" width="100%" height="auto" cellpadding="0" cellspacing="0">
                       <tr>
                         <td class="bg-trust-700 text-center type-14" style="font-size: 14px; line-height: 21px;" align="center" bgcolor="#0A007D">
-                          <a href="{{ request.scheme }}://{{ domain }}{% url 'activate' uidb64=uid token=token %}"
+                          <a href="{{ domain }}{% url 'activate' uidb64=uid token=token %}"
                             class="block white bold p3" 
                             style="color: #FFFFFF; display: block; font-weight: 700; padding: 18px; text-decoration: none;">
                             Complete verification
