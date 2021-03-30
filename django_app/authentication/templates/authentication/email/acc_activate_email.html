@@ -304,7 +304,7 @@ img {
                     <table align="center" class="col-12 sm-col-16 mx-auto" style="border-collapse: collapse; border-spacing: 0; margin-left: auto; margin-right: auto; mso-table-lspace: 0pt; mso-table-rspace: 0pt; table-layout: fixed; width: 49.5%;" width="100%" height="auto" cellpadding="0" cellspacing="0">
                       <tr>
                         <td class="bg-trust-700 text-center type-14" style="font-size: 14px; line-height: 21px;" align="center" bgcolor="#0A007D">
-                          <a href="http://{{ domain }}{% url 'activate' uidb64=uid token=token %}" class="block white bold p3" style="color: #FFFFFF; display: block; font-weight: 700; padding: 18px; text-decoration: none;">Complete verification</a>
+                          <a href="{{ domain }}{% url 'activate' uidb64=uid token=token %}" class="block white bold p3" style="color: #FFFFFF; display: block; font-weight: 700; padding: 18px; text-decoration: none;">Complete verification</a>
                         </td>
                       </tr>
                     </table>
