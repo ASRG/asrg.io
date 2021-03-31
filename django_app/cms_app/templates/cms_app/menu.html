@@ -1,6 +1,6 @@
 {% for child in children %}
     <li>
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+      <a href="{{ child.get_absolute_url }}" class="dropdown-toggle" data-toggle="dropdown">
       {{child.get_menu_title }}<b class="caret"></b></a>
     </li>
     {% if child.get_descendants %}
