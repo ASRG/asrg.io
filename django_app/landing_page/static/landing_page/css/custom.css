@@ -154,3 +154,18 @@
       0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
   }
 }
+.speaker-img{
+  display: block; 
+  margin: auto; 
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  max-width: 150px;
+  max-height: 180px;
+}
+.logo-img{
+  display: block; 
+  margin: auto; 
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  max-width: 150px;
+}
