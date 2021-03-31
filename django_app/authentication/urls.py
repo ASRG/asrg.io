@@ -20,7 +20,7 @@ from .views import (
 )
 
 urlpatterns = [
-    re_path("index.html", index, name="index"),
+    re_path("index.html", index, name="home"),
     path("login/", login_view, name="login"),
     path("register/", register_user, name="register"),
     path("reset-password/", reset_password, name="reset_password"),
