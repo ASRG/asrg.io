@@ -10,5 +10,5 @@ from django.contrib.auth import views as auth_views
 from .views import location_view
 
 urlpatterns = [
-    path('locations', location_view, name='location_view'),
+    path("", location_view, name="location_view"),
 ]
