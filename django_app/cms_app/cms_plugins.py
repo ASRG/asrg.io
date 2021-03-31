@@ -9,6 +9,8 @@ from django.utils import timezone
 
 from authentication.models import Chapter, User
 from events.models import Event
+from sponsors.models import Sponsor
+from cms_app.models import SponsorConfig
 
 
 @plugin_pool.register_plugin
@@ -40,4 +42,17 @@ class LocationsPlugin(CMSPluginBase):
 
     def render(self, context, instance, placeholder):
         context.update({"locations": Chapter.objects.all()})
+        return context
+
+
+@plugin_pool.register_plugin
+class SponsorPlugin(CMSPluginBase):
+    model = SponsorConfig
+    name = _("Sponsor")
+    render_template = "cms_app/plugins/sponsor.html"
+    cache = False
+
+    def render(self, context, instance, placeholder):
+        sponsor = Sponsor.objects.get(name=instance.name)
+        context.update({"sponsor": sponsor})
         return context

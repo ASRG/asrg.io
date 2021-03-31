@@ -45,27 +45,29 @@ text-decoration: none !important;
     </style>
 </head>
 <body>
-    <div class="container bcontent" style="">
-        <h2>{{ project.name }}</h2>
-        <hr />
-        <div class="card" style="width: 650px;">
-            <div class="row no-gutters">
-                <div class="col-sm-5">
-                    {% if project.project_picture %}
-                        <img class="card-img" src="{{ project.project_picture.url }}">
-                    {% endif %}
-                </div>
-                <div class="col-sm-7">
-                    <div class="card-body">
-                        <p class="card-text">{{ project.short_name }}</p>
-                        <p class="card-text">{{ project.project_status }}</p>
-                        <p class="card-text">{{ project.description }}</p>
-                       
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <section id="{{ project.name }}">
+      <div class="container bcontent" style="">
+          <h2>{{ project.name }}</h2>
+          <hr />
+          <div class="card" style="width: 650px;">
+              <div class="row no-gutters">
+                  <div class="col-sm-5">
+                      {% if project.project_picture %}
+                          <img class="card-img" src="{{ project.project_picture.url }}">
+                      {% endif %}
+                  </div>
+                  <div class="col-sm-7">
+                      <div class="card-body">
+                          <p class="card-text">{{ project.short_name }}</p>
+                          <p class="card-text">{{ project.project_status }}</p>
+                          <p class="card-text">{{ project.description }}</p>
+                         
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </section>
     <br><br><br><br>
     {% endfor %}
 </body>

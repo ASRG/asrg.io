@@ -36,18 +36,24 @@
               </div>
             </section>
 
-            <h5>Member Registration</h5>
+            {% if success %}
+              <h5> Registration successful! </h5>
+            {% else %}
+              <h5>Member Registration</h5>
+            {% endif %}
             <p class="text-muted">
-              {% if not form.errors %}
-              <span><i>Become a member of ASRG. Please fill out the below information.</i>
-              </span>
+              {% if not form.errors and not success%}
+                <span><i>Become a member of ASRG. Please fill out the below information.</i>
+                </span>
+              {% elif success %}
+                <span><i>{{ msg }}</i></span>
               {% endif %}
               {% for field in form %}
-              {% if field.errors %}
-              {% for error in field.errors %}
-              <span style="color: red;">{{ error | safe }}<br></span>
-              {% endfor %}
-              {% endif %}
+                {% if field.errors %}
+                  {% for error in field.errors %}
+                    <span style="color: red;">{{ error | safe }}<br></span>
+                  {% endfor %}
+                {% endif %}
               {% endfor %}
 
             </p>
@@ -55,6 +61,7 @@
 
           <br />
 
+          {% if not success %}
           <div class="input-group mb-3">
             <div class="input-group-prepend"><span class="input-group-text">
                 <svg class="c-icon">
@@ -144,6 +151,7 @@
           </div>
 
         </div>
+        {% endif %}
 
       </form>
 
