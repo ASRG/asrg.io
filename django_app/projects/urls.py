@@ -10,5 +10,5 @@ from django.contrib.auth import views as auth_views
 from .views import project_view
 
 urlpatterns = [
-    path('projects', project_view, name='project_view'),
+    path("", project_view, name="project_view"),
 ]
