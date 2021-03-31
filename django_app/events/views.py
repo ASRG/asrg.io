@@ -24,7 +24,7 @@ def events_view(request):
     if request.user.is_authenticated:
         context["base_template"] = "layouts/base.html"
     else:
-        context["base_template"] = "landing_page/base.html"
+        context["base_template"] = "cms_app/base.html"
     return render(request, "events/events.html", context)
 
 
@@ -34,5 +34,5 @@ def event_detail_view(request, event_id):
     if request.user.is_authenticated:
         context["base_template"] = "layouts/base.html"
     else:
-        context["base_template"] = "landing_page/base.html"
+        context["base_template"] = "cms_app/base.html"
     return render(request, "events/event_detail.html", context)
