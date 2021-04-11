@@ -30,3 +30,4 @@ whitenoise==5.2.0
 -r projects/requirements.txt
 -r technical_committees/requirements.txt
 -r cms_app/requirements.txt
+-r security_lab/requirements.txt
