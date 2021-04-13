@@ -64,6 +64,11 @@
             {% endif %}
             <br><br>
             <a href="{{ event.presenter_profile_url }}" target="_blank" class="button primary">Visit Speaker Profile</a>
+            {% if user.is_authenticated %}
+              {% if event.slides %}
+                <a href="{{ event.slides.url }}" target="_blank" class="button primary">Get Presentation Slides</a>
+              {% endif %}
+            {% endif %}
             </p>
             <!-- <iframe class="webinar"
                     width="560"
