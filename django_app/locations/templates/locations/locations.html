@@ -10,6 +10,9 @@
     margin: 0 auto;
 }
 
+p.card-text {
+  margin: 0 0 0.5em 0;
+}
 .shadow-lg {
     box-shadow: 0 1rem 1rem rgba(0, 0, 21, 0.175) !important;
 }
@@ -43,17 +46,20 @@
                             <div class="card-body">
                                 <section id="{{ location.location }}">
                                 <h3 class="text-center my-3">{{ location.location }}</h3>
+                                <h5 class="text-center my-3">{{ location.city }}, {{ location.country }}</h5>
                                 <div class="px-4">
-                                    <p class="card-text"><b>Short Name: </b>{{ location.location }}</p>
-                                    <p class="card-text"><b>Foundation: </b>{{ location.foundation }}</p>
+                                    <p class="card-text"><b>Foundation: </b>{{ location.foundation.date }}</p>
                                     <p class="card-text"><b>Lead: </b>{{ location.lead }}</p>
-                                    <p class="card-text"><b>Country: </b>{{ location.country }}</p>
-                                    <p class="card-text"><b>City: </b>{{ location.city }}</p>
-                                    <p class="card-text"><b>Description: </b>{{ location.description }}</p>
+                                    <p class="card-text">{{ location.description }}</p>
                                     {% if location.meetup_link %}
                                         <div class="text-center" id="card-meetup">
-                                            <a href="{{ location.meetup_link }}" target="_blank"><div class="button primary">Go to meetup</div></a>
+                                          <a href="{{ location.meetup_link }}" target="_blank"><div class="button primary">{{ location.location }}</div></a>
                                         </div>
+                                    {% endif %}
+                                    {% if location.email %}
+                                      <div class="text-center" id="card-meetup">
+                                        <a href="mailto:{{ location.email }}" target="_blank"><div class="button primary">Email {{ location.location }}</div></a>
+                                      </div>
                                     {% endif %}
                                 </div>
                                 </section>

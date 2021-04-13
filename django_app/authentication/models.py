@@ -40,7 +40,7 @@ class Chapter(models.Model):
     foundation = models.DateTimeField(blank=True, default=timezone.now)
     latitude = models.DecimalField(max_digits=9, decimal_places=6, default=0)
     longitude = models.DecimalField(max_digits=9, decimal_places=6, default=0)
-    description = models.CharField(max_length=300)
+    description = models.TextField()
     meetup_link = models.URLField()
     picture_src = ProcessedImageField(
         upload_to="chapters/cover", blank=True, verbose_name="picture"
@@ -48,6 +48,9 @@ class Chapter(models.Model):
     picture = ImageSpecField(
         source="picture_src", processors=[ResizeToFill(611, 180)]
     )  # sized image
+    email = models.EmailField(
+        verbose_name="Location email address", null=True, blank=True
+    )
 
     def get_coordinates(self):
         if (self.latitude == 0 or self.longitude == 0) and self.city:
