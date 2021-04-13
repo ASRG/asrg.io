@@ -5,7 +5,7 @@ from authentication.models import Chapter
 
 def location_view(request):
     context = {}
-    locations = Chapter.objects.all()
+    locations = Chapter.objects.exclude(location="WORLD")
     context["locations"] = locations
     if request.user.is_authenticated:
         context["base_template"] = "layouts/base.html"

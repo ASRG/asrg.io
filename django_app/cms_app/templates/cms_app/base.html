@@ -22,6 +22,10 @@
       {% addtoblock "css" %} <noscript> <link rel="stylesheet" href="{% static 'landing_page/css/noscript.css' %}" /></noscript> {% endaddtoblock %}
       {% addtoblock "css" %} <link rel="stylesheet" href="{% static 'landing_page/css/custom.css' %}" /> {% endaddtoblock %}
       {% addtoblock "css" %} <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" /> {% endaddtoblock %}
+      {% addtoblock "css" %} <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">  {% endaddtoblock %}
+      {% addtoblock "css" %} <link href="/static/assets/css/style.css" rel="stylesheet"> {% endaddtoblock %}
+      {% addtoblock "css" %} <link href="/static/assets/css/events.css" rel="stylesheet"> {% endaddtoblock %}
+      {% addtoblock "css" %} <link href="/static/assets/vendors/pace-progress/css/pace.min.css" rel="stylesheet"> {% endaddtoblock %}
       {% render_block "css" %}
   </head>
   <body class="landing is-preload">
@@ -30,7 +34,7 @@
     <div id="page-wrapper">
       <!-- Header -->
       <header id="header" class="alt">
-        <h1><a href="landing.html">ASRG</a></h1>
+        <h1><a href="/">ASRG</a></h1>
         <nav id="nav">
           <ul>
             <li class="special">
