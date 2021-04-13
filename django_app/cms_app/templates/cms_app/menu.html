@@ -1,9 +1,12 @@
 {% for child in children %}
     <li>
-      <a href="{{ child.get_absolute_url }}" class="dropdown-toggle" data-toggle="dropdown">
-      {{child.get_menu_title }}<b class="caret"></b></a>
+  <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#collapse{{ child.get_menu_title }}"
+    aria-expanded="false" aria-controls="collapse{{ child.get_menu_title }}">
+        {{child.get_menu_title }}
+      </button>
     </li>
     {% if child.get_descendants %}
+      <div class="collapse" id="collapse{{ child.get_menu_title }}">
       {% for kid in child.get_descendants %}
         {% if kid.visible %}
         <li>
@@ -13,6 +16,7 @@
         </li>
        {% endif %}
       {% endfor %}
+      </div>
     {% endif %}
 {% endfor %} 
 
