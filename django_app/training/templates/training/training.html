@@ -1,0 +1,78 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Trainings {% endblock %} 
+{% block content %}
+<div class="card-body">
+  <h2> Trainings </h2>
+  <form method="get">
+      {{ trainings.form.as_p }}
+      {{ trainings.form.media }}
+      <input type="submit" />
+  </form>
+  <table class="table table-responsive-sm table-striped">
+    <thead>
+      <tr>
+        <th>Company</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Costs</th>
+        <th>Duration</th>
+        <th>Location</th>
+        <th>Link</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for training in trainings.qs %}
+      <tr>
+        <td>{{ training.company }}</td>
+        <td>{{ training.title }}</td>
+        <td style="max-width: 33%"><pre>{{ training.description }}</pre></td>
+        <td>{{ training.cost }} {{training.currency}}</td>
+        <td>{{ training.duration }}</td>
+        <td>{{ training.location }}</td>
+        <td><a href="{{ training.link }}"> Go To Training </a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <ul class="pagination">
+  </ul>
+</div>
+
+{% endblock content %}
+
+{% block javascripts %}
+<!-- Specific Page JS goes HERE  -->
+{% endblock javascripts %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

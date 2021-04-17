@@ -145,9 +145,6 @@ class UserUpdateForm(forms.ModelForm):
             attrs={"placeholder": "Username", "class": "form-control"}
         )
     )
-    email = forms.EmailField(
-        widget=forms.EmailInput(attrs={"placeholder": "Email", "class": "form-control"})
-    )
     first_name = forms.CharField(
         widget=forms.TextInput(
             attrs={"placeholder": "First Name", "class": "form-control"}
