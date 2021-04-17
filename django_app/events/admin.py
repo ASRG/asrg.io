@@ -57,6 +57,7 @@ class EventAdmin(admin.ModelAdmin):
                     "event_address",
                     "event_description",
                     "link",
+                    "slides",
                     "timezone",
                     "start_date",
                     "start_time",

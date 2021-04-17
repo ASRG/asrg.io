@@ -22,6 +22,7 @@ urlpatterns = [
         "technical_committees/", include("technical_committees.urls")
     ),  # technical_committees routes
     path("sponsors/", include("sponsors.urls")),  # sponsors routes
+    path("trainings/", include("training.urls")),  # sponsors routes
     path("", include("authentication.urls")),  # authentication routes
     path("", include("cms.urls")),
     path("", include("landing_page.urls")),  # landing_page routes
