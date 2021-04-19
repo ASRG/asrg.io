@@ -57,8 +57,12 @@
             <h4>About the Presenter:</h4>
             <p>
               <div class="speaker-div">
-                <img src="{{ event.pres_img.url }}" class="speaker-img">
-                <img src="{{ event.pres_com_log.url }}" class="logo-img">
+                {% if event.pres_img %}
+                  <img src="{{ event.pres_img.url }}" class="speaker-img">
+                {% endif %}
+                {% if event.pres_com_log %}
+                  <img src="{{ event.pres_com_log.url }}" class="logo-img">
+                {% endif %}
               </div>
             {{ event.presenter_bio }}</p>
             {% endif %}
