@@ -1,0 +1,94 @@
+{% extends "layouts/base.html" %}
+
+{% load staticfiles %}
+
+{% block title %} Security Lab {% endblock %}
+
+{% block content %}
+
+<section class="wrapper style5" id="upcoming_events">
+  <div class="inner">
+      
+          <!-- Upcoming events Table -->
+          <div>
+              <h3 style="text-align: center;">ASRG Security Lab</h3>
+              <table class="table table-responsive-sm table-hover table-outline mb-0 events-table">
+                  <thead class="thead-light">
+                      <tr>
+                          {% for title in theading %}
+                          <th style="width: auto;">{{ title }}</th>
+                          {% endfor %}
+                          <!-- <th  style="width: auto;"class="text-center">Image</th>
+                          <th style="width: 50%;">Event</th>
+                          <th style="width: 15%;">Presenter</th>
+                          <th  style="width: auto;" class="text-center">Location</th>
+                          <th style="width: 15%;">Date</th> -->
+                      </tr>
+                  </thead>
+                  {% for row in data %}
+                  <tbody>
+                      <tr>
+                          <td class="text-center" style="width: auto;">
+                              <div>
+                                 {{ row.0 }}
+                              </div>
+                          </td>
+                          
+                          <td class="text-center" style="width: auto;">
+                              <div>
+                                 {{ row.1 }}
+                              </div>
+                          </td>
+                          <td class="text-center" style="width: auto;">
+                              <div>
+                                 {{ row.2 }}
+                              </div>
+                          </td>
+                          <td class="text-center" style="width: auto;">
+                              <div>
+                                 {{ row.3 }}
+                              </div>
+                          </td>
+                          <td class="text-center" style="width: auto;">
+                              <div>
+                                 {{ row.4 }}
+                              </div>
+                          </td>
+                          <td class="text-center" style="width: auto;">
+                              <div>
+                                 {{ row.5 }}
+                              </div>
+                          </td>
+                          <td class="text-center" style="width: auto;">
+                              <div>
+                                 {{ row.6 }}
+                              </div>
+                          </td>
+                          <td class="text-center" style="width: auto;">
+                              <div>
+                                 {{ row.7 }}
+                              </div>
+                          </td>
+                          <td class="text-center" style="width: auto;">
+                              <div>
+                                 {{ row.8 }}
+                              </div>
+                          </td>
+                          <td class="text-center" style="width: auto;">
+                              <div>
+                                 {{ row.9 }}
+                              </div>
+                          </td>
+
+                          
+                      </tr>
+                      {% endfor %}
+                  </tbody>
+              </table>
+
+          </div>
+          <!-- Upcoming events Table END -->
+  </div>
+</section>
+
+{% endblock content %}
