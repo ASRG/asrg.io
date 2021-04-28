@@ -15,10 +15,10 @@
           <div class="row" style="display: flex; justify-content: center;">
           {% for sponsor in sponsors %}
             <div class="col-sm-6 my-3">
-              <div class="card shadow-lg">
+              <div class="sponsor-card shadow-lg">
               {% if sponsor.logo %}
                 <div>
-                  <img class="card-img" src="{{ sponsor.logo.url }}" alt="Sponsor Logo">
+                  <img class="sponsor-card-img" src="{{ sponsor.logo.url }}" alt="Sponsor Logo">
                 </div>
               {% else %}
                 <svg class="bd-placeholder-img card-img-top" width="100%" height="180" xmlns="http://www.w3.org/2000/svg" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" role="img"><title>Placeholder</title><rect width="100%" height="100%" fill="#868e96"/><text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text></svg>
@@ -38,3 +38,29 @@
   </div>
 </section> 
 {% endblock content %}
+<style>
+ .sponsor-card-img{
+   max-width: 500px;
+   height: auto;
+   width: auto;
+ }
+ .sponsor-card{
+  position: relative;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+  	
+	margin: auto;
+
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  margin-bottom: 1.5rem;
+  overflow-wrap: break-word;
+  background-clip: border-box;
+  border-radius: 0.25rem;
+  align-items: center;
+  justify-content: center;
+ }
+</style>
