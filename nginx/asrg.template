@@ -24,6 +24,12 @@ server {
     # Site configuration.
     server_tokens off;
 
+    location ^~ /media/ {
+        autoindex on;    
+        alias /opt/asrg/media/;    
+        expires 30d;
+    }
+
     location / {
         client_max_body_size 10M;
         proxy_pass http://asrg;
@@ -33,10 +39,6 @@ server {
         proxy_set_header X-Forwarded-Proto ${DOLLAR}scheme;
     }
 
-    location ^~ /media/ {
-        autoindex on;    
-        alias /opt/asrg/media/;    
-        expires 30d;
-    }
+    
 
 }
