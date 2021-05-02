@@ -7,7 +7,7 @@
 
 {% block content %}
   {% if link %}
-    <iframe src="link" height="100%" width="100%"></iframe>
+  <iframe id="threatq" src="{{ link }}" height="100%" width="100%"></iframe>
   {% else %}
     <section>
       <body>
@@ -35,6 +35,7 @@
 
 {% block javascripts %}
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="/static/assets/vendors/@coreui/coreui-chartjs/js/coreui-chartjs.bundle.js"></script>
   <script src="/static/assets/js/main.js"></script>
   {% leaflet_js %}
