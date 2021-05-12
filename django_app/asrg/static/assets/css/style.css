@@ -5959,7 +5959,7 @@ html:not([dir="rtl"]) .was-validated .custom-select:invalid, html:not([dir="rtl"
   position: fixed;
   right: 0;
   left: 0;
-  z-index: 1030;
+  z-index: 10;
 }
 
 .c-header-brand {
