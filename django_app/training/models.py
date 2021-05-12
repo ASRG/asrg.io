@@ -294,10 +294,10 @@ class Training(models.Model):
     company = models.CharField(max_length=150, blank=False)
     title = models.CharField(max_length=150, blank=False)
     description = models.TextField(blank=False)
-    costs = models.CharField(max_length=6, blank=False)
+    costs = models.CharField(max_length=12, blank=False)
     currency = models.CharField(max_length=10, blank=False, choices=CURRENCY_CHOICES)
-    duration = models.CharField(max_length=20, blank=False)
-    location = models.CharField(max_length=50, blank=False)
+    duration = models.CharField(max_length=150, blank=False)
+    location = models.CharField(max_length=150, blank=False)
     link = models.URLField(blank=True)
     logo = ProcessedImageField(
         upload_to="training/logo", blank=True, verbose_name="Logo"
