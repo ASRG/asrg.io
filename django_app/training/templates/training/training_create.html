@@ -1,0 +1,21 @@
+{% extends "layouts/base.html" %}
+{% block title %} Trainings {% endblock %} 
+{% block content %}
+  {% if errors %}
+    <h4> Correct the errors below!</h4>
+  {% elif creted %}
+    <h4> Training created succesfully!</h4>
+  {% else %}
+    <h2> Add New Training </h2>
+    <form method="post" enctype="multipart/form-data" >
+        {{ training_create_form.as_p }}
+        {{ training_create_form.media }}
+        {% csrf_token %}
+        <input type="submit" />
+    </form>
+  {% endif %}
+{% endblock content %}
+
+{% block javascripts %}
+<!-- Specific Page JS goes HERE  -->
+{% endblock javascripts %}

@@ -22,7 +22,10 @@
       {% addtoblock "css" %} <noscript> <link rel="stylesheet" href="{% static 'landing_page/css/noscript.css' %}" /></noscript> {% endaddtoblock %}
       {% addtoblock "css" %} <link rel="stylesheet" href="{% static 'landing_page/css/custom.css' %}" /> {% endaddtoblock %}
       {% addtoblock "css" %} <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" /> {% endaddtoblock %}
-      {% addtoblock "css" %} <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">  {% endaddtoblock %}
+      {% addtoblock "css" %} 
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+      {% endaddtoblock %}
       {% addtoblock "css" %} <link href="/static/assets/css/style.css" rel="stylesheet"> {% endaddtoblock %}
       {% addtoblock "css" %} <link href="/static/assets/css/events.css" rel="stylesheet"> {% endaddtoblock %}
       {% addtoblock "css" %} <link href="/static/assets/vendors/pace-progress/css/pace.min.css" rel="stylesheet"> {% endaddtoblock %}
@@ -34,7 +37,11 @@
     <div id="page-wrapper">
       <!-- Header -->
       <header id="header" class="alt">
+        {% comment %}
         <h1><a href="/">ASRG</a></h1>
+        {% endcomment %}
+        <img class="c-sidebar-brand-full" src="/static/assets/brand/asrg logo_v5.png"
+          width="160" height="50" alt="ASRG Logo">
         <nav id="nav">
           <ul>
             <li class="special">
@@ -55,38 +62,7 @@
       {% endblock content %}
 
       {% static_placeholder "footer" or %} 
-      <footer id="footer">
-        <ul class="icons">
-          <li>
-            <a href="https://join.slack.com/t/asrg/shared_invite/enQtNjMyMzAyMDM4MjI1LTM2Njc3MWRkNWI1NjkwYmQ4NDRkZjYwYmE2MzcyMWY3Y2IwZjc1YTAzYjQxM2M0NzdhOGEzNjNmYjNkM2EzZWM"
-               class="icon brands fa-slack">
-              <span class="label"></span></a>
-          </li>
-          <li>
-            <a href="https://twitter.com/AutoSecResGroup"
-               class="icon brands fa-twitter"><span class="label"></span></a>
-          </li>
-          <li>
-            <a href="https://facebook.com/ASRG-Automotive-Security-Research-Group-1454803571254832/"
-               class="icon brands fa-facebook-f"><span class="label"></span></a>
-          </li>
-          <li>
-            <a href="https://www.linkedin.com/company/automotive-security-research-group/"
-               class="icon brands fa-linkedin"><span class="label"></span></a>
-          </li>
-          <li>
-            <a href="mailto:hello@asrg.io"
-               class="icon solid fa-envelope"><span class="label"></span></a>
-          </li>
-        </ul>
-        <ul class="copyright">
-          <li>&copy; 2021 ASRG.io</li>
-          <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-          <li><a href="{% url 'privacy' %}">Data Privacy</a></li>
-          <!-- <li><a href="https://asrg.io/imprint">Imprint</a></li> -->
-          <li><a href="{% url 'contributors' %}">Contributors</a></li>
-        </ul>
-      </footer>
+        {% include 'includes/footer.html' %}
       {% endstatic_placeholder%}
     </div>
 

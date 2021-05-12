@@ -92,15 +92,21 @@ def register_user(request):
             )
             plain_message = strip_tags(message)
             to_email = user_obj.email
-            mail.send_mail(
-                mail_subject,
-                plain_message,
-                settings.EMAIL_HOST_USER,
-                [to_email],
-                html_message=message,
-            )
+            if (
+                mail.send_mail(
+                    mail_subject,
+                    plain_message,
+                    settings.EMAIL_HOST_USER,
+                    [to_email],
+                    html_message=message,
+                )
+                == 0
+            ):
+                success = False
+            else:
+                success = True
+
             user_obj.verification_email_sent_date = timezone.now()
-            success = True
             msg = "Please confirm your email address to complete the registration"
 
         else:

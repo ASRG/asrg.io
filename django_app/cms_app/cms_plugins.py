@@ -10,12 +10,12 @@ from django.utils import timezone
 from authentication.models import Chapter, User
 from events.models import Event
 from sponsors.models import Sponsor
-from cms_app.models import SponsorConfig
+from cms_app.models import SponsorConfig, CounterConfig
 
 
 @plugin_pool.register_plugin
 class CounterPlugin(CMSPluginBase):
-    model = CMSPlugin
+    model = CounterConfig
     name = _("Counter Plugin")
     render_template = "cms_app/plugins/counter.html"
     cache = False
@@ -26,10 +26,19 @@ class CounterPlugin(CMSPluginBase):
             / 365.25,
             1,
         )
-        context.update({"members": 5657 + User.objects.exclude(chapter=None).count()})
-        context.update({"locations": Chapter.objects.all().count()})
+        context.update(
+            {
+                "members": instance.member_offset
+                + User.objects.exclude(chapter=None).count()
+            }
+        )
+        context.update(
+            {"locations": instance.locations_offset + Chapter.objects.all().count()}
+        )
         context.update({"age": age})
-        context.update({"meetings": Event.objects.all().count()})
+        context.update(
+            {"meetings": instance.meetings_offset + Event.objects.all().count()}
+        )
         return context
 
 

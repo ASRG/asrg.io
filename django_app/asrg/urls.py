@@ -23,8 +23,8 @@ urlpatterns = [
     ),  # technical_committees routes
     path("sponsors/", include("sponsors.urls")),  # sponsors routes
     path("trainings/", include("training.urls")),  # sponsors routes
+    path("landing/", include("landing_page.urls")),  # landing_page routes
     path("", include("authentication.urls")),  # authentication routes
     path("", include("cms.urls")),
-    path("", include("landing_page.urls")),  # landing_page routes
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

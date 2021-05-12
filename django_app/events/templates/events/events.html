@@ -23,6 +23,7 @@ td
         <!-- NEXT UPCOMING EVENT IN HEADER -->
         {% if next_event %}
         <h3>{{ next_event.title|capfirst }}</h3>
+        <h5>Want to present at the ASRG? Submit your information <a href="mailto:Info@asrg.io?subject=Webinar%20%2F%20Presentation&body=First%20Name%3ALast%20Name%3AEmail%3ATalk%20Title%3AAbstract%3AShort%20Bio%3AWebinar%20%2F%20Presentation">here</a></h5>
         <li style="list-style: none;">
             {% if next_event.link %}
             <a id="join-btn"
