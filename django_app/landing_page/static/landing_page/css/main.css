@@ -85,7 +85,8 @@ html {
 }
 
 body {
-  background: #ebedef;
+  /* background: #ebedef; */
+    background: #2e3842;
 }
 body.is-preload *, body.is-preload *:before, body.is-preload *:after {
   -moz-animation: none !important;
