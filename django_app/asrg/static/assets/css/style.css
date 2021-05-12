@@ -8509,13 +8509,13 @@ html:not([dir="rtl"]) .progress-group-icon {
 .c-sidebar {
   display: -ms-flexbox;
   display: flex;
-  -ms-flex: 0 0 256px;
-  flex: 0 0 256px;
+  -ms-flex: 0 0 375px;
+  flex: 0 0 375px;
   -ms-flex-direction: column;
   flex-direction: column;
   -ms-flex-order: -1;
   order: -1;
-  width: 256px;
+  width: 375px;
   padding: 0;
   transition: margin-left 0.25s, margin-right 0.25s, width 0.25s, flex 0.25s;
   transition: margin-left 0.25s, margin-right 0.25s, width 0.25s, flex 0.25s, -ms-flex 0.25s;
