@@ -298,9 +298,9 @@ class Training(models.Model):
     currency = models.CharField(max_length=10, blank=False, choices=CURRENCY_CHOICES)
     duration = models.CharField(max_length=20, blank=False)
     location = models.CharField(max_length=50, blank=False)
-    link = models.URLField(blank=True)
+    link = models.URLField(blank=False)
     logo = ProcessedImageField(
-        upload_to="training/logo", blank=True, verbose_name="Logo"
+        upload_to="training/logo", blank=False, verbose_name="Logo"
     )
 
     def __str__(self):
