@@ -41,18 +41,19 @@ PRO versions include **Premium UI Kits**, Lifetime updates and **24/7 LIVE Suppo
 ```bash
 # 1. Get the code
 $ git clone https://github.com/ASRG/asrg.io.git
-$ cd member-portal/django-dashboard-coreui/
+$ cd asrg.io/django_app/
 
-# [Unix] 2. Virtualenv modules installation
+# 2. [Unix] Virtualenv modules installation
 $ virtualenv env
 $ source env/bin/activate
 
-# [Windows] 2. Virtualenv installation (Windows): python -m pip install --user virtualenv
+# 2. [Windows] Virtualenv installation (Windows):
+python -m pip install --user virtualenv
 python -m virtualenv env
 .\env\Scripts\activate
 
 # 3. Install modules - SQLite Storage
-$ pip3 install -r requirements.txt
+$ pip install -r ./django_app/requirements.txt
 
 # 4. Create tables
 $ python manage.py makemigrations && python manage.py migrate
@@ -60,7 +61,7 @@ $ python manage.py makemigrations && python manage.py migrate
 # 5. Start the application (development mode) default port 8000
 $ python manage.py runserver
 
-# 6. To use PostgreSQL add this line to ~/asrg.io/member-portal/django-dashboard-coreui/.env
+# 6. To use PostgreSQL add this line to ~/asrg.io/django_app/.env
 DATABASE_URL=postgres://changeme:changeme_pass@asrg-postgres:5432/asrg
 
 # 7. (OPTIONAL) Start the app - custom port
@@ -73,6 +74,8 @@ http://127.0.0.1:8000/
 <br/>
 
 ## Deployment
+
+---
 The app is provided with a basic configuration to be executed in:
 * [Heroku](https://heroku.com/)
 * [Docker](https://www.docker.com/)
@@ -81,16 +84,17 @@ The app is provided with a basic configuration to be executed in:
 * [Waitress](https://docs.pylonsproject.org/projects/waitress/en/stable/)
 
 
-### Docker execution
----
 
+### Docker execution
+
+---
 The application can be easily executed in a docker container. The steps:
 
 > Get the code
 
 ```bash
 $ git clone https://github.com/ASRG/asrg.io.git
-$ cd member-portal/django-dashboard-coreui
+$ cd asrg.io/django_app
 $ touch .env
 # [Windows] Then proceed to add the required properties.
 # type nul > .env
@@ -118,7 +122,7 @@ DATABASE_URL=postgres://changeme:changeme_pass@asrg-postgres:5432/asrg
 # Uncomment this in development if you want gunicorn to update automatically
 # REALOAD_GUNICORN=True
 # Modify this line if you want to add other ALLOWED_HOSTS
-ALLOWED_HOSTS="localhost",  "127.0.0.1"
+ALLOWED_HOSTS="localhost","127.0.0.1"
 ASRG_APP_PORT=5005
 
 # POSTGRES CONFIG
@@ -180,7 +184,7 @@ It also exists an option for gunicorn to reload every time it detects a change, 
  to restart the Docker container each time changes are done. This is only when DEBUG is set to
   True *(DO NOT run --reload for gunicorn in production)*.
 
-* `~\member-portal\django-dashboard-coreui\django_app\gunicorn-cfg.py`
+* `~\django_app\gunicorn-cfg.py`
 ```python
 if DEBUG:
     reload = True
@@ -202,6 +206,7 @@ docker-compose stop asrg-app && docker-compose rm -f asrg-app && docker-compose 
 <br/>
 
 ### Django-csp
+
 ---
 
 [django-csp](https://django-csp.readthedocs.io/en/latest/) 'Django Content Security Policy'.
@@ -214,6 +219,7 @@ $ pip install django-csp
 <br/>
 
 ### Gunicorn
+
 ---
 
 [Gunicorn](https://gunicorn.org/) 'Green Unicorn' is a Python WSGI HTTP Server for UNIX.
@@ -234,6 +240,7 @@ Visit [http://localhost:8001](http://localhost:8001) in your browser. The app sh
 <br/>
 
 ### Waitress
+
 ---
 [Waitress](https://docs.pylonsproject.org/projects/waitress/en/stable/) (Gunicorn equivalent for Windows) is meant to be a production-quality pure-Python WSGI server with very acceptable performance. It has no dependencies except ones that live in the Python standard library.
 
@@ -253,8 +260,8 @@ Visit [http://localhost:8001](http://localhost:8001) in your browser. The app sh
 <br/>
 
 ### Automatic migration of data
----
 
+---
 The database gets populated with the chapters that already exist before the creation of this django app, further chapters need to be added from the Admin interface.
 If you want the events as well, there is a migration already created for this: `/member-portal/django-dashboard-coreui/django_app/events/migrations/0003_populate_initial_data.py`, in order for this to work you need to add the file `asrg_events.csv` to the following path:
 `/member-portal/django-dashboard-coreui/django_app/events/migrations/`. The `asrg_events.csv` file has the following header:
@@ -268,12 +275,11 @@ ASRG,Host,Event,Check,Presenter,Organization,Type,Status,A,,Location,Start,End
 ### django.db.utils.OperationalError: could not translate host name "postgres" to address: Unknown host
 > **Solution:** The issue was fixed, after latest changes update.
 
-
-# Recreating CONTAINERID_asrg-postgres ... error
-## ERROR: for CONTAINERID_asrg-postgres  Cannot create container for service asrg-db: Duplicate mount point: /var/lib/postgresql/data
-### ERROR: for asrg-db  Cannot create container for service asrg-db: Duplicate mount point: /var/lib/postgresql/data
-## Creating asrg-postgres ... error. ERROR: Encountered errors while bringing up the project.
-### ERROR: for asrg-postgres  Cannot create container for service asrg-db: Conflict. The container name "/asrg-postgres" is already in use by container "
+### Recreating CONTAINERID_asrg-postgres ... error
+#### ERROR: for CONTAINERID_asrg-postgres  Cannot create container for service asrg-db: Duplicate mount point: /var/lib/postgresql/data
+#### ERROR: for asrg-db  Cannot create container for service asrg-db: Duplicate mount point: /var/lib/postgresql/data
+### Creating asrg-postgres ... error. ERROR: Encountered errors while bringing up the project.
+#### ERROR: for asrg-postgres  Cannot create container for service asrg-db: Conflict. The container name "/asrg-postgres" is already in use by container "
 > **Solution:** This issue is related to older docker volumes (mount points for db), not being
 > properly removed from older builds. To fix this issue we need to:
 ```bash
@@ -297,6 +303,45 @@ $ docker image prune
 $ docker-compose pull && docker-compose build && docker-compose up -d --remove-orphans
 # 10. Check all containers running then go to the site:
 http://localhost:8080/login/
+```
+
+### ERROR: for asrg-postgres  Cannot create container for service asrg-db: status code not OK but 500:  FDocker.Core, Version=3.3.0.62907, Culture=neutral, PublicKeyToken=null Docker.Core.DockerException
+> **Solution:** The issue relates to a missed building of the asrg-db application.
+```bash
+# 1. Build the Database independently
+$ docker-compose build asrg-db
+# 2. Re-run the starting command
+$ docker-compose pull && docker-compose build && docker-compose up -d --remove-orphans
+```
+
+### pip install -r ./django_app/requirements.txt error
+#### Error: pg_config executable not found.
+> **Solution:** As Admin CMD or CLI run the next command.
+```bash
+# 1. Install python library required
+python -m pip install psycopg2-binary
+# 2. Re-run the installation of requirements
+pip install -r ./django_app/requirements.txt
+# 2.1 OPTIONAL If it fails again upgrade the version to psycopg2==2.8.6
+# 2.2 OPTIONAL Upgrade: pip install --upgrade pip
+```
+
+### docker-compose up asrg-postgres does not start
+#### asrg-postgres | running bootstrap script * [83] FATAL: data directory "/var/lib/postgresql/data/asrg" has invalid permissions
+> **Solution:** If you have a password change policy in your Windows machine (corporate network) PLUS using WRONG Environment file on ~/asrg.io/django_app/.env, must be ~/asrg.io/.env
+```bash
+# [Windows] Update docker credentials
+# 1. Go to Credentials Manager in your Windows Search bar
+# 2. Select Windows Credentials 
+# 3. Locate and update the credentials for 'Docker Host Filesystem Access'
+# 4. Remove the ./asrg.io/db_backup directory and empty your recycle bin
+# 5. Remove the docker asrg application image named 'asrgio_asrg-app'
+# 6. DO NOT FORGET to restart your docker machine or docker for windows
+# 7. Check you are using the proper file .env on this specific directory ~/asrg.io/.env
+# 8. Re-build and re run the whole application
+# 9. Run for user creation in CLI: docker exec asrg-app python manage.py create_test_users --force
+# 10. Open Django CMS and login with admin on http://localhost:5005/ and create a dummy page
+# 11. Access the app on http://localhost:8080/index.html
 ```
 
 <br/>
