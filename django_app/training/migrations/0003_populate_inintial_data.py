@@ -10,6 +10,7 @@ def add_initial_data(apps, schema_editor):
         with open("./training/migrations/asrg_trainings.csv") as csv_file:
             csv_reader = csv.DictReader(csv_file)
             for row in csv_reader:
+                print(row)
                 training.objects.create(
                     company=row["Company"],
                     title=row["Title"],

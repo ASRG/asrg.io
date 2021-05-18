@@ -288,6 +288,11 @@ CURRENCY_CHOICES = (
     ("ZWL", "ZWL"),
     ("ZWD", "ZWD"),
 )
+STATUS_CHOICE = (
+    ("Submitted", "Submitted"),
+    ("Released", "Released"),
+    ("Expired", "Expired"),
+)
 
 
 class Training(models.Model):
@@ -298,9 +303,12 @@ class Training(models.Model):
     currency = models.CharField(max_length=10, blank=False, choices=CURRENCY_CHOICES)
     duration = models.CharField(max_length=150, blank=False)
     location = models.CharField(max_length=150, blank=False)
+    status = models.CharField(
+        max_length=150, choices=STATUS_CHOICE, default=STATUS_CHOICE[0][0]
+    )
     link = models.URLField(blank=True)
     logo = ProcessedImageField(
-        upload_to="training/logo", blank=True, verbose_name="Logo"
+        upload_to="training/logo", blank=False, verbose_name="Logo"
     )
 
     def __str__(self):
