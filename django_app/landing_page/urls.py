@@ -6,5 +6,5 @@ urlpatterns = [
     path("privacy/", views.privacy, name="privacy"),
     path("security/", views.security, name="security"),
     path("dashboard/", views.dashboard, name="dashboard"),
-    path("threatq/", views.threatq, name="threatq"),
+    path("asip/", views.threatq, name="asip"),
 ]
