@@ -22,16 +22,16 @@
           <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-building"></use>
         </svg> Organizational</a>
       <ul class="c-sidebar-nav-dropdown-items">
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span>Team</a></li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span>Strategy</a></li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span> History</a></li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span> Press</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'team_view' %}"><span class="c-sidebar-nav-icon"></span>Team</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'strategy_view' %}"><span class="c-sidebar-nav-icon"></span>Strategy</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'history_view' %}"><span class="c-sidebar-nav-icon"></span> History</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'press_view' %}"><span class="c-sidebar-nav-icon"></span> Press</a></li>
         <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'location_view' %}"><span class="c-sidebar-nav-icon"></span> Locations</a></li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span> Benefits</a></li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span> Supporters</a></li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span> Sponsors</a></li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span> Privacy</a></li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span> Terms of Use</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'benefits_view' %}"><span class="c-sidebar-nav-icon"></span> Benefits</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'supporters_view' %}"><span class="c-sidebar-nav-icon"></span> Supporters</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'sponsors_view' %}"><span class="c-sidebar-nav-icon"></span> Sponsors</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'privacy_view' %}"><span class="c-sidebar-nav-icon"></span> Privacy</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'termsofuse_view' %}"><span class="c-sidebar-nav-icon"></span> Terms of Use</a></li>
       </ul>
     </li>
     <li class="c-sidebar-nav-item c-sidebar-nav-dropdown"><a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
@@ -39,11 +39,11 @@
           <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-calendar"></use>
         </svg> Events</a>
       <ul class="c-sidebar-nav-dropdown-items">
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span> ASRG Meetings</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'meetings_view' %}"><span class="c-sidebar-nav-icon"></span> ASRG Meetings</a></li>
         <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'events' %}"><span class="c-sidebar-nav-icon"></span> ASRG Webinars</a></li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span> Conferences</a></li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span> CTFs</a></li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span> Workshops</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'conferences_view' %}"><span class="c-sidebar-nav-icon"></span> Conferences</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'ctfs_view' %}"><span class="c-sidebar-nav-icon"></span> CTFs</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'workshop_view' %}"><span class="c-sidebar-nav-icon"></span> Workshops</a></li>
       </ul>
     </li>
     <li class="c-sidebar-nav-item c-sidebar-nav-dropdown"><a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
@@ -51,18 +51,18 @@
           <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-excerpt"></use>
         </svg> Knowledge</a>
       <ul class="c-sidebar-nav-dropdown-items">
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span> Awareness</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'awareness_view' %}"><span class="c-sidebar-nav-icon"></span> Awareness</a></li>
         <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="https://docs.asrg.io/"><span class="c-sidebar-nav-icon"></span> Wiki</a></li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span> Blog</a></li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span> Podcast</a></li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'asip' %}"><span class="c-sidebar-nav-icon"></span> Intelligence</a></li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span> Library</a></li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span> Resources</a></li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span> Supplier Directory</a></li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span> Threat Catalog</a></li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span> Solutions Catalog</a></li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span> Tools</a></li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span> Links</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'blog_view' %}"><span class="c-sidebar-nav-icon"></span> Blog</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'podcast_view' %}"><span class="c-sidebar-nav-icon"></span> Podcast</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'knowledge_asip_view' %}"><span class="c-sidebar-nav-icon"></span> Intelligence</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'library_view' %}"><span class="c-sidebar-nav-icon"></span> Library</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'resources_view' %}"><span class="c-sidebar-nav-icon"></span> Resources</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'supplier_directory_view' %}"><span class="c-sidebar-nav-icon"></span> Supplier Directory</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'threat_catalog_view' %}"><span class="c-sidebar-nav-icon"></span> Threat Catalog</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'solutions_catalog_view' %}"><span class="c-sidebar-nav-icon"></span> Solutions Catalog</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'tools_view' %}"><span class="c-sidebar-nav-icon"></span> Tools</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'links_view' %}"><span class="c-sidebar-nav-icon"></span> Links</a></li>
       </ul>
     </li>
     <li class="c-sidebar-nav-item c-sidebar-nav-dropdown"><a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
@@ -70,10 +70,10 @@
           <use xlink:href="/static/assets/vendors/@coreui/icons/svg/brand.svg#cib-hubspot"></use>
         </svg> Networking</a>
       <ul class="c-sidebar-nav-dropdown-items">
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span> Channels</a></li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span> Social Media</a></li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span> Forums</a></li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span> Newsletter</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'channels_view' %}"><span class="c-sidebar-nav-icon"></span> Channels</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'social_media_view' %}"><span class="c-sidebar-nav-icon"></span> Social Media</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'forums_view' %}"><span class="c-sidebar-nav-icon"></span> Forums</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'newsletter_view' %}"><span class="c-sidebar-nav-icon"></span> Newsletter</a></li>
       </ul>
     </li>
     <li class="c-sidebar-nav-item c-sidebar-nav-dropdown"><a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
@@ -81,10 +81,10 @@
           <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-lan"></use>
         </svg> Collaboration</a>
       <ul class="c-sidebar-nav-dropdown-items">
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span> Overview</a></li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span> ASIP</a></li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span> ASVM</a></li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span> Member Portal</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'collaboration_overview_view' %}"><span class="c-sidebar-nav-icon"></span> Overview</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'collaboration_asip_view' %}"><span class="c-sidebar-nav-icon"></span> ASIP</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'asvm_view' %}"><span class="c-sidebar-nav-icon"></span> ASVM</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'member_portal_view' %}"><span class="c-sidebar-nav-icon"></span> Member Portal</a></li>
       </ul>
     </li>
     <li class="c-sidebar-nav-item c-sidebar-nav-dropdown"><a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
@@ -92,11 +92,11 @@
           <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-school"></use>
         </svg> Academia</a>
       <ul class="c-sidebar-nav-dropdown-items">
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span> Overview</a></li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span> Learning</a></li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span> Technical Committees</a></li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span> Student Organizations</a></li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span> Research</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'academia_overview_view' %}"><span class="c-sidebar-nav-icon"></span> Overview</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'learning_view' %}"><span class="c-sidebar-nav-icon"></span> Learning</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'technical_committees_view' %}"><span class="c-sidebar-nav-icon"></span> Technical Committees</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'student_organizations_view' %}"><span class="c-sidebar-nav-icon"></span> Student Organizations</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'research_view' %}"><span class="c-sidebar-nav-icon"></span> Research</a></li>
       </ul>
     </li>
     <li class="c-sidebar-nav-item c-sidebar-nav-dropdown"><a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
@@ -104,10 +104,10 @@
           <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-industry"></use>
         </svg> Industry</a>
       <ul class="c-sidebar-nav-dropdown-items">
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span> Career Dev</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'career_dev_view' %}"><span class="c-sidebar-nav-icon"></span> Career Dev</a></li>
         <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'job_posting' %}"><span class="c-sidebar-nav-icon"></span> Job Postings</a></li>
         <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'training_postings' %}"><span class="c-sidebar-nav-icon"></span> Training</a></li>
-        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" style="color: darkgray" href="#"><span class="c-sidebar-nav-icon"></span> Compentency Mgmt</a></li>
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{% url 'competency_mgmt_view' %}"><span class="c-sidebar-nav-icon"></span> Compentency Mgmt</a></li>
       </ul>
     </li>
     <!-- Remove of Logout in Menu
