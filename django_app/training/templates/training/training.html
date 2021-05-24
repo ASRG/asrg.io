@@ -1,48 +1,49 @@
 {% extends "layouts/base.html" %}
+{% load static %}
+{% load staticfiles %}
 
 {% block title %} Trainings {% endblock %} 
+{% block stylesheets %}
+<link href="{% static '/training/style.css' %}" rel="stylesheet">
+{% endblock stylesheets %}
 {% block content %}
-<div class="c-body">
-  <main class="c-main">
-  <h2> Trainings </h2>
-  <form method="get">
-      {{ trainings.form.as_p }}
-      {{ trainings.form.media }}
-      <input type="submit" />
-  </form>
-  <li style="list-style: none;">
-    <a id="join-btn" href="{% url 'training_create' %}" class="button primary">Add new training</a>
-  </li>
-  <div class="container-fluid">
-    <div class="fade-in">
-      <div class="row">
-      {% for training in trainings.qs %}
-        <div class="col-sm-6 col-md-5">
-          <div class="card">
-            <div class="card-header"> {{ training.title }} </div>
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-md-3">
-                      {% if training.logo %}
-                        <img src="{{ training.logo.url }}" class="logo-img">
-                      {% endif %}
+<h2> Trainings </h2>
+<form method="get">
+    {{ trainings.form.as_p }}
+    {{ trainings.form.media }}
+    <input type="submit" class="button primary" />
+</form>
+<li style="list-style: none;">
+  <a id="join-btn" href="{% url 'training_create' %}" class="button primary">Add new training</a>
+</li>
+<div class="row aln-center">
+{% for training in trainings.qs %}
+  <div class="col-sm-6 col-md-5">
+    <div class="card">
+      <div class="card-header"> {{ training.title }} </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-3">
+                {% if training.logo %}
+                  <div class="logo-img aln-center">
+                    <img src="{{ training.logo.url }}" class="logo-img">
                   </div>
-                  <div class="col-md-6">
-                      {{ training.company }}
-                      <br>
-                      {{ training.description }} 
-                  </div>
-                </div>
-              </div>
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                {{ training.company }}
+                <br>
+                {{ training.description }} 
+            </div>
+            <div class="currency-text">
+              {{ training.costs }} {{ training.currency }}
+            </div>
           </div>
         </div>
-      {% endfor %}
-      </div>
     </div>
   </div>
-  </main>
+{% endfor %}
 </div>
-
 {% endblock content %}
 
 {% block javascripts %}

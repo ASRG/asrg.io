@@ -1,42 +1,42 @@
 {% extends "layouts/base.html" %}
+{% load static %}
 
 {% block title %} Job postings {% endblock %} 
 
+{% block stylesheets %}
+<link href="{% static '/jobs/style.css' %}" rel="stylesheet">
+{% endblock stylesheets %}
 {% block content %}
-<main class="c-main">
-  <div class="card-body">
-    <h2> Job Postings </h2>
-    <form method="get">
-        {{ job_postings.form.as_p }}
-        {{ job_postings.form.media }}
-        <input type="submit" />
-    </form>
-    <table class="table table-responsive-sm table-striped">
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Job Category</th>
-          <th>Location</th>
-          <th>date_posted</th>
-          <th> Link </th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for job in job_postings.qs %}
-        <tr>
-          <td><a href="{% url 'job_details' job.id %}">{{ job.title }}</a></td>
-          <td>{{ job.job_category }}</td>
-          <td>{{ job.location }}</td>
-          <td>{{ job.date_posted }}</td>
-          <td><a href="{{ job.job_link }}"> Go To Job </a></td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-    <ul class="pagination">
-    </ul>
-  </div>
-</main>
+<h2> Job Postings </h2>
+<form method="get">
+    {{ job_postings.form.as_p }}
+    {{ job_postings.form.media }}
+    <input type="submit" class="button primary" />
+</form>
+<table class="table table-responsive-sm table-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Job Category</th>
+      <th>Location</th>
+      <th>date_posted</th>
+      <th> Link </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for job in job_postings.qs %}
+    <tr>
+      <td><a href="{% url 'job_details' job.id %}">{{ job.title }}</a></td>
+      <td>{{ job.job_category }}</td>
+      <td>{{ job.location }}</td>
+      <td>{{ job.date_posted }}</td>
+      <td><a href="{{ job.job_link }}"> Go To Job </a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<ul class="pagination">
+</ul>
 {% endblock content %}
 
 {% block javascripts %}
