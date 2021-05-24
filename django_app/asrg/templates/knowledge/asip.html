@@ -7,7 +7,9 @@
 
 {% block content %}
   {% if link %}
-  <iframe id="threatq" src="{{ link }}" height="100%" width="100%"></iframe>
+    <div style="height: 1200px">
+      <iframe id="threatq" src="{{ link }}" height="100%" width="100%"></iframe>
+    </div>
   {% else %}
     <main class="c-main">
       <section>
