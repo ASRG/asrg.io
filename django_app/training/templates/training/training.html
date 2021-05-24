@@ -18,6 +18,7 @@
 </li>
 <div class="row aln-center">
 {% for training in trainings.qs %}
+  {% ifequal training.status 'Released' %}
   <div class="col-sm-6 col-md-5">
     <div class="card">
       <div class="card-header"> {{ training.title }} </div>
@@ -42,6 +43,7 @@
         </div>
     </div>
   </div>
+  {% endifequal %}
 {% endfor %}
 </div>
 {% endblock content %}
