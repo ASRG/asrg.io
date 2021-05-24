@@ -1,47 +1,49 @@
 {% extends "layouts/base.html" %}
+{% load static %}
+{% load staticfiles %}
 
 {% block title %} Trainings {% endblock %} 
+{% block stylesheets %}
+<link href="{% static '/training/style.css' %}" rel="stylesheet">
+{% endblock stylesheets %}
 {% block content %}
-<div class="card-body">
-  <h2> Trainings </h2>
-  <form method="get">
-      {{ trainings.form.as_p }}
-      {{ trainings.form.media }}
-      <input type="submit" />
-  </form>
-  <li style="list-style: none;">
-    <a id="join-btn" href="{% url 'training_create' %}" class="button primary">Add new training</a>
-  </li>
-  <table class="table table-responsive-sm table-striped">
-    <thead>
-      <tr>
-        <th>Company</th>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Costs</th>
-        <th>Duration</th>
-        <th>Location</th>
-        <th>Link</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for training in trainings.qs %}
-      <tr>
-        <td>{{ training.company }}</td>
-        <td>{{ training.title }}</td>
-        <td style="max-width: 33%"><pre>{{ training.description }}</pre></td>
-        <td>{{ training.cost }} {{training.currency}}</td>
-        <td>{{ training.duration }}</td>
-        <td>{{ training.location }}</td>
-        <td><a href="{{ training.link }}"> Go To Training </a></td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  <ul class="pagination">
-  </ul>
+<h2> Trainings </h2>
+<form method="get">
+    {{ trainings.form.as_p }}
+    {{ trainings.form.media }}
+    <input type="submit" class="button primary" />
+</form>
+<li style="list-style: none;">
+  <a id="join-btn" href="{% url 'training_create' %}" class="button primary">Add new training</a>
+</li>
+<div class="row aln-center">
+{% for training in trainings.qs %}
+  <div class="col-sm-6 col-md-5">
+    <div class="card">
+      <div class="card-header"> {{ training.title }} </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-3">
+                {% if training.logo %}
+                  <div class="logo-img aln-center">
+                    <img src="{{ training.logo.url }}" class="logo-img">
+                  </div>
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                {{ training.company }}
+                <br>
+                {{ training.description }} 
+            </div>
+            <div class="currency-text">
+              {{ training.costs }} {{ training.currency }}
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+{% endfor %}
 </div>
-
 {% endblock content %}
 
 {% block javascripts %}

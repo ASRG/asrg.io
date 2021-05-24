@@ -85,8 +85,8 @@ html {
 }
 
 body {
-  /* background: #ebedef; */
-    background: #2e3842;
+  background: #ebedef;
+  /* background: #2e3842; */
 }
 body.is-preload *, body.is-preload *:before, body.is-preload *:after {
   -moz-animation: none !important;
@@ -100,7 +100,7 @@ body.is-preload *, body.is-preload *:before, body.is-preload *:after {
 }
 
 body, input, select, textarea {
-  color: #fff;
+  color: rgb(60, 75, 100);
   font-family: "Open Sans", Helvetica, sans-serif;
   font-size: 15pt;
   font-weight: 400;

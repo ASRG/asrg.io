@@ -5,4 +5,6 @@ from .models import Training
 
 @admin.register(Training)
 class TrainingAdmin(admin.ModelAdmin):
-    pass
+    list_display = ("title", "status", "link")
+    search_fields = ("title",)
+    list_filter = ("status",)
