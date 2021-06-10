@@ -14,6 +14,7 @@ from imagekit.models import ImageSpecField, ProcessedImageField
 from imagekit.processors import ResizeToFill
 
 from .countries import COUNTRIES as COUNTRY_CHOICES
+from .languages import LANGUAGES
 
 OCCUPATIONAL_STATUS_CHOICES = (
     ("", "Occupational Status"),
@@ -137,3 +138,12 @@ class UserProfile(models.Model):
             ("ASRG_sponsor_L3", "ASRG_sponsor_L3"),
             ("ASRG_asip_contributor", "ASRG_asip_contributor"),
         ]
+
+
+class Language(models.Model):
+    language = models.CharField(
+        max_length=150, choices=LANGUAGES, default=LANGUAGES[0][0]
+    )
+
+    def __str__(self):
+        return self.language

@@ -21,7 +21,7 @@
   {% ifequal training.status 'Released' %}
   <div class="col-sm-6 col-md-5">
     <div class="card">
-      <div class="card-header"> {{ training.title }} </div>
+      <div class="card-header"> {% if training.link %} <a href="{{ training.link }}"{{ training.title }} {% else %} {{ training.title}} {% endif %}</div>
         <div class="card-body">
           <div class="row">
             <div class="col-md-3">

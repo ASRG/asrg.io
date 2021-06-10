@@ -4,12 +4,121 @@ from django.utils import timezone
 from .models import Event
 
 
-def events_view(request):
+def webinars_view(request):
     context = {}
     now = timezone.now()
     # events = Event.objects.all()
     upcoming_events = Event.objects.filter(
-        start_date__gte=now, status__in=[2, 3]
+        start_date__gte=now,
+        location__location="ASRG-WORLD",
+        status__in=[2, 3],
+        event_type__in=["Webinar", "Workshop"],
+        mode="Internal",
+    ).order_by("start_date")
+    context["upcoming_events"] = upcoming_events
+    try:
+        next_event = upcoming_events[0]
+        context["next_event"] = next_event
+    except IndexError:
+        pass
+    passed_events = Event.objects.filter(
+        start_date__lt=now, status__in=[2, 3, 4]
+    ).order_by("-start_date")
+    context["passed_events"] = passed_events
+    if request.user.is_authenticated:
+        context["base_template"] = "layouts/base.html"
+    else:
+        context["base_template"] = "cms_app/base.html"
+    return render(request, "events/events.html", context)
+
+
+def meetings_view(request):
+    context = {}
+    now = timezone.now()
+    # events = Event.objects.all()
+    upcoming_events = (
+        Event.objects.filter(
+            start_date__gte=now,
+            status__in=[2, 3],
+            event_type__in=["Webinar", "Workshop"],
+            mode="Internal",
+        )
+        .exclude(location__location="ASRG-WORLD")
+        .order_by("start_date")
+    )
+    context["upcoming_events"] = upcoming_events
+    try:
+        next_event = upcoming_events[0]
+        context["next_event"] = next_event
+    except IndexError:
+        pass
+    passed_events = Event.objects.filter(
+        start_date__lt=now, status__in=[2, 3, 4]
+    ).order_by("-start_date")
+    context["passed_events"] = passed_events
+    if request.user.is_authenticated:
+        context["base_template"] = "layouts/base.html"
+    else:
+        context["base_template"] = "cms_app/base.html"
+    return render(request, "events/events.html", context)
+
+
+def conferences_view(request):
+    context = {}
+    now = timezone.now()
+    # events = Event.objects.all()
+    upcoming_events = Event.objects.filter(
+        event_type__in=["Conference"],
+        start_date__gte=now,
+        status__in=[2, 3],
+    ).order_by("start_date")
+    context["upcoming_events"] = upcoming_events
+    try:
+        next_event = upcoming_events[0]
+        context["next_event"] = next_event
+    except IndexError:
+        pass
+    passed_events = Event.objects.filter(
+        start_date__lt=now, status__in=[2, 3, 4]
+    ).order_by("-start_date")
+    context["passed_events"] = passed_events
+    if request.user.is_authenticated:
+        context["base_template"] = "layouts/base.html"
+    else:
+        context["base_template"] = "cms_app/base.html"
+    return render(request, "events/events.html", context)
+
+
+def ctfs_view(request):
+    context = {}
+    now = timezone.now()
+    # events = Event.objects.all()
+    upcoming_events = Event.objects.filter(
+        start_date__gte=now, event_type="CTF", status__in=[2, 3]
+    ).order_by("start_date")
+    context["upcoming_events"] = upcoming_events
+    try:
+        next_event = upcoming_events[0]
+        context["next_event"] = next_event
+    except IndexError:
+        pass
+    passed_events = Event.objects.filter(
+        start_date__lt=now, status__in=[2, 3, 4]
+    ).order_by("-start_date")
+    context["passed_events"] = passed_events
+    if request.user.is_authenticated:
+        context["base_template"] = "layouts/base.html"
+    else:
+        context["base_template"] = "cms_app/base.html"
+    return render(request, "events/events.html", context)
+
+
+def workshop_view(request):
+    context = {}
+    now = timezone.now()
+    # events = Event.objects.all()
+    upcoming_events = Event.objects.filter(
+        start_date__gte=now, event_type="Workshop", status__in=[2, 3]
     ).order_by("start_date")
     context["upcoming_events"] = upcoming_events
     try:
