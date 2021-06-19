@@ -12,7 +12,7 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - PGDATA=${PGDATA}
     volumes:
-      - ./db_backup/:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
     networks:
       - db_network
   asrg-app:
@@ -56,3 +56,5 @@ networks:
     driver: bridge
 volumes:
   db_data: {}
+  pgdata:
+    driver: local
