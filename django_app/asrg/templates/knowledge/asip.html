@@ -1,0 +1,47 @@
+{% extends "layouts/base.html" %}
+
+{% load leaflet_tags %}
+{% load staticfiles %}
+
+{% block title %}Threat Intelligence{% endblock %}
+
+{% block content %}
+  {% if link %}
+    <div style="height: 1200px">
+      <iframe id="threatq" src="{{ link }}" height="100%" width="100%"></iframe>
+    </div>
+  {% else %}
+    <main class="c-main">
+      <section>
+        <body>
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+          <script src="/static/assets/js/breakpoints.min.js"></script>
+          <script src="/static/assets/js/browser.min.js"></script>
+          <script src="/static/assets/js/jquery.scrolly.min.js"></script>
+          <script src="/static/assets/js/util.js"></script>
+
+          <section class="pricing" id="example">
+            <div class="container">
+              <h3 style="text-align: center;font-weight: bold; margin-bottom: 26px;">Stay Tuned! Project Automotive Security Intelligence Platform (ASIP) coming soon...</h3>
+            </div>
+          </section>
+
+        </body>
+      </section>
+    </main>
+  {% endif %}
+{% endblock content %}
+
+{% block javascripts %}
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="/static/assets/vendors/@coreui/coreui-chartjs/js/coreui-chartjs.bundle.js"></script>
+  <script src="/static/assets/js/main.js"></script>
+  {% leaflet_js %}
+  {% leaflet_css %}
+
+{% endblock javascripts %}

@@ -20,7 +20,7 @@ section, summary, time, mark, audio, video {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
+  font-size: 75%;
   font: inherit;
   vertical-align: baseline;
 }
@@ -85,8 +85,8 @@ html {
 }
 
 body {
-  /* background: #ebedef; */
-    background: #2e3842;
+  background: #ebedef;
+  /* background: #2e3842; */
 }
 body.is-preload *, body.is-preload *:before, body.is-preload *:after {
   -moz-animation: none !important;
@@ -100,11 +100,11 @@ body.is-preload *, body.is-preload *:before, body.is-preload *:after {
 }
 
 body, input, select, textarea {
-  color: #fff;
+  color: rgb(60, 75, 100);
   font-family: "Open Sans", Helvetica, sans-serif;
   font-size: 15pt;
   font-weight: 400;
-  letter-spacing: 0.075em;
+  /* letter-spacing: 0.075em; */
   line-height: 1.65em;
 }
 @media screen and (max-width: 1680px) {

@@ -17117,8 +17117,6 @@ a.text-dark:focus {
   height: 0;
 }
 
-
-
 /* Footer */
 #footer {
   padding: 6em 0 4em 0;
@@ -17185,9 +17183,7 @@ a.text-dark:focus {
   position: relative;
 }
 .icon.brands:before {
-    font-family: "Font Awesome 5 Brands";
+  font-family: "Font Awesome 5 Brands";
 }
-
-
 
 /*# sourceMappingURL=style.css.map */
