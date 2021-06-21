@@ -10,7 +10,7 @@ class CommonPasswordValidatorCustom(CommonPasswordValidator):
         if password.lower().strip() in self.passwords:
             raise ValidationError(
                 _(
-                    "Your password was found in a database with most common passwords! Please eneter another password!"
+                    "Your password was found in a database with most common passwords! Please enter another password!"
                 ),
                 code="password_too_common",
             )
