@@ -1,0 +1,1 @@
+django-password-validators==1.6.0

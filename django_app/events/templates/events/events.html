@@ -21,21 +21,23 @@ td
       <header>
           <h2>ASRG | EVENTS</h2>
           <!-- NEXT UPCOMING EVENT IN HEADER -->
+          <li style="list-style: none;">
+            <h5>Want to present at the ASRG? Submit your information <a style="text-decoration:underline" href="mailto:Info@asrg.io?subject=Webinar%20%2F%20Presentation&body=First%20Name%3ALast%20Name%3AEmail%3ATalk%20Title%3AAbstract%3AShort%20Bio%3AWebinar%20%2F%20Presentation">here</a></h5>
+          </li>
           {% if next_event %}
           <h3>{{ next_event.title|capfirst }}</h3>
-          <h5>Want to present at the ASRG? Submit your information <a href="mailto:Info@asrg.io?subject=Webinar%20%2F%20Presentation&body=First%20Name%3ALast%20Name%3AEmail%3ATalk%20Title%3AAbstract%3AShort%20Bio%3AWebinar%20%2F%20Presentation">here</a></h5>
-          <li style="list-style: none;">
-              {% if next_event.link %}
-              <a id="join-btn"
-                 href="{{ next_event.link }}"
-                 class="button primary">Join the LiveStream</a>
-              {% endif %}
-          </li>
           <!-- NEXT UPCOMING EVENT IN HEADER END -->
       </header>
       <section class="wrapper style5" style="padding-top: 70px;", id="next_event">
           <div class="inner">
               <h2>Next Event</h2>
+              <li style="list-style: none;">
+                  {% if next_event.link %}
+                  <a id="join-btn"
+                     href="{{ next_event.link }}"
+                     class="button primary">Join the LiveStream</a>
+                  {% endif %}
+              </li>
 
               <h4>What: <b>{{ next_event.event_type }} </b></h4>
               <h4>When: <b>{{ next_event.start_date }} | {{ next_event.start_time }} {{ next_event.timezone }} </b></h4>

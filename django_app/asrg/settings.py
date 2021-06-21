@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sites",
+    "django_password_validators",
     "authentication",
     # CMS Apps:
     "djangocms_file",
@@ -156,10 +157,21 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+        "NAME": "authentication.password_validation.CommonPasswordValidatorCustom",
     },
     {
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+    },
+    {
+        "NAME": "django_password_validators.password_character_requirements.password_validation.PasswordCharacterValidator",
+        "OPTIONS": {
+            "min_length_digit": 1,
+            "min_length_alpha": 2,
+            "min_length_special": 2,
+            "min_length_lower": 4,
+            "min_length_upper": 3,
+            "special_characters": "~!@#$%^&*()_+{}\":;'[]",
+        },
     },
 ]
 

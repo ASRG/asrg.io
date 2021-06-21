@@ -21,26 +21,37 @@
   {% ifequal training.status 'Released' %}
   <div class="col-sm-6 col-md-5">
     <div class="card">
-      <div class="card-header"> {{ training.title }} </div>
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-3">
-                {% if training.logo %}
-                  <div class="logo-img aln-center">
-                    <img src="{{ training.logo.url }}" class="logo-img">
-                  </div>
-                {% endif %}
-            </div>
-            <div class="col-md-6">
-                {{ training.company }}
-                <br>
-                {{ training.description }} 
-            </div>
-            <div class="currency-text">
-              {{ training.costs }} {{ training.currency }}
-            </div>
+      <div class="card-header"> 
+        {% if training.link %} 
+          <a href="{{ training.link }}">{{ training.title }} </a>
+        {% else %}
+          {{ training.title}} 
+        {% endif %}
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-3">
+              {% if training.logo %}
+                <div class="logo-img aln-center">
+                  <img src="{{ training.logo.url }}" class="logo-img">
+                </div>
+              {% endif %}
+          </div>
+          <div class="col-md-6">
+              {{ training.company }}
+              <br>
+              {{ training.description }} 
+          </div>
+          <div class="language-text">
+            {% for l in training.language.all %}
+              {{ l.get_language_display }} <br>
+            {% endfor %}
+          </div>
+          <div class="currency-text">
+            {{ training.costs }} {{ training.currency }}
           </div>
         </div>
+      </div>
     </div>
   </div>
   {% endifequal %}

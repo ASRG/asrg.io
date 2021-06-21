@@ -24,7 +24,7 @@ def training_postings(request):
 def training_create(request):
     errors = False
     created = False
-    training_create_form = TrainingForm(request.POST or None)
+    training_create_form = TrainingForm(request.POST or None, request.FILES or None)
     if request.method == "POST":
         if training_create_form.is_valid():
             training_create_form.save()
