@@ -308,7 +308,7 @@ class Training(models.Model):
         max_length=150, choices=STATUS_CHOICE, default=STATUS_CHOICE[0][0]
     )
     link = models.URLField(blank=True)
-    language = models.ManyToManyField("authentication.Language", null=True)
+    language = models.ManyToManyField("authentication.Language", blank=True)
     logo = ProcessedImageField(
         upload_to="training/logo", blank=False, verbose_name="Logo"
     )

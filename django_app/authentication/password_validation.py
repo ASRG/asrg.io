@@ -9,6 +9,8 @@ class CommonPasswordValidatorCustom(CommonPasswordValidator):
     def validate(self, password, user=None):
         if password.lower().strip() in self.passwords:
             raise ValidationError(
-                _("This password is too common. The password needs to include: TODO "),
+                _(
+                    "Your password was found in a database with most common passwords! Please eneter another password!"
+                ),
                 code="password_too_common",
             )
