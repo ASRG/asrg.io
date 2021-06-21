@@ -146,4 +146,4 @@ class Language(models.Model):
     )
 
     def __str__(self):
-        return self.language
+        return self.get_language_display()

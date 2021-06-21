@@ -619,7 +619,7 @@ LANGUAGES = (
 def add_initial_data(apps, schema_editor):
     language = apps.get_model("authentication", "language")
     for l in LANGUAGES:
-        language.objects.create(language=l)
+        language.objects.create(language=l[0])
 
 
 class Migration(migrations.Migration):

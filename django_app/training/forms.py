@@ -1,11 +1,16 @@
 from django import forms
 
 from training.models import Training
+from authentication.models import Language
 
 
 class TrainingForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(TrainingForm, self).__init__(*args, **kwargs)
+
+    languages = forms.ModelMultipleChoiceField(
+        queryset=Language.objects.all(), widget=forms.SelectMultiple
+    )
 
     class Meta:
         model = Training
@@ -19,6 +24,7 @@ class TrainingForm(forms.ModelForm):
             "location",
             "link",
             "logo",
+            "languages",
         )
         widgets = {
             "link": forms.TextInput(
