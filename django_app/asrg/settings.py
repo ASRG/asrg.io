@@ -167,9 +167,9 @@ AUTH_PASSWORD_VALIDATORS = [
         "OPTIONS": {
             "min_length_digit": 1,
             "min_length_alpha": 2,
-            "min_length_special": 2,
-            "min_length_lower": 4,
-            "min_length_upper": 3,
+            "min_length_special": 1,
+            "min_length_lower": 5,
+            "min_length_upper": 0,
             "special_characters": "~!@#$%^&*()_+{}\":;'[]",
         },
     },

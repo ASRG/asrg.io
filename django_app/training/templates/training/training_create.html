@@ -12,6 +12,7 @@
           {% endfor %}
       {% endfor %}
     {% endif %}
+  {% else %}
     <h2> Add New Training </h2>
     <form method="post" enctype="multipart/form-data" >
         {{ training_create_form.as_p }}
