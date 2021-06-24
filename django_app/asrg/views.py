@@ -38,22 +38,6 @@ def termsofuse_view(request):
     return render(request, "organizational/termsofuse.html")
 
 
-def meetings_view(request):
-    return render(request, "events/meetings.html")
-
-
-def conferences_view(request):
-    return render(request, "events/conferences.html")
-
-
-def ctfs_view(request):
-    return render(request, "events/ctfs.html")
-
-
-def workshop_view(request):
-    return render(request, "events/workshop.html")
-
-
 def awareness_view(request):
     return render(request, "knowledge/awareness.html")
 

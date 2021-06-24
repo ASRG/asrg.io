@@ -33,11 +33,7 @@ urlpatterns = [
     path("organizational/privacy/", views.privacy_view, name="privacy_view"),
     path("organizational/terms-of-use/", views.termsofuse_view, name="termsofuse_view"),
     # Events
-    path("events/meetigns/", views.meetings_view, name="meetings_view"),
     path("events/", include("events.urls")),  # events routes
-    path("events/conferences/", views.conferences_view, name="conferences_view"),
-    path("events/ctfs/", views.ctfs_view, name="ctfs_view"),
-    path("events/workshop/", views.workshop_view, name="workshop_view"),
     # Knowledge
     path("knowledge/awareness/", views.awareness_view, name="awareness_view"),
     path("knowledge/asip/", views.knowledge_asip_view, name="knowledge_asip_view"),
