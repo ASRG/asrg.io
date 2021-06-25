@@ -9,7 +9,7 @@ def webinars_view(request):
     now = timezone.now()
     # events = Event.objects.all()
     events = Event.objects.filter(
-        location__location="ASRG-WORLD",
+        location__location="WORLD",
         event_type__in=["Webinar", "Workshop"],
         mode="Internal",
         status__in=[2, 3, 4],
@@ -38,7 +38,7 @@ def meetings_view(request):
     # events = Event.objects.all()
     events = Event.objects.filter(
         event_type__in=["Webinar", "Workshop"], mode="Internal", status__in=[2, 3, 4]
-    ).exclude(location__location="ASRG-WORLD")
+    ).exclude(location__location="WORLD")
     upcoming_events = events.filter(
         start_date__gte=now,
     ).order_by("start_date")
