@@ -1,10 +1,17 @@
 {% extends "layouts/base.html" %}
 {% block title %} Trainings {% endblock %} 
 {% block content %}
-  {% if errors %}
-    <h4> Correct the errors below!</h4>
-  {% elif creted %}
+  {% if created %}
     <h4> Training created succesfully!</h4>
+  {% elif errors %}
+    <h4> Correct the errors below!</h4>
+    {% if training_create_form.errors %}
+      {% for field in training_create_form %}
+          {% for error in field.errors %}
+          <p> {{ field.label }} -- {{ error }} </p>
+          {% endfor %}
+      {% endfor %}
+    {% endif %}
   {% else %}
     <h2> Add New Training </h2>
     <form method="post" enctype="multipart/form-data" >

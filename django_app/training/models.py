@@ -288,17 +288,27 @@ CURRENCY_CHOICES = (
     ("ZWL", "ZWL"),
     ("ZWD", "ZWD"),
 )
+STATUS_CHOICE = (
+    ("Submitted", "Submitted"),
+    ("Released", "Released"),
+    ("Expired", "Expired"),
+)
 
 
 class Training(models.Model):
     company = models.CharField(max_length=150, blank=False)
     title = models.CharField(max_length=150, blank=False)
+    language = models.CharField(max_length=150, blank=False)
     description = models.TextField(blank=False)
-    costs = models.CharField(max_length=6, blank=False)
+    costs = models.CharField(max_length=12, blank=False)
     currency = models.CharField(max_length=10, blank=False, choices=CURRENCY_CHOICES)
-    duration = models.CharField(max_length=20, blank=False)
-    location = models.CharField(max_length=50, blank=False)
-    link = models.URLField(blank=False)
+    duration = models.CharField(max_length=150, blank=False)
+    location = models.CharField(max_length=150, blank=False)
+    status = models.CharField(
+        max_length=150, choices=STATUS_CHOICE, default=STATUS_CHOICE[0][0]
+    )
+    link = models.URLField(blank=True)
+    language = models.ManyToManyField("authentication.Language", blank=True)
     logo = ProcessedImageField(
         upload_to="training/logo", blank=False, verbose_name="Logo"
     )

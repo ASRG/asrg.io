@@ -41,4 +41,4 @@ certs/
 !.pre-commit-config.yaml
 db_backup/
 asrg_events.csv
-
+asrg_trainings.csv
