@@ -1,0 +1,44 @@
+# Python gitignore recommandations from https://github.com/github/gitignore/blob/master/Python.gitignore
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+*.sqlite3
+*.db
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+
+# IntelliJ
+.idea
+
+# Visual Studio 2015/2017 cache/options directory
+.vs/
+.vscode/
+
+# Nginx
+nginx/default.conf
+
+.swp
+staticfiles/
+media/
+certs/
+*.pyc
+*.help
+!.pre-commit-config.yaml
+db_backup/
+asrg_events.csv
+

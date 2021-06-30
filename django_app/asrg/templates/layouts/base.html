@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!--
+* CoreUI - Free Bootstrap Admin Template
+* @version v3.0.0-alpha.1
+* @link https://coreui.io
+* Copyright (c) 2019 creativeLabs Łukasz Holeczek
+* Licensed under MIT (https://coreui.io/license)
+-->
+
+<html lang="en">
+
+  <head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
+    <meta name="author" content="Łukasz Holeczek">
+    <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
+
+    <title>
+      ASRG Portal - {% block title %}{% endblock %}
+    </title>
+
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- ASRG favicon -->
+    <link rel="shortcut icon" type="image/png" href="/static/assets/favicon/favicon.ico"/>
+
+    <!-- Icons-->
+    <link href="/static/assets/vendors/@coreui/icons/css/free.min.css" rel="stylesheet">
+    <link href="/static/assets/vendors/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
+
+    <!-- Main styles for this application-->
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+   
+    <link href="/static/assets/css/style.css" rel="stylesheet">
+    <link href="/static/assets/css/events.css" rel="stylesheet">
+    <link href="/static/assets/vendors/pace-progress/css/pace.min.css" rel="stylesheet">
+
+    <link href="/static/assets/vendors/@coreui/coreui-chartjs/css/coreui-chartjs.css" rel="stylesheet">
+
+    <!-- Specific Page CSS goes HERE  -->  
+    {% block stylesheets %}{% endblock stylesheets %}
+
+    <style>
+      .anchor{
+          display: block;
+          height: 50vh; /* 50% viewport height */
+          margin-top: -50vh;
+          visibility: hidden;
+      }
+      .bcontent {
+          margin-top: 10px;
+      }
+      .speaker-div{
+      float: left; 
+      height: auto; 
+      margin-right: 2rem; 
+      text-align: center;
+    }
+    .speaker-img{
+      display: block; 
+      margin: auto; 
+      margin-bottom: 2rem;
+      border-radius: 8px;
+      max-width: 150px;
+      max-height: 180px;
+    }
+    .logo-img{
+      display: block; 
+      margin: auto; 
+      margin-bottom: 2rem;
+      border-radius: 8px;
+      max-width: 150px;
+    }
+  </style>
+    
+  </head>
+
+  <body class="c-app" style="padding-top: 0;">
+
+    {% if user.is_authenticated %}
+      {% include 'includes/sidebar.html' %}
+    {% endif %}
+
+    <div class="c-wrapper">
+
+    {% if user.is_authenticated %}
+      {% include 'includes/navigation.html' with user=request.user %} 
+    {% endif %}
+
+      <div class="c-body">
+        <main class="c-main">
+
+          {% block content %}{% endblock content %}
+
+        </main>
+      </div>
+
+      {% include 'includes/footer.html' %}
+      
+    </div>
+
+    {% include 'includes/scripts.html' %}
+
+    <!-- Specific Page JS goes HERE  -->
+    {% block javascripts %}{% endblock javascripts %}
+
+  </body>
+</html>

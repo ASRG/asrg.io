@@ -1,0 +1,74 @@
+{% for child in children %}
+    <li>
+      <a href="{{ child.get_absolute_url }}">
+      {{child.get_menu_title }}<b class="caret"></b></a>
+    </li>
+    {% if child.get_descendants %}
+      {% for kid in child.get_descendants %}
+        {% if kid.visible %}
+        <li>
+          <a href="{{ kid.get_absolute_url }}">
+            {{kid.get_menu_title }}
+          </a>
+        </li>
+       {% endif %}
+      {% endfor %}
+    {% endif %}
+{% endfor %} 
+
+<!-- custom entries -->
+ 
+<li><a href="#">About Us <i class="fas fa-arrow-down"></i></a>
+<ul class="dropdown">
+<li><a href="{% url 'location_view' %}">Locations</a></li>
+<li><a href="{% url 'events' %}">Events</a></li>
+<li><a href="{% url 'project_view' %}">Projects</a></li>
+<li><a href="https://asrg.gitbook.io/asrg-wiki/">Docs</a></li>
+</ul>
+</li>
+
+<li><a href="{% url 'security' %}">Report a vulnerability</a></li>
+<li><a href="mailto:hello@asrg.io">Become a sponsor</a></li>
+{% if not user.is_authenticated %}
+  <li><a href="{% url 'register' %}">Become a Member</a></li>
+  <li><a href="{% url 'blog' %}">Blog</a></li>
+  <li><a href="{% url 'login' %}"> <i class="fa fa-fw fa-lock"></i> Login</a></li> 
+{% else %}
+  <li><a href="{% url 'home' %}">Member portal</a></li>
+{% endif %}
+<!-- /custom entries -->
+
+<style type="text/css">
+  li {
+ display: block;
+ transition-duration: 0.5s;
+}
+
+li:hover {
+  cursor: pointer;
+}
+
+ul li ul {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  transition: all 0.5s ease;
+  margin-top: 1rem;
+  left: 0;
+  display: none;
+}
+
+ul li:hover > ul,
+ul li ul:hover {
+  visibility: visible;
+  opacity: 1;
+  display: block;
+}
+
+ul li ul li {
+  clear: both;
+  width: 100%;
+}
+
+
+</style>

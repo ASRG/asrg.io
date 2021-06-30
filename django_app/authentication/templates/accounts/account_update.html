@@ -1,0 +1,272 @@
+{% extends "layouts/base-fullscreen.html" %}
+
+{% load staticfiles %}
+
+{% block title %} Register {% endblock %}
+
+{% block content %}
+
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card mx-4">
+
+          <form role="form" method="post" action="" enctype="multipart/form-data">
+
+            {% csrf_token %} 
+
+            <div class="card-body p-4">
+              <div class="text-center">
+
+                <!-- Banner -->
+                <section id="banner">
+                  <div class="inner">
+                      <span>
+                        <h2>
+                          <a href="https://asrg.io/">
+                            <img
+                                src="{% static './images/ASRG_Logo_black.png' %}"
+                                alt="ASRG"
+                                width="300"
+                                height="107"
+                                title="Automotive Security Research Group"
+                            />
+                          </a>
+                        </h2>
+                      </span>
+                  </div>
+                </section>
+
+                <h5>Update Profile</h5>
+                <p class="text-muted">
+                  {% if msg %}
+                    {{ msg | safe }}
+                  {% elif errors %}
+                    {% for error in errors %}
+                      <span style="color: red;">{{ error | safe }}<br></span>
+                    {% endfor %}
+                  {% else %}
+                  <!-- <span><i>Add your credentials</i><br/>OR use an <a href={% url 'login' %}>ASRG account</a>.
+                  </span> -->
+                  {% endif %}
+
+                  {% for field in profile_form %}
+                    {% if field.errors %}
+                      {% for error in field.errors %}
+                        <span style="color: red;">{{ field.label_tag }} {{ error | safe }}<br></span>
+                      {% endfor %}
+                    {% endif %}
+                  {% endfor %}
+
+                </p>
+              </div>
+
+              <br />
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend"><span class="input-group-text">
+                    <svg class="c-icon">
+                      <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-user"></use>
+                    </svg></span></div>
+                {{ account_form.username }}
+              </div>
+              
+              <div class="input-group mb-3">
+                <div class="input-group-prepend"><span class="input-group-text">
+                    <svg class="c-icon">
+                      <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-envelope-open"></use>
+                    </svg></span></div>
+                {{ account_form.email }}
+              </div>
+              
+              <!-- <div class="input-group mb-3">
+                <div class="input-group-prepend"><span class="input-group-text">
+                    <svg class="c-icon">
+                      <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
+                    </svg></span></div>
+                {{ account_form.password1 }}
+              </div> -->
+
+              <!-- <div class="input-group mb-3">
+                <div class="input-group-prepend"><span class="input-group-text">
+                    <svg class="c-icon">
+                      <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
+                    </svg></span></div>
+                {{ account_form.password2 }}
+              </div> -->
+
+              <!-- <div class="input-group mb-3">
+                <div class="input-group-prepend"><span class="input-group-text">
+                    <svg class="c-icon">
+                      <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-football"></use>
+                    </svg>
+                  </span></div>
+                {{ account_form.chapter }}
+              </div> -->
+              <!-- <div class="reg-additional-info mb-2"><span>We just need a litte more info about you...</span></div> -->
+
+              
+              <div class="input-group mb-3"> <!-- ADDITIONAL BEGINNIG-->
+                <div class="input-group-prepend"><span class="input-group-text">
+                    <svg class="c-icon">
+                      <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-face"></use>
+                    </svg>
+                  </span></div>
+                {{ account_form.first_name }}
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend"><span class="input-group-text">
+                    <svg class="c-icon">
+                      <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-face"></use>
+                    </svg>
+                  </span></div>
+                {{ account_form.last_name }}
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend"><span class="input-group-text">
+                    <svg class="c-icon">
+                      <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-wc"></use>
+                    </svg>
+                  </span></div>
+                {{ account_form.gender }}
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend"><span class="input-group-text">
+                    <svg class="c-icon">
+                      <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-football"></use>
+                    </svg>
+                  </span></div>
+                {{ account_form.chapter }}
+              </div>
+
+
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend"><span class="input-group-text">
+                    <svg class="c-icon">
+                      <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-layers"></use>
+                    </svg>
+                  </span></div>
+                {{ account_form.occupational_status }}
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend"><span class="input-group-text">
+                    <svg class="c-icon">
+                      <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-globe-alt"></use>
+                    </svg>
+                  </span></div>
+                {{ account_form.country }}
+              </div>
+
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend"><span class="input-group-text">
+                  Date of Birth<br>
+                    <svg class="c-icon">
+                      <!-- <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-layers"></use> -->
+                    </svg>
+                  </span></div>
+                {{ profile_form.dob }}
+              </div>
+
+              <div class="input-group mb-3">
+                <!-- <div class="input-group-prepend"><span class="input-group-text">
+                    <svg class="c-icon">
+                      <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-layers"></use>
+                    </svg>
+                  </span></div> -->
+                {{ profile_form.field_of_study }}
+              </div>
+
+              <div class="input-group mb-3">
+                <!-- <div class="input-group-prepend"><span class="input-group-text">
+                    <svg class="c-icon">
+                      <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-layers"></use>
+                    </svg>
+                  </span></div> -->
+                {{ profile_form.bio }}
+              </div>
+
+              <div class="input-group mb-3">
+                <!-- <div class="input-group-prepend"><span class="input-group-text">
+                    <svg class="c-icon">
+                      <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-layers"></use>
+                    </svg>
+                  </span></div> -->
+                {{ profile_form.status }}
+              </div>
+
+              <div class="input-group mb-3">
+                <!-- <div class="input-group-prepend"><span class="input-group-text">
+                    <svg class="c-icon">
+                      <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-layers"></use>
+                    </svg>
+                  </span></div> -->
+                {{ profile_form.skills }}
+              </div>
+
+              <div class="input-group mb-3">
+                <!-- <div class="input-group-prepend"><span class="input-group-text">
+                    <svg class="c-icon">
+                      <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-layers"></use>
+                    </svg>
+                    <i class="cib-facebook"></i>
+                  </span></div> -->
+                {{ profile_form.fb_link }}
+              </div>
+
+              <div class="input-group mb-3">
+                <!-- <div class="input-group-prepend"><span class="input-group-text">
+                    <svg class="c-icon">
+                      <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-layers"></use>
+                    </svg>
+                    <i class="cib-twitter"></i>
+                  </span></div> -->
+                {{ profile_form.tw_link }}
+              </div>
+
+              <div class="input-group mb-3">
+                <!-- <div class="input-group-prepend"><span class="input-group-text">
+                    <svg class="c-icon">
+                      <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-layers"></use>
+                    </svg>
+                    <i class="cib-instagram"></i>
+                  </span></div> -->
+                {{ profile_form.ig_link }}
+              </div>
+
+              <div class="input-group mb-3">
+                <div class="input-group-prepend"><span class="input-group-text">
+                  Profile Picture<br>
+                    <!-- <svg class="c-icon">
+                      <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-layers"></use>
+                    </svg> -->
+                  </span></div>
+                {{ profile_form.pp_src }}
+              </div>
+
+              
+
+              
+              <br />
+
+              <div class="text-center">
+                  <button type="submit" class="btn btn-primary px-4">Update Profile</button>
+              </div>
+
+            </div>
+          
+          </form>  
+            
+          <div class="card-footer p-4 text-center">
+              <!-- Have an account? <a href={% url 'login' %} >Login</a> -->
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+{% endblock content %}
