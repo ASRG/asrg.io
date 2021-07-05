@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.sites",
     "django_password_validators",
+    "import_export",
     "authentication",
     # CMS Apps:
     "djangocms_file",

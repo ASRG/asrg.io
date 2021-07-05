@@ -1,9 +1,10 @@
 from django.contrib import admin
+from import_export.admin import ImportExportModelAdmin
 
 from events.models import Event
 
 
-class EventAdmin(admin.ModelAdmin):
+class EventAdmin(ImportExportModelAdmin):
     list_display = ("title", "event_type", "location", "host", "status", "start_date")
     search_fields = (
         "title",
