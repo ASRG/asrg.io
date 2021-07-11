@@ -34,7 +34,11 @@ class Event(models.Model):
     event_type = models.CharField(max_length=11, choices=EVENT_TYPE_CHOICES)
     mode = models.CharField(max_length=9, choices=MODE_CHOICES)
     location = models.ForeignKey(
-        "authentication.Chapter", related_name="event", on_delete=models.CASCADE
+        "authentication.Chapter",
+        related_name="event",
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
     )
     host = models.CharField(max_length=50, blank=True)
     presenter_first_name = models.CharField(
