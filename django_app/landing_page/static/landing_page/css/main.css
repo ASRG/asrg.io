@@ -2697,6 +2697,7 @@ button,
   top: 0;
   width: 20em;
   z-index: 10002;
+  float: left;
 }
 #menu ul {
   list-style: none;
@@ -3231,6 +3232,11 @@ body.is-mobile.landing #footer {
 .events-table td {
   vertical-align: middle;
 }
+
+
+
+
+
 
 /*# sourceMappingURL=main.css.map*/
 

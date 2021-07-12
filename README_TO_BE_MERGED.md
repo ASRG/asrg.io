@@ -205,6 +205,11 @@ docker-compose stop asrg-app && docker-compose rm -f asrg-app && docker-compose 
 
 <br/>
 
+###CSS Files location
+1. The css for the Landing Page: django_app\landing_page\static\landing_page\css\main.css
+2. The css for the Member Portal: django_app\asrg\static\assets\css\style.css
+
+
 ### Django-csp
 
 ---

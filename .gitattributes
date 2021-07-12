@@ -1,3 +1,5 @@
+* text=false
+
 # Source files
 # ============
 
@@ -23,3 +25,4 @@
 *.bash     text eol=lf
 *.fish     text eol=lf
 *.sh       text eol=lf
+*.sh -crlf
