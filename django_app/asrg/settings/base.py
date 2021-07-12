@@ -96,9 +96,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "asrg.urls"
+LOGIN_URL = "/login/"
 LOGIN_REDIRECT_URL = "home"  # Route defined in app/urls.py
 LOGOUT_REDIRECT_URL = "home"  # Route defined in app/urls.py
 TEMPLATE_DIR = os.path.join(BASE_DIR, "asrg/templates")  # ROOT dir for templates
+CMS_PERMISSION = True
 CMS_TEMPLATES = (
     ("cms_app/landing_template.html", "Landing page template"),
     ("cms_app/article.html", "Article template"),

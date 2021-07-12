@@ -32,6 +32,23 @@ services:
       - db_network
     depends_on:
       - asrg-db
+  members-app:
+    container_name: members-app
+    restart: unless-stopped
+    command: gunicorn --config members_app-cfg.py 'asrg.wsgi:members_app()'
+    volumes:
+      - ./django_app/:/opt/code
+    env_file: ./.env
+    environment:
+      - WAIT_HOSTS=asrg-db:5432
+    build: .
+    ports:
+      - "${MEMBERS_APP_PORT}:5005"
+    networks:
+      - web_network
+      - db_network
+    depends_on:
+      - asrg-db
   nginx:
     container_name: asrg-nginx
     restart: unless-stopped

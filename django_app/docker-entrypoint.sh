@@ -10,4 +10,4 @@ python manage.py migrate
 
 # Start guincorn service
 echo "Start gunicorn service"
-gunicorn --config gunicorn-cfg.py asrg.wsgi
+gunicorn --config asrg_app-cfg.py 'asrg.wsgi:asrg_app()'

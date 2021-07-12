@@ -4,6 +4,9 @@ error_log /var/log/nginx/nginx.http.error.log;
 upstream asrg {
         server asrg-app:${ASRG_APP_PORT};
 }
+upstream members {
+        server members-app:${MEMBERS_APP_PORT};
+}
 server {
     listen ${NGINX_HTTP_PORT};
     listen [::]:${NGINX_HTTP_PORT};
@@ -29,10 +32,21 @@ server {
         alias /opt/asrg/media/;    
         expires 30d;
     }
+        
+    location /members {
+        rewrite /members(.*) $1;
+        client_max_body_size 10M;
+        proxy_pass http://members;
+        proxy_set_header Host ${DOLLAR}http_host;
+        proxy_set_header X-Real-IP ${DOLLAR}remote_addr;
+        proxy_set_header X-Forwarded-For ${DOLLAR}proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto ${DOLLAR}scheme;
+    }
 
     location / {
+        rewrite /landing(.*) $1;
         client_max_body_size 10M;
-        proxy_pass http://asrg;
+        proxy_pass http://members;
         proxy_set_header Host ${DOLLAR}http_host;
         proxy_set_header X-Real-IP ${DOLLAR}remote_addr;
         proxy_set_header X-Forwarded-For ${DOLLAR}proxy_add_x_forwarded_for;
