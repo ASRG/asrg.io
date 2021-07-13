@@ -1,8 +1,14 @@
 {% load menu_tags %}
+{% load cms_tags %}
 {% for child in children %}
     {% if child.visible %}
       <li>
-        <a href="{{ child.attr.redirect_url|default:child.get_absolute_url }}"> {% if child.get_descendants %}<i class="fas fa-arrow-down"></i> {% endif %}
+        <a href="{{ child.attr.redirect_url|default:child.get_absolute_url }}"> 
+
+        {% with ''|center:child.level as range %}
+        {% for _ in range %} &emsp; {% endfor %} 
+        {% endwith %}
+        {% if child.get_descendants %}<i class="fas fa-arrow-down"></i> {% endif %}
         {{child.get_menu_title }}<b class="caret"></b></a>
       {% if not child.get_descendants %}
       </li> 
