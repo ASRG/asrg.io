@@ -12,10 +12,7 @@
             content="width=device-width, initial-scale=1, user-scalable=no" />
       {% addtoblock "css" %} <link rel="stylesheet" href="{% static 'landing_page/css/main.css' %}" /> {% endaddtoblock %}
       {% addtoblock "css" %} <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon" /> {% endaddtoblock %}
-      {% addtoblock "css" %}
-      {% endaddtoblock %} <link rel="shortcut icon" href="{% static 'icon.ico' %}" type="image/x-icon" /> {% addtoblock "css" %}
-      {% endaddtoblock %}
-      {% addtoblock "css" %} <link rel="apple-touch-icon" sizes="180x180" href="{% static '/apple-touch-icon.png' %}" /> {% endaddtoblock %}
+      {% addtoblock "css" %} <link rel="shortcut icon" href="{% static 'icon.ico' %}" type="image/x-icon" />{% endaddtoblock %}      {% addtoblock "css" %} <link rel="apple-touch-icon" sizes="180x180" href="{% static '/apple-touch-icon.png' %}" /> {% endaddtoblock %}
       {% addtoblock "css" %} <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon-32x32.png' %}" /> {% endaddtoblock %}
       {% addtoblock "css" %} <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon-16x16.png' %}" /> {% endaddtoblock %}
       {% addtoblock "css" %} <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" /> {% endaddtoblock %}
@@ -79,8 +76,7 @@
     {% endaddtoblock %}
     {% addtoblock "js" %} 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async
-            src="https://www.googletagmanager.com/gtag/js?id=UA-131464826-2"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-131464826-2"></script>
     {% endaddtoblock %}
     {% addtoblock "js" %} 
       <!-- Google Tag Manager -->
