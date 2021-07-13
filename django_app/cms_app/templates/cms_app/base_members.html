@@ -105,14 +105,16 @@
         </main>
       </div>
 
-      {% include 'includes/footer.html' %}
+      {% static_placeholder "footer" or %} 
+        {% include 'includes/footer.html' %}
+      {% endstatic_placeholder%}
       
     </div>
 
     {% include 'includes/scripts.html' %}
 
     <!-- Specific Page JS goes HERE  -->
-    {% block javascripts %}{% endblock javascripts %}
+   {% addtoblock "js" %} {% block javascripts %}{% endblock javascripts %} {% endaddtoblock %}
 
   {% addtoblock "js" %}<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>{% endaddtoblock %}
   {% render_block "js" %}
