@@ -1,0 +1,39 @@
+{% load menu_tags %}
+{% load cms_tags %}
+    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/members">
+        <svg class="c-sidebar-nav-icon">
+          <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-home"></use>
+        </svg>Home</a></li>
+    <li class="c-sidebar-nav-title">Member Portal</li>
+    {% for child in children %}
+      {% if child.visible %}
+        <li class="c-sidebar-nav-item c-sidebar-nav-dropdown">
+          <a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="
+          {% if child.level == 1 %}
+            #
+          {% else %} 
+            {{ child.attr.redirect_url|default:child.get_absolute_url }} 
+          {% endif %}"> 
+            <svg class="c-sidebar-nav-icon">
+              <use xlink:href="/static/assets/vendors/@coreui/icons/svg/free.svg#cil-calendar"></use>
+            </svg> 
+            {{child.get_menu_title }}
+          </a>
+          <ul class="c-sidebar-nav-dropdown-items">
+            {% for child in child.get_descendants %}
+              <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ child.attr.redirect_url|default:child.get_absolute_url }}">
+                  <span class="c-sidebar-nav-icon"></span> {{child.get_menu_title }}
+                </a></li>
+
+            {% comment %}
+              {% show_menu from_level to_level extra_inactive extra_active template "" "" child %}
+            {% endcomment %}
+            {% endfor %}
+          </ul>
+        </li>
+      {% endif %}
+      {% if child.selected %}
+        <!-- custom entries -->
+        <!-- /custom entries -->
+      {% endif %}
+    {% endfor %}
