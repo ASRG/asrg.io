@@ -104,6 +104,7 @@ CMS_TEMPLATES = (
     ("cms_app/article.html", "Article template"),
     ("cms_app/menu.html", "Menu Template"),
     ("cms_app/base.html", "Base Template"),
+    ("cms_app/base_members.html", "Base Member Template"),
 )
 
 
