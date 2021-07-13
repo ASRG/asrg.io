@@ -1,3 +1,17 @@
+{% load menu_tags %}
+
+{% comment %}
+  {% for child in children %}
+  <li class="child{% if child.selected %} selected{% endif %}{% if child.ancestor %} ancestor{% endif %}{% if child.sibling %} sibling{% endif %}{% if child.descendant %} descendant{% endif %}">
+    <a href="{{ child.attr.redirect_url|default:child.get_absolute_url }}">{{ child.get_menu_title }}</a>
+    {% if child.children %}
+    <ul>
+      {% show_menu from_level to_level extra_inactive extra_active template "" "" child %}
+    </ul>
+    {% endif %}
+  </li>
+  {% endfor %}
+{% endcomment %}
 {% for child in children %}
     <li>
       <a href="{{ child.get_absolute_url }}"> {% if child.get_descendants %}<i class="fas fa-arrow-down"></i> {% endif %}
@@ -6,6 +20,7 @@
     </li> 
     {% else %}
       <ul class="dropdown">
+        {% show_menu from_level to_level extra_inactive extra_active template "" "" child %}
       {% for kid in child.get_descendants %}
         {% if kid.visible %}
         <li>
@@ -22,20 +37,22 @@
 
 <!-- custom entries -->
  
-<li><a href="{% url 'location_view' %}">Locations</a></li>
-<li><a href="{% url 'events' %}">Events</a></li>
-<li><a href="{% url 'project_view' %}">Projects</a></li>
-<li><a href="https://asrg.gitbook.io/asrg-wiki/">Docs</a></li>
-<li><a href="{% url 'security' %}">Report a vulnerability</a></li>
-<li><a href="mailto:hello@asrg.io">Become a sponsor</a></li>
-{% if not user.is_authenticated %}
-  <li><a href="{% url 'register' %}">Become a Member</a></li>
-  <li><a href="{% url 'blog' %}">Blog</a></li>
-  <li><a href="{% url 'login' %}"> <i class="fa fa-fw fa-lock"></i> Login</a></li> 
-{% else %}
-  <li><a href="{% url 'home' %}">Member portal</a></li>
+{% if child.selected %}
+  <li><a href="{% url 'location_view' %}">Locations</a></li>
+  <li><a href="{% url 'events' %}">Events</a></li>
+  <li><a href="{% url 'project_view' %}">Projects</a></li>
+  <li><a href="https://asrg.gitbook.io/asrg-wiki/">Docs</a></li>
+  <li><a href="{% url 'security' %}">Report a vulnerability</a></li>
+  <li><a href="mailto:hello@asrg.io">Become a sponsor</a></li>
+  {% if not user.is_authenticated %}
+    <li><a href="{% url 'register' %}">Become a Member</a></li>
+    <li><a href="{% url 'blog' %}">Blog</a></li>
+    <li><a href="{% url 'login' %}"> <i class="fa fa-fw fa-lock"></i> Login</a></li> 
+  {% else %}
+    <li><a href="{% url 'home' %}">Member portal</a></li>
+  {% endif %}
+  <!-- /custom entries -->
 {% endif %}
-<!-- /custom entries -->
 
 <style type="text/css">
   li {
