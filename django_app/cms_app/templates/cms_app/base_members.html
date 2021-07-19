@@ -82,7 +82,9 @@
   </head>
 
   <body class="c-app" style="padding-top: 0;">
+    {% cms_toolbar %}
 
+    
     {% if user.is_authenticated %}
       {% include 'includes/sidebar.html' %}
     {% endif %}

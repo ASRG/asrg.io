@@ -12,3 +12,5 @@ class CounterConfig(CMSPlugin):
     member_offset = models.IntegerField(default=5657)
     locations_offset = models.IntegerField(default=0)
     meetings_offset = models.IntegerField(default=0)
+
+

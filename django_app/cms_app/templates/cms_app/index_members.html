@@ -1,0 +1,97 @@
+{% extends "cms_app/base_members.html" %}
+{% load cms_tags %}
+{% load static %}
+{% load leaflet_tags %}
+{% leaflet_css %}
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link href="{% static 'dashboard.css' %}" rel="stylesheet">
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Required for main.js on index -->
+<script src="/static/assets/js/breakpoints.min.js"></script>
+<script src="/static/assets/js/browser.min.js"></script>
+<script src="/static/assets/js/jquery.scrolly.min.js"></script>
+<script src="/static/assets/js/util.js"></script>
+
+{% cms_toolbar %}
+
+{% block content %}
+
+{% placeholder "index_plugin" %}
+
+{% static_placeholder "links" or %}
+<section class="pricing" id="links">
+  <div class="container">
+    <h3 class="mb-5 display-4 test2">Resources</h3>
+    <div class="container">
+    <div class="row">
+      <div class="col-sm-4 py-2">
+        <div class="card card-body h-100">
+          <div class="card-body text-center style5 wrapper" style="padding-top: 30px !important">
+            <img src="/static/assets/img/knowledge.png" alt="Knowledge" width="65" height="53">
+            <p class="card-text"><b>Knowledge</b></p>
+            <div style="text-align: center;">
+              <div style="display: inline-block; text-align: left;">
+                <img src="/static/assets/img/pin.svg" alt="Meetups" width="25" height="50"> <a href="/locations" target="_blank">  Locations</a><br>
+                <img src="/static/assets/img/drive.svg" alt="Security" width="25" height="50"> <a href="https://docs.asrg.io/knowledge/security-library/" target="_blank">  Security Library</a><br>
+                <img src="/static/assets/img/repair.svg" alt="Workshops" width="25" height="50"> <a href="https://docs.asrg.io/knowledge/ctf/" target="_blank">  Workshops / CTFs</a><br>
+                <img src="/static/assets/img/gitbook.svg" alt="Wiki" width="25" height="50"> <a href="https://docs.asrg.io/">  ASRG Wiki</a>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div class="col-sm-4 py-2">
+      <div class="card card-body h-100">
+        <div class="card-body">
+          <div class="card-body text-center wrapper style5" style="padding-top: 0px !important">
+            <img src="/static/assets/img/networking.png" alt="Networking" width="65" height="65">
+            <p class="card-text"><b>Networking</b></p>
+            <div style="text-align: center;">
+              <div style="display: inline-block; text-align: left;">
+                <img src="/static/assets/img/linkedin.svg" alt="Linkedin" width="25" height="50"> <a href="https://www.linkedin.com/company/automotive-security-research-group/" target="_blank">  Linkedin</a><br>
+                <img src="/static/assets/img/slack.svg" alt="Slack" width="25" height="50"> <a href="https://join.slack.com/t/asrg/shared_invite/enQtNjMyMzAyMDM4MjI1LTM2Njc3MWRkNWI1NjkwYmQ4NDRkZjYwYmE2MzcyMWY3Y2IwZjc1YTAzYjQxM2M0NzdhOGEzNjNmYjNkM2EzZWM/" target="_blank">  Slack</a><br>
+                <img src="/static/assets/img/telegram.svg" alt="Telegram" width="25" height="50"> <a href="https://t.me/joinchat/AfA9GxiVUuUTYUzDsSGwZg/" target="_blank">  Telegram</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4 py-2">
+      <div class="card h-100 card-body">
+        <div class="card-body text-center wrapper style5" style="padding-top: 40px !important">
+          <img src="/static/assets/img/collaboration.png" alt="Collaboration" width="65" height="44">
+          <p class="card-text"><b>Collaboration</b></p>
+          <div style="text-align: center;">
+            <div style="display: inline-block; text-align: left;">
+              <img src="/static/assets/img/project.svg" alt="Projects" width="25" height="50"> <a href="/projects" target="_blank">  Projects</a><br>
+              <img src="/static/assets/img/github.svg" alt="Github" width="25" height="50"> <a href="https://github.com/ASRG/" target="_blank"> GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<br> <br> <br> <br>
+{% endstatic_placeholder %}
+{% endblock %}
+
+
+
+
+
+
+
+
