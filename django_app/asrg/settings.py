@@ -105,6 +105,9 @@ CMS_TEMPLATES = (
     ("cms_app/landing_template.html", "Landing page template"),
     ("cms_app/article.html", "Article template"),
     ("cms_app/base_members.html", "Base Member Template"),
+    ("cms_app/index_members.html", "Index Member Template"),
+    ("cms_app/template_members.html", "Template Member Template"),
+
 )
 
 

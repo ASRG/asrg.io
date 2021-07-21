@@ -1,0 +1,47 @@
+{% extends "cms_app/base_members.html" %}
+{% load cms_tags sekizai_tags %}
+{% load static %}
+{% load leaflet_tags %}
+{% leaflet_css %}
+
+
+{% cms_toolbar %}
+{% block css %}
+   {% addtoblock "css" %}
+
+<style type="text/css">
+    .header {
+    text-align: center;
+    font-family: "Trebuchet MS", sans-serif;
+    font-size: 50px;
+    letter-spacing: -2px;
+    border-bottom: 2px solid black;
+    text-transform: uppercase;
+    }
+</style>
+{% endaddtoblock %}
+{% endblock css %}
+
+ {% block content %}  
+
+
+
+<h3 class="header"> {% placeholder "header" %}  </h3>  
+
+
+ 
+
+
+
+ {% placeholder "body" %} 
+
+
+
+
+{% endblock content %}
+
+
+
+{% block javascripts %}
+<!-- Specific Page JS goes HERE  -->
+{% endblock javascripts %}

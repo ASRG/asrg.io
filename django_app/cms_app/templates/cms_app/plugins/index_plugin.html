@@ -1,0 +1,105 @@
+{% load cms_tags menu_tags sekizai_tags %}
+{% load static %}
+{% load leaflet_tags %}
+
+
+
+{% addtoblock "css" %} {% leaflet_css %}{% endaddtoblock %}
+{% addtoblock "css" %}<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">{% endaddtoblock %}
+{% addtoblock "css" %}<link href="{% static 'dashboard.css' %}" rel="stylesheet">{% endaddtoblock %}
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% addtoblock "css" %}<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">{% endaddtoblock %}
+
+
+
+
+<section class="pricing" id="announcement">
+  <h3 class="mb-5 display-4 test2">Announcements</h3>
+<div class="alert-box">
+  <span class="badge">Announcements</span> <br>
+  {% for announcement in announcements %}
+    {{ announcement.id }}
+    <h1 style="color: #fff">{{ announcement.title }}</h1>
+    <p style="color: #fff">{{ announcement.announcement }}</p>
+  {% endfor %}
+</div>  
+</section>
+<br> <br> <br> <br>
+
+
+<section class="pricing" id="map">
+  <div class="container">
+    <h3 class="mb-5 display-4 test2">Locations Map</h3>
+    <div class="container">
+      <div class="card card-cascade narrower">
+        <div class="card-body card-body-cascade text-center">
+          <div class="z-depth-1-half map-container-5" style="height: 300px">
+          {% leaflet_map "locations_map" callback="window.map_init"%}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% addtoblock "js" %}<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>{% endaddtoblock %}
+{% addtoblock "js" %}<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>{% endaddtoblock %}
+{% addtoblock "js" %}<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>{% endaddtoblock %}
+<!-- Required for main.js on index -->
+{% addtoblock "js" %}<script src="/static/assets/js/breakpoints.min.js"></script>{% endaddtoblock %}
+{% addtoblock "js" %}<script src="/static/assets/js/browser.min.js"></script>{% endaddtoblock %}
+{% addtoblock "js" %}<script src="/static/assets/js/jquery.scrolly.min.js"></script>{% endaddtoblock %}
+{% addtoblock "js" %}<script src="/static/assets/js/util.js"></script>{% endaddtoblock %}
+
+{% addtoblock "js" %}<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>{% endaddtoblock %}
+{% addtoblock "js" %}<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>{% endaddtoblock %}
+{% addtoblock "js" %}<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>{% endaddtoblock %}
+
+<!-- Required for main.js on index -->
+{% addtoblock "js" %}<script src="/static/assets/js/breakpoints.min.js"></script>{% endaddtoblock %}
+{% addtoblock "js" %}<script src="/static/assets/js/browser.min.js"></script>{% endaddtoblock %}
+{% addtoblock "js" %}<script src="/static/assets/js/jquery.scrolly.min.js"></script>{% endaddtoblock %}
+{% addtoblock "js" %}<script src="/static/assets/js/util.js"></script>{% endaddtoblock %}
+
+
+
+{% addtoblock "js" %} {% leaflet_js %} {% endaddtoblock %}
+{% addtoblock "js" %}
+<script>
+  function map_init(map, options) {
+    let marker;
+    {% for chapter in chapters %}
+      {% if chapter.get_coordinates.0 != 0 and chapter.get_coordinates.1 != 0 %}
+        marker = L.marker([{{ chapter.get_coordinates.0 }}, {{ chapter.get_coordinates.1 }}]);
+        marker.bindPopup(
+          `Location: {{ chapter.location }}\r\n
+          City: {{ chapter.city }}, Country: {{ chapter.country }} \r\n
+          Lead: {{ chapter.lead }} \r\n`
+        );
+        marker.on('mouseover', function (e) {
+          this.openPopup();
+        });
+        marker.on('mouseout', function (e) {
+          this.closePopup();
+        });
+        marker.addTo(map);
+      {% endif %}
+    {% endfor %}
+  }
+</script>
+{% endaddtoblock %}
+{% render_block "js" %}
+
+
+
+
+
+
