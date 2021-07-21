@@ -1,41 +1,45 @@
+{% load menu_tags %}
+{% load cms_tags %}
 {% for child in children %}
-    <li>
-      <a href="{{ child.get_absolute_url }}"> {% if child.get_descendants %}<i class="fas fa-arrow-down"></i> {% endif %}
-      {{child.get_menu_title }}<b class="caret"></b></a>
-    {% if not child.get_descendants %}
-    </li> 
-    {% else %}
-      <ul class="dropdown">
-      {% for kid in child.get_descendants %}
-        {% if kid.visible %}
-        <li>
-          <a href="{{ kid.get_absolute_url }}">
-            {{kid.get_menu_title }}
-          </a>
-        </li>
-       {% endif %}
-      {% endfor %}
-      </ul>
+    {% if child.visible %}
+      <li>
+        <a href="{{ child.attr.redirect_url|default:child.get_absolute_url }}"> 
+
+        {% with ''|center:child.menu_level as range %}
+        {% for _ in range %} &emsp; {% endfor %} 
+        {% endwith %}
+        {% if child.get_descendants %}<i class="fas fa-arrow-down"></i> {% endif %}
+        {{child.get_menu_title }}<b class="caret"></b></a>
+      {% if not child.get_descendants %}
+      </li> 
+      {% else %}
+        <ul class="dropdown">
+          {% show_menu from_level to_level extra_inactive extra_active template "" "" child %}
+        </ul>
+      {% endif %}
+      </li>
     {% endif %}
-    </li>
 {% endfor %} 
+
+{% if not child %}
+  <li><a href="{% url 'location_view' %}">Locations</a></li>
+  <li><a href="{% url 'events' %}">Events</a></li>
+  <li><a href="{% url 'project_view' %}">Projects</a></li>
+  <li><a href="https://asrg.gitbook.io/asrg-wiki/">Docs</a></li>
+  <li><a href="{% url 'security' %}">Report a vulnerability</a></li>
+  <li><a href="mailto:hello@asrg.io">Become a sponsor</a></li>
+  {% if not user.is_authenticated %}
+    <li><a href="{% url 'register' %}">Become a Member</a></li>
+    <li><a href="{% url 'blog' %}">Blog</a></li>
+    <li><a href="{% url 'login' %}"> <i class="fa fa-fw fa-lock"></i> Login</a></li> 
+  {% else %}
+    <li><a href="{% url 'home' %}">Member portal</a></li>
+  {% endif %}
+  <!-- /custom entries -->
+{% endif %}
 
 <!-- custom entries -->
  
-<li><a href="{% url 'location_view' %}">Locations</a></li>
-<li><a href="{% url 'events' %}">Events</a></li>
-<li><a href="{% url 'project_view' %}">Projects</a></li>
-<li><a href="https://asrg.gitbook.io/asrg-wiki/">Docs</a></li>
-<li><a href="{% url 'security' %}">Report a vulnerability</a></li>
-<li><a href="mailto:hello@asrg.io">Become a sponsor</a></li>
-{% if not user.is_authenticated %}
-  <li><a href="{% url 'register' %}">Become a Member</a></li>
-  <li><a href="{% url 'blog' %}">Blog</a></li>
-  <li><a href="{% url 'login' %}"> <i class="fa fa-fw fa-lock"></i> Login</a></li> 
-{% else %}
-  <li><a href="{% url 'home' %}">Member portal</a></li>
-{% endif %}
-<!-- /custom entries -->
 
 <style type="text/css">
   li {

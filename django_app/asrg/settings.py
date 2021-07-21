@@ -93,17 +93,18 @@ MIDDLEWARE = [
     "cms.middleware.toolbar.ToolbarMiddleware",
     "cms.middleware.language.LanguageCookieMiddleware",
     "django.middleware.locale.LocaleMiddleware",
+    "cms_app.login_required.LoginRequired",
 ]
 
 ROOT_URLCONF = "asrg.urls"
 LOGIN_REDIRECT_URL = "home"  # Route defined in app/urls.py
 LOGOUT_REDIRECT_URL = "home"  # Route defined in app/urls.py
+LOGIN_URL = "/login/"
 TEMPLATE_DIR = os.path.join(BASE_DIR, "asrg/templates")  # ROOT dir for templates
 CMS_TEMPLATES = (
     ("cms_app/landing_template.html", "Landing page template"),
     ("cms_app/article.html", "Article template"),
-    ("cms_app/menu.html", "Menu Template"),
-    ("cms_app/base.html", "Base Template"),
+    ("cms_app/base_members.html", "Base Member Template"),
 )
 
 
