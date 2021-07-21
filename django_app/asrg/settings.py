@@ -106,12 +106,7 @@ CMS_TEMPLATES = (
     ("cms_app/base.html", "Base Template"),
     ("cms_app/base_members.html", "Base Member Template"),
     ("cms_app/index_members.html", "Index Member Template"),
-    ("cms_app/overview_members.html", "Overview Member Template"),
-    ("cms_app/research_members.html", "Research Member Template"),
-    ("cms_app/student_organizations_members.html", "Student Template"),
-    ("cms_app/technical_committees_members.html", "Technical Member Template"),
-    ("cms_app/learning_members.html", "Learning Member Template"),
-    ("cms_app/team_members.html", "Team Member Template"),
+    ("cms_app/template_members.html", "Template Member Template"),
 
 )
 
