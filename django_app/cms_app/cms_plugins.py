@@ -11,6 +11,7 @@ from authentication.models import Chapter, User
 from events.models import Event
 from sponsors.models import Sponsor
 from cms_app.models import SponsorConfig, CounterConfig
+from announcements.models import Announcement
 
 
 @plugin_pool.register_plugin
@@ -65,3 +66,18 @@ class SponsorPlugin(CMSPluginBase):
         sponsor = Sponsor.objects.get(name=instance.name)
         context.update({"sponsor": sponsor})
         return context
+
+@plugin_pool.register_plugin
+class IndexPlugin(CMSPluginBase):
+    model = CMSPlugin
+    name = _("Index Plugin")
+    render_template = "cms_app/plugins/index_plugin.html"
+    cache = False
+      
+    def render(self, context, instance, placeholder):
+        context.update({"chapters": Chapter.objects.all(),
+        "announcements": Announcement.objects.all(),"main_dashboard": True,})
+        return context
+
+      
+    

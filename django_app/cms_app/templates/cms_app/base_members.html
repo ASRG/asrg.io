@@ -78,20 +78,42 @@
       max-width: 150px;
     }
   </style>{% endaddtoblock %}
+  {% block css %} {% endblock css %}
   {% render_block "css" %}
   </head>
 
   <body class="c-app" style="padding-top: 0;">
+    {% cms_toolbar %}
 
+    
     {% if user.is_authenticated %}
-      {% include 'includes/sidebar.html' %}
+      <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
+        <div class="c-sidebar-brand d-lg-down-none">
+            <div class="c-sidebar-brand-full">
+              <a href="{% url 'home' %}">
+                <img class="c-sidebar-brand-full" src="/static/assets/brand/asrg logo_v5.png" width="80" height="25" alt="ASRG Logo">
+              </a>
+            </div>
+            <div class="c-sidebar-brand-minimized">
+              <a href="/index.html">
+                <img class="c-sidebar-brand-minimized" src="/static/assets/brand/asrg logo_v5.png" width="50" height="16" alt="ASRG Logo">
+              </a>
+            </div>
+        </div>
+        <ul class="c-sidebar-nav">
+          {% show_menu_below_id "member-portal" 0 10 10 10 "cms_app/members_menu.html" %}
+        </ul>
+      <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-minimized"></button>
+    </div>
     {% endif %}
 
     <div class="c-wrapper">
 
-    {% if user.is_authenticated %}
-      {% include 'includes/navigation.html' with user=request.user %} 
-    {% endif %}
+    {% comment %}
+      {% if user.is_authenticated %}
+        {% include 'includes/navigation.html' with user=request.user %} 
+      {% endif %}
+    {% endcomment %}
 
       <div class="c-body">
         <main class="c-main">
@@ -105,14 +127,16 @@
         </main>
       </div>
 
-      {% include 'includes/footer.html' %}
+      {% static_placeholder "footer" or %} 
+        {% include 'includes/footer.html' %}
+      {% endstatic_placeholder%}
       
     </div>
 
     {% include 'includes/scripts.html' %}
 
     <!-- Specific Page JS goes HERE  -->
-    {% block javascripts %}{% endblock javascripts %}
+   {% addtoblock "js" %} {% block javascripts %}{% endblock javascripts %} {% endaddtoblock %}
 
   {% addtoblock "js" %}<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>{% endaddtoblock %}
   {% render_block "js" %}
