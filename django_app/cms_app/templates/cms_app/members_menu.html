@@ -24,10 +24,6 @@
               <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{ child.attr.redirect_url|default:child.get_absolute_url }}">
                   <span class="c-sidebar-nav-icon"></span> {{child.get_menu_title }}
                 </a></li>
-
-            {% comment %}
-              {% show_menu from_level to_level extra_inactive extra_active template "" "" child %}
-            {% endcomment %}
             {% endfor %}
           </ul>
         </li>

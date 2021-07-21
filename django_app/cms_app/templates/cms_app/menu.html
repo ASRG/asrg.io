@@ -5,7 +5,7 @@
       <li>
         <a href="{{ child.attr.redirect_url|default:child.get_absolute_url }}"> 
 
-        {% with ''|center:child.level as range %}
+        {% with ''|center:child.menu_level as range %}
         {% for _ in range %} &emsp; {% endfor %} 
         {% endwith %}
         {% if child.get_descendants %}<i class="fas fa-arrow-down"></i> {% endif %}
@@ -19,23 +19,24 @@
       {% endif %}
       </li>
     {% endif %}
-  {% if child.selected %}
-    <li><a href="{% url 'location_view' %}">Locations</a></li>
-    <li><a href="{% url 'events' %}">Events</a></li>
-    <li><a href="{% url 'project_view' %}">Projects</a></li>
-    <li><a href="https://asrg.gitbook.io/asrg-wiki/">Docs</a></li>
-    <li><a href="{% url 'security' %}">Report a vulnerability</a></li>
-    <li><a href="mailto:hello@asrg.io">Become a sponsor</a></li>
-    {% if not user.is_authenticated %}
-      <li><a href="{% url 'register' %}">Become a Member</a></li>
-      <li><a href="{% url 'blog' %}">Blog</a></li>
-      <li><a href="{% url 'login' %}"> <i class="fa fa-fw fa-lock"></i> Login</a></li> 
-    {% else %}
-      <li><a href="{% url 'home' %}">Member portal</a></li>
-    {% endif %}
-    <!-- /custom entries -->
-  {% endif %}
 {% endfor %} 
+
+{% if not child %}
+  <li><a href="{% url 'location_view' %}">Locations</a></li>
+  <li><a href="{% url 'events' %}">Events</a></li>
+  <li><a href="{% url 'project_view' %}">Projects</a></li>
+  <li><a href="https://asrg.gitbook.io/asrg-wiki/">Docs</a></li>
+  <li><a href="{% url 'security' %}">Report a vulnerability</a></li>
+  <li><a href="mailto:hello@asrg.io">Become a sponsor</a></li>
+  {% if not user.is_authenticated %}
+    <li><a href="{% url 'register' %}">Become a Member</a></li>
+    <li><a href="{% url 'blog' %}">Blog</a></li>
+    <li><a href="{% url 'login' %}"> <i class="fa fa-fw fa-lock"></i> Login</a></li> 
+  {% else %}
+    <li><a href="{% url 'home' %}">Member portal</a></li>
+  {% endif %}
+  <!-- /custom entries -->
+{% endif %}
 
 <!-- custom entries -->
  
