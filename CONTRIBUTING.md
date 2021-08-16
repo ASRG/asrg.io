@@ -176,4 +176,11 @@ If you are running with docker run the following command to create local users:
 1. We are using [Black](https://github.com/psf/black) to automatically format the code.
     - If you want to install black on your IDE you can find integrations [here](https://black.readthedocs.io/en/stable/editor_integration.html)
     - Run `pre-commit install` (it runs black, flake8 and checkf for missing migrations)
+
+# Styling
+
+## Colors
+
+ASRG RED
+#e81c24
  
