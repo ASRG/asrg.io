@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     "filer",
     "menus",  # helper for model independent hierarchical website navigation
     "sekizai",  # for javascript and css management
+    "import_export",
     # Internal Apps:
     "asrg",
     "cms_app",
@@ -107,7 +108,6 @@ CMS_TEMPLATES = (
     ("cms_app/base_members.html", "Base Member Template"),
     ("cms_app/index_members.html", "Index Member Template"),
     ("cms_app/template_members.html", "Template Member Template"),
-
 )
 
 

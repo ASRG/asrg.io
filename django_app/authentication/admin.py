@@ -17,6 +17,8 @@ from django.core.signing import TimestampSigner
 from django.contrib.auth.tokens import default_token_generator
 from django.core import mail
 from django.conf import settings
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
 
 from authentication.models import Chapter, User, UserProfile
 
@@ -96,11 +98,32 @@ class UserAdmin(AuthUserAdmin):
         return super(UserAdmin, self).save_model(request, obj, form, change)
 
 
+class ChapterResource(resources.ModelResource):
+    class Meta:
+        model = Chapter
+        fields = (
+            "id",
+            "location",
+            "city",
+            "country",
+            "lead",
+            "foundation",
+            "latitude",
+            "longitude",
+            "description",
+            "meetup_link",
+            "picture_src",
+            "picture",
+            "email",
+        )
+
+
 @admin.register(Chapter)
-class ChapterAdmin(admin.ModelAdmin):
+class ChapterAdmin(ImportExportModelAdmin):
     list_display = ["location", "city", "country", "lead", "foundation", "age"]
     list_filter = ("city", "country")
     readonly_fields = ["age"]
+    resource_class = ChapterResource
 
     def age(self, obj):
         now = timezone.now()

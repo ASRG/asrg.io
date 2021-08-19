@@ -1,1 +1,2 @@
 django-password-validators==1.6.0
+django-import-export==2.5.0
